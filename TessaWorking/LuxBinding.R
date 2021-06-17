@@ -14,6 +14,8 @@ all_files=list.files(pattern=".csv") #pulls out the csv files from WL folder in 
 #sites_rp=gsub("_.*","",all_files) #selects the correct pattern so as to seelct only desired files
 sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
+site_names=site_names[-2]
+site_names=site_names[-6]
 
 #rm old files, if they exsist
 rm(LuxData)
@@ -30,22 +32,23 @@ for (site in site_names){
     if (!exists("LuxData")){
       LuxData <- read.csv(file, skip=2, header = FALSE, sep = ",",
                          quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-      colnames(LuxData)=c("row","DateTime","Temp_C","Lux")  
       LuxData=LuxData[,2:4]
+      colnames(LuxData)=c("DateTime","Temp_C","Lux")  
+      
     }
     if (exists("LuxData")){
       Temp_LuxData <- read.csv(file, skip=2, header = FALSE, sep = ",",
                               quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
       colnames(Temp_LuxData)=c("row","DateTime","Temp_C","Lux")  
-      LuxData=LuxData[,2:4]
+      Temp_LuxData=Temp_LuxData[,2:4]
       
       LuxData <- rbind(LuxData, Temp_LuxData)
       rm(Temp_LuxData)
     }
     
   }
- # colnames(LuxData)=c("row","DateTime","Temp_C","Lux")
- # LuxData=LuxData[,2:4]
+  #colnames(LuxData)=c("row","DateTime","Temp_C","Lux")
+  #LuxData=LuxData[,2:4]
   LuxData=unique(LuxData)
   LuxData$DateTime <- as.POSIXct(LuxData$DateTime, format="%m/%d/%y %H:%M:%S ", tz="UTC")
   assign((paste(site,"Lux_data",sep="_")),LuxData) #creates object with new appended data
