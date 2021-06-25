@@ -57,22 +57,23 @@ for (site in site_names){
   #reads in files in list and appends
   for (file in file_list){
     if (!exists("CO2Data")){
-      CO2Data <- read.csv(file, skip=6, header = TRUE)
+      CO2Data <- read.csv(file, skip=5, header = FALSE)
       CO2Data=CO2Data[,1:3]
     }
     if (exists("CO2Data")) {
-      Temp_CO2Data <- read.csv(file, skip=6, header = TRUE)  
+      Temp_CO2Data <- read.csv(file, skip=5, header = FALSE)  
       Temp_CO2Data=Temp_CO2Data[,1:3]
       CO2Data <- rbind(CO2Data, Temp_CO2Data)
       rm(Temp_CO2Data)
     }
     
   }
-  colnames(CO2Data)=c("Date","Time","ppm")
+  colnames(CO2Data)=c("DateTime","record","ppm")
   #CO2Data=CO2Data[,2:4]
   CO2Data=unique(CO2Data)
-  CO2Data$DateTime <- as.POSIXct(paste(CO2Data$Date, CO2Data$Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC")
-  #CO2$DateTime <- as.POSIXct(CO2$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+  #CO2Data$DateTime <- as.POSIXct(paste(CO2Data$Date, CO2Data$Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+  CO2Data$DateTime <- as.POSIXct(CO2Data$DateTime, format="%m/%d/%Y %H:%M", tz="UTC")
+  CO2Data$ppm <- CO2Data$ppm*10
   assign((paste(site,"CO2_data",sep="_")),CO2Data) #creates object with new appended data
   rm(CO2Data) #removes WLdata so that multiple sites aren't appended together
 }
@@ -81,6 +82,6 @@ for (site in site_names){
 
 ##Now we can graph 
 #CO2_04_CO2_data_subset<- filter(CO2_04_CO2_data, ppm < 3000)
-ggplot(CO2_04_CO2_data_subset, aes(x=DateTime, y=ppm))+
+ggplot(CO2_02_CO2_data, aes(x=DateTime, y=ppm))+
   geom_point(aes(y=ppm))
 
