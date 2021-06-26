@@ -69,7 +69,7 @@ group_by(Date, Site, Trans_no) %>%
   summarize(mean_Flux = mean(Flux, na.rm = TRUE),
             std_Flux = sd(Flux, na.rm = TRUE))
 
-
+EOS_pivot$percent <- EOS_pivot$std_Flux / EOS_pivot$mean_Flux *100
 #Graph it up bitches
 
 ggplot(EOS_pivot, aes(fill=Site, y=mean_Flux, x=Trans_no)) + 
@@ -78,7 +78,7 @@ ggplot(EOS_pivot, aes(fill=Site, y=mean_Flux, x=Trans_no)) +
 ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) + 
   geom_bar(position="dodge", stat="identity")
 
-EOS_pivot$percent <- EOS_pivot$std_Flux / EOS_pivot$mean_Flux *100
+
 
 
 ggplot(EOS_pivot, aes(fill=Site, y=percent, x=Trans_no)) + 
