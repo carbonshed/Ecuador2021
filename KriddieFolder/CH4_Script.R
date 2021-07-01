@@ -96,25 +96,40 @@ EOS_pivot <- EOSData  %>%
 group_by(Date, Site, Trans_no) %>%
   #filter(Flux > 0)  %>%
   summarize(mean_Flux = mean(Flux, na.rm = TRUE),
-            std_Flux = sd(Flux, na.rm = TRUE))
+            std_Flux = sd(Flux, na.rm = TRUE))  %>%
+  drop_na(Date)   
 
 ###QA/QC
 EOS_pivot %>%
   group_by(Site) %>%
   summarize(n())
 
+#####
+
 EOS_pivot$percent <- EOS_pivot$std_Flux / EOS_pivot$mean_Flux *100
 #Graph it up bitches
 
-ggplot(EOS_pivot, aes(fill=Site, y=mean_Flux, x=Trans_no)) + 
-  geom_bar(position="dodge", stat="identity")
+
+
+ggplot(subset(EOS_pivot, Date == "2021-06-14" | Date == "2021-06-16"), aes(fill=Site, y=mean_Flux, x=Trans_no)) + 
+  geom_bar(position="dodge", stat="identity") 
+
 
 ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) + 
-  geom_bar(position="dodge", stat="identity")
+  geom_bar(position="dodge", stat="identity") 
 
 
+EOS_pivot$Date[EOS_pivot$Date=="2021-06-16"]  <- as.Date("2021-06-14")
+EOS_pivot$Date[EOS_pivot$Date=="2021-06-22"]  <- as.Date("2021-06-21")
 
 
-ggplot(EOS_pivot, aes(fill=Site, y=percent, x=Trans_no)) + 
-  geom_bar(position="dodge", stat="identity")
+ggplot(EOS_pivot, aes(fill=Site,y=percent, x=Trans_no)) + 
+  geom_bar(position="dodge", stat="identity") + 
+  facet_wrap(~ Date) 
+
+
+ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) + 
+  geom_bar(position="dodge", stat="identity") + 
+  facet_wrap(Date ~ Site) 
+
 
