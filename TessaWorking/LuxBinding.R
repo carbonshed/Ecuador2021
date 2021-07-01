@@ -14,10 +14,9 @@ all_files=list.files(pattern=".csv") #pulls out the csv files from WL folder in 
 #sites_rp=gsub("_.*","",all_files) #selects the correct pattern so as to seelct only desired files
 sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
-site_names=site_names[-2]
-site_names=site_names[-6]
 
-#rm old files, if they exsist
+
+#rm old files, if they exist
 rm(LuxData)
 rm(Temp_LuxData)
 
