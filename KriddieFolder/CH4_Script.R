@@ -17,13 +17,41 @@ setwd(here::here("CH4"))
 
 all_files=list.files(pattern=".csv") #pulls out the csv files from WL folder in HOBOware folder
 sites_rp=gsub("_.*","",all_files) #selects the correct pattern so as to seelct only desired files
-#sites_rp = sub('_[^_]+$', '', all_files)
+sites_rp = sub('_[^_]+$', '', all_files)
 
 site_names=unique(sites_rp) #creates list of site names for following loop
+
+#EOS 1 and EOS 2 have different column names, so we will do a loop for each one
+
+#EOS1 loop
+site <- site_names[1]
+
+list1=list.files(pattern=site) #finds all files for the site
+sitelist_csv=grep(".csv",list1) #creates list of all files for site
+file_list=list1[sitelist_csv]
 
 #rm old files, if they exsist
 rm(EOSData)
 rm(Temp_EOSData)
+
+for (file in file_list){
+  if (!exists("EOSData")){
+    EOSData <- read.csv(file, skip=0, header = TRUE, sep = ",",
+                        quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+    EOSData <- select(EOSData, c("Month", "Day", "Year", "Time","Flux","Temperature..C.","Mode","EOS.Num","Site","Trans.Num"))
+          colnames(EOSData)=c("Month","Day","Year","Time","Flux","Temperature_c","Mode","Eos_no","Site","Trans_no")
+  }
+  if (exists("EOSData")){
+    Temp_EOSData <- read.csv(file, skip=0, header = TRUE, sep = ",",
+                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
+    Temp_EOSData <- select(EOSData, c("Month", "Day", "Year", "Time","Flux","Temperature..C.","Mode","EOS.Num","Site","Trans.Num"))
+    colnames(Temp_EOSData)=c("Month","Day","Year","Time","Flux","Temperature_c","Mode","Eos_no","Site","Trans_no")
+    EOSData <- rbind(EOSData, Temp_EOSData)
+    rm(Temp_EOSData)
+  }
+}
+  
+
 
 for (site in site_names){
   
