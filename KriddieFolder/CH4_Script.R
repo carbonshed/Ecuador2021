@@ -49,8 +49,9 @@ for (file in file_list){
     EOSData <- rbind(EOSData, Temp_EOSData)
     rm(Temp_EOSData)
   }
-  EOSData=unique(EOSData)
+#  EOSData=unique(EOSData)
   EOSData_01 <- EOSData 
+#  rm(EOSData)
 }
   
 ### EOS2 loop ####
@@ -79,9 +80,9 @@ for (file in file_list){
     EOSData <- rbind(EOSData, Temp_EOSData)
     rm(Temp_EOSData)
   }
-  EOSData=unique(EOSData)
+#  EOSData=unique(EOSData)
   EOSData_02 <- EOSData 
-  rm(EOSData)
+#  rm(EOSData)
 }
 
 EOSData <-  rbind(EOSData_01, EOSData_02)
@@ -89,7 +90,7 @@ EOSData <-  rbind(EOSData_01, EOSData_02)
 EOSData$Date <- as.Date(with(EOSData, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
 
 EOSData <- EOSData  %>%
-drop_na(Site)   
+drop_na(Site)    
 
 EOS_pivot <- EOSData  %>%
 group_by(Date, Site, Trans_no) %>%
