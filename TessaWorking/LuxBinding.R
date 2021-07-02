@@ -44,7 +44,7 @@ for (site in site_names){
       LuxData <- rbind(LuxData, Temp_LuxData)
       rm(Temp_LuxData)
     }
-    #if (!"ISCOTrig" %in% colnames(LuxData)){LuxData$ISCOTrig <- NA}
+    if (!"ISCOTrig" %in% colnames(LuxData)){LuxData$ISCOTrig <- NA}
     
   }
   #colnames(LuxData)=c("row","DateTime","Temp_C","Lux")
