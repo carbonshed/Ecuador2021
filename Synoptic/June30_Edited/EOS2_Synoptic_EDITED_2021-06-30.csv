@@ -31,9 +31,9 @@ Month,Day,Year,Time,Flux,Temperature (C),Soil sig,Soil STD,ATM sig,ATM STD,Mode,
 6,30,21,11:20:00,0.01,17,243.84,3.471,243.26,5.059,0,1.23704,1.75101,1.2372,1.75064,7,same stream; the inclination that leads to the little pond above GAVI,11,-0.32539,-78.19979,NA,very turbulent
 6,30,21,11:25:00,2.07,17,362.73,88.427,247.6,2.363,0,1.23816,1.73697,1.23737,1.75097,7,same stream; the inclination that leads to the little pond above GAVI,11,-0.32539,-78.19979,NA,very turbulent
 6,30,21,11:30:00,-0.14,17.1,252.17,8.712,260.09,15.139,0,1.23716,1.7501,1.23691,1.75039,NA,NA,NA,NA,NA,NA,NA
-6,30,21,11:35:00,0.37,17.4,249.79,1.39,229.12,5.039,0,1.23775,1.75026,1.23716,1.75193,7,same stream; the inclination that leads to the little pond above GAVI,12,0.32504,-78.19988,NA,NA
-6,30,21,11:40:00,0.22,17.6,234.38,1.842,221.89,1.795,0,1.23741,1.75089,1.23745,1.75193,7,same stream; the inclination that leads to the little pond above GAVI,12,0.32504,-78.19988,NA,NA
-6,30,21,11:45:00,0.14,17.5,232.33,3.103,224.69,2.036,0,1.23733,1.75114,1.23741,1.75147,7,same stream; the inclination that leads to the little pond above GAVI,12,0.32504,-78.19988,NA,NA
+6,30,21,11:35:00,0.37,17.4,249.79,1.39,229.12,5.039,0,1.23775,1.75026,1.23716,1.75193,7,same stream; the inclination that leads to the little pond above GAVI,12,-0.32504,-78.19988,NA,NA
+6,30,21,11:40:00,0.22,17.6,234.38,1.842,221.89,1.795,0,1.23741,1.75089,1.23745,1.75193,7,same stream; the inclination that leads to the little pond above GAVI,12,-0.32504,-78.19988,NA,NA
+6,30,21,11:45:00,0.14,17.5,232.33,3.103,224.69,2.036,0,1.23733,1.75114,1.23741,1.75147,7,same stream; the inclination that leads to the little pond above GAVI,12,-0.32504,-78.19988,NA,NA
 6,30,21,11:50:00,-0.2,17.1,222.98,1.957,233.85,11.872,0,1.23725,1.75222,1.23675,1.75168,NA,NA,NA,NA,NA,NA,NA
 6,30,21,11:55:00,0.17,17.4,228.65,3.782,219.42,3.72,0,1.2377,1.7516,1.23733,1.75235,NA,NA,NA,NA,NA,NA,NA
 6,30,21,12:00:00,0.22,17.7,228.93,2.957,216.67,3.508,0,1.23737,1.75085,1.23762,1.75222,7,same stream; the inclination that leads to the little pond above GAVI,13,-0.32467,-78.19965,NA,NA

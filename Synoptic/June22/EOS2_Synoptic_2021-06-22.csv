@@ -1,6 +1,4 @@
 Month,Day,Year,Time,Flux,Temperature (C),Soil sig,Soil STD,ATM sig,ATM STD,Mode,Soil VR,Soil VA,ATM VR,ATM VA,Tract,Description,Point,X,Y,WaterSample
-6,22,21,9:36:14,0,0,0,0,0,0,1,0,0,0,0,Methane,Methane,Methane,Methane,Methane,Methane
-6,22,21,9:39:39,0,0,0,0,0,0,1,0,0,0,0,Methane,Methane,Methane,Methane,Methane,Methane
 6,22,21,13:40:00,1.77,21,325.83,8.547,227.31,3.926,0,1.24054,1.73926,1.24091,1.74734,1,Trib converges below station 4 from the right if looking upstream,1,-0.3311667,-78.20303,1335
 6,22,21,13:45:00,1.99,20.5,342.07,8.811,231,4.001,0,1.24004,1.73901,1.24004,1.74718,1,Trib converges below station 4 from the right if looking upstream,1,-0.3311667,-78.20303,1335
 6,22,21,13:50:00,1.9,20.1,333.98,5.933,227.95,5.887,0,1.23954,1.73993,1.23945,1.74772,1,Trib converges below station 4 from the right if looking upstream,1,-0.3311667,-78.20303,1335

@@ -27,9 +27,9 @@ Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 
 6,30,21,11:20:00,0.06,17.8,73.23,4.221,69.87,22.823,0,NA,NA,NA,NA,NA,NA,NA
 6,30,21,11:25:00,0.68,17.6,126.93,27.068,88.69,16.245,0,NA,NA,NA,NA,NA,NA,NA
 6,30,21,11:30:00,-0.14,17.8,92.24,1.563,99.93,8.574,0,NA,NA,NA,NA,NA,NA,NA
-6,30,21,11:35:00,0.05,17.9,101.5,3.02,98.81,4.202,0,3,"Deep well with water coming from ground, flows near mainstem",1,GPS dead,GPS dead,NA,"Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
-6,30,21,11:40:00,0.05,17.9,106.19,4.116,103.36,5.421,0,3,"Deep well with water coming from ground, flows near mainstem",1,GPS dead,GPS dead,NA,"Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-31"
-6,30,21,11:45:00,-0.17,18,93.33,5.211,102.97,8.308,0,3,"Deep well with water coming from ground, flows near mainstem",1,GPS dead,GPS dead,NA,"Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-32"
+6,30,21,11:35:00,0.05,17.9,101.5,3.02,98.81,4.202,0,3,"Deep well with water coming from ground, flows near mainstem",1,NA,NA,NA,"GPS dead, but could probaby get coordinates bc it is where liz (EOS2) started on same day, approimatly, Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
+6,30,21,11:40:00,0.05,17.9,106.19,4.116,103.36,5.421,0,3,"Deep well with water coming from ground, flows near mainstem",1,NA,NA,NA,"GPS dead, but could probaby get coordinates bc it is where liz (EOS2) started on same day, approimatly, Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
+6,30,21,11:45:00,-0.17,18,93.33,5.211,102.97,8.308,0,3,"Deep well with water coming from ground, flows near mainstem",1,NA,NA,NA,"GPS dead, but could probaby get coordinates bc it is where liz (EOS2) started on same day, approimatly, Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
 6,30,21,11:50:00,-0.04,18.1,84.18,13.514,86.7,4.894,0,NA,NA,NA,NA,NA,NA,NA
 6,30,21,11:55:00,-0.11,18.4,71.76,1.685,77.86,6.513,0,NA,NA,NA,NA,NA,NA,NA
 6,30,21,12:00:00,0.06,19,70.79,2.342,67.48,1.758,0,4,Far end of wetland below outlet of mainstem,1,-0.3263833,-78.19983,NA,NA
