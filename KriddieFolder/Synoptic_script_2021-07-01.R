@@ -221,6 +221,8 @@ Flux_synop <- rbind(Flux_June22_pivot, Flux_June23_pivot, Flux_June29_pivot, Flu
 
 Flux_map <- qmplot(Lon, Lat, data = Flux_synop, zoom = 13,  maptype = "toner-background", color = Flux_ave)+
   scale_color_gradient(low="blue", high="red")
+CO2_map <- qmplot(Lon, Lat, data = Flux_synop, zoom = 13,  maptype = "toner-background", color = Flux_ave)+
+  scale_color_gradient(low="blue", high="red")
 
 
 ### Merge datua
