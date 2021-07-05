@@ -1,5 +1,5 @@
 Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 ATM (ppm),CO2 ATM STD (ppm),Mode,Tract,Description,Point,X,Y,WS,Notes
-6,18,21,11:00:00,0.16,22.6,38.61,1.165,29.35,1.451,0,1,NA,NA,"Coordinates unknown, but right near Station1",,1100,Just water sample
+6,18,21,11:00:00,0.16,22.6,38.61,1.165,29.35,1.451,0,1,NA,NA,NA,NA,1100,"Coordinates unknown, but right near Station1, Just water sample"
 6,18,21,11:05:00,0.15,22.7,40.63,1.924,32.38,1.661,0,NA,NA,NA,NA,NA,NA,NA
 6,18,21,11:10:00,0.15,22.9,40.85,4.856,32.11,3.103,0,NA,NA,NA,NA,NA,NA,NA
 6,18,21,11:15:00,0.35,22.9,57.24,6.886,37.35,2.421,0,NA,NA,NA,NA,NA,NA,NA

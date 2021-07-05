@@ -1,14 +1,16 @@
 ## This is where I will work on synoptic data
 
+
+# Install
+install.packages("wesanderson")
 install.packages("ggmap")
+
+# Load libraries
 library(ggmap)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(here)
-# Install
-install.packages("wesanderson")
-# Load
 library(wesanderson)
 
 API_Key <- "AIzaSyAL9hbyMHAI_3a99HJyB4_LjI_M_pGMOGg"
@@ -16,12 +18,22 @@ register_google(key = API_Key, write = TRUE)
 
 #June 18th
 
-CO2 <-  read.csv(here::here("/Synoptic/June18/CO2_EOS1_synoptic_2021-06-18.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos1_June18 <-  read.csv(here::here("/Synoptic/June18_Edited/CO2_EOS1_synoptic_EDITED_2021-06-18.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2) <- c("Date","Time","CO2_ppm")
-CO2$DateTime <- as.POSIXct(paste(CO2$Date, CO2$Time), format="%m/%d/%Y %I:%M:%S %p")
-CO2$Date <- NULL
-CO2$Time <- NULL
+colnames(CO2_eos1_June18) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample", "Notes")
+CO2_eos1_June18$DateTime <- as.POSIXct(paste(CO2_eos1_June18$Date, CO2_eos1_June18$Time), format="%m/%d/%Y %I:%M:%S %p")
+CO2_June22$Date <- as.Date(CO2_June22$Date, format="%m/%d/%Y" )
+CO2_eos1_June18$Time <- NULL
+
+CO2_June18_pivot <- CO2_eos1_June18  %>%
+  drop_na(Lat)  %>%
+  group_by(Lat, Lon, Date) %>%
+  summarize(CO2_ppm_ave = mean(CO2_ppm, na.rm = TRUE),
+            Tract = mean(Tract, na.rm = TRUE),
+            Point = mean(Point, na.rm = TRUE))
+
+CO2_map <- qmplot(Lon, Lat, data = CO2_synop, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = Date.as.fact)+
+  scale_color_gradient(low="blue", high="red")
 
 #June 22
 CO2_eos1_June22 <-  read.csv(here::here("/Synoptic/June22/CO2_EOS1synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
@@ -118,10 +130,11 @@ CO2_June30_pivot <- CO2_June30  %>%
             Tract = mean(Tract, na.rm = TRUE),
             Point = mean(Point, na.rm = TRUE)) 
 
-CO2_synop <- rbind(CO2_June22_pivot,CO2_June23_pivot,CO2_June29_pivot,CO2_June30_pivot)
+CO2_synop <- rbind(CO2_June18_pivot, CO2_June22_pivot,CO2_June23_pivot,CO2_June29_pivot,CO2_June30_pivot)
 
+CO2_synop$Date.as.fact <- as.factor(CO2_synop$Date)
 
-CO2_map <- qmplot(Lon, Lat, data = CO2_synop, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave)+
+CO2_map <- qmplot(Lon, Lat, data = CO2_synop, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = Date.as.fact)+
   scale_color_gradient(low="blue", high="red")
 
 ####EOS DATA #####
