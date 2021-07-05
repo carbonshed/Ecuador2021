@@ -1,0 +1,46 @@
+Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 ATM (ppm),CO2 ATM STD (ppm),Mode,Tract,Description,Point,XCoordinate,Ycoordinate,WaterSample,Notes
+6,30,21,9:15:00,-0.65,23.3,410.31,151.236,446.98,57.515,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:20:00,-0.78,23.9,86.23,5.616,130.28,22.531,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:25:00,-3.35,24.2,320.27,95.09,509.7,248.393,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:30:00,-2.36,24.4,72.14,8.785,205.5,31.483,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:35:00,-0.19,23.9,53.12,2.671,63.85,2.729,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:40:00,0.01,23.2,51.89,3.208,51.2,3.803,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:45:00,0.05,22.7,49.22,10.6,46.67,5.518,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:50:00,0.09,22.1,51.62,2.287,46.67,3.253,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,9:55:00,0.23,21.4,57.58,3.057,44.82,2.564,0,1,Parallel to point 2 at 1340 on 2021-06-29,1,-0.3271833,-78.20093,NA,NA
+6,30,21,10:00:00,0.28,20.7,62.08,1.925,46.29,1.777,0,1,Parallel to point 2 at 1340 on 2021-06-30,1,-0.3271833,-78.20093,NA,NA
+6,30,21,10:05:00,-0.03,20.3,49.21,3.872,51.08,2.001,0,1,Parallel to point 2 at 1340 on 2021-06-31,1,NA,NA,NA,NA
+6,30,21,10:10:00,-0.12,19.4,42.7,5.012,49.5,4.787,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,10:15:00,0.38,18.7,73.46,4.182,51.77,6.806,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,10:20:00,0.51,18.7,88.32,1.332,59.72,2.206,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,10:25:00,0.49,18.7,89.97,2.901,62.13,3.74,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-29,1,-0.3270833,-78.20068,NA,NA
+6,30,21,10:30:00,0.44,18.7,85.67,3.566,60.51,1.801,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-30,1,-0.3270833,-78.20068,NA,NA
+6,30,21,10:35:00,0.12,18.6,68.96,13.401,62.44,2.651,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-31,1,NA,NA,NA,NA
+6,30,21,10:40:00,0.18,18.5,78.11,0.941,68.04,2.115,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,10:45:00,0.15,18.6,69.67,1.208,61.25,1.581,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-33,2,-0.3269833,-78.20078,NA,NA
+6,30,21,10:50:00,0.06,18.6,65.4,1.535,62.05,2.96,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-34,2,-0.3269833,-78.20078,NA,NA
+6,30,21,10:55:00,0.08,18.6,67.19,4.331,62.49,1.89,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-35,2,NA,NA,NA,NA
+6,30,21,11:00:00,0.06,18.3,67.27,1.926,64.07,6.743,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,11:05:00,0.15,18.3,66.08,1.683,57.38,0.666,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-37,3,-0.3268667,-78.20095,NA,NA
+6,30,21,11:10:00,0.16,18.2,65.05,1.537,55.96,1.561,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-38,3,-0.3268667,-78.20095,NA,NA
+6,30,21,11:15:00,0.06,18.3,57.77,4.396,54.59,1.323,0,2,Starts about 20-30 meters to the right of point 1 at 1320 on 2021-06-39,3,NA,NA,NA,NA
+6,30,21,11:20:00,0.06,17.8,73.23,4.221,69.87,22.823,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,11:25:00,0.68,17.6,126.93,27.068,88.69,16.245,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,11:30:00,-0.14,17.8,92.24,1.563,99.93,8.574,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,11:35:00,0.05,17.9,101.5,3.02,98.81,4.202,0,3,"Deep well with water coming from ground, flows near mainstem",1,NA,NA,NA,"GPS dead, but could probaby get coordinates bc it is where liz (EOS2) started on same day, approimatly, Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
+6,30,21,11:40:00,0.05,17.9,106.19,4.116,103.36,5.421,0,3,"Deep well with water coming from ground, flows near mainstem",1,NA,NA,NA,"GPS dead, but could probaby get coordinates bc it is where liz (EOS2) started on same day, approimatly, Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
+6,30,21,11:45:00,-0.17,18,93.33,5.211,102.97,8.308,0,3,"Deep well with water coming from ground, flows near mainstem",1,NA,NA,NA,"GPS dead, but could probaby get coordinates bc it is where liz (EOS2) started on same day, approimatly, Membrane wet but wiped off; stopcock fell off, but tried to keep hole below water; reapeat measurement from EOS2_Synoptics_2021-06-30"
+6,30,21,11:50:00,-0.04,18.1,84.18,13.514,86.7,4.894,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,11:55:00,-0.11,18.4,71.76,1.685,77.86,6.513,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,12:00:00,0.06,19,70.79,2.342,67.48,1.758,0,4,Far end of wetland below outlet of mainstem,1,-0.3263833,-78.19983,NA,NA
+6,30,21,12:05:00,0.09,19.5,68.81,2.084,63.57,2.239,0,4,Far end of wetland below outlet of mainstem,1,-0.3263833,-78.19983,NA,NA
+6,30,21,12:10:00,-0.19,19.8,50.36,4.386,61.19,3.136,0,4,Far end of wetland below outlet of mainstem,1,NA,NA,NA,NA
+6,30,21,12:15:00,0.14,19.3,64.07,7.682,56.3,4.686,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,12:20:00,0.17,19.6,73.72,4.293,64.05,3.796,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,12:25:00,0.41,20.3,83.77,2.163,60.82,1.144,0,4,Far end of wetland below outlet of mainstem,2,-0.32645,-78.1998,NA,Right before fork in stream; electrical tape over stopcock hole
+6,30,21,12:30:00,0.38,20.7,83.78,2.186,62.36,0.226,0,4,Far end of wetland below outlet of mainstem,2,-0.32645,-78.1998,NA,Right before fork in stream; electrical tape over stopcock hole
+6,30,21,12:35:00,0.11,20.7,68.61,7.41,62.4,4.049,0,4,Far end of wetland below outlet of mainstem,2,NA,NA,NA,Right before fork in stream; electrical tape over stopcock hole
+6,30,21,12:40:00,0.07,20.5,68.32,3.554,64.45,3.199,0,NA,NA,NA,NA,NA,NA,NA
+6,30,21,12:45:00,0.2,20.1,72.46,3.67,61.24,1.714,0,4,Far end of wetland below outlet of mainstem,3,-0.3265667,-78.19957,NA,Following righ of fork
+6,30,21,12:50:00,0.25,19.9,77.75,1.649,63.39,2.953,0,4,Far end of wetland below outlet of mainstem,3,-0.3265667,-78.19957,NA,Following righ of fork
+6,30,21,12:55:00,0.06,20,60.32,1.615,56.82,2.548,0,4,Far end of wetland below outlet of mainstem,3,NA,NA,NA,Following righ of fork

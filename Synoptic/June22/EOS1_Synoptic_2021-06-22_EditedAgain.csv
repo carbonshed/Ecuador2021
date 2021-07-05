@@ -1,0 +1,55 @@
+Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 ATM (ppm),CO2 ATM STD (ppm),Mode,Tract,Description,Point,XCoordinate,Ycoordinate,WaterSample
+6,22,21,11:20:00,0.13,21.6,90.49,1.899,83.27,1.328,0,1,Starting from below second road,1,-0.3315833,-78.20378,1118
+6,22,21,11:25:00,-0.08,21.5,84.96,2.466,89.64,3.32,0,1,Starting from below second road,1,-0.3315833,-78.20378,1118
+6,22,21,11:30:00,-0.27,21.6,65.36,1.865,80.36,2.728,0,1,Starting from below second road,1,NA,NA,1118
+6,22,21,11:35:00,0.14,21.8,75.25,0.58,67.21,8.456,0,NA,NA,NA,NA,NA,NA
+6,22,21,11:40:00,-0.05,21.6,65.99,2.629,68.98,3.797,0,1,Starting from below second road,2,-0.3317,-78.2038,NA
+6,22,21,11:45:00,-0.02,21.5,63.79,5.498,65.01,2.961,0,1,Starting from below second road,2,-0.3317,-78.2038,NA
+6,22,21,11:50:00,-0.08,21.6,63.87,7.004,68.13,3.571,0,1,Starting from below second road,2,NA,NA,NA
+6,22,21,11:55:00,0.02,22.3,61.67,1.648,60.68,5.317,0,NA,NA,NA,NA,NA,NA
+6,22,21,12:00:00,0.6,22.3,95.11,3.874,61.17,0.716,0,NA,NA,NA,NA,NA,NA
+6,22,21,12:05:00,0.74,22.1,101.54,1.793,59.95,1.431,0,1,Starting from below second road,3,-0.3314834,-78.2036,NA
+6,22,21,12:10:00,0.76,21.9,104.81,2.462,61.69,2.136,0,1,Starting from below second road,3,-0.3314834,-78.2036,NA
+6,22,21,12:15:00,-0.08,21.8,58.52,8.327,62.89,2.765,0,1,Starting from below second road,3,NA,NA,NA
+6,22,21,12:20:00,0.25,22,70.27,4.665,56.05,2.596,0,NA,NA,NA,NA,NA,NA
+6,22,21,12:25:00,0.13,21.6,82.46,3.596,74.98,1.292,0,NA,NA,NA,NA,NA,NA
+6,22,21,12:30:00,0.16,21.3,85.24,2.684,76.12,0.908,0,1,Starting from below second road,4,-0.3313166,-78.20327,1230
+6,22,21,12:35:00,0.18,21,86.01,2.187,76.1,1.087,0,1,Starting from below second road,4,-0.3313167,-78.20328,1230
+6,22,21,12:40:00,-0.34,21,54.58,6.317,73.56,2.624,0,1,Starting from below second road,4,NA,NA,1230
+6,22,21,12:45:00,0.4,20.9,81.68,2.426,59.29,1.31,0,NA,NA,NA,NA,NA,NA
+6,22,21,12:50:00,0.61,20.5,98.72,7.127,64.27,1.899,0,1,Starting from below second road,5,-0.3314833,-78.20315,NA
+6,22,21,12:55:00,0.25,20.3,77.2,4.044,62.99,2.99,0,1,Starting from below second road,5,-0.3314833,-78.20316,NA
+6,22,21,13:00:00,-0.09,20.1,58.51,9.068,63.57,3.167,0,1,Starting from below second road,5,NA,NA,NA
+6,22,21,13:05:00,0.31,20.1,83.21,6.696,65.63,2.804,0,NA,NA,NA,NA,NA,NA
+6,22,21,13:10:00,0.31,20,78.52,6.556,61.23,1.147,0,1,Starting from below second road,6,-0.33115,-78.20288,NA
+6,22,21,13:15:00,0.21,20,72.79,2.973,61.1,1.054,0,1,Starting from below second road,6,-0.33115,-78.20288,NA
+6,22,21,13:20:00,-0.01,20,63.57,1.162,64.04,6.753,0,1,Starting from below second road,6,NA,NA,NA
+6,22,21,13:25:00,0.99,19.9,123.04,4.181,66.88,1.439,0,NA,NA,NA,NA,NA,NA
+6,22,21,13:30:00,1.28,19.8,141.15,4.475,68.74,3.147,0,1,Starting from below second road,7,-0.3310167,-78.20288,NA
+6,22,21,13:35:00,1.35,19.8,144.04,4.143,67.78,3.38,0,1,Starting from below second road,7,-0.3310167,-78.20288,NA
+6,22,21,13:40:00,-0.17,19.7,63.69,5.228,73.48,4.418,0,1,Starting from below second road,7,NA,NA,NA
+6,22,21,13:45:00,0.21,19.6,90.48,2.029,78.7,3.285,0,NA,NA,NA,NA,NA,NA
+6,22,21,13:50:00,0.32,19.4,87.54,3.633,69.44,2.783,0,1,Starting from below second road,8,-0.3308667,-78.20272,NA
+6,22,21,13:55:00,0.4,19.2,91.31,1.691,68.78,1.949,0,1,Starting from below second road,8,-0.3308667,-78.20272,NA
+6,22,21,14:00:00,0.03,19.2,75.94,6.472,74.42,4.188,0,1,Starting from below second road,8,-0.3308667,-78.20272,NA
+6,22,21,14:05:00,-0.24,19.2,95.55,4.162,109.03,6.55,0,NA,NA,NA,NA,NA,NA
+6,22,21,14:10:00,-0.06,19.1,84.44,2.542,87.97,2.038,0,1,Starting from below second road,9,-0.33075,-78.20253,NA
+6,22,21,14:15:00,0.11,19,92.35,3.598,85.95,1.718,0,1,Starting from below second road,9,-0.33075,-78.20253,NA
+6,22,21,14:20:00,-0.37,19,68.62,2.079,89.35,5.392,0,1,Starting from below second road,9,NA,NA,NA
+6,22,21,14:25:00,-0.02,19.2,63.13,2.415,64.02,3.864,0,NA,NA,NA,NA,NA,NA
+2,22,21,14:30:00,0.22,19.8,71.49,1.49,58.92,1.411,0,NA,NA,NA,NA,NA,NA
+6,22,21,14:35:00,0.29,19.8,74.41,2.719,57.8,0.971,0,2,"Trib from convergence of mainstream, moving upstream",1,-0.3313,-78.20312,1430?
+6,22,21,14:40:00,0.27,19.5,74,2.286,58.67,3.694,0,2,"Trib from convergence of mainstream, moving upstream",1,-0.3313,-78.20312,1430?
+6,22,21,14:45:00,-0.09,19.3,52.43,3.756,57.73,1.857,0,2,"Trib from convergence of mainstream, moving upstream",1,NA,NA,1430?
+6,22,21,14:50:00,0.62,19.1,91.36,2.784,56.32,1.437,0,NA,NA,NA,NA,NA,NA
+6,22,21,14:55:00,0.61,19,89.6,2.916,55.01,1.468,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.3310667,-78.20302,NA
+6,22,21,15:00:00,0.53,18.9,89.99,2.661,59.89,1.873,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.3310667,-78.20302,NA
+6,22,21,15:05:00,0.24,19.1,72.24,4.071,58.71,1.608,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.33106687,-78.20302,NA
+3,22,21,15:10:00,0.62,19.7,93.64,1.455,58.45,3.2,0,NA,NA,NA,NA,NA,NA
+6,22,21,15:15:00,0.69,19.9,102.18,4.23,62.87,3.561,0,2,"Trib from convergence of mainstream, moving upstream",3,-0.3309333,-78.20303,NA
+6,22,21,15:20:00,0.64,19.9,101.96,3.302,65.5,3.065,0,2,"Trib from convergence of mainstream, moving upstream",3,-0.3309333,-78.20303,NA
+6,22,21,15:25:00,0,19.9,64.05,4.128,64.2,4.373,0,2,"Trib from convergence of mainstream, moving upstream",3,NA,NA,NA
+6,22,21,15:30:00,0.74,19.9,109.2,4.967,67.26,2.237,0,NA,NA,NA,NA,NA,NA
+6,22,21,15:35:00,0.87,20,129.57,2.067,80.47,4.026,0,2,"Trib from convergence of mainstream, moving upstream",4,-0.3307333,-78.20295,1535?
+6,22,21,15:40:00,1.08,19.9,134.55,4.793,73.19,2.39,0,2,"Trib from convergence of mainstream, moving upstream",4,-0.3307333,-78.20295,1535?
+6,22,21,15:45:00,-0.08,19.8,70.94,5.655,75.48,2.339,0,2,"Trib from convergence of mainstream, moving upstream",4,NA,NA,1535?

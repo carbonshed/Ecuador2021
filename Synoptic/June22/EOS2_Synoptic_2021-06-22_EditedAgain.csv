@@ -1,0 +1,32 @@
+Month,Day,Year,Time,Flux,Temperature (C),Soil sig,Soil STD,ATM sig,ATM STD,Mode,Soil VR,Soil VA,ATM VR,ATM VA,Tract,Description,Point,X,Y,WaterSample
+6,22,21,13:40:00,1.77,21,325.83,8.547,227.31,3.926,0,1.24054,1.73926,1.24091,1.74734,1,Trib converges below station 4 from the right if looking upstream,1,-0.3311667,-78.20303,1335
+6,22,21,13:45:00,1.99,20.5,342.07,8.811,231,4.001,0,1.24004,1.73901,1.24004,1.74718,1,Trib converges below station 4 from the right if looking upstream,1,-0.3311667,-78.20303,1335
+6,22,21,13:50:00,1.9,20.1,333.98,5.933,227.95,5.887,0,1.23954,1.73993,1.23945,1.74772,1,Trib converges below station 4 from the right if looking upstream,1,NA,NA,1335
+6,22,21,13:55:00,-0.1,20.2,221.91,5.067,227.61,12.681,0,1.2395,1.74776,1.23991,1.74843,NA,NA,NA,NA,NA,NA
+6,22,21,14:00:00,0.74,19.8,261.22,4.43,220.06,3.467,0,1.23904,1.74547,1.2392,1.74868,1,Trib converges below station 4 from the right if looking upstream,2,-0.3311833,-78.20275,NA
+6,22,21,14:05:00,1.02,19.4,281.96,6.417,225.02,2.935,0,1.23879,1.74426,1.23862,1.74843,1,Trib converges below station 4 from the right if looking upstream,2,-0.3311833,-78.20275,NA
+6,22,21,14:10:00,0.38,19.2,252.82,17.867,231.65,3.827,0,1.23875,1.74864,1.23891,1.74905,1,Trib converges below station 4 from the right if looking upstream,2,NA,NA,NA
+6,22,21,14:15:00,-0.18,19,248.16,3.918,258.16,6.136,0,1.23816,1.74747,1.23879,1.74722,NA,NA,NA,NA,NA,NA
+6,22,21,14:20:00,0.36,18.8,252.14,3.941,232.04,4.534,0,1.23858,1.74755,1.23812,1.74922,1,Trib converges below station 4 from the right if looking upstream,3,-0.3312,-78.2025,NA
+6,22,21,14:25:00,0.43,18.6,252.57,5.583,228.4,1.723,0,1.23804,1.74793,1.23808,1.74947,1,Trib converges below station 4 from the right if looking upstream,3,-0.3312,-78.2025,NA
+6,22,21,14:30:00,0.09,18.6,231.99,2,227.19,3.049,0,1.23858,1.74947,1.2382,1.74993,1,Trib converges below station 4 from the right if looking upstream,3,NA,NA,NA
+6,22,21,14:35:00,0.5,18.7,259.72,5.072,231.86,3.521,0,1.23833,1.74714,1.2385,1.7491,NA,NA,NA,NA,NA,NA
+6,22,21,14:40:00,0.23,18.4,245.75,0.994,233.19,2.759,0,1.238,1.74864,1.23804,1.74947,1,Trib converges below station 4 from the right if looking upstream,4,-0.3312333,-78.20225,NA
+6,22,21,14:45:00,0.16,18.2,238.52,3.643,229.37,1.969,0,1.23787,1.74935,1.23779,1.7498,1,Trib converges below station 4 from the right if looking upstream,4,-0.3312333,-78.20225,NA
+6,22,21,14:50:00,-0.1,18.2,224.97,4.371,230.63,4.482,0,1.2385,1.75055,1.23779,1.75022,1,Trib converges below station 4 from the right if looking upstream,4,NA,NA,NA
+6,22,21,14:55:00,0.45,18.1,258.05,1.973,233.12,3.591,0,1.23766,1.7481,1.23775,1.74972,1,NA,NA,NA,NA,NA
+6,22,21,15:00:00,0.48,17.9,259.68,4.622,232.72,2.145,0,1.23754,1.74789,1.23754,1.75014,1,Trib converges below station 4 from the right if looking upstream,5,-0.3313,-78.20195,NA
+6,22,21,15:05:00,0.45,17.8,256.99,1.638,231.91,1.557,0,1.23712,1.74822,1.23725,1.75014,1,Trib converges below station 4 from the right if looking upstream,5,-0.3313,-78.20195,NA
+6,22,21,15:10:00,-0.02,17.8,229.44,3.909,230.39,3.885,0,1.23766,1.75014,1.23737,1.75043,1,Trib converges below station 4 from the right if looking upstream,5,NA,NA,NA
+6,22,21,15:15:00,0.58,17.8,265.91,3.859,233.85,3.683,0,1.2372,1.74776,1.23745,1.75014,NA,NA,NA,NA,NA,NA
+6,22,21,15:20:00,0.78,17.6,279.65,2.962,236.39,2.668,0,1.23733,1.74689,1.23729,1.75043,1,Trib converges below station 4 from the right if looking upstream,6,-0.3313167,-78.20182,NA
+6,22,21,15:25:00,0.75,17.6,281.71,4.801,240.02,5.482,0,1.23704,1.74718,1.2372,1.75022,1,Trib converges below station 4 from the right if looking upstream,6,-0.3313167,-78.20182,NA
+6,22,21,15:30:00,-0.08,17.6,231.9,6.26,236.43,5.483,0,1.23787,1.75089,1.23725,1.75047,1,Trib converges below station 4 from the right if looking upstream,6,NA,NA,NA
+6,22,21,15:35:00,0.14,17.7,239.99,3.786,231.93,3.447,0,1.23754,1.75026,1.23758,1.75047,NA,NA,NA,NA,NA,NA
+6,22,21,15:40:00,0.08,17.5,242.92,3.93,238.27,1.3,0,1.23733,1.74968,1.23729,1.75059,1,Trib converges below station 4 from the right if looking upstream,7,-0.33135,-78.20155,1535?
+6,22,21,15:45:00,0.12,17.4,250.35,2.202,243.53,2.658,0,1.23737,1.75001,1.2372,1.75001,1,Trib converges below station 4 from the right if looking upstream,7,-0.33135,-78.20155,1535?
+6,22,21,15:50:00,0.36,17.4,261.43,6.981,241.23,3.139,0,1.23762,1.75005,1.23745,1.75047,1,Trib converges below station 4 from the right if looking upstream,7,NA,NA,1535?
+6,22,21,15:55:00,-0.29,17.5,235.3,5.047,251.51,5.019,0,1.23695,1.7511,1.23754,1.75026,NA,NA,NA,NA,NA,NA
+6,22,21,16:00:00,-0.01,17.8,233.56,3.21,233.88,2.854,0,1.2377,1.75051,1.23816,1.75122,NA,NA,NA,NA,NA,NA
+6,22,21,17:45:28,0,0,0,0,0,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA
+6,22,21,17:47:32,0,0,0,0,0,0,2,0,0,0,0,NA,NA,NA,NA,NA,NA
