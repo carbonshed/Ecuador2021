@@ -12,18 +12,13 @@ setwd(here::here("WaterLevel"))
 all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
 sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
+site_names = site_names[-1]
 
 #rm old files, if they exist
 rm(WLData)
 rm(Temp_WLData)
 
-#before we can do the loop, we need to make the WL data from the solinist 
-#look like the data from Hobo sensors;
-#gonna do this manually for right now but later can make a loop 
-
 ###########################################################
-
-
 for (site in site_names){
   
   list1=list.files(pattern=site) #finds all files for the site
@@ -55,9 +50,47 @@ for (site in site_names){
 }
 
 
+#thisloop is for the site with solinist
+  #solinist is at WL_01
+
+site_names = "WL_01"
+
+for (site in site_names){
+  
+  list1=list.files(pattern=site) #finds all files for the site
+  sitelist_csv=grep(".csv",list1) #creates list of all files for site
+  file_list=list1[sitelist_csv]
+  
+  #reads in files in list and appends
+  for (file in file_list){
+    if (!exists("WLData")){
+      WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                         quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+      WLData=WLData[,1:4]
+      
+    }
+    if (exists("WLData")){
+      Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
+      Temp_WLData = Temp_WLData[,1:4]
+      WLData=WLData[,1:4]
+      WLData <- rbind(WLData, Temp_WLData)
+      rm(Temp_WLData)
+    }
+    
+  }
+  #colnames(WLData)=c("Date","Time","ms","kPa","Temp")
+  WLData=WLData[,1:4]
+  WLData=unique(WLData)
+  WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+  assign((paste(site,"WL_data",sep="_")),WLData) #creates object with new appended data
+  rm(WLData) #removes WLdata so that multiple sites aren't appended together
+}
+
+
 
 ###merge data with baro data###
-setwd(here::here("BaroData"))
+setwd(here::here("Baro"))
 all_files=list.files(pattern=".csv") #pulls out the csv files from WL folder in HOBOware folder
 sites_rp=gsub("_.*","",all_files) #selects the correct pattern so as to seelct only desired files
 site_names=unique(sites_rp) #creates list of site names for following loop
