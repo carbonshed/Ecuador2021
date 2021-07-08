@@ -1,0 +1,68 @@
+Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 ATM (ppm),CO2 ATM STD (ppm),Mode,Tract,Description,Point,X,Y,WS,Notes
+7,6,21,10:20:00,-0.04,24.9,52.98,7.338,55.52,6.965,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,10:25:00,0.07,22.7,46.7,3.34,42.77,2.199,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,10:30:00,0.09,21.2,66.88,2.183,61.56,1.288,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,10:35:00,0.29,20.3,74.4,4.437,58.1,2.731,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,1,-0.316231688,-78.19233061,NA,NA
+7,6,21,10:40:00,0.2,19.7,74.69,1.322,63.45,3.452,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,1,-0.316231688,-78.19233061,NA,NA
+7,6,21,10:45:00,-0.17,18.9,48.23,1.217,57.61,5.759,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,1,-0.316231688,-78.19233061,NA,NA
+7,6,21,10:50:00,0.03,18.1,47.07,5.562,45.24,5.011,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,10:55:00,0.36,18.1,74,2.477,53.4,1.621,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,11:00:00,0.23,18.1,78.53,2.607,65.49,1.307,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,2,-0.315762553,-78.19267376,NA,NA
+7,6,21,11:05:00,0.24,18.1,83.05,2.648,69.59,4.372,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,2,-0.315762553,-78.19267376,NA,NA
+7,6,21,11:10:00,-0.15,17.8,57.3,3.781,65.8,5.679,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,2,-0.315762553,-78.19267376,NA,NA
+7,6,21,11:15:00,0.11,17.6,71.31,2.427,65.26,12.291,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,11:20:00,0.32,17.5,85.14,1.97,67.31,3.234,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,11:25:00,0.29,17.2,88.04,3.197,71.44,1.953,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,3,-0.315223429,-78.19307827,NA,NA
+7,6,21,11:30:00,0.28,17.1,88.96,2.655,72.89,1.798,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,3,-0.315223429,-78.19307827,NA,NA
+7,6,21,11:35:00,-0.02,16.9,67.07,2.28,68.38,4.521,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,3,-0.315223429,-78.19307827,NA,NA
+7,6,21,11:40:00,0.01,16.7,71.76,2.6,71.16,2.312,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,11:45:00,-0.01,16.8,72.92,3.564,73.65,3.212,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,4,-0.315116644,-78.19361304,NA,NA
+7,6,21,11:50:00,-0.01,16.9,75.25,0.95,75.76,3.505,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,4,-0.315116644,-78.19361304,NA,NA
+7,6,21,11:55:00,-0.01,17.2,74.47,9.36,74.9,4.125,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,4,-0.315116644,-78.19361304,NA,NA
+7,6,21,12:00:00,0.64,17.2,114.6,8.857,78.16,1.652,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:05:00,1.26,16.9,152.75,5.005,81.46,2.356,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,5,-0.314737195,-78.19411738,1210,NA
+7,6,21,12:10:00,0.89,16.7,134.26,3.26,83.73,3.189,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,5,-0.314737195,-78.19411738,1210,NA
+7,6,21,12:15:00,-0.22,16.7,60.55,2.32,73.18,6.439,0,1,Starting below Antenas leapfrogging with EOS2 and old Vaisala,5,-0.314737195,-78.19411738,1210,NA
+7,6,21,12:20:00,0.14,16.5,77.05,7.657,69.11,3.609,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:25:00,-0.34,16.2,74.05,10.676,93.47,5.171,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:30:00,-0.08,16,80.06,4.654,84.31,3.353,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:35:00,-0.19,16.1,61.02,7.468,71.91,2.534,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:40:00,-0.09,16.3,55.91,5.709,61.2,6.162,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:45:00,-0.01,16.8,62.35,4.879,63,5.215,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:50:00,0.3,16.5,105.51,7.884,88.61,2.17,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,12:55:00,0.85,16.2,193.17,37.998,144.81,1.591,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:00:00,1.76,16.2,483.64,11.617,383.97,22.276,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:05:00,4.01,16.3,778.4,27.352,551.35,29.081,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:10:00,2.33,16.5,1009.09,35.153,877.23,25.375,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:15:00,1.47,16.7,1210.3,19.887,1127.29,24.284,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:20:00,-11.56,17,458.75,82.401,1112.95,55.207,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:25:00,-2.33,17.7,119.52,1.635,251.1,51.461,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:30:00,-0.1,18.9,115.24,2.155,120.74,2.155,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:35:00,-0.03,20,118.84,1.485,120.61,3.772,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:40:00,0.05,20.6,128.4,4.284,125.68,3.15,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:45:00,-0.11,20.9,105.55,1.363,111.76,1.801,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:50:00,0.45,21.1,124.78,3.867,99.38,5.019,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,13:55:00,1.53,21.9,216.83,14.492,130.26,8.702,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,14:00:00,2.53,23,255.45,8.204,112.06,4.759,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,14:05:00,2.64,23.5,260.24,6.012,110.83,6.466,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,1,-0.34908,-78.19916,NA,NA
+7,6,21,14:10:00,2.71,23.9,263.47,4.76,110.16,5.891,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,1,-0.34908,-78.19916,NA,NA
+7,6,21,14:15:00,-0.22,24.6,101.53,2.552,114.17,4.398,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,1,-0.34908,-78.19916,NA,NA
+7,6,21,14:20:00,0.45,25.3,131.97,6.013,106.34,3.991,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,14:25:00,0.99,25.8,162.22,1.985,106.46,2.198,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,2,-0.34834,-78.19959,NA,NA
+7,6,21,14:30:00,1.13,25.9,171.53,4.949,107.69,2.224,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,2,-0.34834,-78.19959,NA,NA
+7,6,21,14:35:00,0.04,26.5,111.9,4.227,109.8,3.137,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,2,-0.34834,-78.19959,NA,NA
+7,6,21,14:40:00,0.17,26.3,137.7,6.894,128.33,3.266,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,14:45:00,1,25.7,173.43,7.375,116.75,1.847,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,3,-0.3475,-78.19978,NA,NA
+7,6,21,14:50:00,1.01,25.3,173.87,3.837,116.58,2.781,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,3,-0.3475,-78.19978,NA,NA
+7,6,21,14:55:00,-0.01,25,110.83,5.04,111.3,6.609,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,3,-0.3475,-78.19978,NA,NA
+7,6,21,15:00:00,0.08,24.9,111.18,1.583,106.46,4.813,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:05:00,0.2,25,113.77,3.501,102.32,2.667,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,4,-0.34692,-78.19972,NA,NA
+7,6,21,15:10:00,0.24,24.9,115.57,2.477,102.08,2.739,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,4,-0.34692,-78.19972,NA,NA
+7,6,21,15:15:00,0.14,24.6,102.25,21.419,94.15,3.857,0,2,Lower Antenas starting downstream near where it becomes very rocky and goes into drainage,4,-0.34692,-78.19972,NA,NA
+7,6,21,15:20:00,-0.04,24,108.89,4.814,111.16,4.528,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:25:00,0.28,23.5,127.47,6.058,111.54,5.745,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:30:00,2.12,23.3,246.32,24.16,126.12,3.3,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:35:00,5.8,23.1,666.54,29.943,338.73,40.764,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:40:00,3.17,23,896.06,18.419,716.95,24.617,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:45:00,1.53,23.1,1022.74,12.142,935.92,17.404,0,NA,NA,NA,NA,NA,NA,NA
+7,6,21,15:53:26,0,0,0,0,0,0,2,NA,NA,NA,NA,NA,NA,NA
