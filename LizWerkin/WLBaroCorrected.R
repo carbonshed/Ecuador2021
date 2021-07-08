@@ -50,7 +50,7 @@ for (site in site_names){
 }
 
 
-#thisloop is for the site with solinist
+#this loop is for the site with solinist
   #solinist is at WL_01
 
 site_names = "WL_01"
@@ -66,27 +66,39 @@ for (site in site_names){
     if (!exists("WLData")){
       WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
                          quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-      WLData=WLData[,1:4]
-      
+      colnames(WLData)=c("Date","Time","ms","kPa","Temp")
     }
     if (exists("WLData")){
       Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
                               quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
-      Temp_WLData = Temp_WLData[,1:4]
-      WLData=WLData[,1:4]
+      colnames(Temp_WLData) <- c("Date","Time","ms","kPa","Temp")
       WLData <- rbind(WLData, Temp_WLData)
       rm(Temp_WLData)
     }
     
   }
-  #colnames(WLData)=c("Date","Time","ms","kPa","Temp")
-  WLData=WLData[,1:4]
+  colnames(WLData)=c("Date","Time","ms","kPa","Temp")
   WLData=unique(WLData)
-  WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+  #WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
   assign((paste(site,"WL_data",sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
 }
 
+## Now we need to make the WL Station 1 Data look like the other places
+  # so we can merge them together later 
+WL_01_WL_data$DateTime <- with(WL_01_WL_data, as.POSIXct(paste(Date, Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC"))
+WL_01_WL_data=WL_01_WL_data[,4:6]
+colnames(WL_01_WL_data)=c("WLPres_kpa","WLTemp_c","DateTime")
+
+##Now adding a station column to each of datasets
+WL_01_WL_data$Station <- 1
+WL_02_WL_data$Station <- 2
+WL_03_WL_data$Station <- 3
+WL_04_WL_data$Station <- 4
+WL_05_WL_data$Station <- 5
+WL_06_WL_data$Station <- 6
+
+combined <- rbind(WL_01_WL_data,WL_02_WL_data,WL_03_WL_data,WL_04_WL_data,WL_05_WL_data,WL_06_WL_data)
 
 
 ###merge data with baro data###
@@ -108,51 +120,45 @@ for (site in site_names){
   #reads in files in list and appends
   for (file in file_list){
     if (!exists("BaroData")){
-      BaroData <- read.csv(file, skip=2, header = FALSE, sep = ",",
+      BaroData <- read.csv(file, skip=10, header = TRUE, sep = ",",
                            quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-      BaroData=BaroData[,2:4]
     }
     if (exists("BaroData")){
-      Temp_BaroData <- read.csv(file, skip=2, header = FALSE, sep = ",",
+      Temp_BaroData <- read.csv(file, skip=10, header = TRUE, sep = ",",
                                 quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
-      Temp_BaroData = Temp_BaroData[,2:4]
       BaroData <- rbind(BaroData, Temp_BaroData)
       rm(Temp_BaroData)
     }
     
   }
-  colnames(BaroData)=c("DateTime","BaroPres_kpa","AirTemp_c")
+  #colnames(BaroData)=c("DateTime","BaroPres_kpa","AirTemp_c")
   BaroData=unique(BaroData)
   #BaroData=BaroData[,2:4]
-  BaroData$DateTime <- as.POSIXct(BaroData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+  #BaroData$DateTime <- as.POSIXct(BaroData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
   assign((paste(site,"Baro_data",sep="_")),BaroData) #creates object with new appended data
   rm(BaroData) #removes WLdata so that multiple sites aren't appended together
 }
 
+## Now we make the Baro data look like the combined data so they can be joined 
+Baro_Baro_data$DateTime <- with(Baro_Baro_data, as.POSIXct(paste(Date, Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC"))
+vector <- Baro_Baro_data$DateTime
+vector <- round_date(vector,unit="15 minutes") #to round the values when the data was not on exact 15 min intervals
+Baro_Baro_data$DateTime <- vector
+Baro_Baro_data=Baro_Baro_data[,4:6]
+colnames(Baro_Baro_data)=c("Baro_kpa","WLTemp_c","DateTime")
+
 
 ### merge WL data with Baro data for outlet and convert from kPa to cm of water
-BEAVOutletWL_merge <- left_join(BeaverCreekMarshOutletWL_WL_data, SEllerbe_Baro_data, by = "DateTime")
-BEAVOutletWL_merge$WL_Baroadjusted <- BEAVOutletWL_merge$WLPres_kpa - BEAVOutletWL_merge$BaroPres_kpa 
-BEAVOutletWL_merge$WL_true <- BEAVOutletWL_merge$WL_Baroadjusted*10.19716 
-
-# again for the middle data 
-BEAVmiddleWL_merge <- left_join(BeaverCreekMarshMiddleWL_WL_data, SEllerbe_Baro_data, by = "DateTime")
-BEAVmiddleWL_merge$WL_Baroadjusted <- BEAVmiddleWL_merge$WLPres_kpa - BEAVmiddleWL_merge$BaroPres_kpa
-BEAVmiddleWL_merge$WL_true <- BEAVmiddleWL_merge$WL_Baroadjusted*10.19716 
+Merged <- left_join(combined, Baro_Baro_data, by = "DateTime")
+Merged$WL_adjusted <- Merged$WLPres_kpa - Merged$Baro_kpa 
+Merged$WL_true <- Merged$WL_adjusted*10.19716 
 
 
 ##Now we can graph 
-beavoutlet<- ggplot(BEAVOutletWL_merge, aes(x=DateTime, y=WL_true))+
-  geom_point(aes(y=WL_Baroadjusted))+
-  labs(x=NULL,y="WL (cm H2O)")+
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        axis.title.y=element_blank())
-beavoutlet
-
-beavmiddle <- ggplot(BEAVmiddleWL_merge, aes(x=DateTime, y=WL_true))+
-  geom_point(aes(y=WL_Baroadjusted))+
-  labs(x=NULL,y="WL (cm H2O)")
-
+    ## will need to change the right limit accordingly
+ggplot(Merged, aes(x=DateTime,y=WL_true))+ 
+  facet_grid(Station ~ . ,labeller="label_both", scales ="free_y")+
+  scale_x_datetime(limits = c(as.POSIXct("2021-06-10 15:45:00 UTC"),as.POSIXct("2021-07-02 12:45:00 UTC")))+
+  labs(x="Date", y="WL (cm)")+ 
+  geom_point(aes(y=WL_true))
 
