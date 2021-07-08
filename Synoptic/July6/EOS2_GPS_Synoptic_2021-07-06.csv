@@ -1,0 +1,44 @@
+﻿
+metadata
+ID,name,desc,time,keywords,minlat,minlon,maxlat,maxlon,
+1,,,2021-07-08T15:31:09Z,,-0.348865035921335,-78.199746999889612,-0.347236013039947,-78.199278032407165,
+
+author
+ID,name,email,
+
+copyright
+year,license,author,
+
+link
+metadataID,authorID,wptID,rteptID,trkptID,rteID,trkID,text,type,href,
+1,,,,,,,"Garmin International",,http://www.garmin.com,
+
+rte
+ID,name,cmt,desc,src,number,type,IsAutoNamed,DisplayColor,TransportationMode,TripName,Date,DayNumber,
+
+rtept
+ID,rteID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,DepartureTime,StopDuration,ArrivalTime,CalculationMode,ElevationMode,NamedRoad_Name,NamedRoad_Id,NamedRoad_ProductId,TransportationMode,
+
+wpt
+ID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Proximity,Temperature,Depth,DisplayMode,Samples,Expiration,CreationTime,
+1,-0.348865035921335,-78.199278032407165,4022.241943,2021-07-06T19:10:11Z,,,"015",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-06T19:10:11Z,
+2,-0.347928022965789,-78.199682962149382,3898.5842290000001,2021-07-06T19:33:57Z,,,"016",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-06T19:33:57Z,
+3,-0.347236013039947,-78.199746999889612,3901.922607,2021-07-06T20:00:01Z,,,"017",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-06T20:00:01Z,
+
+Address
+wptID,StreetAddress1,StreetAddress2,City,State,Country,PostalCode,
+
+PhoneNumber
+wptID,Category,value,
+
+Categories
+wptID,Category,
+
+trk
+ID,name,cmt,desc,src,number,type,DisplayColor,
+
+trkseg
+ID,trkID,
+
+trkpt
+ID,trksegID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Temperature,Depth,wtemp,hr,cad,

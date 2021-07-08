@@ -1,0 +1,49 @@
+﻿
+metadata
+ID,name,desc,time,keywords,minlat,minlon,maxlat,maxlon,
+1,,,2021-07-08T15:16:15Z,,-0.34614603035152,-78.199881026521325,-0.341911995783448,-78.197731990367174,
+
+author
+ID,name,email,
+
+copyright
+year,license,author,
+
+link
+metadataID,authorID,wptID,rteptID,trkptID,rteID,trkID,text,type,href,
+1,,,,,,,"Garmin International",,http://www.garmin.com,
+
+rte
+ID,name,cmt,desc,src,number,type,IsAutoNamed,DisplayColor,TransportationMode,TripName,Date,DayNumber,
+
+rtept
+ID,rteID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,DepartureTime,StopDuration,ArrivalTime,CalculationMode,ElevationMode,NamedRoad_Name,NamedRoad_Id,NamedRoad_ProductId,TransportationMode,
+
+wpt
+ID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Proximity,Temperature,Depth,DisplayMode,Samples,Expiration,CreationTime,
+1,-0.34614603035152,-78.199878009036183,3770.0192870000001,2021-07-07T15:25:56Z,,,"063",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T15:25:56Z,
+2,-0.345861967653036,-78.199881026521325,3900.53125,2021-07-07T15:57:23Z,,,"064",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T15:57:23Z,
+3,-0.345701035112143,-78.199709029868245,3909.4147950000001,2021-07-07T16:23:04Z,,,"065",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T16:23:04Z,
+4,-0.344057008624077,-78.198147984221578,3926.9279790000001,2021-07-07T17:35:09Z,,,"066",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T17:35:09Z,
+5,-0.343675967305899,-78.198055028915405,3928.063232,2021-07-07T17:54:12Z,,,"067",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T17:54:12Z,
+6,-0.342973982915282,-78.197731990367174,3934.751953,2021-07-07T18:07:49Z,,,"068",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T18:07:49Z,
+7,-0.342978006228805,-78.197754034772515,3930.7514649999998,2021-07-07T18:13:33Z,,,"069",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T18:13:33Z,
+8,-0.341911995783448,-78.198762964457273,3933.1215820000002,2021-07-07T18:56:56Z,,,"070",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-07T18:56:56Z,
+
+Address
+wptID,StreetAddress1,StreetAddress2,City,State,Country,PostalCode,
+
+PhoneNumber
+wptID,Category,value,
+
+Categories
+wptID,Category,
+
+trk
+ID,name,cmt,desc,src,number,type,DisplayColor,
+
+trkseg
+ID,trkID,
+
+trkpt
+ID,trksegID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Temperature,Depth,wtemp,hr,cad,

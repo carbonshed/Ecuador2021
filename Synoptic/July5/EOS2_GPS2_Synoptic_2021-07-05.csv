@@ -1,0 +1,46 @@
+﻿
+metadata
+ID,name,desc,time,keywords,minlat,minlon,maxlat,maxlon,
+1,,,2021-07-08T15:29:05Z,,-0.315152015537024,-78.194072032347322,-0.314768962562084,-78.193604992702603,
+
+author
+ID,name,email,
+
+copyright
+year,license,author,
+
+link
+metadataID,authorID,wptID,rteptID,trkptID,rteID,trkID,text,type,href,
+1,,,,,,,"Garmin International",,http://www.garmin.com,
+
+rte
+ID,name,cmt,desc,src,number,type,IsAutoNamed,DisplayColor,TransportationMode,TripName,Date,DayNumber,
+
+rtept
+ID,rteID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,DepartureTime,StopDuration,ArrivalTime,CalculationMode,ElevationMode,NamedRoad_Name,NamedRoad_Id,NamedRoad_ProductId,TransportationMode,
+
+wpt
+ID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Proximity,Temperature,Depth,DisplayMode,Samples,Expiration,CreationTime,
+1,-0.314768962562084,-78.194072032347322,4266.904297,2021-07-05T17:58:19Z,,,"010",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-05T17:58:19Z,
+2,-0.314857978373766,-78.193809008225799,4269.3242190000001,2021-07-05T18:30:05Z,,,"011",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-05T18:30:05Z,
+3,-0.315049001947045,-78.193723009899259,4271.7504879999997,2021-07-05T18:42:24Z,,,"012",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-05T18:42:24Z,
+4,-0.314868958666921,-78.193955020979047,4274.3759769999997,2021-07-05T18:51:34Z,,,"013",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-05T18:51:34Z,
+5,-0.315152015537024,-78.193604992702603,4276.9643550000001,2021-07-05T19:17:47Z,,,"014",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2021-07-05T19:17:47Z,
+
+Address
+wptID,StreetAddress1,StreetAddress2,City,State,Country,PostalCode,
+
+PhoneNumber
+wptID,Category,value,
+
+Categories
+wptID,Category,
+
+trk
+ID,name,cmt,desc,src,number,type,DisplayColor,
+
+trkseg
+ID,trkID,
+
+trkpt
+ID,trksegID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Temperature,Depth,wtemp,hr,cad,
