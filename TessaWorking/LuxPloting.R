@@ -31,7 +31,7 @@ ggplot(LUXarriba_02_Lux_data, aes(x=DateTime, y=Lux)) +
 
 ggplot(LUXarriba_03_Lux_data, aes(x=DateTime, y=Lux)) +
   geom_point(shape=1)+
-  ggtitle("LUXarriba_01") 
+  ggtitle("LUXarriba_03") 
 
 ggplot(LUXarriba_04_Lux_data, aes(x=DateTime, y=Lux)) +
   geom_point(shape=1)+
