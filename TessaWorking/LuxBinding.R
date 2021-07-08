@@ -29,22 +29,23 @@ for (site in site_names){
   #reads in files in list and appends
   for (file in file_list){
     if (!exists("LuxData")){
-      LuxData <- read.csv(file, skip=2, header = FALSE, sep = ",",
+      LuxData <- read.csv(file, skip=1, header = TRUE, sep = ",",
                          quote = "\"",dec = ".", fill = TRUE, comment.char = "")
       LuxData=LuxData[,2:4]
       colnames(LuxData)=c("DateTime","Temp_C","Lux")  
       
     }
     if (exists("LuxData")){
-      Temp_LuxData <- read.csv(file, skip=2, header = FALSE, sep = ",",
+      Temp_LuxData <- read.csv(file, skip=1, header = TRUE, sep = ",",
                               quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
+      #if (!"Temp_C" %in% colnames(Temp_LuxData)){Temp_LuxData$Temp_C <- NA}
       colnames(Temp_LuxData)=c("row","DateTime","Temp_C","Lux")  
       Temp_LuxData=Temp_LuxData[,2:4]
       
       LuxData <- rbind(LuxData, Temp_LuxData)
       rm(Temp_LuxData)
     }
-    #if (!"ISCOTrig" %in% colnames(LuxData)){LuxData$ISCOTrig <- NA}
+    
     
   }
   #colnames(LuxData)=c("row","DateTime","Temp_C","Lux")
