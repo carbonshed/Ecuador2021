@@ -14,11 +14,11 @@ Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 
 6,22,21,12:20:00,0.25,22,70.27,4.665,56.05,2.596,0,NA,NA,NA,NA,NA,NA
 6,22,21,12:25:00,0.13,21.6,82.46,3.596,74.98,1.292,0,NA,NA,NA,NA,NA,NA
 6,22,21,12:30:00,0.16,21.3,85.24,2.684,76.12,0.908,0,1,Starting from below second road,4,-0.3313166,-78.20327,1230
-6,22,21,12:35:00,0.18,21,86.01,2.187,76.1,1.087,0,1,Starting from below second road,4,-0.3313167,-78.20328,1230
+6,22,21,12:35:00,0.18,21,86.01,2.187,76.1,1.087,0,1,Starting from below second road,4,-0.3313166,-78.20327,1230
 6,22,21,12:40:00,-0.34,21,54.58,6.317,73.56,2.624,0,1,Starting from below second road,4,NA,NA,1230
 6,22,21,12:45:00,0.4,20.9,81.68,2.426,59.29,1.31,0,NA,NA,NA,NA,NA,NA
 6,22,21,12:50:00,0.61,20.5,98.72,7.127,64.27,1.899,0,1,Starting from below second road,5,-0.3314833,-78.20315,NA
-6,22,21,12:55:00,0.25,20.3,77.2,4.044,62.99,2.99,0,1,Starting from below second road,5,-0.3314833,-78.20316,NA
+6,22,21,12:55:00,0.25,20.3,77.2,4.044,62.99,2.99,0,1,Starting from below second road,5,-0.3314833,-78.20315,NA
 6,22,21,13:00:00,-0.09,20.1,58.51,9.068,63.57,3.167,0,1,Starting from below second road,5,NA,NA,NA
 6,22,21,13:05:00,0.31,20.1,83.21,6.696,65.63,2.804,0,NA,NA,NA,NA,NA,NA
 6,22,21,13:10:00,0.31,20,78.52,6.556,61.23,1.147,0,1,Starting from below second road,6,-0.33115,-78.20288,NA
@@ -44,7 +44,7 @@ Month,Day,Year,Time,Flux,Temperature (C),CO2 Soil (ppm) ,CO2 Soil STD (ppm),CO2 
 6,22,21,14:50:00,0.62,19.1,91.36,2.784,56.32,1.437,0,NA,NA,NA,NA,NA,NA
 6,22,21,14:55:00,0.61,19,89.6,2.916,55.01,1.468,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.3310667,-78.20302,NA
 6,22,21,15:00:00,0.53,18.9,89.99,2.661,59.89,1.873,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.3310667,-78.20302,NA
-6,22,21,15:05:00,0.24,19.1,72.24,4.071,58.71,1.608,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.33106687,-78.20302,NA
+6,22,21,15:05:00,0.24,19.1,72.24,4.071,58.71,1.608,0,2,"Trib from convergence of mainstream, moving upstream",2,-0.3310667,-78.20302,NA
 3,22,21,15:10:00,0.62,19.7,93.64,1.455,58.45,3.2,0,NA,NA,NA,NA,NA,NA
 6,22,21,15:15:00,0.69,19.9,102.18,4.23,62.87,3.561,0,2,"Trib from convergence of mainstream, moving upstream",3,-0.3309333,-78.20303,NA
 6,22,21,15:20:00,0.64,19.9,101.96,3.302,65.5,3.065,0,2,"Trib from convergence of mainstream, moving upstream",3,-0.3309333,-78.20303,NA
