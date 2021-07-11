@@ -214,6 +214,8 @@ CO2_map <- qmplot(Lon, Lat, data = CO2_synop_pivot, zoom = 13,  maptype = "toner
 
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("Lat","Lon","Date", "Tract", "Point"))
 
+write.csv(synop_merge, here::here())
+
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 
 
