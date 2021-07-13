@@ -1,97 +1,97 @@
-Weland,Lat,Lon,Date,EOS_no,Flux_ave,CO2_ppm_ave,Tract,Point,Tract_2,Point_2,Notes
-GAVI,-78.20056256,-0.328370109,6/18/2021,EOS_1,0.6,3074.637,1,1,1,1,MainStem
-GAVI,-78.20059894,-0.328579992,6/18/2021,EOS_1,0.75,3049.187288,1,2,1,2,MainStem
-GAVI,-78.20061226,-0.328784762,6/18/2021,EOS_1,0.505,2175.085667,1,3,1,3,MainStem
-GAVI,-78.20063456,-0.329016019,6/18/2021,EOS_1,0.515,1004.647,1,4,1,4,MainStem
-GAVI,-78.20053046,-0.329127079,6/18/2021,EOS_1,0.305,791.8428814,1,5,1,5,MainStem
-GAVI,-78.20077496,-0.329209557,6/18/2021,EOS_1,0.135,381.5823333,1,6,1,6,MainStem
-GAVI,-78.20085207,-0.329362275,6/18/2021,EOS_1,0.99,344.7406667,1,7,1,7,MainStem
-GAVI,-78.20091,-0.32937,6/29/2021,EOS_2,1.445,787.7017544,6,6,1,7,"MainStem, below waterfall"
-GAVI,-78.20102566,-0.329538379,6/18/2021,EOS_1,0.915,343.489,1,8,1,8,MainStem
-GAVI,-78.20119271,-0.329732839,6/18/2021,EOS_1,0.245,408.2201667,1,9,1,9,MainStem
-GAVI,-78.20133805,-0.32989176,6/18/2021,EOS_1,0.385,487.4621667,1,10,1,10,MainStem
-GAVI,-78.20169998,-0.33014724,6/18/2021,EOS_1,2.665,386.1658333,1,11,1,11,MainStem
-GAVI,-78.20186938,-0.33028286,6/18/2021,EOS_1,0.845,525.8558333,1,12,1,12,MainStem
-GAVI,-78.20220206,-0.330495508,6/18/2021,EOS_1,0.505,658.354,1,13,1,13,MainStem
-GAVI,-78.2023676,-0.330636995,6/18/2021,EOS_1,0.45,755.060625,1,14,1,14,MainStem
-GAVI,-78.20253,-0.33075,6/22/2021,EOS_1,0.025,273.8465,1,9,1,15,MainStem
-GAVI,-78.20272,-0.3308667,6/22/2021,EOS_1,0.25,270.7918333,1,8,1,16,MainStem
-GAVI,-78.20288,-0.3310167,6/22/2021,EOS_1,1.315,262.0501667,1,7,1,17,MainStem
-GAVI,-78.20288,-0.33115,6/22/2021,EOS_1,0.26,260.1783333,1,6,1,18,MainStem
-GAVI,-78.20315,-0.3314833,6/22/2021,EOS_1,0.43,239.1148148,1,5,1,19,MainStem
-GAVI,-78.20327,-0.3313166,6/22/2021,EOS_1,0.17,258.9661667,1,4,1,20,MainStem
-GAVI,-78.2036,-0.3314834,6/22/2021,EOS_1,0.75,210.5327869,1,3,1,21,MainStem
-GAVI,-78.2038,-0.3317,6/22/2021,EOS_1,-0.035,204.0916667,1,2,1,22,MainStem
-GAVI,-78.20378,-0.3315833,6/22/2021,EOS_1,0.025,215.0745,1,1,1,23,MainStem
-GAVI,-78.20312,-0.3313,6/22/2021,EOS_1,0.28,595.9904167,2,1,2,1,"Small Trib above Station 4, river right"
-GAVI,-78.20302,-0.3310667,6/22/2021,EOS_1,0.46,750.337234,2,2,2,2,"Small Trib above Station 4, river right"
-GAVI,-78.20303,-0.3309333,6/22/2021,EOS_1,0.665,794.2786441,2,3,2,3,"Small Trib above Station 4, river right"
-GAVI,-78.20295,-0.3307333,6/22/2021,EOS_1,0.975,852.3260417,2,4,2,4,"Small Trib above Station 4, river right"
-GAVI,-78.20303,-0.3311667,6/22/2021,EOS_2,1.88,902.5833333,1,1,3,1,"Large Trib, enters Gavi, river left"
-GAVI,-78.20275,-0.3311833,6/22/2021,EOS_2,0.88,693.8333333,1,2,3,2,"Large Trib, enters Gavi, river left"
-GAVI,-78.2025,-0.3312,6/22/2021,EOS_2,0.395,949.1666667,1,3,3,3,"Large Trib, enters Gavi, river left"
-GAVI,-78.20225,-0.3312333,6/22/2021,EOS_2,0.195,923.6666667,1,4,3,4,"Large Trib, enters Gavi, river left"
-GAVI,-78.20195,-0.3313,6/22/2021,EOS_2,0.465,1398.423729,1,5,3,5,"Large Trib, enters Gavi, river left"
-GAVI,-78.20182,-0.3313167,6/22/2021,EOS_2,0.765,1062.166667,1,6,3,6,"Large Trib, enters Gavi, river left"
-GAVI,-78.20155,-0.33135,6/22/2021,EOS_2,0.1,709.1,1,7,3,7,"Large Trib, enters Gavi, river left"
-GAVI,-78.201535,-0.331484,6/23/2021,EOS_2,0.03,164.9307018,2,8,3,8,"Large Trib, enters Gavi, river left"
-GAVI,-78.201437,-0.331227,6/23/2021,EOS_2,0.655,510.6833929,2,9,3,9,"Large Trib, enters Gavi, river left"
-GAVI,-78.202139,-0.331147,6/23/2021,EOS_2,0.855,927.1016071,2,10,3,10,"Large Trib, enters Gavi, river left"
-GAVI,-78.201066,-0.331125,6/23/2021,EOS_2,0.415,2247.595,2,11,3,11,"Large Trib, enters Gavi, river left"
-GAVI,-78.20317,-0.3312167,6/23/2021,EOS_1,2.28,924.7272727,1,1,4,1,"Large Trib enters below station 4, runs toward wetland below refuge"
-GAVI,-78.20313,-0.3309667,6/23/2021,EOS_1,2.59,961.5535714,1,2,4,2,"Large Trib enters below station 4, runs toward wetland below refuge"
-GAVI,-78.203133,-0.3307,6/23/2021,EOS_1,0.5,1329.339286,1,3,4,3,"Large Trib enters below station 4, runs toward wetland below refuge"
-GAVI,-78.20308,-0.3305667,6/23/2021,EOS_1,0.655,2277.490909,1,4,4,4,"Large Trib enters below station 4, runs toward wetland below refuge"
-GAVI,-78.20243,-0.3306333,6/23/2021,EOS_1,0.29,1898.196429,2,1,5,1,"Small Trib, enters mainstem btw point 9, EOS1 6/22 and point 14 EOS1 6/18"
-GAVI,-78.20242,-0.3305333,6/23/2021,EOS_1,0.945,1685.892857,2,2,5,2,"Small Trib, enters mainstem btw point 9, EOS1 6/22 and point 14 EOS1 6/18"
-GAVI,-78.202417,-0.3304667,6/23/2021,EOS_1,0.65,3530.660714,2,3,5,3,"Small Trib, enters mainstem btw point 9, EOS1 6/22 and point 14 EOS1 6/18"
-GAVI,-78.202267,-0.3305,6/23/2021,EOS_1,1.335,3189.736842,3,1,6,1,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20215,-0.3301833,6/23/2021,EOS_1,0.68,1541.947368,3,2,6,2,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.202,-0.33,6/23/2021,EOS_1,1.34,1601.333333,3,3,6,3,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.201933,-0.3298,6/23/2021,EOS_1,0.82,1711.410714,3,4,6,4,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20195,-0.3295833,6/23/2021,EOS_1,0.585,1280.857143,3,5,6,5,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.201917,-0.3294667,6/23/2021,EOS_1,1.015,2987.607143,3,6,6,6,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.201867,-0.3293,6/23/2021,EOS_1,0.93,1258,3,7,6,7,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20174005,-0.329199666,6/29/2021,EOS_1,0.345,1350.39,1,1,6,8,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20160217,-0.329128001,6/29/2021,EOS_1,1.15,4886.8135,1,2,6,9,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20158934,-0.328979306,6/29/2021,EOS_1,0.205,660.3868333,1,3,6,10,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20154274,-0.328833461,6/29/2021,EOS_1,3.005,10000,1,4,6,11,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20153184,-0.328469351,6/29/2021,EOS_1,1.26,2010.397333,1,5,6,12,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20156755,-0.328423753,6/29/2021,EOS_1,1.675,10000,1,6,6,13,"Small Trib from small weland above station, enters mainstem above point 14, 6/18"
-GAVI,-78.20075509,-0.3273167,6/29/2021,EOS_1,0.905,2151.687333,2,1,7,1,"small trib, enters GAVI arriba"
-GAVI,-78.20096212,-0.327123804,6/29/2021,EOS_1,0.105,906.3513333,2,2,7,2,"small trib, enters GAVI arriba"
-GAVI,-78.20113211,-0.326919369,6/29/2021,EOS_1,1.1,2462.460333,2,3,7,3,"small trib, enters GAVI arriba"
-GAVI,-78.202139,-0.331269,6/23/2021,EOS_2,0.05,998.3789286,3,1,8,1,"Smallish trib, goes From "
-GAVI,-78.202035,-0.331034,6/23/2021,EOS_2,0.525,1204.744464,3,2,8,2,trib?
-GAVI,-78.201913,-0.3309,6/23/2021,EOS_2,0.265,1517.340357,3,3,8,3,trib?
-GAVI,-78.201894,-0.330688,6/23/2021,EOS_2,0.39,1016.89,3,4,8,4,trib?
-GAVI,-78.201689,-0.330559,6/23/2021,EOS_2,0.21,1351.190357,3,5,8,5,trib?
-GAVI,-78.201754,-0.330225,6/23/2021,EOS_2,0.515,2584.641429,3,6,8,6,trib?
-GAVI,-78.201696,-0.330142,6/23/2021,EOS_2,2.165,1332.430877,4,1,9,1,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?
-GAVI,-78.201568,-0.329992,6/23/2021,EOS_2,2.34,2757.379643,4,2,9,2,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?
-GAVI,-78.201497,-0.329797,6/23/2021,EOS_2,0.58,3597.036429,4,3,9,3,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?
-GAVI,-78.201389,-0.33,6/23/2021,EOS_2,3.765,3996.965,4,4,9,4,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?
-GAVI,-78.20314,-0.32817,6/29/2021,EOS_2,3.7,3776.495798,6,4,9,5,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?
-GAVI,-78.20116,-0.32943,6/29/2021,EOS_2,6.45,11244.3,6,5,9,6,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?
-GAVI,-78.19978,-0.32605,6/29/2021,EOS_2,0.61,607.0784884,7,2,10,1,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19968,-0.32562,6/29/2021,EOS_2,0.16,218.4488136,7,3,10,2,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19969,-0.32574,6/29/2021,EOS_2,1.91,NA,7,1,10,3,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19968,-0.32535,6/29/2021,EOS_2,0.54,401.7448598,7,4,10,4,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19962,-0.3251,6/29/2021,EOS_2,0.105,488.0076336,7,5,10,5,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19962,-0.32482,6/29/2021,EOS_2,2.605,417.4536752,7,6,10,6,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19959,-0.32436,6/29/2021,EOS_2,1.22,615.4989744,7,7,10,7,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19986,-0.3261,6/30/2021,EOS_2,0.43,521.4201681,7,8,10,8,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19987,-0.32634,6/30/2021,EOS_2,0.145,535.2198582,7,9,10,9,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19971,-0.32578,6/30/2021,EOS_2,0.09,627.3978495,7,10,10,10,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19979,-0.32539,6/30/2021,EOS_2,0.015,372.8846154,7,11,10,11,"Mainstem, above GAVI arriba, where inlination starts, below waterfall, very turbulent"
-GAVI,-78.19988,-0.32504,6/30/2021,EOS_2,0.295,414.1914894,7,12,10,12,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19965,-0.32467,6/30/2021,EOS_2,0.235,519.6016949,7,13,10,13,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.19962,-0.32421,6/30/2021,EOS_2,0.09,373.5968992,7,14,10,14,"Mainstem, above GAVI arriba, where inlination starts"
-GAVI,-78.20093,-0.3271833,6/30/2021,EOS_1,0.255,500.774,1,1,11,1,Little trib entering main GAVI
-GAVI,-78.20068,-0.3270833,6/30/2021,EOS_1,0.465,854.5613333,2,1,12,1,Little trib entering main GAVI
-GAVI,-78.20078,-0.3269833,6/30/2021,EOS_1,0.105,772.6536667,2,2,12,2,Little trib entering main GAVI
-GAVI,-78.20095,-0.3268667,6/30/2021,EOS_1,0.155,749.0935,2,3,12,3,Little trib entering main GAVI
-GAVI,-78.19983,-0.3263833,6/30/2021,EOS_1,0.075,426.6018333,4,1,13,1,"Little trib entering main GAVI, almost certain this is water from after the watefall"
-GAVI,-78.1998,-0.32645,6/30/2021,EOS_1,0.395,273.1031667,4,2,13,2,"Little trib entering main GAVI, almost certain this is water from after the watefall"
-GAVI,-78.19957,-0.3265667,6/30/2021,EOS_1,0.225,437.2266667,4,3,13,3,"Little trib entering main GAVI, almost certain this is water from after the watefall"
-NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,"ADD Point of convergence, below station 4"
+Weland,Lat,Lon,Date,EOS_no,Flux_ave,CO2_ppm_ave,Tract,Point,Tract_2,Point_2,Notes,xend,yend
+GAVI,-78.20378,-0.3315833,6/22/2021,EOS_1,0.025,215.0745,1,1,1,1,MainStem,-78.20056256,-0.328370109
+GAVI,-78.2038,-0.3317,6/22/2021,EOS_1,-0.035,204.0916667,1,2,1,2,MainStem,-78.20378,-0.3315833
+GAVI,-78.2036,-0.3314834,6/22/2021,EOS_1,0.75,210.5327869,1,3,1,3,MainStem,-78.2038,-0.3317
+GAVI,-78.20327,-0.3313166,6/22/2021,EOS_1,0.17,258.9661667,1,4,1,4,MainStem,-78.2036,-0.3314834
+GAVI,-78.20315,-0.3314833,6/22/2021,EOS_1,0.43,239.1148148,1,5,1,5,MainStem,-78.20327,-0.3313166
+GAVI,-78.20288,-0.33115,6/22/2021,EOS_1,0.26,260.1783333,1,6,1,6,MainStem,-78.20315,-0.3314833
+GAVI,-78.20288,-0.3310167,6/22/2021,EOS_1,1.315,262.0501667,1,7,1,7,MainStem,-78.20288,-0.33115
+GAVI,-78.20272,-0.3308667,6/22/2021,EOS_1,0.25,270.7918333,1,8,1,8,MainStem,-78.20288,-0.3310167
+GAVI,-78.20253,-0.33075,6/22/2021,EOS_1,0.025,273.8465,1,9,1,9,MainStem,-78.20272,-0.3308667
+GAVI,-78.2023676,-0.330636995,6/18/2021,EOS_1,0.45,755.060625,1,14,1,10,MainStem,-78.20253,-0.33075
+GAVI,-78.20220206,-0.330495508,6/18/2021,EOS_1,0.505,658.354,1,13,1,11,MainStem,-78.2023676,-0.330636995
+GAVI,-78.20186938,-0.33028286,6/18/2021,EOS_1,0.845,525.8558333,1,12,1,12,MainStem,-78.20220206,-0.330495508
+GAVI,-78.20169998,-0.33014724,6/18/2021,EOS_1,2.665,386.1658333,1,11,1,13,MainStem,-78.20186938,-0.33028286
+GAVI,-78.20133805,-0.32989176,6/18/2021,EOS_1,0.385,487.4621667,1,10,1,14,MainStem,-78.20169998,-0.33014724
+GAVI,-78.20119271,-0.329732839,6/18/2021,EOS_1,0.245,408.2201667,1,9,1,15,MainStem,-78.20133805,-0.32989176
+GAVI,-78.20102566,-0.329538379,6/18/2021,EOS_1,0.915,343.489,1,8,1,16,MainStem,-78.20119271,-0.329732839
+GAVI,-78.20091,-0.32937,6/29/2021,EOS_2,1.445,787.7017544,6,6,1,17,"MainStem, below waterfall",-78.20102566,-0.329538379
+GAVI,-78.20085207,-0.329362275,6/18/2021,EOS_1,0.99,344.7406667,1,7,1,18,MainStem,-78.20091,-0.32937
+GAVI,-78.20077496,-0.329209557,6/18/2021,EOS_1,0.135,381.5823333,1,6,1,19,MainStem,-78.20085207,-0.329362275
+GAVI,-78.20053046,-0.329127079,6/18/2021,EOS_1,0.305,791.8428814,1,5,1,20,MainStem,-78.20077496,-0.329209557
+GAVI,-78.20063456,-0.329016019,6/18/2021,EOS_1,0.515,1004.647,1,4,1,21,MainStem,-78.20053046,-0.329127079
+GAVI,-78.20061226,-0.328784762,6/18/2021,EOS_1,0.505,2175.085667,1,3,1,22,MainStem,-78.20063456,-0.329016019
+GAVI,-78.20059894,-0.328579992,6/18/2021,EOS_1,0.75,3049.187288,1,2,1,23,MainStem,-78.20061226,-0.328784762
+GAVI,-78.20056256,-0.328370109,6/18/2021,EOS_1,0.6,3074.637,1,1,1,24,MainStem,-78.20059894,-0.328579992
+GAVI,-78.19962,-0.32421,6/30/2021,EOS_2,0.09,373.5968992,7,14,1,25,"Mainstem, above GAVI arriba, where inlination starts",,
+GAVI,-78.19965,-0.32467,6/30/2021,EOS_2,0.235,519.6016949,7,13,1,26,"Mainstem, above GAVI arriba, where inlination starts",-78.19962,-0.32421
+GAVI,-78.19988,-0.32504,6/30/2021,EOS_2,0.295,414.1914894,7,12,1,27,"Mainstem, above GAVI arriba, where inlination starts",-78.19965,-0.32467
+GAVI,-78.19979,-0.32539,6/30/2021,EOS_2,0.015,372.8846154,7,11,1,28,"Mainstem, above GAVI arriba, where inlination starts, below waterfall, very turbulent",-78.19988,-0.32504
+GAVI,-78.19971,-0.32578,6/30/2021,EOS_2,0.09,627.3978495,7,10,1,29,"Mainstem, above GAVI arriba, where inlination starts",-78.19979,-0.32539
+GAVI,-78.19987,-0.32634,6/30/2021,EOS_2,0.145,535.2198582,7,9,1,30,"Mainstem, above GAVI arriba, where inlination starts",-78.19971,-0.32578
+GAVI,-78.19986,-0.3261,6/30/2021,EOS_2,0.43,521.4201681,7,8,1,31,"Mainstem, above GAVI arriba, where inlination starts",-78.19987,-0.32634
+GAVI,-78.19959,-0.32436,6/29/2021,EOS_2,1.22,615.4989744,7,7,1,32,"Mainstem, above GAVI arriba, where inlination starts",-78.19986,-0.3261
+GAVI,-78.19962,-0.32482,6/29/2021,EOS_2,2.605,417.4536752,7,6,1,33,"Mainstem, above GAVI arriba, where inlination starts",-78.19959,-0.32436
+GAVI,-78.19962,-0.3251,6/29/2021,EOS_2,0.105,488.0076336,7,5,1,34,"Mainstem, above GAVI arriba, where inlination starts",-78.19962,-0.32482
+GAVI,-78.19968,-0.32535,6/29/2021,EOS_2,0.54,401.7448598,7,4,1,35,"Mainstem, above GAVI arriba, where inlination starts",-78.19962,-0.3251
+GAVI,-78.19969,-0.32574,6/29/2021,EOS_2,1.91,NA,7,1,1,36,"Mainstem, above GAVI arriba, where inlination starts",-78.19968,-0.32535
+GAVI,-78.19968,-0.32562,6/29/2021,EOS_2,0.16,218.4488136,7,3,1,37,"Mainstem, above GAVI arriba, where inlination starts",-78.19969,-0.32574
+GAVI,-78.19978,-0.32605,6/29/2021,EOS_2,0.61,607.0784884,7,2,1,38,"Mainstem, above GAVI arriba, where inlination starts",-78.19968,-0.32562
+GAVI,-78.20312,-0.3313,6/22/2021,EOS_1,0.28,595.9904167,2,1,2,1,"Small Trib above Station 4, river right",-78.20302,-0.3310667
+GAVI,-78.20302,-0.3310667,6/22/2021,EOS_1,0.46,750.337234,2,2,2,2,"Small Trib above Station 4, river right",-78.20303,-0.3309333
+GAVI,-78.20303,-0.3309333,6/22/2021,EOS_1,0.665,794.2786441,2,3,2,3,"Small Trib above Station 4, river right",-78.20295,-0.3307333
+GAVI,-78.20295,-0.3307333,6/22/2021,EOS_1,0.975,852.3260417,2,4,2,4,"Small Trib above Station 4, river right",,
+NA,NA,NA,NA,NA,NA,NA,NA,NA,2,NA,"ADD Point of convergence, below station 4",,
+GAVI,-78.20303,-0.3311667,6/22/2021,EOS_2,1.88,902.5833333,1,1,3,1,"Large Trib, enters Gavi, river left",-78.20275,-0.3311833
+GAVI,-78.20275,-0.3311833,6/22/2021,EOS_2,0.88,693.8333333,1,2,3,2,"Large Trib, enters Gavi, river left",-78.2025,-0.3312
+GAVI,-78.2025,-0.3312,6/22/2021,EOS_2,0.395,949.1666667,1,3,3,3,"Large Trib, enters Gavi, river left",-78.20225,-0.3312333
+GAVI,-78.20225,-0.3312333,6/22/2021,EOS_2,0.195,923.6666667,1,4,3,4,"Large Trib, enters Gavi, river left",-78.20195,-0.3313
+GAVI,-78.20195,-0.3313,6/22/2021,EOS_2,0.465,1398.423729,1,5,3,5,"Large Trib, enters Gavi, river left",-78.20182,-0.3313167
+GAVI,-78.20182,-0.3313167,6/22/2021,EOS_2,0.765,1062.166667,1,6,3,6,"Large Trib, enters Gavi, river left",-78.20155,-0.33135
+GAVI,-78.20155,-0.33135,6/22/2021,EOS_2,0.1,709.1,1,7,3,7,"Large Trib, enters Gavi, river left",-78.201535,-0.331484
+GAVI,-78.201535,-0.331484,6/23/2021,EOS_2,0.03,164.9307018,2,8,3,8,"Large Trib, enters Gavi, river left",-78.201437,-0.331227
+GAVI,-78.201437,-0.331227,6/23/2021,EOS_2,0.655,510.6833929,2,9,3,9,"Large Trib, enters Gavi, river left",-78.202139,-0.331147
+GAVI,-78.202139,-0.331147,6/23/2021,EOS_2,0.855,927.1016071,2,10,3,10,"Large Trib, enters Gavi, river left",-78.201066,-0.331125
+GAVI,-78.201066,-0.331125,6/23/2021,EOS_2,0.415,2247.595,2,11,3,11,"Large Trib, enters Gavi, river left",,
+GAVI,-78.20317,-0.3312167,6/23/2021,EOS_1,2.28,924.7272727,1,1,4,1,"Large Trib enters below station 4, runs toward wetland below refuge",-78.20313,-0.3309667
+GAVI,-78.20313,-0.3309667,6/23/2021,EOS_1,2.59,961.5535714,1,2,4,2,"Large Trib enters below station 4, runs toward wetland below refuge",-78.203133,-0.3307
+GAVI,-78.203133,-0.3307,6/23/2021,EOS_1,0.5,1329.339286,1,3,4,3,"Large Trib enters below station 4, runs toward wetland below refuge",-78.20308,-0.3305667
+GAVI,-78.20308,-0.3305667,6/23/2021,EOS_1,0.655,2277.490909,1,4,4,4,"Large Trib enters below station 4, runs toward wetland below refuge",,
+GAVI,-78.20243,-0.3306333,6/23/2021,EOS_1,0.29,1898.196429,2,1,5,1,"Small Trib, enters mainstem btw point 9, EOS1 6/22 and point 14 EOS1 6/18",-78.20242,-0.3305333
+GAVI,-78.20242,-0.3305333,6/23/2021,EOS_1,0.945,1685.892857,2,2,5,2,"Small Trib, enters mainstem btw point 9, EOS1 6/22 and point 14 EOS1 6/18",-78.202417,-0.3304667
+GAVI,-78.202417,-0.3304667,6/23/2021,EOS_1,0.65,3530.660714,2,3,5,3,"Small Trib, enters mainstem btw point 9, EOS1 6/22 and point 14 EOS1 6/18",,
+GAVI,-78.202267,-0.3305,6/23/2021,EOS_1,1.335,3189.736842,3,1,6,1,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20215,-0.3301833
+GAVI,-78.20215,-0.3301833,6/23/2021,EOS_1,0.68,1541.947368,3,2,6,2,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.202,-0.33
+GAVI,-78.202,-0.33,6/23/2021,EOS_1,1.34,1601.333333,3,3,6,3,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.201933,-0.3298
+GAVI,-78.201933,-0.3298,6/23/2021,EOS_1,0.82,1711.410714,3,4,6,4,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20195,-0.3295833
+GAVI,-78.20195,-0.3295833,6/23/2021,EOS_1,0.585,1280.857143,3,5,6,5,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.201917,-0.3294667
+GAVI,-78.201917,-0.3294667,6/23/2021,EOS_1,1.015,2987.607143,3,6,6,6,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.201867,-0.3293
+GAVI,-78.201867,-0.3293,6/23/2021,EOS_1,0.93,1258,3,7,6,7,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20174005,-0.329199666
+GAVI,-78.20174005,-0.329199666,6/29/2021,EOS_1,0.345,1350.39,1,1,6,8,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20160217,-0.329128001
+GAVI,-78.20160217,-0.329128001,6/29/2021,EOS_1,1.15,4886.8135,1,2,6,9,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20158934,-0.328979306
+GAVI,-78.20158934,-0.328979306,6/29/2021,EOS_1,0.205,660.3868333,1,3,6,10,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20154274,-0.328833461
+GAVI,-78.20154274,-0.328833461,6/29/2021,EOS_1,3.005,10000,1,4,6,11,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20153184,-0.328469351
+GAVI,-78.20153184,-0.328469351,6/29/2021,EOS_1,1.26,2010.397333,1,5,6,12,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",-78.20156755,-0.328423753
+GAVI,-78.20156755,-0.328423753,6/29/2021,EOS_1,1.675,10000,1,6,6,13,"Small Trib from small weland above station, enters mainstem above point 14, 6/18",,
+GAVI,-78.20075509,-0.3273167,6/29/2021,EOS_1,0.905,2151.687333,2,1,7,1,"small trib, enters GAVI arriba",-78.20096212,-0.327123804
+GAVI,-78.20096212,-0.327123804,6/29/2021,EOS_1,0.105,906.3513333,2,2,7,2,"small trib, enters GAVI arriba",-78.20113211,-0.326919369
+GAVI,-78.20113211,-0.326919369,6/29/2021,EOS_1,1.1,2462.460333,2,3,7,3,"small trib, enters GAVI arriba",,
+GAVI,-78.202139,-0.331269,6/23/2021,EOS_2,0.05,998.3789286,3,1,8,1,"Smallish trib, goes From ",-78.202035,-0.331034
+GAVI,-78.202035,-0.331034,6/23/2021,EOS_2,0.525,1204.744464,3,2,8,2,trib?,-78.201913,-0.3309
+GAVI,-78.201913,-0.3309,6/23/2021,EOS_2,0.265,1517.340357,3,3,8,3,trib?,-78.201894,-0.330688
+GAVI,-78.201894,-0.330688,6/23/2021,EOS_2,0.39,1016.89,3,4,8,4,trib?,-78.201689,-0.330559
+GAVI,-78.201689,-0.330559,6/23/2021,EOS_2,0.21,1351.190357,3,5,8,5,trib?,-78.201754,-0.330225
+GAVI,-78.201754,-0.330225,6/23/2021,EOS_2,0.515,2584.641429,3,6,8,6,trib?,,
+GAVI,-78.201696,-0.330142,6/23/2021,EOS_2,2.165,1332.430877,4,1,9,1,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?,-78.201568,-0.329992
+GAVI,-78.201568,-0.329992,6/23/2021,EOS_2,2.34,2757.379643,4,2,9,2,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?,-78.201497,-0.329797
+GAVI,-78.201497,-0.329797,6/23/2021,EOS_2,0.58,3597.036429,4,3,9,3,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?,-78.201389,-0.33
+GAVI,-78.201389,-0.33,6/23/2021,EOS_2,3.765,3996.965,4,4,9,4,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?,-78.20314,-0.32817
+GAVI,-78.20314,-0.32817,6/29/2021,EOS_2,3.7,3776.495798,6,4,9,5,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?,-78.20116,-0.32943
+GAVI,-78.20116,-0.32943,6/29/2021,EOS_2,6.45,11244.3,6,5,9,6,This trib is a side channel that branches from mainstem of GAVI and then enters track 3 somewhere… I think?,,
+GAVI,-78.20093,-0.3271833,6/30/2021,EOS_1,0.255,500.774,1,1,10,1,Little trib entering main GAVI,,
+GAVI,-78.20068,-0.3270833,6/30/2021,EOS_1,0.465,854.5613333,2,1,11,1,Little trib entering main GAVI,-78.20078,-0.3269833
+GAVI,-78.20078,-0.3269833,6/30/2021,EOS_1,0.105,772.6536667,2,2,11,2,Little trib entering main GAVI,-78.20095,-0.3268667
+GAVI,-78.20095,-0.3268667,6/30/2021,EOS_1,0.155,749.0935,2,3,11,3,Little trib entering main GAVI,,
+GAVI,-78.19983,-0.3263833,6/30/2021,EOS_1,0.075,426.6018333,4,1,12,1,"Little trib entering main GAVI, almost certain this is water from after the watefall",-78.1998,-0.32645
+GAVI,-78.1998,-0.32645,6/30/2021,EOS_1,0.395,273.1031667,4,2,12,2,"Little trib entering main GAVI, almost certain this is water from after the watefall",-78.19957,-0.3265667
+GAVI,-78.19957,-0.3265667,6/30/2021,EOS_1,0.225,437.2266667,4,3,12,3,"Little trib entering main GAVI, almost certain this is water from after the watefall",,
