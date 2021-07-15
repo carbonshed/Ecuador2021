@@ -24,16 +24,19 @@ CO2_eos2_July5$Notes_2 <- NA
 
 CO2_July5 <- rbind(CO2_eos1_July5,CO2_eos2_July5)
 
-#July 5th
+#July 6th
 CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS1_CO2_Edited_2021-07-06.csv"), skip=1, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes")
+colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes","Wetland")
+
 CO2_eos1_July6$EOS_no <- "EOS_1"
 CO2_eos1_July6$Notes_2 <- NA
+CO2_eos1_July6 <- CO2_eos1_July6 %>%
+  filter(we)
 
 CO2_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/CO2_EOS2_Edited_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
+colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Wetland")
 CO2_eos2_July6$EOS_no <- "EOS_2"
 CO2_eos2_July6$Notes <- NA
 CO2_eos2_July6$Notes_2 <- NA
