@@ -14,6 +14,7 @@ colnames(CO2_eos1_July5) <- c("Date","Time","CO2_ppm","Tract","Description","Poi
 CO2_eos1_July5$EOS_no <- "EOS_1"
 CO2_eos1_July5$Notes <- NA
 CO2_eos1_July5$Notes_2 <- NA
+CO2_eos1_July5$Wetland <- "ANTE"
 
 CO2_eos2_July5 <-  read.csv(here::here("/Synoptic/July5_Edited/EOS2_CO2_Edited_2021-07-05.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
@@ -21,6 +22,7 @@ CO2_eos2_July5 <-  read.csv(here::here("/Synoptic/July5_Edited/EOS2_CO2_Edited_2
 colnames(CO2_eos2_July5) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes")
 CO2_eos2_July5$EOS_no <- "EOS_2"
 CO2_eos2_July5$Notes_2 <- NA
+CO2_eos2_July5$Wetland <- "ANTE"
 
 CO2_July5 <- rbind(CO2_eos1_July5,CO2_eos2_July5)
 
@@ -32,7 +34,7 @@ colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Poi
 CO2_eos1_July6$EOS_no <- "EOS_1"
 CO2_eos1_July6$Notes_2 <- NA
 CO2_eos1_July6 <- CO2_eos1_July6 %>%
-  filter(we)
+  filter(Wetland == "ANTE")
 
 CO2_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/CO2_EOS2_Edited_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
@@ -40,6 +42,8 @@ colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Poi
 CO2_eos2_July6$EOS_no <- "EOS_2"
 CO2_eos2_July6$Notes <- NA
 CO2_eos2_July6$Notes_2 <- NA
+CO2_eos2_July6 <- CO2_eos2_July6 %>%
+  filter(Wetland == "ANTE")
 
 CO2_July6 <- rbind(CO2_eos1_July6,CO2_eos2_July6)
 
@@ -72,32 +76,42 @@ Flux_eos1_July5 <-  read.csv(here::here("Synoptic/July5_Edited/EOS1_Synoptic_Edi
 Flux_eos1_July5 <- Flux_eos1_July5[,c(1:6,12:17)]
 colnames(Flux_eos1_July5) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","Lon","Lat","WaterSample")
 Flux_eos1_July5$EOS_no <- "EOS_1"
+Flux_eos1_July5$Notes <- NA
 Flux_eos1_July5$Date <- as.Date(with(Flux_eos1_July5, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
+Flux_eos1_July5$Wetland <- "ANTE"
 
 Flux_eos2_July5 <-  read.csv(here::here("/Synoptic/July5_Edited/EOS2_Edited_2021-07-05.csv"), skip=0, header = TRUE, sep = ",",
                               quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 Flux_eos2_July5 <- Flux_eos2_July5[,c(1:6,16:21)]
 colnames(Flux_eos2_July5) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","Lon","Lat","WaterSample")
 Flux_eos2_July5$EOS_no <- "EOS_2"
+Flux_eos2_July5$Notes <- NA
 Flux_eos2_July5$Date <- as.Date(with(Flux_eos2_July5, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
+Flux_eos2_July5$Wetland <- "ANTE"
 
 Flux_July5 <- rbind(Flux_eos1_July5,Flux_eos2_July5)
 
 
 #July 6
-Flux_eos1_July6 <-  read.csv(here::here("Synoptic/July6_Edited/EOS1_Edited_2021-07-06.csv"), skip=0, header = TRUE, sep = ",",
+Flux_eos1_July6 <-  read.csv(here::here("Synoptic/July6_Edited/EOS1_Edited_2021-07-06_EDITEDAGAIN.csv"), skip=0, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-Flux_eos1_July6 <- Flux_eos1_July6[,c(1:6,12:17)]
-colnames(Flux_eos1_July6) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","Lon","Lat","WaterSample")
+Flux_eos1_July6 <- Flux_eos1_July6[,c(1:6,12:19)]
+colnames(Flux_eos1_July6) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","Lon","Lat","WaterSample", "Notes","Wetland")
 Flux_eos1_July6$EOS_no <- "EOS_1"
 Flux_eos1_July6$Date <- as.Date(with(Flux_eos1_July6, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
+Flux_eos1_July6 <- Flux_eos1_July6 %>%
+  filter(Wetland == "ANTE")
 
-Flux_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS2_synoptic_Edited_2021-07-06.csv"), skip=0, header = TRUE, sep = ",",
+
+Flux_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS2_synoptic_Edited_2021-07-06_EDITEDAGAIN.csv"), skip=0, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-Flux_eos2_July6 <- Flux_eos2_July6[,c(1:6,16:21)]
-colnames(Flux_eos2_July6) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","Lon","Lat","WaterSample")
+Flux_eos2_July6 <- Flux_eos2_July6[,c(1:6,16:22)]
+colnames(Flux_eos2_July6) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","Lon","Lat","WaterSample","Wetland")
 Flux_eos2_July6$EOS_no <- "EOS_2"
+Flux_eos2_July6$Notes <- NA
 Flux_eos2_July6$Date <- as.Date(with(Flux_eos2_July6, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
+Flux_eos2_July6 <- Flux_eos2_July6 %>%
+  filter(Wetland == "ANTE")
 
 Flux_July6 <- rbind(Flux_eos1_July6,Flux_eos2_July6)
 
@@ -115,7 +129,7 @@ Flux_synop_pivot <- Flux_synop  %>%
 
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("Lat","Lon","Date", "Tract", "Point","EOS_no"))
 
-#write.csv(synop_merge, here::here("Synoptic/GAVI.csv"))
+#write.csv(synop_merge, here::here("Synoptic/ANTE.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 
