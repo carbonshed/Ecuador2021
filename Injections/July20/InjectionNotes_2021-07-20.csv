@@ -1,0 +1,26 @@
+site,distance_m,width_cm,depth_cm,velocity_ms,presaltcond_uS,postsaltcond_uS,presalttemp_C,postsalttemp_C
+Lower Gavi,0,75,15,1.75,5.7,21.3,Error,Error
+Lower Gavi,5,92,10,0.35,NA,NA,Error,Error
+Lower Gavi,10,50,26,1.45,6.3,21.8,Error,Error
+Lower Gavi,15,56,21,1.95,NA,NA,Error,Error
+Lower Gavi,20,62,26,0.85,6.4,21.9,Error,Error
+Lower Gavi,25,68,19,1.17,NA,NA,Error,Error
+Lower Gavi,30,45,25,1.13,6.4,21.9,Error,Error
+Lower Gavi,35,64,26,0.8,NA,NA,Error,Error
+Lower Gavi,40,75,23,0.94,6.4,21.7,Error,Error
+Lower Gavi,45,65,19,1.13,NA,NA,Error,Error
+Lower Gavi,50,46,24,0.85,6.3,21.7,Error,Error
+Lower Gavi,55,65,20,1.6,NA,NA,Error,Error
+Lower Gavi,60,58,19,0.8,6.4,20.4,Error,Error
+Lower Gavi,65,69,32,0.42,NA,NA,Error,Error
+Lower Gavi,70,55,52,0.38,6.4,21.6,Error,Error
+Lower Gavi,75,37,56,0.37,NA,NA,Error,Error
+Lower Gavi,80,54,67,0.3,6.5,20.7,Error,Error
+Lower Gavi,85,102,32,0.44,NA,NA,Error,Error
+Lower Gavi,90,91,52,0.24,6.5,21.1,Error,Error
+Lower Gavi,95,25,68,0.7,NA,NA,Error,Error
+Lower Gavi,100,23,40,0.63,6.5,20.9,Error,Error
+Lower Gavi,105,45,17,1.1,NA,NA,Error,Error
+Lower Gavi,110,47,13,1.53,6.5,20.4,Error,Error
+Lower Gavi,115,32,19,1.68,NA,NA,Error,Error
+Lower Gavi,120,42,38,0.98,NA,20.5,Error,Error
