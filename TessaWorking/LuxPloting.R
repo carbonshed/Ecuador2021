@@ -37,3 +37,19 @@ ggplot(LUXarriba_04_Lux_data, aes(x=DateTime, y=Lux)) +
   geom_point(shape=1)+
   ggtitle("LUXarriba_04") 
 
+ggplot(LUXabajo_05_Lux_data, aes(x=DateTime, y=Lux)) + 
+  geom_point(shape=1)+
+  ggtitle("LUXabajo_05")
+
+ggplot(LUXabajo_06_Lux_data, aes(x=DateTime, y=Lux)) + 
+  geom_point(shape=1)+
+  ggtitle("LUXabajo_06")
+
+ggplot(LUXarriba_05_Lux_data, aes(x=DateTime, y=Lux)) + 
+  geom_point(shape=1)+
+  ggtitle("LUXarriba_05")
+
+ggplot(LUXarriba_06_Lux_data, aes(x=DateTime, y=Lux)) + 
+  geom_point(shape=1)+
+  ggtitle("LUXarriba_06")
+
