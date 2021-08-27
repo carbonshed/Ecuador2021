@@ -7,7 +7,7 @@ wypoint 048,,,,,,10:26,,,,,,,,,,
 "End up stream, above first synop, water coming out of ground",,,,,,,,,,,,,,,,
 wypoint 074,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,
-x,w,d,notes,notes2,SynopPoint,Waypoint,lat,lon,ele,time,,,,,,
+x,w,d,notes,notes2,SynopPoint,Waypoint,lat,lon,ele,time,notes1,notes2,notes3,notes4,notes5,notes6
 0,120,20,,channel,,49,-0.314690005,-78.19414403,4269.284668,2021-07-12T15:40:06Z,,,,,,
 4,NA,NA,syn 0,channel,syn 1,,,,,,,Q = ,W1 = 7 cm,W1 = 7 cm,d = 11 cm,v = .21m/s
 5,62,31,,channel,,,,,,,,,,,,
