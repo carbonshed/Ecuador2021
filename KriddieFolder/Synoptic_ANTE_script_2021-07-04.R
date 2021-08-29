@@ -129,7 +129,7 @@ Flux_synop_pivot <- Flux_synop  %>%
 
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("lon","lat","ele","Date", "Tract", "Point","EOS_no"))
 
-#write.csv(synop_merge, here::here("Synoptic/ANTE.csv"))
+write.csv(synop_merge, here::here("Synoptic/ANTE_2021-08-27.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 
@@ -138,5 +138,7 @@ synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 synop_mapFlux <- qmplot(lon, lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = Flux_ave, shape = Date.as.fact)+
   scale_color_gradient(low="blue", high="red")
 synop_mapCO2 <- qmplot(lon, lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = EOS_no)+
-  scale_color_gradient(low="blue", high="red")
+  scale_color_gradient(low="blue", high="red") 
+
+
 

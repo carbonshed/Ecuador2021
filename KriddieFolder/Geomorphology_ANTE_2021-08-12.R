@@ -100,7 +100,7 @@ colnames(df) <- c("id","dist")
 synop_merge <- synop_merge
 synop_merge2 <- as.data.frame(synop_merge[,1:9])
 
-###this works. save it.
+##play with this one
 count = 0
 for (i in 1:nrow(synop_merge2)){
   count = count +1
@@ -129,3 +129,6 @@ p <- ggplot(ANTE_geo) + geom_text(aes(x, w, label = x, color = notes2), #check_o
   geom_label(aes(x, 4240, label = SynopPoint), angle = 45) #+
 #  geom_text(aes(x, 4240, label = notes), angle = 90)
 
+
+  
+  
