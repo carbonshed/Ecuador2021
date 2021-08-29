@@ -231,7 +231,10 @@ CO2_map <- qmplot(Lon, Lat, data = CO2_synop_pivot, zoom = 13,  maptype = "toner
 
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("Lat","Lon","Date", "Tract", "Point","EOS_no"))
 
-write.csv(synop_merge, here::here("Synoptic/GAVI.csv"))
+synop_merge <- synop_merge %>%
+  filter(Tract == 1)
+
+write.csv(synop_merge, here::here("Synoptic/GAVI_mainstem_2021-08-29.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 
@@ -240,6 +243,9 @@ synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 synop_mapFlux <- qmplot(Lon, Lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = Flux_ave, shape = Date.as.fact)+
   scale_color_gradient(low="blue", high="red")
 synop_mapCO2 <- qmplot(Lon, Lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = Date.as.fact)+
+  scale_color_gradient(low="blue", high="red")
+
+Trouble <- qmplot(Lon, Lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = Tract, shape = Date.as.fact)+
   scale_color_gradient(low="blue", high="red")
 
 
