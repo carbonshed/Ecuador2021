@@ -90,14 +90,18 @@ EOSData <-  rbind(EOSData_01, EOSData_02)
 EOSData$Date <- as.Date(with(EOSData, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
 
 EOSData <- EOSData  %>%
-drop_na(Site)    
+drop_na(Site)    %>%
+  drop_na(Date)    
+
+EOSData$Site = toupper(EOSData$Site)
+EOSData$Flux <- as.numeric(EOSData$Flux)
+EOSData$Site[EOSData$Site=="ANT"]<-"ANTE"
 
 EOS_pivot <- EOSData  %>%
 group_by(Date, Site, Trans_no) %>%
   #filter(Flux > 0)  %>%
   summarize(mean_Flux = mean(Flux, na.rm = TRUE),
-            std_Flux = sd(Flux, na.rm = TRUE))  %>%
-  drop_na(Date)   
+            std_Flux = sd(Flux, na.rm = TRUE))  
 
 ###QA/QC
 EOS_pivot %>%
@@ -130,6 +134,7 @@ ggplot(EOS_pivot, aes(fill=Site,y=percent, x=Trans_no)) +
 
 ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) + 
   geom_bar(position="dodge", stat="identity") + 
-  facet_wrap(Date ~ Site) 
+  facet_wrap(Date
+    ~ Site) 
 
 
