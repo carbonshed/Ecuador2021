@@ -461,43 +461,43 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,10:26:45 AM,807,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:26:50 AM,812,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:26:55 AM,817,NA,NA,NA,NA,NA,,NA
-7/7/2021,10:27:00 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:05 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:10 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:15 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:20 AM,827,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:25 AM,827,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:30 AM,827,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:35 AM,837,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:40 AM,847,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:45 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:50 AM,867,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:27:55 AM,862,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:00 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:05 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:10 AM,852,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:15 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:20 AM,862,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:25 AM,872,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:30 AM,872,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:35 AM,877,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:40 AM,877,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:45 AM,882,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:50 AM,887,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:28:55 AM,887,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:00 AM,897,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:05 AM,897,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:10 AM,902,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:15 AM,907,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:20 AM,907,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:25 AM,902,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:30 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:35 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:40 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:45 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:50 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:29:55 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
-7/7/2021,10:30:00 AM,887,2,lower antenas site;in basin of main opened wetland,4,-0.3465,-78.199867,,1020
+7/7/2021,10:27:00 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:05 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:10 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:15 AM,822,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:20 AM,827,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:25 AM,827,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:30 AM,827,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:35 AM,837,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:40 AM,847,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:45 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:50 AM,867,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:27:55 AM,862,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:00 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:05 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:10 AM,852,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:15 AM,857,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:20 AM,862,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:25 AM,872,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:30 AM,872,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:35 AM,877,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:40 AM,877,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:45 AM,882,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:50 AM,887,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:28:55 AM,887,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:00 AM,897,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:05 AM,897,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:10 AM,902,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:15 AM,907,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:20 AM,907,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:25 AM,902,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:30 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:35 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:40 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:45 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:50 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:29:55 AM,892,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
+7/7/2021,10:30:00 AM,887,2,lower antenas site;in basin of main opened wetland,4,-0.346494969,-78.19986904,3909.583984,1020
 7/7/2021,10:30:05 AM,892,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:30:10 AM,897,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:30:15 AM,897,NA,NA,NA,NA,NA,,NA
@@ -653,90 +653,90 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,10:42:45 AM,551,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:42:50 AM,556,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:42:55 AM,556,NA,NA,NA,NA,NA,,NA
-7/7/2021,10:43:00 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:05 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:10 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:15 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:20 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:25 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:35 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:45 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:50 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:43:55 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:00 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:05 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:10 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:15 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:20 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:25 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:35 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:40 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:45 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:50 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:44:55 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:00 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:05 AM,571,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:10 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:15 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:20 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:25 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:30 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:35 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:45 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:50 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:45:55 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:00 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:05 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:10 AM,576,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:15 AM,576,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:20 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:25 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:35 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:40 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:45 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:50 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:46:55 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:00 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:05 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:10 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:15 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:20 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:25 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:30 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:35 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:40 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:45 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:50 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:47:55 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:00 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:05 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:10 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:15 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:20 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:25 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:35 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:45 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:50 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:48:55 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:00 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:05 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:10 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:15 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:20 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:25 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:30 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:35 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:45 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:50 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
-7/7/2021,10:49:55 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34635,-78.19994,,NA
+7/7/2021,10:43:00 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:05 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:10 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:15 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:20 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:25 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:35 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:45 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:50 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:43:55 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:00 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:05 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:10 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:15 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:20 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:25 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:35 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:40 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:45 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:50 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:44:55 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:00 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:05 AM,571,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:10 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:15 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:20 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:25 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:30 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:35 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:45 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:50 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:45:55 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:00 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:05 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:10 AM,576,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:15 AM,576,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:20 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:25 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:35 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:40 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:45 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:50 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:46:55 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:00 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:05 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:10 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:15 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:20 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:25 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:30 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:35 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:40 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:45 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:50 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:47:55 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:00 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:05 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:10 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:15 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:20 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:25 AM,566,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:30 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:35 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:45 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:50 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:48:55 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:00 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:05 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:10 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:15 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:20 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:25 AM,546,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:30 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:35 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:40 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:45 AM,551,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:50 AM,556,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
+7/7/2021,10:49:55 AM,561,2,lower antenas site;in basin of main opened wetland,5,-0.34634904,-78.19994297,3905.208008,NA
 7/7/2021,10:50:00 AM,566,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:50:05 AM,571,NA,NA,NA,NA,NA,,NA
 7/7/2021,10:50:10 AM,571,NA,NA,NA,NA,NA,,NA
@@ -1181,43 +1181,43 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,11:26:45 AM,787,NA,NA,NA,NA,NA,,NA
 7/7/2021,11:26:50 AM,792,NA,NA,NA,NA,NA,,NA
 7/7/2021,11:26:55 AM,792,NA,NA,NA,NA,NA,,NA
-7/7/2021,11:27:00 AM,797,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:05 AM,797,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:10 AM,797,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:15 AM,792,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:20 AM,792,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:25 AM,792,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:30 AM,797,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:35 AM,802,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:40 AM,802,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:45 AM,802,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:50 AM,807,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:27:55 AM,812,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:00 AM,817,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:05 AM,817,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:10 AM,817,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:15 AM,812,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:20 AM,807,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:25 AM,807,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:30 AM,812,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:35 AM,812,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:40 AM,812,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:45 AM,812,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:50 AM,817,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:28:55 AM,822,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:00 AM,827,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:05 AM,827,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:10 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:15 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:20 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:25 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:30 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:35 AM,827,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:40 AM,827,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:45 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:50 AM,832,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:29:55 AM,822,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
-7/7/2021,11:30:00 AM,817,2,on the other side of the bridge road thing,6,-0.34518,-78.19956,,NA
+7/7/2021,11:27:00 AM,797,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:05 AM,797,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:10 AM,797,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:15 AM,792,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:20 AM,792,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:25 AM,792,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:30 AM,797,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:35 AM,802,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:40 AM,802,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:45 AM,802,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:50 AM,807,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:27:55 AM,812,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:00 AM,817,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:05 AM,817,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:10 AM,817,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:15 AM,812,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:20 AM,807,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:25 AM,807,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:30 AM,812,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:35 AM,812,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:40 AM,812,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:45 AM,812,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:50 AM,817,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:28:55 AM,822,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:00 AM,827,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:05 AM,827,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:10 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:15 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:20 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:25 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:30 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:35 AM,827,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:40 AM,827,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:45 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:50 AM,832,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:29:55 AM,822,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
+7/7/2021,11:30:00 AM,817,2,on the other side of the bridge road thing,6,-0.345181022,-78.19956503,3918.22998,NA
 7/7/2021,11:30:05 AM,817,NA,NA,NA,NA,NA,,NA
 7/7/2021,11:30:10 AM,817,NA,NA,NA,NA,NA,,NA
 7/7/2021,11:30:15 AM,812,NA,NA,NA,NA,NA,,NA
@@ -1721,49 +1721,49 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,12:11:45 PM,877,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:11:50 PM,877,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:11:55 PM,877,NA,NA,NA,NA,NA,,NA
-7/7/2021,12:12:00 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:05 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:10 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:15 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:20 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:25 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:30 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:35 PM,887,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:40 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:45 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:50 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:12:55 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:00 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:05 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:10 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:15 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:20 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:25 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:30 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:35 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:40 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:45 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:50 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:13:55 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:00 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:05 PM,887,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:10 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:15 PM,892,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:20 PM,887,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:25 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:30 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:35 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:40 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:45 PM,887,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:50 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:14:55 PM,882,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:00 PM,872,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:05 PM,872,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:10 PM,872,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:15 PM,872,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:20 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:25 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
-7/7/2021,12:15:30 PM,877,2,other side of bridge ,8,-0.34432,-78.19819,,NA
+7/7/2021,12:12:00 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:05 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:10 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:15 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:20 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:25 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:30 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:35 PM,887,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:40 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:45 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:50 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:12:55 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:00 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:05 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:10 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:15 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:20 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:25 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:30 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:35 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:40 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:45 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:50 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:13:55 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:00 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:05 PM,887,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:10 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:15 PM,892,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:20 PM,887,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:25 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:30 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:35 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:40 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:45 PM,887,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:50 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:14:55 PM,882,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:00 PM,872,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:05 PM,872,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:10 PM,872,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:15 PM,872,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:20 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:25 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
+7/7/2021,12:15:30 PM,877,2,other side of bridge ,8,-0.344571993,-78.19850598,3921.438232,NA
 7/7/2021,12:15:35 PM,867,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:15:40 PM,857,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:15:45 PM,842,NA,NA,NA,NA,NA,,NA
@@ -1961,56 +1961,56 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,12:31:45 PM,867,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:31:50 PM,867,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:31:55 PM,867,NA,NA,NA,NA,NA,,NA
-7/7/2021,12:32:00 PM,867,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:05 PM,872,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:10 PM,877,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:15 PM,887,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:20 PM,887,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:25 PM,887,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:30 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:35 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:40 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:45 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:50 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:32:55 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:00 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:05 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:10 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:15 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:20 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:25 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:30 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:35 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:40 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:45 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:50 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:33:55 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:00 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:05 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:10 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:15 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:20 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:25 PM,907,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:30 PM,907,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:35 PM,912,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:40 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:45 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:50 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:34:55 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:00 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:05 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:10 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:15 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:20 PM,887,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:25 PM,892,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:30 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:35 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:40 PM,902,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:45 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:50 PM,897,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:35:55 PM,887,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:36:00 PM,877,2,other side of bridge ,9,-0.34432,-78.19819,,NA
-7/7/2021,12:36:05 PM,862,2,other side of bridge ,9,-0.34432,-78.19819,,NA
+7/7/2021,12:32:00 PM,867,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:05 PM,872,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:10 PM,877,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:15 PM,887,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:20 PM,887,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:25 PM,887,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:30 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:35 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:40 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:45 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:50 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:32:55 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:00 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:05 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:10 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:15 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:20 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:25 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:30 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:35 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:40 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:45 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:50 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:33:55 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:00 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:05 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:10 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:15 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:20 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:25 PM,907,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:30 PM,907,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:35 PM,912,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:40 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:45 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:50 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:34:55 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:00 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:05 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:10 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:15 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:20 PM,887,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:25 PM,892,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:30 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:35 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:40 PM,902,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:45 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:50 PM,897,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:35:55 PM,887,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:36:00 PM,877,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
+7/7/2021,12:36:05 PM,862,2,other side of bridge ,9,-0.344322966,-78.19818998,3922.810547,NA
 7/7/2021,12:36:10 PM,837,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:36:15 PM,802,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:36:20 PM,747,NA,NA,NA,NA,NA,,NA
@@ -2177,67 +2177,67 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,12:49:45 PM,797,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:49:50 PM,792,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:49:55 PM,797,NA,NA,NA,NA,NA,,NA
-7/7/2021,12:50:00 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:05 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:10 PM,812,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:15 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:20 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:25 PM,797,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:30 PM,792,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:35 PM,792,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:40 PM,792,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:45 PM,797,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:50 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:50:55 PM,812,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:00 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:05 PM,812,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:10 PM,812,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:15 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:20 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:25 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:30 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:35 PM,827,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:40 PM,827,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:45 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:50 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:51:55 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:00 PM,827,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:05 PM,827,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:10 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:15 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:20 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:25 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:30 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:35 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:40 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:45 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:50 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:52:55 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:00 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:05 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:10 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:15 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:20 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:25 PM,812,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:30 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:35 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:40 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:45 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:50 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:53:55 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:00 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:05 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:10 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:15 PM,797,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:20 PM,802,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:25 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:30 PM,807,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:35 PM,812,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:40 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:45 PM,827,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:50 PM,827,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:54:55 PM,822,2,other side of bridge ,10,-0.34385,-78.19836,,NA
-7/7/2021,12:55:00 PM,817,2,other side of bridge ,10,-0.34385,-78.19836,,NA
+7/7/2021,12:50:00 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:05 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:10 PM,812,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:15 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:20 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:25 PM,797,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:30 PM,792,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:35 PM,792,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:40 PM,792,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:45 PM,797,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:50 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:50:55 PM,812,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:00 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:05 PM,812,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:10 PM,812,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:15 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:20 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:25 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:30 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:35 PM,827,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:40 PM,827,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:45 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:50 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:51:55 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:00 PM,827,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:05 PM,827,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:10 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:15 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:20 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:25 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:30 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:35 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:40 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:45 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:50 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:52:55 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:00 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:05 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:10 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:15 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:20 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:25 PM,812,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:30 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:35 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:40 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:45 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:50 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:53:55 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:00 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:05 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:10 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:15 PM,797,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:20 PM,802,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:25 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:30 PM,807,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:35 PM,812,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:40 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:45 PM,827,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:50 PM,827,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:54:55 PM,822,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
+7/7/2021,12:55:00 PM,817,2,other side of bridge ,10,-0.34384897,-78.19835301,3925.694092,NA
 7/7/2021,12:55:05 PM,812,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:55:10 PM,812,NA,NA,NA,NA,NA,,NA
 7/7/2021,12:55:15 PM,807,NA,NA,NA,NA,NA,,NA
@@ -2417,66 +2417,66 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,1:09:45 PM,802,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:09:50 PM,807,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:09:55 PM,807,NA,NA,NA,NA,NA,,NA
-7/7/2021,1:10:00 PM,807,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:05 PM,807,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:10 PM,802,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:15 PM,802,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:20 PM,802,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:25 PM,802,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:30 PM,802,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:35 PM,807,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:40 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:45 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:50 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:10:55 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:00 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:05 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:10 PM,817,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:15 PM,817,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:20 PM,822,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:25 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:30 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:35 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:40 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:45 PM,822,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:50 PM,817,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:11:55 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:00 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:05 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:10 PM,817,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:15 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:20 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:25 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:30 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:35 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:40 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:45 PM,807,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:50 PM,807,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:12:55 PM,812,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:00 PM,817,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:05 PM,822,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:10 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:15 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:20 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:25 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:30 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:35 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:40 PM,837,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:45 PM,842,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:50 PM,842,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:13:55 PM,842,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:00 PM,837,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:05 PM,837,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:10 PM,837,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:15 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:20 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:25 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:30 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:35 PM,837,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:40 PM,842,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:45 PM,842,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:50 PM,832,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
-7/7/2021,1:14:55 PM,827,2,other side of bridge;very turbulent,11,-0.34342,-78.1979,,NA
+7/7/2021,1:10:00 PM,807,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:05 PM,807,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:10 PM,802,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:15 PM,802,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:20 PM,802,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:25 PM,802,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:30 PM,802,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:35 PM,807,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:40 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:45 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:50 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:10:55 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:00 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:05 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:10 PM,817,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:15 PM,817,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:20 PM,822,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:25 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:30 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:35 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:40 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:45 PM,822,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:50 PM,817,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:11:55 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:00 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:05 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:10 PM,817,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:15 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:20 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:25 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:30 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:35 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:40 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:45 PM,807,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:50 PM,807,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:12:55 PM,812,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:00 PM,817,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:05 PM,822,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:10 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:15 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:20 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:25 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:30 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:35 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:40 PM,837,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:45 PM,842,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:50 PM,842,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:13:55 PM,842,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:00 PM,837,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:05 PM,837,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:10 PM,837,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:15 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:20 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:25 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:30 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:35 PM,837,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:40 PM,842,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:45 PM,842,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:50 PM,832,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
+7/7/2021,1:14:55 PM,827,2,other side of bridge;very turbulent,11,-0.343425013,-78.19790198,3930.491699,NA
 7/7/2021,1:15:00 PM,822,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:15:05 PM,822,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:15:10 PM,827,NA,NA,NA,NA,NA,,NA
@@ -2657,66 +2657,66 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,1:29:45 PM,832,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:29:50 PM,827,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:29:55 PM,832,NA,NA,NA,NA,NA,,NA
-7/7/2021,1:30:00 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:05 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:10 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:15 PM,827,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:20 PM,822,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:25 PM,817,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:30 PM,817,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:35 PM,822,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:40 PM,827,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:45 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:50 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:30:55 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:00 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:05 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:10 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:15 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:20 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:25 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:30 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:35 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:40 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:45 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:50 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:31:55 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:00 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:05 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:10 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:15 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:20 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:25 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:30 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:35 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:40 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:45 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:50 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:32:55 PM,827,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:00 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:05 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:10 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:15 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:20 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:25 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:30 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:35 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:40 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:45 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:50 PM,842,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:33:55 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:00 PM,832,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:05 PM,837,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:10 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:15 PM,852,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:20 PM,852,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:25 PM,852,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:30 PM,852,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:35 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:40 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:45 PM,847,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:50 PM,852,2,other side of bridge,12,-0.34262,-78.19784,,NA
-7/7/2021,1:34:55 PM,857,2,other side of bridge,12,-0.34262,-78.19784,,NA
+7/7/2021,1:30:00 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:05 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:10 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:15 PM,827,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:20 PM,822,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:25 PM,817,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:30 PM,817,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:35 PM,822,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:40 PM,827,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:45 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:50 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:30:55 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:00 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:05 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:10 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:15 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:20 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:25 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:30 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:35 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:40 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:45 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:50 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:31:55 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:00 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:05 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:10 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:15 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:20 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:25 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:30 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:35 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:40 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:45 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:50 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:32:55 PM,827,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:00 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:05 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:10 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:15 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:20 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:25 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:30 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:35 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:40 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:45 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:50 PM,842,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:33:55 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:00 PM,832,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:05 PM,837,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:10 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:15 PM,852,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:20 PM,852,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:25 PM,852,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:30 PM,852,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:35 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:40 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:45 PM,847,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:50 PM,852,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
+7/7/2021,1:34:55 PM,857,2,other side of bridge,12,-0.34262496,-78.19784104,3933.246094,NA
 7/7/2021,1:35:00 PM,857,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:35:05 PM,852,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:35:10 PM,847,NA,NA,NA,NA,NA,,NA
@@ -2897,66 +2897,66 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,1:49:45 PM,661,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:49:50 PM,666,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:49:55 PM,676,NA,NA,NA,NA,NA,,NA
-7/7/2021,1:50:00 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:05 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:10 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:15 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:20 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:25 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:30 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:35 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:40 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:45 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:50 PM,661,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:50:55 PM,661,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:00 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:05 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:10 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:15 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:20 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:25 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:30 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:35 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:40 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:45 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:50 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:51:55 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:00 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:05 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:10 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:15 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:20 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:25 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:30 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:35 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:40 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:45 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:50 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:52:55 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:00 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:05 PM,691,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:10 PM,691,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:15 PM,691,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:20 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:25 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:30 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:35 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:40 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:45 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:50 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:53:55 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:00 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:05 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:10 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:15 PM,671,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:20 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:25 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:30 PM,691,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:35 PM,691,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:40 PM,686,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:45 PM,681,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:50 PM,676,2,other side of bridge,13,-0.34218,-78.19865,,NA
-7/7/2021,1:54:55 PM,666,2,other side of bridge,13,-0.34218,-78.19865,,NA
+7/7/2021,1:50:00 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:05 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:10 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:15 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:20 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:25 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:30 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:35 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:40 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:45 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:50 PM,661,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:50:55 PM,661,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:00 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:05 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:10 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:15 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:20 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:25 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:30 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:35 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:40 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:45 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:50 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:51:55 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:00 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:05 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:10 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:15 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:20 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:25 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:30 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:35 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:40 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:45 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:50 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:52:55 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:00 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:05 PM,691,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:10 PM,691,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:15 PM,691,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:20 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:25 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:30 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:35 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:40 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:45 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:50 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:53:55 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:00 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:05 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:10 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:15 PM,671,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:20 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:25 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:30 PM,691,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:35 PM,691,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:40 PM,686,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:45 PM,681,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:50 PM,676,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
+7/7/2021,1:54:55 PM,666,2,other side of bridge,13,-0.342177032,-78.19864302,3933.367432,NA
 7/7/2021,1:55:00 PM,666,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:55:05 PM,666,NA,NA,NA,NA,NA,,NA
 7/7/2021,1:55:10 PM,666,NA,NA,NA,NA,NA,,NA
@@ -3137,66 +3137,66 @@ Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample
 7/7/2021,2:09:45 PM,561,NA,NA,NA,NA,NA,,NA
 7/7/2021,2:09:50 PM,556,NA,NA,NA,NA,NA,,NA
 7/7/2021,2:09:55 PM,551,NA,NA,NA,NA,NA,,NA
-7/7/2021,2:10:00 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:05 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:10 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:15 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:20 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:25 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:30 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:35 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:40 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:45 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:50 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:10:55 PM,571,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:00 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:05 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:10 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:15 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:20 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:25 PM,546,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:30 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:35 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:40 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:45 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:50 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:11:55 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:00 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:05 PM,546,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:10 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:15 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:20 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:25 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:30 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:35 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:40 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:45 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:50 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:12:55 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:00 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:05 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:10 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:15 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:20 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:25 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:30 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:35 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:40 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:45 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:50 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:13:55 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:00 PM,571,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:05 PM,571,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:10 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:15 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:20 PM,566,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:25 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:30 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:35 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:40 PM,561,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:45 PM,556,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:50 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
-7/7/2021,2:14:55 PM,551,2,other side of bridge way down,14,-0.34154,-78.19868,,NA
+7/7/2021,2:10:00 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:05 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:10 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:15 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:20 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:25 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:30 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:35 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:40 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:45 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:50 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:10:55 PM,571,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:00 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:05 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:10 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:15 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:20 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:25 PM,546,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:30 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:35 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:40 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:45 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:50 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:11:55 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:00 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:05 PM,546,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:10 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:15 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:20 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:25 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:30 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:35 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:40 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:45 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:50 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:12:55 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:00 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:05 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:10 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:15 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:20 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:25 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:30 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:35 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:40 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:45 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:50 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:13:55 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:00 PM,571,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:05 PM,571,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:10 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:15 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:20 PM,566,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:25 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:30 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:35 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:40 PM,561,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:45 PM,556,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:50 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
+7/7/2021,2:14:55 PM,551,2,other side of bridge way down,14,-0.341539001,-78.19867504,3935.279785,NA
 7/7/2021,2:15:00 PM,556,NA,NA,NA,NA,NA,,NA
 7/7/2021,2:15:05 PM,556,NA,NA,NA,NA,NA,,NA
 7/7/2021,2:15:10 PM,561,NA,NA,NA,NA,NA,,NA

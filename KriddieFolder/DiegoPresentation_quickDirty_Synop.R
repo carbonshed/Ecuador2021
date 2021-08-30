@@ -133,3 +133,51 @@ GAVI_co2 <-  ggplot(GAVI) +
   #  geom_point(aes(dist_m, ele_estimate-5, shape = notes)) +
   theme_bw() +
   ggtitle("GAVILAN - pCO2") # for the main title
+
+
+
+#### COLMILLO
+
+COLM <-  read.csv(here::here("/synoptic/COLMILLO_2021-08-30Edit_quickandDirty.csv"), skip=0, header = TRUE, sep = ",",
+                  na.strings=c("","NA"), quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+
+
+Flux_map <- qmplot(lon, lat, data = COLM, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave)+
+  scale_color_gradient(low="blue", high="red")
+
+GAVI$Date.as.fact <- as.factor(GAVI$Date)
+GAVI$Date <- as.Date(GAVI$Date, format = "%m/%d/%Y")
+GAVI_sub <- subset(GAVI, Date > "2021-06-28")
+
+
+Troubleshoot <- qmplot(Lon, Lat, data = subset(GAVI, Date == "2021-06-30"), zoom = 13,  maptype = "toner-background", 
+                       color = CO2_ppm_ave, shape = Date.as.fact)+
+  scale_color_gradient(low="blue", high="red")
+
+Troubleshoot <- qmplot(Lon, Lat, data = GAVI_sub, zoom = 13,  maptype = "toner-background", 
+                       color = CO2_ppm_ave, shape = Date.as.fact)+
+  scale_color_gradient(low="blue", high="red")
+
+GAVI_flux <-  ggplot(GAVI) +
+  geom_ellipse(aes(x0 = 775, y0 = 4140, a = 40, b = 5, angle = pi / 1), fill = "Green") +
+  geom_ellipse(aes(x0 = 580, y0 = 4105, a = 60, b = 8, angle = pi / 1), fill = "Green") +
+  geom_ellipse(aes(x0 = 280, y0 = 4077, a = 50, b = 8, angle = pi / 1), fill = "Green") +
+  geom_line(aes(dist_m, ele_estimate, color = Flux_ave), size=3) +
+  scale_color_gradient(low="blue", high="red", #breaks = c(0, -1, -2, -3), labels = c("1.0", "0.1", "0.01","0.001")
+  ) +
+  labs(color="CO2 Flux") + xlab("Distance") + ylab("Elevation") +
+  theme_bw() +
+  ggtitle("GAVILAN - CO2 Evasion")
+
+
+GAVI_co2 <-  ggplot(GAVI) +
+  geom_ellipse(aes(x0 = 775, y0 = 4140, a = 40, b = 5, angle = pi / 1), fill = "Green") +
+  geom_ellipse(aes(x0 = 580, y0 = 4105, a = 60, b = 8, angle = pi / 1), fill = "Green") +
+  geom_ellipse(aes(x0 = 280, y0 = 4077, a = 50, b = 8, angle = pi / 1), fill = "Green") +
+  geom_line(aes(dist_m, ele_estimate, color = log10(CO2_ppm_ave)), size=3) +
+  scale_color_gradient(low="blue", high="red", breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")) +
+  labs(color="pCO2") + xlab("Distance (m)") + ylab("Elevation (m)") +
+  #  geom_point(aes(dist_m, ele_estimate-5, shape = notes)) +
+  theme_bw() +
+  ggtitle("GAVILAN - pCO2") # for the main title
+
