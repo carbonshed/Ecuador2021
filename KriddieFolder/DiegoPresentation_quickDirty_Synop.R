@@ -54,26 +54,28 @@ ANTE_eco <-  ggplot(ANTE) + geom_point(aes(dist_m, ele_estimate, color = notes))
 
 
 ANTE_flux <-  ggplot(ANTE) +
-  geom_ellipse(aes(x0 = 40, y0 = 4271, a = 20, b = 3, angle = pi / 30), fill = "Green") +
-  geom_ellipse(aes(x0 = 225, y0 = 4300, a = 20, b = 2, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 360, y0 = 4310, a = 65, b = 5, angle = pi / 30), fill = "Green") +
-  geom_line(aes(dist_m, ele_estimate, color = log10(Flux_ave)), size=3) +
-  scale_color_gradient(low="blue", high="red", breaks = c(0, -0.5, -1.0, -1.5, -2.0), labels = c("1.0", "0.32", "0.1","0.032","0.01")) +
+#  geom_ellipse(aes(x0 = 40, y0 = 4271, a = 20, b = 3, angle = pi / 30), fill = "grey") +
+#  geom_ellipse(aes(x0 = 225, y0 = 4300, a = 20, b = 2, angle = pi / 1), fill = "grey") +
+#  geom_ellipse(aes(x0 = 360, y0 = 4310, a = 65, b = 5, angle = pi / 30), fill = "grey") +
+  geom_point(aes(dist_m, ele_estimate, color = Flux_ave), size=6) +
+  scale_color_gradient(low="blue", high="red", #breaks = c(0, -0.5, -1.0, -1.5, -2.0), labels = c("1.0", "0.32", "0.1","0.032","0.01")
+                       ) +
   labs(color="CO2 Flux") + xlab("Distance") + ylab("Elevation") +
   theme_bw() +
-  ggtitle("ATENAS - CO2 Evasion")
+  ggtitle("ANTENAS - CO2 Evasion")
 
 
 ANTE_co2 <-  ggplot(ANTE) +
-  geom_ellipse(aes(x0 = 40, y0 = 4271, a = 20, b = 3, angle = pi / 30), fill = "Green") +
-  geom_ellipse(aes(x0 = 225, y0 = 4300, a = 20, b = 2, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 360, y0 = 4310, a = 65, b = 5, angle = pi / 30), fill = "Green") +
-  geom_line(aes(dist_m, ele_estimate, color = log10(CO2_ppm_ave)), size=3) +
-  scale_color_gradient(low="blue", high="red", breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")) +
+#  geom_ellipse(aes(x0 = 40, y0 = 4271, a = 20, b = 3, angle = pi / 30), fill = "Green") +
+#  geom_ellipse(aes(x0 = 225, y0 = 4300, a = 20, b = 2, angle = pi / 1), fill = "Green") +
+#  geom_ellipse(aes(x0 = 360, y0 = 4310, a = 65, b = 5, angle = pi / 30), fill = "Green") +
+  geom_point(aes(dist_m, ele_estimate, color = log(CO2_ppm_ave)), size=6) +
+  scale_color_gradient(low="blue", high="red", #breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")
+                       ) +
   labs(color="pCO2") + xlab("Distance") + ylab("Elevation") +
 #  geom_point(aes(dist_m, ele_estimate-5, shape = notes)) +
   theme_bw() +
-  ggtitle("ATENAS - pCO2")
+  ggtitle("ANTENAS - pCO2")
 
 
 circles <- data.frame(
@@ -112,23 +114,36 @@ Troubleshoot <- qmplot(Lon, Lat, data = GAVI_sub, zoom = 13,  maptype = "toner-b
   scale_color_gradient(low="blue", high="red")
 
 GAVI_flux <-  ggplot(GAVI) +
-  geom_ellipse(aes(x0 = 775, y0 = 4140, a = 40, b = 5, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 580, y0 = 4105, a = 60, b = 8, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 280, y0 = 4077, a = 50, b = 8, angle = pi / 1), fill = "Green") +
-  geom_line(aes(dist_m, ele_estimate, color = Flux_ave), size=3) +
-  scale_color_gradient(low="blue", high="red", #breaks = c(0, -1, -2, -3), labels = c("1.0", "0.1", "0.01","0.001")
+#  geom_ellipse(aes(x0 = 775, y0 = 4140, a = 40, b = 5, angle = pi / 1), fill = "Green") +
+#  geom_ellipse(aes(x0 = 580, y0 = 4105, a = 60, b = 8, angle = pi / 1), fill = "Green") +
+#  geom_ellipse(aes(x0 = 280, y0 = 4077, a = 50, b = 8, angle = pi / 1), fill = "Green") +
+  geom_point(aes(dist_m, ele_estimate, color = Flux_ave), size=6) +
+  scale_color_gradient(low="blue", high="green", #breaks = c(0, -1, -2, -3), labels = c("1.0", "0.1", "0.01","0.001")
                        ) +
-  labs(color="CO2 Flux") + xlab("Distance") + ylab("Elevation") +
   theme_bw() +
-  ggtitle("GAVILAN - CO2 Evasion")
+  labs(color="CO2 Flux") + xlab("Distance [meters]") + ylab("Elevation [meters]") +
+   theme(
+#    axis.title.x = element_text(size = 18),
+    axis.text = element_text(size = 16),
+    axis.title = element_text(size = 20)) +
+  theme(legend.title = element_text(size=20),
+        legend.text = element_text(size=16),
+        legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(2, 'cm'))
+#+
+#  ggtitle("GAVILAN - CO2 Evasion") + 
+#  theme(plot.title = element_text(size = 30, face = "bold"))
 
 
 GAVI_co2 <-  ggplot(GAVI) +
-  geom_ellipse(aes(x0 = 775, y0 = 4140, a = 40, b = 5, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 580, y0 = 4105, a = 60, b = 8, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 280, y0 = 4077, a = 50, b = 8, angle = pi / 1), fill = "Green") +
-  geom_line(aes(dist_m, ele_estimate, color = log10(CO2_ppm_ave)), size=3) +
-  scale_color_gradient(low="blue", high="red", breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")) +
+#  geom_ellipse(aes(x0 = 775, y0 = 4140, a = 40, b = 5, angle = pi / 1), fill = "Grey") +
+#  geom_ellipse(aes(x0 = 580, y0 = 4105, a = 60, b = 8, angle = pi / 1), fill = "Green") +
+#  geom_ellipse(aes(x0 = 280, y0 = 4077, a = 50, b = 8, angle = pi / 1), fill = "Green") +
+  geom_point(aes(dist_m, ele_estimate, color = log10(CO2_ppm_ave)), size=6) +
+  scale_color_gradient(
+    low="blue", high="red", 
+    breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")
+    ) +
   labs(color="pCO2") + xlab("Distance (m)") + ylab("Elevation (m)") +
   #  geom_point(aes(dist_m, ele_estimate-5, shape = notes)) +
   theme_bw() +
@@ -162,7 +177,7 @@ COLMILLO_flux <-  ggplot(COLMILLO) +
   geom_ellipse(aes(x0 = 300, y0 = 3900, a = 100, b = 3, angle = pi / 240), fill = "Green") +
   geom_ellipse(aes(x0 = 735, y0 = 3924, a = 60, b = 2, angle = pi / 1), fill = "Green") +
   geom_ellipse(aes(x0 = 1036, y0 = 3932, a = 100, b = 3, angle = pi / 90), fill = "Green") +
-  geom_line(aes(dist_m, ele_estimate, color = Flux_ave), size=3) +
+  geom_point(aes(dist_m, ele_estimate, color = Flux_ave), size=3) +
   scale_color_gradient(low="blue", high="red", #breaks = c(0, -1, -2, -3), labels = c("1.0", "0.1", "0.01","0.001")
   ) +
   labs(color="CO2 Flux") + xlab("Distance") + ylab("Elevation") +
@@ -171,12 +186,12 @@ COLMILLO_flux <-  ggplot(COLMILLO) +
 
 
 COLMILLO_co2 <-  ggplot(COLMILLO) +
-  geom_ellipse(aes(x0 = 300, y0 = 3900, a = 100, b = 3, angle = pi / 240), fill = "Green") +
-  geom_ellipse(aes(x0 = 735, y0 = 3924, a = 60, b = 2, angle = pi / 1), fill = "Green") +
-  geom_ellipse(aes(x0 = 1036, y0 = 3932, a = 100, b = 3, angle = pi / 90), fill = "Green") +
-  geom_line(aes(dist_m, ele_estimate, color = CO2_ppm_ave), size=3) +
-  scale_color_gradient(low="blue", high="red", #breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")
-                       ) +
+#  geom_ellipse(aes(x0 = 300, y0 = 3900, a = 100, b = 3, angle = pi / 240), fill = "Green") +
+#  geom_ellipse(aes(x0 = 735, y0 = 3924, a = 60, b = 2, angle = pi / 1), fill = "Green") +
+#  geom_ellipse(aes(x0 = 1036, y0 = 3932, a = 100, b = 3, angle = pi / 90), fill = "Green") +
+  geom_point(aes(dist_m, ele_estimate, color = CO2_ppm_ave), size=3) +
+ # scale_color_gradient(low="blue", high="red", #breaks = c(3.5, 3.0, 2.5), labels = c("3162", "1000", "316")
+#                       ) +
   labs(color="pCO2") + xlab("Distance (m)") + ylab("Elevation (m)") +
   #  geom_point(aes(dist_m, ele_estimate-5, shape = notes)) +
   theme_bw() +
