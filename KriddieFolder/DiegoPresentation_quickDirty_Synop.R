@@ -121,7 +121,7 @@ GAVI_flux <-  ggplot(GAVI) +
   scale_color_gradient(low="blue", high="green", #breaks = c(0, -1, -2, -3), labels = c("1.0", "0.1", "0.01","0.001")
                        ) +
   theme_bw() +
-  labs(color="CO2 Flux") + xlab("Distance [meters]") + ylab("Elevation [meters]") +
+  labs(color=expression(CO[2]~ Flux)) + xlab("Distance [meters]") + ylab("Elevation [meters]") +
    theme(
 #    axis.title.x = element_text(size = 18),
     axis.text = element_text(size = 16),
