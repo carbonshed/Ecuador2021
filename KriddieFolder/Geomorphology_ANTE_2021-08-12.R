@@ -5,10 +5,14 @@ library(lubridate)
 library("plot3D")
 library(dplyr)
 library(geosphere)
+library(ggmap)
+
+synop <- read.csv(here::here("Synoptic/ANTE_2021-08-27_withDOC.csv"))
 
 #merge waypoints and tracks
 
 ##WAYPPINTS
+
 ANTE_geo_waypoints <-  read.csv(here::here("/Geomorphology/Atenas/Antenas_Waypoint_July12.csv"), skip=22, header = TRUE, sep = ",",
                       na.strings=c("","NA"), quote = "\"",dec = ".", fill = TRUE, comment.char = "")[(1:26),c(2:5,8)]
 colnames(ANTE_geo_waypoints) <- c("lat_wypt","lon_wypt","ele_wypt","time","name")
@@ -64,17 +68,33 @@ ANT_geo_tracks2 <- subset(ANT_geo_tracks,
 ANTE_df <- full_join(ANT_geo_tracks2,ANTE_geo_waypoints, by = "time")
 ANTE_df$dist <- as.numeric(ANTE_df$dist)
 
-TrackMap <- qmplot(lon, lat, data = ANTE_df, zoom = 13,  maptype = "toner-background")
+#write.csv(ANTE_df,here::here("/Geomorphology/Atenas/ANTENAS_GEOMORPH_2021-09-28.csv"))
+
+TrackMap <- qmplot(lon, lat, data = ANTE_df, zoom = 13,
+                   maptype = "toner-background", color=ele) 
+
 TrackMap2 <- qmplot(lon_wypt, lat_wypt, data = ANTE_df%>%drop_na(lat_wypt), zoom = 13,  maptype = "toner-background")
+
 
 TrackMap_elevation <- ggplot(ANTE_df, aes(x=time, y=ele)) +
   geom_point(color="black") +
   geom_text(aes(time,ele_wypt,label=dist,colour="black")) +
   theme_bw()
 
+
+TrackMap_elevation <- ggplot(ANTE_df, aes(x=lon_wypt, y=ele_wypt)) +
+  geom_point(color="black") +
+  theme_bw()
+
+TrackMap_elevation <- ggplot(ANTE_df, aes(x=lon, y=lat, color=ele)) +
+  geom_point() +
+  theme_bw()
+
 TrackMap_elevation <- ggplot(ANTE_df, aes(x=dist, y=ele_wypt)) +geom_point() +
   geom_text(aes(dist,ele_wypt,label=dist,colour="black")) +
   theme_bw()
+
+scatter3D(ANTE_df$lat, ANTE_df$lon, ANTE_df$ele, clab = c("Elevation", "(m)"))
 
 ##run loop to take average of every point within 5 meters
 
