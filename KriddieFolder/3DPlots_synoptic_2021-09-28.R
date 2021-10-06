@@ -44,6 +44,8 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
                                    yaxis = list(title = 'lon'),
                                    zaxis = list(title = 'elevation')))
 
+fig
+
 Z = seq(0, 1, 0.01)
 X = rnorm(length(Z), mean = 0, sd = 0.1)
 Y = 2 * Z ^ 2 + rnorm(length(Z), mean = 0, sd = 0.1)
@@ -147,6 +149,12 @@ library(akima)
 #### 3 d loess planes
 Y <- Geomorph$ele
 X <- data.matrix(Geomorph[1:2])
+
+
+
+loess.surf(Y, X, span = 0.1, degree = 1, family = "gaussian", phi = 20, 
+           theta = 50, xlab = "X", ylab = "Y", zlab = "Fit", line.col = 1, 
+           line.type = 1, scale = TRUE, duplicate = "error", expand = 0.5)
 
 
 
