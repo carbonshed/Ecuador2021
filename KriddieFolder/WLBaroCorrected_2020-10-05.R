@@ -52,6 +52,10 @@ for (site in site_names){
 #this loop is for the site with solinist
   #solinist is at WL_01
 
+#rm old files, if they exist
+rm(WLData)
+rm(Temp_WLData)
+
 site_names = "WL_01"
 
 for (site in site_names){
