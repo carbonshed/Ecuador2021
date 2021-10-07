@@ -4,6 +4,7 @@ library(dplyr)
 library(ggplot2)
 library(reshape2)
 library(purrr)
+library(plotly)
 ##set folder for site ##
 
 setwd(here::here("WaterLevel"))
@@ -11,7 +12,8 @@ all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
 sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
 #site_names = site_names[-1]
-site_names <- site_names[site_names != c("WL_01","WL_Well2")] # remove solinst station
+site_names <- site_names[site_names != "WL_01"]
+site_names <- site_names[site_names !=  "WL_Well2"]# remove solinst station
 
 #rm old files, if they exist
 rm(WLData)
@@ -43,20 +45,26 @@ for (site in site_names){
   colnames(WLData)=c("row","DateTime","WLPres_kpa","WLTemp_c")
   WLData=WLData[,2:4]
   WLData=unique(WLData)
-  WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
-  assign((paste(site,"WL_data",sep="_")),WLData) #creates object with new appended data
+  
+  WLData$DateTime_1 <- WLData$DateTime
+  WLData$DateTime <- as.POSIXct(WLData$DateTime_1, format = "%m/%d/%y %I:%M:%S %p", tz="UTC")
+  WLData$DateTime[is.na(WLData$DateTime)] <- as.POSIXct(WLData$DateTime_1[is.na(WLData$DateTime)], format = "%m/%d/%Y %H:%M", tz="UTC")
+  WLData$DateTime_1 <-NULL
+  WLData$DateTime <- lubridate::round_date(WLData$DateTime, "15 minutes") 
+
+     assign((paste(site,"WLdata",sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
 }
 
 
-#this loop is for the site with solinist
-  #solinist is at WL_01
+######this loop is for the site with solinist
+  #solinist is at WL_01 and WL_Well2
 
 #rm old files, if they exist
 rm(WLData)
 rm(Temp_WLData)
 
-site_names = "WL_01"
+site_names = c("WL_01","WL_Well2")
 
 for (site in site_names){
   
@@ -80,28 +88,23 @@ for (site in site_names){
     }
     
   }
-  colnames(WLData)=c("Date","Time","ms","kPa","Temp")
+  colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
   WLData=unique(WLData)
-  #WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
-  assign((paste(site,"WL_data",sep="_")),WLData) #creates object with new appended data
+  WLData$DateTime <- as.POSIXct(paste(WLData$Date, WLData$Time), format="%m/%d/%Y %I:%M:%S %p", tz="UTC")
+  WLData$DateTime <- lubridate::round_date(WLData$DateTime, "15 minutes") 
+  WLData = subset(WLData, select = -c(Date,Time,ms) )
+  assign((paste(site,"WLdata",sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
 }
 
-## Now we need to make the WL Station 1 Data look like the other places
-  # so we can merge them together later 
-WL_01_WL_data$DateTime <- with(WL_01_WL_data, as.POSIXct(paste(Date, Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC"))
-WL_01_WL_data=WL_01_WL_data[,4:6]
-colnames(WL_01_WL_data)=c("WLPres_kpa","WLTemp_c","DateTime")
 
 ##Now adding a station column to each of datasets
-WL_01_WL_data$Station <- 1
-WL_02_WL_data$Station <- 2
-WL_03_WL_data$Station <- 3
-WL_04_WL_data$Station <- 4
-WL_05_WL_data$Station <- 5
-WL_06_WL_data$Station <- 6
-
-combined <- rbind(WL_01_WL_data,WL_02_WL_data,WL_03_WL_data,WL_04_WL_data,WL_05_WL_data,WL_06_WL_data)
+WL_01_WLdata$Station <- 1
+WL_02_WLdata$Station <- 2
+WL_03_WLdata$Station <- 3
+WL_04_WLdata$Station <- 4
+WL_05_WLdata$Station <- 5
+WL_06_WLdata$Station <- 6
 
 
 ###merge data with baro data###
@@ -134,34 +137,49 @@ for (site in site_names){
     }
     
   }
-  #colnames(BaroData)=c("DateTime","BaroPres_kpa","AirTemp_c")
+  colnames(BaroData)=c("Date","Time","ms","BaroPres_kpa","AirTemp_c")
   BaroData=unique(BaroData)
-  #BaroData=BaroData[,2:4]
-  #BaroData$DateTime <- as.POSIXct(BaroData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
-  assign((paste(site,"Baro_data",sep="_")),BaroData) #creates object with new appended data
+  BaroData$DateTime <- as.POSIXct(paste(BaroData$Date, BaroData$Time), format="%m/%d/%Y %I:%M:%S %p", tz="UTC")
+  BaroData$DateTime <- lubridate::round_date(BaroData$DateTime, "15 minutes") 
+  BaroData = subset(BaroData, select = -c(Date,Time,ms) )
+  assign((paste(site,"data",sep="_")),BaroData) #creates object with new appended data
   rm(BaroData) #removes WLdata so that multiple sites aren't appended together
 }
 
-## Now we make the Baro data look like the combined data so they can be joined 
-Baro_Baro_data$DateTime <- with(Baro_Baro_data, as.POSIXct(paste(Date, Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC"))
-vector <- Baro_Baro_data$DateTime
-vector <- round_date(vector,unit="15 minutes") #to round the values when the data was not on exact 15 min intervals
-Baro_Baro_data$DateTime <- vector
-Baro_Baro_data=Baro_Baro_data[,4:6]
-colnames(Baro_Baro_data)=c("Baro_kpa","WLTemp_c","DateTime")
-
+WL_01_WLdata <-  left_join(WL_01_WLdata,Baro_data,by="DateTime")
+WL_02_WLdata <-  left_join(WL_02_WLdata,Baro_data,by="DateTime")
+WL_03_WLdata <-  left_join(WL_03_WLdata,Baro_data,by="DateTime")
+WL_04_WLdata <-  left_join(WL_04_WLdata,Baro_data,by="DateTime")
+WL_05_WLdata <-  left_join(WL_05_WLdata,Baro_data,by="DateTime")
+WL_06_WLdata <-  left_join(WL_06_WLdata,Baro_data,by="DateTime")
+WL_Well2_WLdata <-  left_join(WL_Well2_WLdata,Baro_data,by="DateTime")
 
 ### merge WL data with Baro data for outlet and convert from kPa to cm of water
-Merged <- left_join(combined, Baro_Baro_data, by = "DateTime")
-Merged$WL_adjusted <- Merged$WLPres_kpa - Merged$Baro_kpa 
-Merged$WL_true <- Merged$WL_adjusted*10.19716 
+WL_01_WLdata$WL_m <- (WL_01_WLdata$WLPres_kpa - WL_01_WLdata$BaroPres_kpa)*10.19716 
+
+WL_02_WLdata$WL_m <- (WL_02_WLdata$WLPres_kpa - WL_02_WLdata$BaroPres_kpa)*10.19716 
+WL_02_WLdata <- WL_02_WLdata %>% subset(WL_m > 1)
+
+WL_03_WLdata$WL_m <- (WL_03_WLdata$WLPres_kpa - WL_03_WLdata$BaroPres_kpa)*10.19716 
+WL_03_WLdata <- WL_03_WLdata %>% subset(WL_m > 10)
+
+WL_04_WLdata$WL_m <- (WL_04_WLdata$WLPres_kpa - WL_04_WLdata$BaroPres_kpa)*10.19716 
+WL_04_WLdata <- WL_04_WLdata %>% subset(WL_m > 0)
+
+WL_05_WLdata$WL_m <- (WL_05_WLdata$WLPres_kpa - WL_05_WLdata$BaroPres_kpa)*10.19716
+WL_05_WLdata <- WL_05_WLdata %>% subset(WL_m > 0)
+
+WL_06_WLdata$WL_m <- (WL_06_WLdata$WLPres_kpa - WL_06_WLdata$BaroPres_kpa)*10.19716 
+WL_06_WLdata <- WL_06_WLdata %>% subset(DateTime < as.POSIXct("2021-07-26 14:30:00", tz="UTC"))
+WL_06_WLdata <- WL_06_WLdata %>% subset(WL_m > 25)
+
+WL_Well2_WLdata$WL_m <- (WL_Well2_WLdata$WLPres_kpa - WL_Well2_WLdata$BaroPres_kpa)*10.19716 
 
 
 ##Now we can graph 
-    ## will need to change the right limit accordingly
-ggplot(Merged, aes(x=DateTime,y=WL_true))+ 
-  facet_grid(Station ~ . ,labeller="label_both", scales ="free_y")+
-  scale_x_datetime(limits = c(as.POSIXct("2021-06-10 15:45:00 UTC"),as.POSIXct("2021-07-02 12:45:00 UTC")))+
-  labs(x="Date", y="WL (cm)")+ 
-  geom_point(aes(y=WL_true))
+ggplot(WL_01_WLdata, aes(x=DateTime,y=WL_m)) + geom_point()
+fig <- plot_ly(data = WL_01_WLdata, x = ~DateTime, y = ~WL_m)
 
+###for the discharge raing curve, do it fools and sons of fools
+WL_01_WLdata %>% 
+  filter(DateTime == as.POSIXct("2021-07-14 10:00"))
