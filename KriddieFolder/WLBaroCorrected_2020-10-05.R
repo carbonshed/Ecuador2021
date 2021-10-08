@@ -156,6 +156,7 @@ WL_Well2_WLdata <-  left_join(WL_Well2_WLdata,Baro_data,by="DateTime")
 
 ### merge WL data with Baro data for outlet and convert from kPa to cm of water
 WL_01_WLdata$WL_m <- (WL_01_WLdata$WLPres_kpa - WL_01_WLdata$BaroPres_kpa)*10.19716 
+WL_01_WLdata <- WL_01_WLdata %>% subset(WL_m > 0)
 
 WL_02_WLdata$WL_m <- (WL_02_WLdata$WLPres_kpa - WL_02_WLdata$BaroPres_kpa)*10.19716 
 WL_02_WLdata <- WL_02_WLdata %>% subset(WL_m > 1)
@@ -178,8 +179,9 @@ WL_Well2_WLdata$WL_m <- (WL_Well2_WLdata$WLPres_kpa - WL_Well2_WLdata$BaroPres_k
 
 ##Now we can graph 
 ggplot(WL_01_WLdata, aes(x=DateTime,y=WL_m)) + geom_point()
-fig <- plot_ly(data = WL_01_WLdata, x = ~DateTime, y = ~WL_m)
+fig <- plot_ly(data = WL_02_WLdata, x = ~DateTime, y = ~WL_m)
 
 ###for the discharge raing curve, do it fools and sons of fools
-WL_01_WLdata %>% 
-  filter(DateTime == as.POSIXct("2021-07-14 10:00"))
+WL_06_WLdata %>% 
+  filter(DateTime == 
+           as.POSIXct("2021-07-26 14:15", tz="UTC"))
