@@ -179,7 +179,7 @@ WL_Well2_WLdata$WL_m <- (WL_Well2_WLdata$WLPres_kpa - WL_Well2_WLdata$BaroPres_k
 
 ##Now we can graph 
 ggplot(WL_01_WLdata, aes(x=DateTime,y=WL_m)) + geom_point()
-fig <- plot_ly(data = WL_02_WLdata, x = ~DateTime, y = ~WL_m)
+fig <- plot_ly(data = WL_01_WLdata, x = ~DateTime, y = ~WL_m)
 
 ###for the discharge raing curve, do it fools and sons of fools
 WL_06_WLdata %>% 
