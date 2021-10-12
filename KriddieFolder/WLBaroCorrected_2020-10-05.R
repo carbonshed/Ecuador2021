@@ -182,6 +182,6 @@ ggplot(WL_01_WLdata, aes(x=DateTime,y=WL_m)) + geom_point()
 fig <- plot_ly(data = WL_01_WLdata, x = ~DateTime, y = ~WL_m)
 
 ###for the discharge raing curve, do it fools and sons of fools
-WL_06_WLdata %>% 
+WL_01_WLdata %>% 
   filter(DateTime == 
-           as.POSIXct("2021-07-26 14:15", tz="UTC"))
+           as.POSIXct("2021-07-05 10:30", tz="UTC"))
