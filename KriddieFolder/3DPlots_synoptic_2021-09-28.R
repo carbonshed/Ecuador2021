@@ -19,6 +19,7 @@ colnames(synop) <- c("lon","lat","ele","Date","EOS_no","Flux_ave","Tract","Point
 synop$ele<-replace(synop$ele, synop$ele<4100,4302) 
 
 
+
 df <- full_join(synop,Geomorph, by=c("lat","lon","ele")) 
 
 fig <- plot_ly(df, x = ~lat, y = ~lon, z = ~ele, size = 1,
@@ -45,6 +46,93 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
                                    zaxis = list(title = 'elevation')))
 
 fig
+
+
+#######how do I do this line of best fit??? Try's below:
+
+##how about interpSpline from splines package?###
+#install.packages("splines")
+library(splines)
+x <- data.frame(long=Geomorph$lon,lat=Geomorph$lat)
+spline <- interpSpline(x[,1],x[,2])
+spline <- interpSpline(Geomorph$lat, Geomorph$lon)
+plot(spline)
+points(x,y)
+
+###lets try doing this in chunks
+Geomorph_sub <- Geomorph %>% filter(lon < -78.1941)
+
+x <- data.frame(long=Geomorph_sub$lon,lat=Geomorph_sub$lat)
+fit <- princurve::principal_curve(as.matrix(x))
+sfit <- smooth.spline(x[,1] ~ x[,2], spar=.60)
+#fit1<-smooth.spline(x[,1], x[,2],df=16)
+#sfit <- smooth.spline(x[,1] ~ x[,2], spar=0.90)
+summary(sfit)
+
+plot(x[,1], x[,2], pch=19, main="Curve fit(s) of coordinates", 
+     xlab="longitude", ylab="latitude", cex=0.50)
+#lines(princurve::principal_curve(as.matrix(x)), lwd=1.25, col="red")
+lines(sfit$y, sfit$x, lwd=1.25, col="blue")
+#lines(sfit$y, sfit$x, lwd=1.25, col="green")
+
+#legend("bottomright", legend=c("spline","princurve"),
+#       lty=c(1,1), col=c("blue","red"))
+
+#ok, now we make a wrapper function to interpolate
+
+SSpline <- function(x, y, n = 48, ...) {
+  ## fit the spline to x, and y
+  mod <- smooth.spline(x, y, ...)
+  ## predict from mod for n points over range of x
+  pred.dat <- seq(from = min(x), to = max(x), length.out = n)
+  ## predict
+  preds <- predict(mod, x = pred.dat)
+  ## return
+  preds
+}
+
+time <- c(0,6,12,18,24,30,36,42)  
+
+res <- SSpline(time, Geomorph_sub[1, 2:9])
+
+###################
+install.packages("princurve")
+library(princurve)
+
+x <- data.frame(long=Geomorph$lon,lat=Geomorph$lat)
+fit <- princurve::principal_curve(as.matrix(x))
+#sfit <- smooth.spline(x[,1] ~ x[,2], spar=0.80)
+sfit <- smooth.spline(x[,1] ~ x[,2], spar=0.50)
+
+smooth.spline(x = x[,1], 
+              y =  x[,2], #w = NULL, 
+              df= NULL, 
+              spar = NULL, 
+              lambda = NULL, 
+              cv = FALSE,
+              all.knots = FALSE, 
+              nknots = .nknots.smspl,
+              keep.data = TRUE, 
+              df.offset = 0, 
+              penalty = 1,
+              control.spar = list(), 
+              tol = 1e-6 * IQR(x), 
+              keep.stuff = FALSE)
+
+plot(x[,1], x[,2], pch=19, main="Curve fit(s) of coordinates", 
+     xlab="longitude", ylab="latitude", cex=0.50)
+lines(princurve::principal_curve(as.matrix(x)), lwd=1.25, col="red")
+lines(sfit$y, sfit$x, lwd=1.25, col="blue")
+legend("bottomright", legend=c("spline","princurve"),
+       lty=c(1,1), col=c("blue","red"))
+
+
+
+######
+
+
+###
+
 
 Z = seq(0, 1, 0.01)
 X = rnorm(length(Z), mean = 0, sd = 0.1)
