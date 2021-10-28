@@ -417,8 +417,9 @@ snap the synoptic points to this new spline - SO CLOSE!!
 i said plot it!
 ```{r plot that fucker, echo=FALSE}
 
-ggplot(data=ele_pred, aes(dist, ele)) +
-  geom_point(size = 3, alpha = .5, color = "blue")
-
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(CO2_ppm_ave))) +
+  geom_point()
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
+  geom_point()
 
 ```
