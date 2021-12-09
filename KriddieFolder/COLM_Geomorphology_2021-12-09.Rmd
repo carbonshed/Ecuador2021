@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+library(lubridate)
 library(plotly)
 library(dplyr)
 library(tidyr)
@@ -22,27 +23,62 @@ library(geosphere)
 
 ```
 
-## BUild the geomorphology data frame for ATENAS
+## BUild the geomorphology data frame for Colmillo
 
-```{r build df}
+```{r build df 2021-07-09}
 
-Geomorph <- read.csv(here::here("/Geomorphology/Colmillo/2021-07-09 11_20_03 CANINE Stream Profile.csv"))
-Geomorph$X <- NULL
-Geomorph$ID <- NULL
-Geomorph$trksegID <- NULL
-Geomorph$name <- NULL
-Geomorph$dist <- NULL
+Geomorph <- read.csv(here::here("/Geomorphology/Colmillo/2021-07-09 11_20_03 CANINE Stream Profile.csv"), skip = 42)
 
-Geomorph <- Geomorph[,c("lon","lat","ele","time","lat_wypt","lon_wypt","ele_wypt")]
 
-synop <- read.csv(here::here("Synoptic/ANTE_2021-08-27_withDOC.csv"))
+Geomorph <- Geomorph[,3:6]
+
+#convert time in UTC to local time
+Geomorph$time <- gsub("T"," ", Geomorph$time)
+Geomorph$time <- gsub("Z","", Geomorph$time)
+
+Geomorph$time <- as.POSIXct(Geomorph$time, format = "%Y-%m-%d %H:%M:%S", tz = "UTC" )
+Geomorph$time <-Geomorph$time - 5*60*60 
+#round to nearest half second
+Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
+
+# 2021-07-16 START: 11:29:03  END:  15:24:37
+Geomorph <- subset(Geomorph,
+      time > as.POSIXct('2021-07-09 11:29:03', tz="UTC") & 
+        time < as.POSIXct('2021-07-09 15:24:37', tz="UTC"))
+
+Geomorph_July9 <- Geomorph
+
+```
+
+```{r build df 2021-07-16}
+
+
+Geomorph <- read.csv(here::here("/Geomorphology/Colmillo/COLMILLO 2021-07-16.csv"), skip = 42)
+Geomorph <- Geomorph[,3:6]
+
+#convert time in UTC to local time
+Geomorph$time <- gsub("T"," ", Geomorph$time)
+Geomorph$time <- gsub("Z","", Geomorph$time)
+
+Geomorph$time <- as.POSIXct(Geomorph$time, format = "%Y-%m-%d %H:%M:%S", tz = "UTC" )
+Geomorph$time <-Geomorph$time - 5*60*60 
+#round to nearest half second
+Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
+
+# 2021-07-16 START: 09:45:00  END:  13:49:17
+Geomorph <- subset(Geomorph,
+      time < as.POSIXct('2021-07-16 13:49:17', tz="UTC") & 
+        time > as.POSIXct('2021-07-16 09:44:00', tz="UTC"))
+
+
+Geomorph <- rbind(Geomorph_July9,Geomorph)
+
+```
+
+```{r add synop to df}
+synop <- read.csv(here::here("Synoptic/COLMILLO_2021-08-30.csv"))
 synop$X <- NULL
-synop$Date.as.fact <- NULL
-colnames(synop) <- c("lon","lat","ele","Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave")
 
-
-#there is a bad elevation data in synop, I am replacing it here, but need to work on figuring out what is up
-#synop$ele<-replace(synop$ele, synop$ele<4100,4302) 
 ```
 
 ##Plot the geomorphology data in 3-d
