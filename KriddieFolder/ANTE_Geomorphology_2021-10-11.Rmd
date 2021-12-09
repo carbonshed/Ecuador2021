@@ -414,6 +414,7 @@ ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_
 i said plot it!
 ```{r plot that fucker, echo=FALSE}
 
+<<<<<<< HEAD
 
 fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
 
@@ -445,5 +446,11 @@ df_prediction %>%
 
 ```
 
+=======
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(CO2_ppm_ave))) +
+  geom_point()
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
+  geom_point()
+>>>>>>> c8f7feb713e4333a22e091a913c82fea2f933f46
 
 ```
