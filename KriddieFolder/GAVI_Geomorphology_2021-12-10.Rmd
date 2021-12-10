@@ -1,5 +1,5 @@
 ---
-title: "Geomorphology_COLM"
+title: "Geomorphology_GAVI"
 author: "KWhitmore"
 date: "12/09/2021"
 output: html_document
@@ -23,11 +23,14 @@ library(geosphere)
 
 ```
 
-## BUild the geomorphology data frame for Colmillo
+## BUild the geomorphology data frame for Ante mainstem
 
-```{r build df 2021-07-09}
+2021-07-26 9:50
 
-Geomorph <- read.csv(here::here("/Geomorphology/Colmillo/2021-07-09 11_20_03 CANINE Stream Profile.csv"), skip = 42)
+
+```{r build df 2021-07-26}
+
+Geomorph <- read.csv(here::here("/Geomorphology/Gavilan/GAVI_2021-07-26 09_49_22 Day.csv"), skip = 42)
 
 
 Geomorph <- Geomorph[,3:6]
@@ -41,19 +44,19 @@ Geomorph$time <-Geomorph$time - 5*60*60
 #round to nearest half second
 Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
 
-# 2021-07-16 START: 11:29:03  END:  15:24:37
+# 2021-07-26 START: 09:50:03  END:  15:24:37
 Geomorph <- subset(Geomorph,
-      time > as.POSIXct('2021-07-09 11:29:03', tz="UTC") & 
-        time < as.POSIXct('2021-07-09 15:24:37', tz="UTC"))
+      time > as.POSIXct('2021-07-26 09:50:03', tz="UTC") & 
+        time < as.POSIXct('2021-07-26 14:45:00', tz="UTC"))
 
-Geomorph_July9 <- Geomorph
+Geomorph_July26 <- Geomorph
 
 ```
 
-```{r build df 2021-07-16}
+```{r build df 2021-07-23}
 
 
-Geomorph <- read.csv(here::here("/Geomorphology/Colmillo/COLMILLO 2021-07-16.csv"), skip = 42)
+Geomorph <- read.csv(here::here("/Geomorphology/Gavilan/Gavi_2021-07-28 14_01_03 Day.csv"), skip = 42)
 Geomorph <- Geomorph[,3:6]
 
 #convert time in UTC to local time
@@ -65,13 +68,13 @@ Geomorph$time <-Geomorph$time - 5*60*60
 #round to nearest half second
 Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
 
-# 2021-07-16 START: 09:45:00  END:  13:49:17
+# 2021-07-16 START: 2021-07-28T19:04:28Z   END: 2021-07-28T20:29:13Z 13:49:17
 Geomorph <- subset(Geomorph,
       time < as.POSIXct('2021-07-16 13:49:17', tz="UTC") & 
         time > as.POSIXct('2021-07-16 09:44:00', tz="UTC"))
 
 
-Geomorph <- rbind(Geomorph_July9,Geomorph)
+Geomorph <- rbind(Geomorph_July26,Geomorph)
 
 ```
 
