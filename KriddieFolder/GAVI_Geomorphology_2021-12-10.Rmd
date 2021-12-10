@@ -53,7 +53,7 @@ Geomorph_July26 <- Geomorph
 
 ```
 
-```{r build df 2021-07-23}
+```{r build df 2021-07-28}
 
 
 Geomorph <- read.csv(here::here("/Geomorphology/Gavilan/Gavi_2021-07-28 14_01_03 Day.csv"), skip = 42)
@@ -79,7 +79,7 @@ Geomorph <- rbind(Geomorph_July26,Geomorph)
 ```
 
 ```{r add synop to df}
-synop <- read.csv(here::here("Synoptic/COLMILLO_2021-08-30.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_mainstem_2021-08-29.csv"))
 synop$X <- NULL
 
 ```
