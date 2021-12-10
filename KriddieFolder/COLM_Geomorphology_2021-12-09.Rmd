@@ -120,25 +120,25 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
 fig
 ```
 #are you seeing the problem? 
-The synoptic data points seem to be fairly well geolocated for lat long, but not for elevation. 
-So we need to build a smoothinf 
+The synoptic data points seem to be fairly well geolocated for lat long, but not for elevation. Emphasise on fairly well, because these synoptics look a bit worse than ANTENAS. Unfortunatly.
 
-We need to 
+So we need to build a smoothing function 
 
 #working with 3-D is hard. full stop.
-In this code chunk, we start by smooting a line to the lat long data, which appears to be more accurate than the elevation
+In this code chunk, we start by smooting a line to the lat lon data, which appears to be more accurate than the elevation
 
 We will do this in parts though, be cause the relationship between lat lon can not be described as a function
+
+Colmillo is not too far off from a funtion if lat is the "x" and lon is the 'y'
 ```{r first spline, echo=FALSE}
 
 #Cut up lat long into peices, and then fit spline
 
 
-Geomorph_sub <-Geomorph %>% filter(lon >= -78.19302)
+Geomorph_sub <-Geomorph #%>% filter(lon >= -78.19302)
 model <- lm(lon~bs(lat,
-                   knots = c(-0.3164286,-0.3163748,-0.3162296,                          -0.3161252,-0.3161399,-.3156738,
-   -0.3154703,-0.3152688,-0.3152838), 
-                   degree = 3),
+              #     knots = c(-0.3164286,-0.3163748,-0.3162296,                          -0.3161252,-0.3161399,-.3156738, -0.3154703,-0.3152688,-0.3152838), 
+                   degree = 50),
             data=Geomorph_sub)
 
 latlims <- range(Geomorph_sub$lat)
@@ -148,7 +148,7 @@ pred <-predict(model,newdata=list(lat=lat.grid),se=T)
 plot(Geomorph_sub$lat,Geomorph_sub$lon,main="regressionSplinePLot")
 lines(lat.grid,pred$fit,col='red',lwd=3)
 
-fig<-plot_ly(data = Geomorph, x = ~lat, y = ~lon)
+fig<-plot_ly(data = Geomorph_sub, x = ~lat, y = ~lon)
 
 #this looks pretty good! So we will save the data in a data frame
 
@@ -158,65 +158,13 @@ df1<-as.data.frame(lat)
 df1$lon <- lon
 df1$num <- '1'
 ```
-#next section is very small
-```{r second spline, echo=FALSE}
-Geomorph_sub <-Geomorph %>% filter(lon <= -78.19310 &
-                                     lon >= -78.19333)
 
-model <- lm(lon~bs(lat,
-                   knots = c(0), 
-                   degree = 3),
-            data=Geomorph_sub)
+Wow! that was so much easier than antenas!! Amazing.
 
-latlims <- range(Geomorph_sub$lat)
-lat.grid <- seq(from=latlims[1],to=latlims[2], by=.00001)
-pred <-predict(model,newdata=list(lat=lat.grid),se=T)
-
-plot(Geomorph$lat,Geomorph$lon,main="regressionSplinePLot")
-lines(lat.grid,pred$fit,col='red',lwd=3)
-
-lat <- lat.grid
-lon <- pred$fit
-df2<-as.data.frame(lat)
-df2$lon <- lon
-df2$num <- '2'
-df2 <- df2[order(-lat),]
-
-```
-third section, here we go!
-
-```{r third spline, echo=FALSE}
-
-#Geomorph_sub <-Geomorph %>% filter(lon <= -78.19340)
-Geomorph_sub <-Geomorph %>% filter(lon <= -78.19336)
-
-
-model <- lm(lon~bs(lat,
-                   knots = c(0), 
-                   degree = 3),
-            data=Geomorph_sub)
-
-latlims <- range(Geomorph_sub$lat)
-lat.grid <- seq(from=latlims[1],to=latlims[2], by=.00001)
-pred <-predict(model,newdata=list(lat=lat.grid),se=T)
-
-plot(Geomorph$lat,Geomorph$lon,main="regressionSplinePLot")
-lines(lat.grid,pred$fit,col='red',lwd=3)
-
-##dataframe 3
-lat <- lat.grid
-lon <- pred$fit
-df3<-as.data.frame(lat)
-df3$lon <- lon
-df3$num <- '3'
-##
-```
-good job! now lets bind all the dataframes together
 ```{r bind dataframes, echo=FALSE}
 
 #now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- rbind(df1,df2,df3)
-
+df_prediction <- df1
 
 plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
 
@@ -224,57 +172,17 @@ plot(Geomorph$lat,Geomorph$lon)
 
 ```
 
-This is looking pretty darn good. But there is a gap in the lon data that we need to deal with. It's proving hard to deal with because this is not a function!
-
-So we will add some data to the dataframe  to fill the gap.
-Just a simple linear regression between the df1 and df3
-```{r manual add dataframes}
-#
-
-# point1	-0.3152741	-78.19294	1
-# point 2	-0.3152553	-78.19312 2
-
-m = (-78.19312	- (-78.19294))/(-0.3152553 - (-0.3152741))
-
-#slope = 3.597122
-b = -78.19294 - m*(-0.3152741)
-
-latlims <- range(Geomorph_sub$lat)
-lat.grid <- seq(from=-0.3152741,to=-0.3152553, by=.000001)
-
-##dataframe 4
-lat <- lat.grid
-df4<-as.data.frame(lat)
-df4$lon <- m*df4$lat + b
-
-df4 <-df4 %>% filter(lon <= -78.19302)
-
-df4$num <- '4'
-df4 <- df4[order(lat),]
-
-```
-
-ok, lets bind in that last dataframe
-
-```{r bind dataframes, echo=FALSE}
-
-#now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- rbind(df1,df4,df2,df3)
-
-plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
-
-plot(Geomorph$lat,Geomorph$lon)
-
-```
 now we have a smooth data frame of lat/lon data, we calculate the distance between each point
+
 ```{r calc dist}
 
 ###create a loop and calculate distance along the river from the predict_df. THen we can bind in the GEOMORPH!
-df_prediction <- rbind(df1,df4,df2,df3) %>% drop_na(lat)
+#df_prediction <- rbind(df1,df4,df2,df3) %>% drop_na(lat)
+df_prediction <- df1
 
 df_prediction$num <- NULL
-df_prediction <- df_prediction[,c("lon","lat")]
-colnames(df_prediction) <- c("lon_fit","lat_fit")
+#df_prediction <- df_prediction[,c("lon","lat")]
+colnames(df_prediction) <- c("lat_fit","lon_fit")
 df_prediction$lon_dist <- NA
 df_prediction$lat_dist <- NA
 i <- 2
@@ -301,10 +209,10 @@ snap the points in our origional dama frame to bring in the elevation data
 ```{r snap points to lat lon}
 
 
-#df_prediction <- df_prediction[,c("lon","lat","num")] 
+#df_prediction <- df_prediction[,c("lon_fit","lat_fit","ele")] 
 x <- SpatialPoints(Geomorph[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
-plot(x, col = "red")
+plot(y, col = "red")
 points(y, col = "green")
 snap = apply(spDists(x, y), 1, which.min)
 points(y[snap,], pch = 3)
