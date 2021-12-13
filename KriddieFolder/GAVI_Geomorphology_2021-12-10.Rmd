@@ -26,7 +26,28 @@ library(geosphere)
 ## BUild the geomorphology data frame for Ante mainstem
 
 2021-07-26 9:50
+```{r build df 2021-07-23}
 
+Geomorph <- read.csv(here::here("/Geomorphology/Garmin_ALL/Internal Storage.csv"), skip = 28)
+
+
+Geomorph <- Geomorph[,2:5]
+
+#convert time in UTC to local time
+Geomorph$time <- gsub("T"," ", Geomorph$time)
+Geomorph$time <- gsub("Z","", Geomorph$time)
+
+Geomorph$time <- as.POSIXct(Geomorph$time, format = "%Y-%m-%d %H:%M:%S", tz = "UTC" )
+Geomorph$time <-Geomorph$time - 5*60*60 
+#round to nearest half second
+Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
+
+# 2021-07-23 START: 12:01:00  END:  12:33:37
+Geomorph_July23 <- subset(Geomorph,
+      time > as.POSIXct('2021-07-23 12:01:00', tz="UTC") & 
+        time < as.POSIXct('2021-07-23 12:35:00', tz="UTC"))
+
+```
 
 ```{r build df 2021-07-26}
 
@@ -68,20 +89,24 @@ Geomorph$time <-Geomorph$time - 5*60*60
 #round to nearest half second
 Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
 
-# 2021-07-16 START: 2021-07-28T19:04:28Z   END: 2021-07-28T20:29:13Z 13:49:17
-Geomorph <- subset(Geomorph,
-      time < as.POSIXct('2021-07-16 13:49:17', tz="UTC") & 
-        time > as.POSIXct('2021-07-16 09:44:00', tz="UTC"))
+# 2021-07-2 START: 14:04:28   END: 15:29:13Z 13:49:17
+Geomorph_July28 <- subset(Geomorph,
+      time > as.POSIXct('2021-07-28 14:46:17', tz="UTC") & 
+        time < as.POSIXct('2021-07-28 15:29:00', tz="UTC"))
 
 
-Geomorph <- rbind(Geomorph_July26,Geomorph)
+Geomorph <- rbind(Geomorph_July26,Geomorph_July28, Geomorph_July23)
 
+Geomorph$lat <- as.numeric(Geomorph$lat)
+Geomorph$lon <- as.numeric(Geomorph$lon)
+Geomorph$ele <- as.numeric(Geomorph$ele)
 ```
 
 ```{r add synop to df}
 synop <- read.csv(here::here("Synoptic/GAVI_mainstem_2021-08-29.csv"))
 synop$X <- NULL
 
+colnames(synop) <- c("lat","lon","Date","Eos_no","Flux_ave", "Tract","Point","CO2_ppm_ave")
 ```
 
 ##Plot the geomorphology data in 3-d
@@ -108,11 +133,13 @@ fig
 
 ```{r 3d plot and synop, echo=FALSE}
 
-df <- full_join(synop,Geomorph, by=c("lat","lon","ele")) 
+df <- full_join(synop,Geomorph, by=c("lat","lon")) 
 
 fig <- plot_ly(df, x = ~lat, y = ~lon, z = ~ele, size = 1,
-               marker = list(color = ~log10(CO2_ppm_ave), colorscale = c('#FFE1A1', '#683531'), showscale = TRUE)
-            )
+               marker = list(color = ~CO2_ppm_ave, colorscale = c('#FFE1A1', '#683531'), showscale = TRUE))
+
+#FFE1A1 #683531
+
 fig <- fig %>% add_markers()
 #fig <- fig %>% add_trace(x = ~lat, y = ~lon, z = ~ele, #color = ~EOS_no#, colors = c('Blue','Yellow'),
 #                         mode = 'markers')
@@ -121,6 +148,11 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
                                    zaxis = list(title = 'elevation')))
 
 fig
+
+TrackMap <- qmplot(lon, lat, data = df, zoom = 13,
+                   maptype = "toner-background", color=ele)
+
+TrackMap
 ```
 #are you seeing the problem? 
 The synoptic data points seem to be fairly well geolocated for lat long, but not for elevation. Emphasise on fairly well, because these synoptics look a bit worse than ANTENAS. Unfortunatly.
