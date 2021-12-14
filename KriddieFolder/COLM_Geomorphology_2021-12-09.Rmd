@@ -19,7 +19,7 @@ library(Ecdat)
 library(dplyr)
 library(sp)
 library(geosphere)
-
+library("gridExtra")  
 
 ```
 
@@ -346,13 +346,25 @@ pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_ave)) +
+flux <- ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
+  geom_point()
+CO2 <- ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_ave)) +
   geom_point()
 
-#ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
- # geom_point(size = 3, alpha = .5, color = "blue")
-
+grid.arrange(flux, CO2, ncol=1)
 
 
 ```
+```{r 3d plot just synop, echo=FALSE}
 
+
+fig <- plot_ly(df_prediction)
+fig <- fig %>% add_trace(x = ~lat_fit, y = ~lon_fit, z = ~ele_fit, opacity = .05, size =1,type = 'scatter', mode = 'lines')
+fig <- fig %>% add_markers(df_prediction%>%drop_na(Flux_ave), x = ~lat_fit, y = ~lon_fit, z = ~ele_fit, color = ~CO2_ppm_ave,opacity = 1)
+fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
+                                   yaxis = list(title = 'lon'),
+                                   zaxis = list(title = 'elevation')))
+
+fig
+
+```

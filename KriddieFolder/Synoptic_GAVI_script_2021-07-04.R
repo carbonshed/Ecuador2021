@@ -111,8 +111,8 @@ CO2_synop_pivot <- CO2_synop  %>%
 
 #CO2_synop_pivot$Date.as.fact <- as.factor(CO2_synop_pivot$Date)
 
-CO2_map <- qmplot(Lon, Lat, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave)+
-  scale_color_gradient(low="blue", high="red")
+CO2_map <- qmplot(Lat, Lon, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = as.factor(Date)) #+
+  #scale_color_gradient(low="blue", high="red")
 
 ##################
 ####EOS DATA #####
@@ -221,9 +221,9 @@ Flux_synop_pivot <- Flux_synop  %>%
             Tract = mean(Tract, na.rm = TRUE),
             Point = mean(Point, na.rm = TRUE)) 
 
-Flux_map <- qmplot(Lon, Lat, data = Flux_synop_pivot, zoom = 13,  maptype = "toner-background", color = Flux_ave)+
+Flux_map <- qmplot(Lat, Lon, data = Flux_synop_pivot, zoom = 13,  maptype = "toner-background", color = Flux_ave)+
   scale_color_gradient(low="blue", high="red")
-CO2_map <- qmplot(Lon, Lat, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave)+
+CO2_map <- qmplot(Lat, Lon, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave)+
   scale_color_gradient(low="blue", high="red")
 
 

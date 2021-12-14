@@ -19,6 +19,7 @@ library(Ecdat)
 library(dplyr)
 library(sp)
 library(geosphere)
+library(ggmap)
 
 
 ```
@@ -102,12 +103,39 @@ Geomorph$lon <- as.numeric(Geomorph$lon)
 Geomorph$ele <- as.numeric(Geomorph$ele)
 ```
 
+It's not a bad thing, per se, but I really made things complicated when I started taking measurmenets of streams in addition to the mainstem of GAVI. I blame Diego, frankly. But I also blame myself from listening to Diego. Have confidence in you're game plan, Kriddie, for goodness Sake.
+
+So let's try to just select the mainstem samples, for starters.
+
 ```{r add synop to df}
-synop <- read.csv(here::here("Synoptic/GAVI_mainstem_2021-08-29.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI.csv"))
 synop$X <- NULL
 
-colnames(synop) <- c("lat","lon","Date","Eos_no","Flux_ave", "Tract","Point","CO2_ppm_ave")
+colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","CO2_ppm_ave")
+
+
+Synopjune18 <- synop %>% filter(Date == "2021-06-18")
+Synopjune22 <- synop %>% filter(Date == "2021-06-22" & EOS_no == "EOS_1" & Tract == 1)
+Synopjune29 <- synop %>% filter(Date == "2021-06-29" & EOS_no == "EOS_2" & Tract == 7)
+Synopjune30 <- synop %>% filter(Date == "2021-06-30" & EOS_no == "EOS_2")
+
+synop_mainstem <- rbind(Synopjune18,Synopjune22,Synopjune29,Synopjune30)
 ```
+
+```{r look at all synop data}
+df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
+
+TrackMap <- qmplot(lon, lat, data = synop_mainstem, zoom = 13,
+                   maptype = "toner-background", color=as.factor(Date), shape = EOS_no
+                   )
+
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph, zoom = 13,
+                   maptype = "toner-background")
+TrackMap
+TrackMap_geo
+
+```
+
 
 ##Plot the geomorphology data in 3-d
 
@@ -133,7 +161,7 @@ fig
 
 ```{r 3d plot and synop, echo=FALSE}
 
-df <- full_join(synop,Geomorph, by=c("lat","lon")) 
+df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
 
 fig <- plot_ly(df, x = ~lat, y = ~lon, z = ~ele, size = 1,
                marker = list(color = ~CO2_ppm_ave, colorscale = c('#FFE1A1', '#683531'), showscale = TRUE))
@@ -155,9 +183,7 @@ TrackMap <- qmplot(lon, lat, data = df, zoom = 13,
 TrackMap
 ```
 #are you seeing the problem? 
-The synoptic data points seem to be fairly well geolocated for lat long, but not for elevation. Emphasise on fairly well, because these synoptics look a bit worse than ANTENAS. Unfortunatly.
-
-So we need to build a smoothing function 
+This is worse then both Colmillo and Antenas. below the main wetland its not so bad, but above is kinda a mess. I think I should re-do this when I am back at the site, but for now, let us proceed.
 
 #working with 3-D is hard. full stop.
 In this code chunk, we start by smooting a line to the lat lon data, which appears to be more accurate than the elevation
@@ -170,10 +196,10 @@ Colmillo is not too far off from a funtion if lat is the "x" and lon is the 'y'
 #Cut up lat long into peices, and then fit spline
 
 
-Geomorph_sub <-Geomorph #%>% filter(lon >= -78.19302)
+Geomorph_sub <-df %>% filter(lat <= -.327)
 model <- lm(lon~bs(lat,
               #     knots = c(-0.3164286,-0.3163748,-0.3162296,                          -0.3161252,-0.3161399,-.3156738, -0.3154703,-0.3152688,-0.3152838), 
-                   degree = 50),
+                   degree = 10),
             data=Geomorph_sub)
 
 latlims <- range(Geomorph_sub$lat)
@@ -194,12 +220,43 @@ df1$lon <- lon
 df1$num <- '1'
 ```
 
-Wow! that was so much easier than antenas!! Amazing.
+Cool. thats below main wetland. now for above
+
+```{r second spline, echo=FALSE}
+
+#Cut up lat long into peices, and then fit spline
+
+
+Geomorph_sub <-df %>% filter(lat >= -.327)
+model <- lm(lon~bs(lat,
+              #     knots = c(-0.3164286,-0.3163748,-0.3162296,                          -0.3161252,-0.3161399,-.3156738, -0.3154703,-0.3152688,-0.3152838), 
+                   degree = 5),
+            data=Geomorph_sub)
+
+latlims <- range(Geomorph_sub$lat)
+lat.grid <- seq(from=latlims[1],to=latlims[2], by=.00001)
+pred <-predict(model,newdata=list(lat=lat.grid),se=T)
+
+plot(Geomorph_sub$lat,Geomorph_sub$lon,main="regressionSplinePLot")
+lines(lat.grid,pred$fit,col='red',lwd=3)
+
+fig<-plot_ly(data = Geomorph_sub, x = ~lat, y = ~lon)
+
+#this looks pretty good! So we will save the data in a data frame
+
+lat <- lat.grid
+lon <- pred$fit
+df2<-as.data.frame(lat)
+df2$lon <- lon
+df2$num <- '2'
+```
+
+yeah, that looks ok I guess. I really need to just collect this again :(
 
 ```{r bind dataframes, echo=FALSE}
 
 #now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- df1
+df_prediction <- rbind(df1,df2)
 
 plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
 
@@ -212,8 +269,8 @@ now we have a smooth data frame of lat/lon data, we calculate the distance betwe
 ```{r calc dist}
 
 ###create a loop and calculate distance along the river from the predict_df. THen we can bind in the GEOMORPH!
-#df_prediction <- rbind(df1,df4,df2,df3) %>% drop_na(lat)
-df_prediction <- df1
+df_prediction <- rbind(df1,df2) %>% drop_na(lat)
+
 
 df_prediction$num <- NULL
 #df_prediction <- df_prediction[,c("lon","lat")]
@@ -288,7 +345,7 @@ We also need to snap the synoptic df (for later)
 #df_prediction <- rbind(df1,df2,df3,df4)
 
 #df_prediction <- df_prediction[,c("lon","lat","num")] 
-x <- SpatialPoints(synop[,c(1:2)])
+x <- SpatialPoints(synop_mainstem[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
 plot(x, col = "red")
 points(y, col = "green")
@@ -299,12 +356,12 @@ points(y[snap,], pch = 3)
 snap_df <- y[snap,]
 coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
-synop$lon_fit <- pred$lon
-synop$lat_fit <- pred$lat
-synop <- synop[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
+synop_mainstem$lon_fit <- pred$lon
+synop_mainstem$lat_fit <- pred$lat
+synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
 
 
-df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
+df_prediction <- full_join(df_prediction,synop_mainstem,by=c("lon_fit","lat_fit"))
 
 
 #Geomorph <- full_join(Geomorph,synop_2, by = c("lon_fit","lat_fit"))
