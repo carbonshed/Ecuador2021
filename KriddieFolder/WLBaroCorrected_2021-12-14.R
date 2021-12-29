@@ -1,4 +1,7 @@
-install.packages("sjmisc")
+##Water Level
+#This is code is to merge water level data and correct for barometric pressure
+#Authors Kriddie and Liz
+#Date: 2021-12-15
 
 library(lubridate) #package for our date parsing
 library(here)
@@ -9,17 +12,14 @@ library(purrr)
 library(sjmisc)
 theme_set(theme_bw())
 
+#First the Hobos
 
-#this data is really messy, sensors have been switched from hobo to solinst and vise-versa, and sometimes data was downloaded as imperial, sometimes as not. it's a mess
-#so I'm thinking, let's just do this site by site.
-
-##Start with WL_02
 setwd(here::here("WaterLevel"))
 all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
 sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
 
-site_names = site_names[-1]
+site_names = site_names[c(2:6)]
 
 #rm old files, if they exist
 rm(WLData)
@@ -87,18 +87,27 @@ for (site in site_names){
     }
     
   }
-  
+  WLData$DateTime <- round_date(WLData$DateTime, "15 mins")
   WLData$Station <- site
   WLData=unique(WLData)
   assign((paste(site,sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
 }
 
+############################################
+#this loop is for the sites with solinists##
+############################################
 
-#this loop is for the site with solinist
-  #solinist is at WL_01
+setwd(here::here("WaterLevel"))
+all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
+sites_rp = sub('_[^_]+$', '', all_files)
+site_names=unique(sites_rp) #creates list of site names for following loop
 
-site_names = "WL_01"
+site_names = site_names[-c(2:6)]
+
+#rm old files, if they exist
+rm(WLData)
+rm(Temp_WLData)
 
 for (site in site_names){
   
@@ -109,41 +118,68 @@ for (site in site_names){
   #reads in files in list and appends
   for (file in file_list){
     if (!exists("WLData")){
-      WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+      Trash_WLData <- read.csv(file, skip=0, header = TRUE, sep = ",",
                          quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-      colnames(WLData)=c("Date","Time","ms","kPa","Temp")
+      
+      if(str_contains(Trash_WLData[6,1],"m")){
+        print("m")
+        WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                    quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        WLData$WLPres_kpa <- as.numeric(as.character(WLData$WLPres_kpa), digits=6)
+        WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
+        WLData$WLPres_kpa <- WLData$WLPres_kpa*9.8064
+#        WLData$WLTemp_c <- (WLData$WLTemp_c - 32)/1.8000
+        } else { 
+        print("kPa")
+        WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+            quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        WLData$WLPres_kpa <- as.numeric(as.character(WLData$WLPres_kpa), digits=6)
+        WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
+      }
     }
     if (exists("WLData")){
-      Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+      Trash_WLData <- read.csv(file, skip=0, header = FALSE, sep = ",",
                               quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
-      colnames(Temp_WLData) <- c("Date","Time","ms","kPa","Temp")
+      if(str_contains(Trash_WLData[6,1],"m")){
+        print("m")
+        Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                           quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        Temp_WLData <- Temp_WLData[c(-1),]
+        colnames(Temp_WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        Temp_WLData$WLPres_kpa <- as.numeric(as.character(Temp_WLData$WLPres_kpa), digits=6)
+        Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
+        Temp_WLData$WLPres_kpa <- Temp_WLData$WLPres_kpa*9.8064
+#        Temp_WLData$WLTemp_c <- (Temp_WLData$WLTemp_c - 32)/1.8000
+        } else { 
+        print("kpa")
+        Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                                quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        Temp_WLData <- Temp_WLData[c(-1),]
+        colnames(Temp_WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        Temp_WLData$WLPres_kpa <- as.numeric(as.character(Temp_WLData$WLPres_kpa), digits=6)
+        Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
+      }
+      
+      
       WLData <- rbind(WLData, Temp_WLData)
       rm(Temp_WLData)
     }
     
   }
-  colnames(WLData)=c("Date","Time","ms","kPa","Temp")
   WLData=unique(WLData)
-  #WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
-  assign((paste(site,"WL_data",sep="_")),WLData) #creates object with new appended data
+  WLData$DateTime <- paste(WLData$Date, WLData$Time)
+  WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%Y %I:%M:%S %p", tz="UTC")
+  WLData$DateTime <- round_date(WLData$DateTime, "5 mins")
+  WLData <- WLData[,c("DateTime","WLPres_kpa","WLTemp_c")]
+  WLData$Station <- site
+  assign((paste(site,sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
 }
 
-## Now we need to make the WL Station 1 Data look like the other places
-  # so we can merge them together later 
-WL_01_WL_data$DateTime <- with(WL_01_WL_data, as.POSIXct(paste(Date, Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC"))
-WL_01_WL_data=WL_01_WL_data[,4:6]
-colnames(WL_01_WL_data)=c("WLPres_kpa","WLTemp_c","DateTime")
 
-##Now adding a station column to each of datasets
-WL_01_WL_data$Station <- 1
-WL_02_WL_data$Station <- 2
-WL_03_WL_data$Station <- 3
-WL_04_WL_data$Station <- 4
-WL_05_WL_data$Station <- 5
-WL_06_WL_data$Station <- 6
-
-combined <- rbind(WL_01_WL_data,WL_02_WL_data,WL_03_WL_data,WL_04_WL_data,WL_05_WL_data,WL_06_WL_data)
+All_WL <- rbind(WL_01,WL_02,WL_03,WL_04,WL_05,WL_06,WL_Well01,WL_Well02)
 
 
 ###merge data with baro data###
@@ -176,34 +212,44 @@ for (site in site_names){
     }
     
   }
-  #colnames(BaroData)=c("DateTime","BaroPres_kpa","AirTemp_c")
+  colnames(BaroData)=c("Date","Time","ms","Baro_kpa","BaroTemp_c")
   BaroData=unique(BaroData)
-  #BaroData=BaroData[,2:4]
-  #BaroData$DateTime <- as.POSIXct(BaroData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
-  assign((paste(site,"Baro_data",sep="_")),BaroData) #creates object with new appended data
+  BaroData$DateTime <- paste(BaroData$Date, BaroData$Time)
+  BaroData$DateTime <- as.POSIXct(BaroData$DateTime, format="%m/%d/%Y %I:%M:%S %p", tz="UTC")
+  BaroData$DateTime <- round_date(BaroData$DateTime, "15 mins")
+  BaroData$ms <- NULL
+  BaroData$Date <- NULL
+  BaroData$Time <- NULL
+  BaroData <- BaroData[,c(3,1,2)]
+  BaroData=unique(BaroData)
+  assign((paste(site,sep="_")),BaroData) #creates object with new appended data
   rm(BaroData) #removes WLdata so that multiple sites aren't appended together
 }
 
-## Now we make the Baro data look like the combined data so they can be joined 
-Baro_Baro_data$DateTime <- with(Baro_Baro_data, as.POSIXct(paste(Date, Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC"))
-vector <- Baro_Baro_data$DateTime
-vector <- round_date(vector,unit="15 minutes") #to round the values when the data was not on exact 15 min intervals
-Baro_Baro_data$DateTime <- vector
-Baro_Baro_data=Baro_Baro_data[,4:6]
-colnames(Baro_Baro_data)=c("Baro_kpa","WLTemp_c","DateTime")
 
+Baro_corrected <- left_join(Baro,All_WL,by="DateTime")
 
-### merge WL data with Baro data for outlet and convert from kPa to cm of water
-Merged <- left_join(combined, Baro_Baro_data, by = "DateTime")
-Merged$WL_adjusted <- Merged$WLPres_kpa - Merged$Baro_kpa 
-Merged$WL_true <- Merged$WL_adjusted*10.19716 
-
+Baro_corrected$Corrected_kpa <- Baro_corrected$WLPres_kpa - Baro_corrected$Baro_kpa
+#Baro_corrected <- Baro_corrected %>% filter(DateTime > "2021-06-10")
 
 ##Now we can graph 
     ## will need to change the right limit accordingly
-ggplot(Merged, aes(x=DateTime,y=WL_true))+ 
-  facet_grid(Station ~ . ,labeller="label_both", scales ="free_y")+
-  scale_x_datetime(limits = c(as.POSIXct("2021-06-10 15:45:00 UTC"),as.POSIXct("2021-07-02 12:45:00 UTC")))+
-  labs(x="Date", y="WL (cm)")+ 
-  geom_point(aes(y=WL_true))
 
+ggplot(data = Baro_corrected %>% filter(DateTime > "2021-06-10"), 
+       aes(DateTime, WLPres_kpa)) +
+  geom_line(color = "steelblue") +
+  #  geom_point(color="steelblue") + 
+#  scale_x_datetime(limits = c(as.POSIXct("2021-06-10 15:45:00 UTC"),
+#                              as.POSIXct("2021-11-00 12:45:00 UTC")))+
+  labs(#title = "CO2  stations",
+    y = "kPa", x = "") + 
+  facet_wrap(~ Station)
+
+##clean data, a little
+
+
+
+Baro_corrected$DateTime_UTC <- as.POSIXct(Baro_corrected$DateTime, tz="UTC")
+##find level at date time 
+Baro_corrected %>% filter(DateTime_UTC == as.POSIXct("2021-07-10 11:30:00 UTC") &
+                            Station == "WL_01")
