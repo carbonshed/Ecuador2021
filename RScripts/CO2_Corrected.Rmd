@@ -1,0 +1,228 @@
+---
+title: "CO2_CayambeCoca"
+author: "KWhitmore"
+date: "1/1/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(tidyverse)
+library(plotly)
+```
+
+## About
+In this file I clean and collect CO2 data collected at the Cayambe Coca field site
+
+### We start by reading in an then cleaning data, file 
+
+```{r cars}
+setwd(here::here("CO2"))
+## Read files into R
+
+File_name <- "CO2_02_2021-07-14.csv"
+
+CO2Data <- read.csv(File_name, skip=6, header = TRUE)
+CO2Data=CO2Data[,1:3]
+colnames(CO2Data) <- c("Date","Time","ppm")
+
+#DOWNLOAD DATA using UNC computer
+CO2Data$DateTime <- as.POSIXct(paste(CO2Data$Date, CO2Data$Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+
+#DOWNLOAD DATA using USFQ computer
+#CO2Data$DateTime <- as.POSIXct(paste(CO2Data$Date, CO2Data$Time), format="%d/%m/%Y %H:%M:%S", tz = "UTC")
+
+
+#Clean data
+#CO2Data <- CO2Data %>% filter(DateTime < as.POSIXct("2021-10-02 21:45:00", tz = "UTC") | DateTime > as.POSIXct("2021-10-20 13:15:00", tz = "UTC"))
+
+
+#plot pressure
+#plot_ly(CO2_02%>% filter(ppm <  5000), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'lines+markers')
+plot_ly(CO2_03, x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'lines+markers')
+plot_ly(CO2Data, x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'lines+markers')
+
+```
+# cleaning notes
+there are some files that I am suspicious of because they are way too high compared with the rest..
+
+CO2_02 files:
+CO2_02_2021-06-30.csv
+CO2_02_2021-07-16.csv
+
+## Do loop
+
+```{r pressure, echo=FALSE}
+
+setwd(here::here("CO2"))
+all_files=list.files(pattern=".csv") #pulls out the csv files from WL folder in HOBOware folder
+#sites_rp=gsub("_.*","",all_files) #selects the correct pattern so as to seelct only desired files
+sites_rp = sub('_[^_]+$', '', all_files)
+site_names=unique(sites_rp) #creates list of site names for following loop
+#site_names=site_names[-2]
+
+
+#rm old files, if they exist
+rm(CO2Data)
+rm(Temp_CO2Data)
+
+for (site in site_names){
+ # if(site == "CO2_02"){
+
+  list1=list.files(pattern=site) #finds all files for the site
+  sitelist_csv=grep(".csv",list1) #creates list of all files for site
+  file_list=list1[sitelist_csv]
+  
+  #reads in files in list and appends
+  for (file in file_list){
+    if (!exists("CO2Data")){
+      CO2Data <- read.csv(file, skip=6, header = TRUE)
+      CO2Data=CO2Data[,1:3]
+        if(names(CO2Data)[1] == "Date"){
+          colnames(CO2Data) <- c("Date","Time","ppm")
+        CO2Data$DateTime <- as.POSIXct(paste(CO2Data$Date, CO2Data$Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+      } else { 
+        colnames(CO2Data) <- c("Date","Time","ppm")
+        CO2Data$DateTime <- as.POSIXct(paste(CO2Data$Date, CO2Data$Time), format="%d/%m/%Y %H:%M:%S", tz = "UTC")
+      }
+      
+      CO2Data$Station <- site
+    }
+    if (exists("CO2Data")) {
+      Temp_CO2Data <- read.csv(file, skip=6, header = TRUE)  
+      Temp_CO2Data=Temp_CO2Data[,1:3]
+      if(colnames(Temp_CO2Data)[1]=="Date"){
+        colnames(Temp_CO2Data) <- c("Date","Time","ppm")
+        Temp_CO2Data$DateTime <- as.POSIXct(paste(Temp_CO2Data$Date, Temp_CO2Data$Time), format="%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+        Temp_CO2Data$Station <- site
+      } else {
+#        Temp_CO2Data$Fecha <- as.Date(Temp_CO2Data$Fecha, format = "%d / %m / %Y")
+        Temp_CO2Data$DateTime <- as.POSIXct(paste(Temp_CO2Data$Fecha, Temp_CO2Data$Tiempo), format="%d/%m/%Y %H:%M:%S", tz = "UTC")
+        colnames(Temp_CO2Data) <- c("Date","Time","ppm","DateTime")
+        Temp_CO2Data$Station <- site
+      }
+      CO2Data <- rbind(CO2Data, Temp_CO2Data)
+      rm(Temp_CO2Data)
+    }
+    
+  }
+
+  CO2Data=unique(CO2Data)
+  CO2Data$Date <- NULL
+  CO2Data$Time <- NULL
+  CO2Data <- CO2Data[,c(3,2,1)]
+  assign((paste(site,sep="_")),CO2Data) #creates object with new appended data
+  rm(CO2Data) #removes WLdata so that multiple sites aren't appended together
+}
+
+```
+
+clean data
+
+```{r clean, echo=FALSE}
+#CO2_01
+CO2_01  <- CO2_01%>%
+  filter(DateTime < as.POSIXct("2021-06-09 11:30:00", tz = "UTC") | DateTime >= as.POSIXct("2021-06-09 12:15:00", tz = "UTC")) %>%
+  filter(DateTime < as.POSIXct("2021-07-13 10:30:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-16 11:30:00", tz = "UTC")) %>%
+  filter(DateTime < as.POSIXct("2021-07-23 10:30:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-27 13:00:00", tz = "UTC"))
+
+#CO2_02
+CO2_02  <- CO2_02 %>% 
+  filter(DateTime < as.POSIXct("2021-06-11 03:34:00", tz = "UTC") | DateTime > as.POSIXct("2021-06-16 11:52:00", tz = "UTC")) %>%
+  filter(DateTime < as.POSIXct("2021-06-30 10:42:00", tz = "UTC") | DateTime > as.POSIXct("2021-06-30 11:45:00", tz = "UTC")) %>%
+  filter(DateTime < as.POSIXct("2021-07-14 11:06:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-14 11:11:00", tz = "UTC")) %>% 
+  filter(DateTime < as.POSIXct("2021-07-14 13:18:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-14 14:13:00", tz = "UTC")) %>%
+  filter(DateTime < as.POSIXct("2021-07-16 11:56:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-16 11:57:00", tz = "UTC")) %>%
+  filter(DateTime != as.POSIXct("2021-07-16 12:00:05", tz = "UTC")) %>% 
+  filter(DateTime != as.POSIXct("2021-07-19 10:30:05", tz = "UTC"))  %>%
+#injection July 13
+  filter(DateTime < as.POSIXct("2021-07-13 10:15:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-13 15:15:00", tz = "UTC"))
+
+CO2_02$DateTime <- round_date(CO2_02$DateTime,unit="1 minutes")
+CO2_02 <- CO2_02 %>% 
+  group_by(DateTime) %>% 
+  summarise(ppm = sum(ppm))
+
+CO2_02_time <- as.data.frame(seq(from = as.POSIXct("2021-06-09 12:15:00", tz = "UTC"), to = as.POSIXct("2021-12-30 12:45:00", tz = "UTC"), by='15 min')) # lubridate
+colnames(CO2_02_time) <- "DateTime"
+CO2_02 <- left_join(CO2_02_time,CO2_02, by="DateTime")
+CO2_02 <- CO2_02 %>% drop_na(ppm) %>% filter(ppm > 10)
+
+CO2_02$Station <- "CO2_02"
+rm(CO2_02_time)
+
+#CO2_03
+CO2_03  <- CO2_03 %>%
+  filter(DateTime < as.POSIXct("2021-06-25 13:15:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-02 12:15:00", tz = "UTC"))
+
+#CO2_04
+CO2_04 <- CO2_04%>%
+  filter(DateTime != as.POSIXct("2021-06-10 16:00:00", tz = "UTC"))%>%
+  filter(DateTime < as.POSIXct("2021-07-12 15:59:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-16 13:00:00", tz = "UTC"))%>%
+  filter(DateTime < as.POSIXct("2021-07-28 12:15:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-28 13:15:00", tz = "UTC"))%>%
+  filter(DateTime != as.POSIXct("2021-10-20 12:45:05", tz = "UTC")) 
+
+CO2_04$DateTime <- round_date(CO2_04$DateTime,unit="15 minutes")
+CO2_04 <- CO2_04 %>% 
+  group_by(DateTime) %>% 
+  summarise(ppm = sum(ppm))
+CO2_04$Station <- "CO2_04"
+
+#CO2_Well01
+CO2_Well01 <- CO2_Well01 %>%
+  filter(DateTime > as.POSIXct("2021-06-25 12:30:00", tz = "UTC"))
+
+#CO2_Well02
+CO2_Well02 <- CO2_Well02 %>%
+  filter(DateTime < as.POSIXct("2021-06-14 11:36:00", tz = "UTC") | DateTime > as.POSIXct("2021-06-17 07:21:00", tz = "UTC")) %>%
+  filter(DateTime < as.POSIXct("2021-06-17 20:21:00", tz = "UTC") | DateTime > as.POSIXct("2021-06-18 08:21:00", tz = "UTC"))%>%
+  filter(DateTime != as.POSIXct("2021-06-30 15:15:00", tz = "UTC")) %>%
+  filter(DateTime != as.POSIXct("2021-07-02 12:00:00", tz = "UTC"))%>%
+  filter(DateTime < as.POSIXct("2021-10-02 21:45:00", tz = "UTC") | DateTime > as.POSIXct("2021-10-20 13:15:00", tz = "UTC"))
+
+CO2_Well02$DateTime <- round_date(CO2_Well02$DateTime,unit="15 minutes")
+CO2_Well02 <- CO2_Well02 %>% 
+  group_by(DateTime) %>% 
+  summarise(ppm = sum(ppm))
+CO2_Well02$Station <- "CO2_Well02"
+
+#plot pressure
+plot_ly(CO2_04, x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+
+```
+
+
+#bind and plot
+
+```{r plot, echo=FALSE}
+stations <- rbind(CO2_01,CO2_02,CO2_03,CO2_04)
+
+wells <- rbind(CO2_Well01,CO2_Well02)
+
+
+ggplot(data = stations#%>%filter(Station=='CO2_04')
+       %>%filter(ppm < 15000)
+         , aes(DateTime, ppm)) +
+  geom_point(color = "steelblue") +
+  labs(#title = "CO2  stations",
+       y = "CO2 ppm", x = "") + 
+  facet_wrap(~ Station)
+
+
+ggplot(data = wells%>%filter(ppm < 15000), aes(DateTime, ppm)) +
+  geom_point(color = "steelblue") +
+  #  geom_point(color="steelblue") + 
+  labs(#title = "CO2  stations",
+    y = "CO2 ppm", x = "") + 
+  facet_wrap(~ Station)
+
+plot_ly(stations#%>%filter(Station=='CO2_04')
+        ,
+        x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'lines+markers')
+
+```
+
