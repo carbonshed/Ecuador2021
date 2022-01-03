@@ -180,7 +180,6 @@ for (site in site_names){
         Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
       }
       
-      
       WLData <- rbind(WLData, Temp_WLData)
       rm(Temp_WLData)
     }
@@ -291,7 +290,9 @@ for (site in site_names){
   assign((paste(site,sep="_")),BaroData) #creates object with new appended data
   rm(BaroData) #removes WLdata so that multiple sites aren't appended together
 }
-
+```
+### clean baro
+```{r clean baro, echo=FALSE}
 
 ##clean BaroData
 plot_ly(Baro%>%filter(DateTime > as.POSIXct("2021-06-11 00:00:00", tz = "UTC")), x = ~DateTime, y = ~Baro_kpa, type = 'scatter', mode = 'markers') 
@@ -351,22 +352,71 @@ Find equations in Discharge> Rating curve folder
 #Q = 1.2949*WL_m^2 - 0.1622*WL_m + 0.0041
     #R² = 0.957
 
+WL_02 <- Baro_corrected %>% filter(Station == "WL_02")
+WL_02 <- WL_02[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_02$Q_m3s <- 1.2949*(WL_02$WL_m)^2 - 0.1622*WL_02$WL_m + 0.0041
+
+WL_01 <- Baro_corrected %>% filter(Station == "WL_01")
+WL_01 <- WL_01[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_01 <- full_join(WL_01,WL_02[,c("DateTime","Q_m3s")], by="DateTime")
+WL_01$Station <- "WL_01"
+
 #Station 3 
 #Q = 1.3942*WL_m^2 - 0.4617*WL_m + 0.0361
     #R² = 0.9474
 
+WL_03 <- Baro_corrected %>% filter(Station == "WL_03")
+WL_03 <- WL_03[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_03$Q_m3s <- 1.3942*(WL_03$WL_m)^2 - 0.4617*WL_03$WL_m + 0.0361
+
 #Station 4
-#Q = 2.6168WL_m^2 - 0.5429*WL_m + 0.0356
+#Q = 2.6168*WL_m^2 - 0.5429*WL_m + 0.0356
     #R² = 0.9692
+
+WL_04 <- Baro_corrected %>% filter(Station == "WL_04")
+WL_04 <- WL_04[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_04$Q_m3s <- 2.6168*(WL_04$WL_m)^2 - 0.5429*WL_04$WL_m + 0.0356
 
 #Station 5 & 6
   #use stn 6 WL for both
 #y = 1.6663x2 - 1.1203x + 0.2502
     #R² = 0.9669
 
+WL_06 <- Baro_corrected %>% filter(Station == "WL_06")
+WL_06 <- WL_06[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_06$Q_m3s <- 1.2949*(WL_06$WL_m)^2 - 0.1622*WL_06$WL_m + 0.0041
+
+WL_05 <- Baro_corrected %>% filter(Station == "WL_05")
+WL_05 <- WL_05[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_05 <- full_join(WL_05,WL_06[,c("DateTime","Q_m3s")], by="DateTime")
+WL_05$Station <- "WL_05"
 
 
+```
+### bind together again
 
+```{r bind again, echo=FALSE}
 
+All_WL <- rbind(WL_01,WL_02,WL_03,WL_04,WL_05,WL_06)
+
+All_Well <- Baro_corrected %>% filter(Station == "WL_Well01"|Station == "WL_Well02")
+All_Well <- All_Well[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+All_Well$Q_m3s <- NA
+
+```
+
+# plot discharge
+
+```{r plot Q, echo=FALSE}
+
+##Now we can graph 
+    ## will need to change the right limit accordingly
+
+ggplot(data = All_WL %>% filter(DateTime > "2021-06-10"), 
+       aes(DateTime, Q_m3s)) +
+  geom_line(color = "steelblue") +
+  labs(#title = "Discharge",
+    y = "Discharge m^3 s^-1", x = "") + 
+  facet_wrap(~ Station)
 
 ```

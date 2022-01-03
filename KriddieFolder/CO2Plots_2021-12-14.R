@@ -64,7 +64,7 @@ wells <- rbind(CO2_Well01,CO2_Well02)
 
 
 ggplot(data = stations, aes(DateTime, ppm)) +
-  geom_line(color = "steelblue") +
+  geom_point(color = "steelblue") +
 #  geom_point(color="steelblue") + 
   labs(#title = "CO2  stations",
        y = "CO2 ppm", x = "") + 

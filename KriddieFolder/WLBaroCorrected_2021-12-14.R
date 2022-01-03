@@ -10,6 +10,7 @@ library(ggplot2)
 library(reshape2)
 library(purrr)
 library(sjmisc)
+library(plotly)
 theme_set(theme_bw())
 
 #First the Hobos
@@ -179,6 +180,28 @@ for (site in site_names){
 }
 
 
+##clean data
+plot_ly(WL_06, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+
+WL_01 <- WL_01%>%filter(WLPres_kpa > 63 & WLPres_kpa < 70)
+WL_02 <- WL_02%>%filter(WLPres_kpa > 63)
+WL_03 <- WL_03%>%filter(WLPres_kpa > 63.1)
+WL_04 <- WL_04%>%filter(WLPres_kpa > 63)
+WL_05 <- WL_05%>%filter(DateTime != as.POSIXct("2021-07-28 14:00:00", tz = "UTC"))
+WL_06 <- WL_06%>%filter(DateTime != as.POSIXct("2021-07-16 14:00:00", tz = "UTC"))
+WL_06 <- WL_06%>%filter(DateTime < as.POSIXct("2021-07-26 14:30:00", tz = "UTC")|
+                          DateTime > as.POSIXct("2021-07-28 14:15:00", tz = "UTC"))
+
+#Well 2 was moved up, it seams
+#Add (64.49375 - 64.09757) for andything before July 27, 2021 10:40
+WL_Well02_1 <- WL_Well02%>%filter(DateTime <= as.POSIXct("2021-07-27 10:40:00", tz = "UTC"))
+WL_Well02_1$WLPres_kpa <- WL_Well02_1$WLPres_kpa + (64.49375 - 64.09757)
+WL_Well02_2 <- WL_Well02%>%filter(DateTime > as.POSIXct("2021-07-27 10:40:00", tz = "UTC"))
+WL_Well02 <- rbind(WL_Well02_1,WL_Well02_2)
+rm(WL_Well02_1,WL_Well02_2)
+
+#Well 01 looks fine
+
 All_WL <- rbind(WL_01,WL_02,WL_03,WL_04,WL_05,WL_06,WL_Well01,WL_Well02)
 
 
@@ -227,29 +250,50 @@ for (site in site_names){
 }
 
 
+##clean BaroData
+plot_ly(Baro%>%filter(DateTime > as.POSIXct("2021-06-11 00:00:00", tz = "UTC")), x = ~DateTime, y = ~Baro_kpa, type = 'scatter', mode = 'markers') 
+
+Baro <- Baro%>%filter(DateTime < as.POSIXct("2021-07-27 15:00:00", tz = "UTC")|
+                          DateTime > as.POSIXct("2021-07-28 13:30:00", tz = "UTC"))
+
+
+#correct for baro 
+
 Baro_corrected <- left_join(Baro,All_WL,by="DateTime")
 
 Baro_corrected$Corrected_kpa <- Baro_corrected$WLPres_kpa - Baro_corrected$Baro_kpa
 #Baro_corrected <- Baro_corrected %>% filter(DateTime > "2021-06-10")
 
+#convert kpa to meters of water
+# constant, 1 kpa = 0.101972 m water
+Baro_corrected$WL_m <- Baro_corrected$Corrected_kpa * 0.101972
+Baro_corrected$Corrected_kpa <- NULL
+
+
 ##Now we can graph 
     ## will need to change the right limit accordingly
 
 ggplot(data = Baro_corrected %>% filter(DateTime > "2021-06-10"), 
-       aes(DateTime, WLPres_kpa)) +
+       aes(DateTime, WL_m)) +
   geom_line(color = "steelblue") +
   #  geom_point(color="steelblue") + 
 #  scale_x_datetime(limits = c(as.POSIXct("2021-06-10 15:45:00 UTC"),
 #                              as.POSIXct("2021-11-00 12:45:00 UTC")))+
   labs(#title = "CO2  stations",
-    y = "kPa", x = "") + 
+    y = "Water Level [m]", x = "") + 
   facet_wrap(~ Station)
 
-##clean data, a little
 
 
 
-Baro_corrected$DateTime_UTC <- as.POSIXct(Baro_corrected$DateTime, tz="UTC")
 ##find level at date time 
-Baro_corrected %>% filter(DateTime_UTC == as.POSIXct("2021-07-10 11:30:00 UTC") &
-                            Station == "WL_01")
+
+Baro_corrected %>% 
+  filter(
+    DateTime == 
+      as.POSIXct("2021-07-28 14:30:00", tz = "UTC") &
+                            Station == "WL_06")
+
+
+plot_ly(Baro_corrected%>%filter(Station == "WL_06"), x = ~DateTime, y = ~WL_m  , type = 'scatter', mode = 'markers') 
+
