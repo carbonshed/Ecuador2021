@@ -1,0 +1,68 @@
+---
+title: "Correcting CO2"
+author: "KWhitmore"
+date: "1/3/2022"
+output: html_document
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Adjust Viasala readings for pressure and temperature
+
+viasala readings need to be corrected for pressure and temperature:
+ Temperature dependence: -0.3% of reading / celcius (reference 25c/77F)
+ Pressure dependence: +0.15% of reading / hPa (reference 1013hPa)
+ 
+# correct for WL
+run script WaterLevel_Dischage.Rmd
+run script CO2_Corrected.Rmd
+
+```{r merge data, echo=FALSE}
+# first run script WaterLevel_Dischage.Rmd
+WL_df <- rbind(WL_01,WL_02,WL_03,WL_04,All_Well)
+WL_df$Station <- gsub('WL', 'stn', WL_df$Station)
+
+CO2_df <- rbind(stations,wells)
+CO2_df$Station <- gsub('CO2', 'stn', CO2_df$Station)
+
+df <- full_join(WL_df,CO2_df, by=c("DateTime","Station"))
+
+
+```
+
+convert unit of in baro data
+
+```{r baro, echo=FALSE}
+#convert baro to hpa
+#1 kPa = 10 hPa
+#1 kPa = 0.101972 m
+df$Total_hPa <- df$Total_kpa * 10
+
+```
+
+##Create Station Dataframes
+we two different models of vaisala
+
+```{r stations, echo=FALSE}
+
+
+#old:
+#Temperature dependence: -0.3% of reading / celcius (reference 25c/77F)
+#Pressure dependence: +0.15% of reading / hPa (reference 1013hPa)
+
+
+#Station 1 and 4 are old
+df_old <- df %>% filter(Station == "stn_01"|Station == "stn_04")
+
+df_old$adjusted_ppm <- df_old$ppm - (25 - df_old$WLTemp_c)*0.003
+
+df_old$adjusted_ppm <- df_old$ppm + (1013 - df_old$Total_hPa)*0.0015
+
+
+#Station 2, 3 and Well 1 and 2 are new V
+
+
+```

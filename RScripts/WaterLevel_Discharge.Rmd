@@ -204,7 +204,7 @@ plot the water level so that each station data can be cleaned
 ```{r plot, echo=FALSE}
 
 ##clean data
-plot_ly(WL_06, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 
 ```
 
@@ -214,6 +214,7 @@ this script is for ceaning each station. There may be additional lines written f
 ```{r clean, echo=FALSE}
 
 WL_01 <- WL_01%>%filter(WLPres_kpa > 63 & WLPres_kpa < 70)
+WL_01$DateTime <- round_date(WL_01$DateTime,unit="15 minutes")
 WL_02 <- WL_02%>%filter(WLPres_kpa > 63)
 WL_03 <- WL_03%>%filter(WLPres_kpa > 63.1)
 WL_04 <- WL_04%>%filter(WLPres_kpa > 63)
@@ -310,6 +311,10 @@ Baro <- Baro%>%filter(DateTime < as.POSIXct("2021-07-27 15:00:00", tz = "UTC")|
 Baro_corrected <- left_join(Baro,All_WL,by="DateTime")
 
 Baro_corrected$Corrected_kpa <- Baro_corrected$WLPres_kpa - Baro_corrected$Baro_kpa
+
+#calculate total pressure to correct viasala readings
+Baro_corrected$Total_kpa <- 
+  Baro_corrected$Baro_kpa + Baro_corrected$WLPres_kpa
 #Baro_corrected <- Baro_corrected %>% filter(DateTime > "2021-06-10")
 
 #convert kpa to meters of water
@@ -353,11 +358,11 @@ Find equations in Discharge> Rating curve folder
     #R² = 0.957
 
 WL_02 <- Baro_corrected %>% filter(Station == "WL_02")
-WL_02 <- WL_02[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_02 <- WL_02[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 WL_02$Q_m3s <- 1.2949*(WL_02$WL_m)^2 - 0.1622*WL_02$WL_m + 0.0041
 
 WL_01 <- Baro_corrected %>% filter(Station == "WL_01")
-WL_01 <- WL_01[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_01 <- WL_01[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 WL_01 <- full_join(WL_01,WL_02[,c("DateTime","Q_m3s")], by="DateTime")
 WL_01$Station <- "WL_01"
 
@@ -366,7 +371,7 @@ WL_01$Station <- "WL_01"
     #R² = 0.9474
 
 WL_03 <- Baro_corrected %>% filter(Station == "WL_03")
-WL_03 <- WL_03[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_03 <- WL_03[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 WL_03$Q_m3s <- 1.3942*(WL_03$WL_m)^2 - 0.4617*WL_03$WL_m + 0.0361
 
 #Station 4
@@ -374,7 +379,7 @@ WL_03$Q_m3s <- 1.3942*(WL_03$WL_m)^2 - 0.4617*WL_03$WL_m + 0.0361
     #R² = 0.9692
 
 WL_04 <- Baro_corrected %>% filter(Station == "WL_04")
-WL_04 <- WL_04[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_04 <- WL_04[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 WL_04$Q_m3s <- 2.6168*(WL_04$WL_m)^2 - 0.5429*WL_04$WL_m + 0.0356
 
 #Station 5 & 6
@@ -383,11 +388,11 @@ WL_04$Q_m3s <- 2.6168*(WL_04$WL_m)^2 - 0.5429*WL_04$WL_m + 0.0356
     #R² = 0.9669
 
 WL_06 <- Baro_corrected %>% filter(Station == "WL_06")
-WL_06 <- WL_06[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_06 <- WL_06[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 WL_06$Q_m3s <- 1.2949*(WL_06$WL_m)^2 - 0.1622*WL_06$WL_m + 0.0041
 
 WL_05 <- Baro_corrected %>% filter(Station == "WL_05")
-WL_05 <- WL_05[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+WL_05 <- WL_05[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 WL_05 <- full_join(WL_05,WL_06[,c("DateTime","Q_m3s")], by="DateTime")
 WL_05$Station <- "WL_05"
 
@@ -400,7 +405,7 @@ WL_05$Station <- "WL_05"
 All_WL <- rbind(WL_01,WL_02,WL_03,WL_04,WL_05,WL_06)
 
 All_Well <- Baro_corrected %>% filter(Station == "WL_Well01"|Station == "WL_Well02")
-All_Well <- All_Well[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m")]
+All_Well <- All_Well[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 All_Well$Q_m3s <- NA
 
 ```

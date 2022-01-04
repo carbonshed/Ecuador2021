@@ -220,9 +220,8 @@ ggplot(data = wells%>%filter(ppm < 15000), aes(DateTime, ppm)) +
     y = "CO2 ppm", x = "") + 
   facet_wrap(~ Station)
 
-plot_ly(stations#%>%filter(Station=='CO2_04')
+plot_ly(stations%>%filter(Station=='CO2_04')
         ,
         x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'lines+markers')
 
 ```
-
