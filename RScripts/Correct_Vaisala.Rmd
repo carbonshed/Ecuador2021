@@ -7,6 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(ggpubr)
+library(gridExtra)
 ```
 
 
@@ -16,6 +19,11 @@ viasala readings need to be corrected for pressure and temperature:
  Temperature dependence: -0.3% of reading / celcius (reference 25c/77F)
  Pressure dependence: +0.15% of reading / hPa (reference 1013hPa)
  
+check method section in -
+
+Johnson, M. S., Billett, M. F., Dinsmore, K. J., Wallin, M., Dyson, K. E., & Jassal, R. S. (2010). Direct and continuous measurement of dissolved carbon dioxide in freshwater aquatic systems—method and applications. Ecohydrology: Ecosystems, Land and Water Process Interactions, Ecohydrogeomorphology, 3(1), 68-78.
+ 
+
 # correct for WL
 run script WaterLevel_Dischage.Rmd
 run script CO2_Corrected.Rmd
@@ -57,12 +65,74 @@ we two different models of vaisala
 #Station 1 and 4 are old
 df_old <- df %>% filter(Station == "stn_01"|Station == "stn_04")
 
-df_old$adjusted_ppm <- df_old$ppm - (25 - df_old$WLTemp_c)*0.003
+df_old$adjusted_ppm <- df_old$ppm * (1 + (1013 - df_old$Total_hPa) * 0.0015) * (1 - (25 - df_old$WLTemp_c) * 0.003)
 
-df_old$adjusted_ppm <- df_old$ppm + (1013 - df_old$Total_hPa)*0.0015
+#df_old$TempDif <- (df_old$WLTemp_c - 25)
+#df_old$PressDif <- (1013 - df_old$Total_hPa)
+#df_old$adjusted_ppm_2 <- df_old$ppm * (1 + df_old$PressDif * 0.0015) * (1 + df_old$TempDif * 0.003)
 
+#new
+
+#The new viasalas are set to 700hPa and 6.7c
 
 #Station 2, 3 and Well 1 and 2 are new V
+df_new <- df %>% filter(Station != "stn_01" & Station != "stn_04")
 
+df_new$adjusted_ppm <- df_new$ppm * (1 + (700 - df_new$Total_hPa) * 0.0015) * (1 - (6.7 - df_new$WLTemp_c) * 0.003)
+
+
+```
+
+```{r plot, echo=FALSE}
+df_corrected <- rbind(df_old,df_new)
+
+
+co2 <- ggplot(data = df_corrected %>% filter(Station=='stn_04')
+         , aes(DateTime, adjusted_ppm)) +
+  geom_point(color = "steelblue") +
+  labs(#title = "CO2  stations",
+       y = "CO2 ppm", x = "") 
+  
+Q <- ggplot(data = df_corrected %>% filter(Station=='stn_04')
+         , aes(DateTime, Q_m3s)) +
+  geom_point(color = "steelblue") +
+  labs(#title = "Q  stations",
+       y = "Q", x = "") 
+
+grid.arrange(co2, Q, ncol=1)
+
+all.figs <- ggarrange(NULL,co2, NULL,Q, ncol = 1,
+               heights = c(0.2,1,0.2,1),
+               labels = c("A","","B",""),
+               font.label = list(size = 24, color = "black", face = "bold"),
+              # label.x = .1,
+              # label.y = .1,
+               align="h", common.legend = FALSE
+               )
+
+
+k600vTime <- ggplot() + 
+  geom_ribbon(data=df_corrected, aes(x=DateTime, ymin=0, ymax=adjusted_ppm, linetype = "1"), 
+              alpha=.3, 
+              fill="steelblue",
+              color="steelblue", size = 1 ) +
+  geom_point(data=df, aes(x= DateTime, y= Q_m3s, color="darksalmon"), size = 2.5, alpha=.6) +
+  scale_y_continuous(
+                     name=expression(paste(" ", italic('k')[600] ," [m ", d^-1,"]")),
+                     sec.axis = sec_axis(~., name = expression(paste("Discharge [L ", s^-1,"]")))) + 
+  xlab("Date")
+
+#ggplot(data = wells%>%filter(ppm < 15000), aes(DateTime, ppm)) +
+#  geom_point(color = "steelblue") +
+  #  geom_point(color="steelblue") + 
+#  labs(#title = "CO2  stations",
+#    y = "CO2 ppm", x = "") + 
+#  facet_wrap(~ Station)
+
+fig <- plot_ly(df_old%>%filter(Station=='stn_01'),
+        x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'lines+markers')
+fig <- fig %>% add_trace(y = ~Q_m3s*100000, name = 'Q',mode = 'lines')
+
+fig
 
 ```
