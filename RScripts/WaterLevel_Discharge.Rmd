@@ -314,7 +314,7 @@ Baro_corrected$Corrected_kpa <- Baro_corrected$WLPres_kpa - Baro_corrected$Baro_
 
 #calculate total pressure to correct viasala readings
 Baro_corrected$Total_kpa <- 
-  Baro_corrected$Baro_kpa + Baro_corrected$WLPres_kpa
+  Baro_corrected$WLPres_kpa
 #Baro_corrected <- Baro_corrected %>% filter(DateTime > "2021-06-10")
 
 #convert kpa to meters of water
