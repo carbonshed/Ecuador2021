@@ -116,11 +116,17 @@ for (site in site_names){
   CO2Data$Time <- NULL
   CO2Data <- CO2Data[,c(3,2,1)]
   assign((paste(site,sep="_")),CO2Data) #creates object with new appended data
-  rm(CO2Data) #removes WLdata so that multiple sites aren't appended together
+  rm(CO2Data) #removes CO2 data so that multiple sites aren't appended together
 }
 
-```
 
+```
+```{r check CO2 data plot, echo=FALSE}
+
+##check data
+plot_ly(CO2_01, x = ~DateTime, y = ~ppm, type = 'scatter', mode = 'markers') 
+
+```
 clean data
 
 ```{r clean, echo=FALSE}
@@ -128,7 +134,10 @@ clean data
 CO2_01  <- CO2_01%>%
   filter(DateTime < as.POSIXct("2021-06-09 11:30:00", tz = "UTC") | DateTime >= as.POSIXct("2021-06-09 12:15:00", tz = "UTC")) %>%
   filter(DateTime < as.POSIXct("2021-07-13 10:30:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-16 11:30:00", tz = "UTC")) %>%
-  filter(DateTime < as.POSIXct("2021-07-23 10:30:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-27 13:00:00", tz = "UTC"))
+  filter(DateTime < as.POSIXct("2021-07-23 10:30:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-27 13:00:00", tz = "UTC"))%>%
+#sensor out of water
+  filter(DateTime < as.POSIXct("2021-06-19 04:15:00", tz = "UTC") | DateTime > as.POSIXct("2021-06-25 10:30:00", tz = "UTC"))
+
 
 #CO2_02
 CO2_02  <- CO2_02 %>% 
