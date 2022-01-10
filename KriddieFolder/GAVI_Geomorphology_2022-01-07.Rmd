@@ -66,7 +66,7 @@ synop <- read.csv(here::here("Synoptic/GAVI.csv"))
 synop$X <- NULL
 
 colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","CO2_ppm_ave")
-
+synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","CO2_ppm_ave")]
 
 Synopjune18 <- synop %>% filter(Date == "2021-06-18")
 Synopjune22 <- synop %>% filter(Date == "2021-06-22" & EOS_no == "EOS_1" & Tract == 1)
@@ -182,7 +182,7 @@ Cool. thats below main wetland. now for above
 Geomorph_sub <-df %>% filter(lat >= -.327)
 model <- lm(lon~bs(lat,
               #     knots = c(-0.3164286,-0.3163748,-0.3162296,                          -0.3161252,-0.3161399,-.3156738, -0.3154703,-0.3152688,-0.3152838), 
-                   degree = 6),
+                   degree = 10),
             data=Geomorph_sub)
 
 latlims <- range(Geomorph_sub$lat)
@@ -384,7 +384,7 @@ GAVI_co2 <- ggplot(data=df_prediction) +
 
 ```
 
-
+I think it would be better if we did two different prediction above and below gavi
 
 
 ##loess spline
@@ -393,9 +393,10 @@ But maybe just because data is not great. please revisit
 
 ```{r diff way}
 
-df_prediction <- df_prediction %>% filter(dist > 0)
+df_prediction <- df_prediction %>% filter(dist > 13.5)
 
-fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
+
+fit <- loess(ele ~ dist, degree=2, span = 0.15, data=df_prediction)
 
 df_prediction %>% 
   drop_na(ele) %>%
@@ -419,7 +420,7 @@ pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_ave)) +
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
   geom_point()
 
 #ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +

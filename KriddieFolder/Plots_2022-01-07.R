@@ -98,7 +98,7 @@ figure
 
 ANTE_DOC <- ggplot(data=df_prediction) +
   geom_line(aes(dist, ele_fit), size = 4, color="brown", alpha=.5) +
-  geom_point(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color= CO2_ppm_ave),size=4)+
+  geom_point(data=df_prediction%>%drop_na(DOC), aes(dist, ele_fit, color= DOC),size=4)+
   scale_color_gradient(
     low = "blue",
     high = "red",
