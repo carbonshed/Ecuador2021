@@ -204,7 +204,7 @@ plot the water level so that each station data can be cleaned
 ```{r plot, echo=FALSE}
 
 ##clean data
-plot_ly(WL_04, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 
 ```
 
@@ -235,12 +235,60 @@ rm(WL_Well02_1,WL_Well02_2)
 
 ```
 
+### Use WL_02 to predict WL_01
+we are missing some data from WL_01. I'm hoping there is a strong enough relationship between WL_01 and WL_02 to fill in missing data
+
+July 13th 10:15 to July 28 14:15
+
+
+```{r fill in wl_01, echo=FALSE}
+WL_01_02 <- full_join(WL_01,WL_02, by= "DateTime")
+WL_01_02 <- WL_01_02[,c("DateTime","WLPres_kpa.x","WLPres_kpa.y")]
+colnames(WL_01_02) <- c("DateTime","WL_01","WL_02")
+WL_01_02 <- WL_01_02%>%filter(DateTime > as.POSIXct("2021-07-01 10:15:00", tz = "UTC")& DateTime < as.POSIXct("2021-07-13 14:15:00", tz = "UTC"))
+
+mdl1_1 <- lm(WL_01_02$WL_01 ~ WL_01_02$WL_02)
+mdl2_1 <- lm(WL_01_02$WL_01 ~ WL_01_02$WL_02 + I(WL_01_02$WL_02^2))
+mdl3_1 <- lm(WL_01_02$WL_01 ~ WL_01_02$WL_02 + I(WL_01_02$WL_02^2) + I(WL_01_02$WL_02^3))
+mdl4_1 <- lm(WL_01_02$WL_01 ~ I(WL_01_02$WL_02^2))
+
+set.seed(20)
+q <- seq(from=0, to=66, by=0.5)
+y_mdl1 <- mdl1_1$coefficients[1] + mdl1_1$coefficients[2]*q
+y_mdl2 <- mdl2_1$coefficients[1] + mdl2_1$coefficients[2]*q + mdl2_1$coefficients[3]*q^2
+y_mdl3 <- mdl3_1$coefficients[1] + mdl3_1$coefficients[2]*q + mdl3_1$coefficients[3]*q^2 + mdl3_1$coefficients[4]*q^3
+y_mdl4 <- mdl4_1$coefficients[1] + mdl4_1$coefficients[2]*q^2
+
+
+plot(WL_01 ~ WL_02, data = WL_01_02 )
+#lines(q,y_mdl1,col='firebrick1',lwd=1)
+lines(q,y_mdl2,col='blue',lwd=1)
+#lines(q,y_mdl3,col='yellow',lwd=1)
+#lines(q,y_mdl4,col='green',lwd=1)
+mtext("y=  - 72380  + 3420 *x - 53.81 *x^2 + 0.2823*x^3", side=3)
+
+
+```
+
+
+```{r wl_01 gap, echo=FALSE}
+WL_01_fill <- WL_02
+WL_01_fill$WLPres_kpa <-   1351.0808 - 40.9546  *WL_01_fill$WLPres_kpa + 0.3257 *(WL_01_fill$WLPres_kpa)^2 
+WL_01_fill <- WL_01_fill%>%filter(DateTime > as.POSIXct("2021-07-13 10:15:00", tz = "UTC")&
+                          DateTime < as.POSIXct("2021-07-28 14:15:00", tz = "UTC"))
+WL_01_fill$Station <- "WL_01"
+
+
+plot_ly(WL_01_fill#%>%filter(DateTime > as.POSIXct("2021-07-13 10:15:00", tz = "UTC")& DateTime < as.POSIXct("2021-07-28 14:15:00", tz = "UTC")) 
+, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers')
+
+```
 ### bind
 bind all sites together
 
 ```{r bind, echo=FALSE}
 
-All_WL <- rbind(WL_01,WL_02,WL_03,WL_04,WL_05,WL_06,WL_Well01,WL_Well02)
+All_WL <- rbind(WL_01,WL_01_fill,WL_02,WL_03,WL_04,WL_05,WL_06,WL_Well01,WL_Well02)
 
 ```
 ## barometric data
@@ -338,6 +386,8 @@ ggplot(data = Baro_corrected %>% filter(DateTime > "2021-06-10"),
     y = "meter water", x = "") + 
   facet_wrap(~ Station)
 
+
+plot_ly(Baro_corrected %>% filter(Station == "WL_01"), x = ~DateTime, y = ~Total_kpa, type = 'scatter', mode = 'markers') 
 ```
 ## build curve
 this line of script can be easily altered to find  water levels at select points in time
@@ -423,5 +473,7 @@ ggplot(data = All_WL %>% filter(DateTime > "2021-06-10"),
   labs(#title = "Discharge",
     y = "Discharge m^3 s^-1", x = "") + 
   facet_wrap(~ Station)
+
+plot_ly(All_WL%>%filter(Station == "WL_01"), x = ~DateTime, y = ~Total_kpa, type = 'scatter', mode = 'markers') 
 
 ```

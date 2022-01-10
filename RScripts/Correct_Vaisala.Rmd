@@ -86,7 +86,6 @@ df_new$adjusted_ppm <- df_new$ppm * (1 + (700 - df_new$Total_hPa) * 0.0015) * (1
 ```{r plot, echo=FALSE}
 df_corrected <- rbind(df_old,df_new)
 
-
 co2 <- ggplot(data = df_corrected %>% filter(Station=='stn_04')
          , aes(DateTime, adjusted_ppm)) +
   geom_point(color = "steelblue") +
@@ -111,16 +110,6 @@ all.figs <- ggarrange(NULL,co2, NULL,Q, ncol = 1,
                )
 
 
-k600vTime <- ggplot() + 
-  geom_ribbon(data=df_corrected, aes(x=DateTime, ymin=0, ymax=adjusted_ppm, linetype = "1"), 
-              alpha=.3, 
-              fill="steelblue",
-              color="steelblue", size = 1 ) +
-  geom_point(data=df, aes(x= DateTime, y= Q_m3s, color="darksalmon"), size = 2.5, alpha=.6) +
-  scale_y_continuous(
-                     name=expression(paste(" ", italic('k')[600] ," [m ", d^-1,"]")),
-                     sec.axis = sec_axis(~., name = expression(paste("Discharge [L ", s^-1,"]")))) + 
-  xlab("Date")
 
 #ggplot(data = wells%>%filter(ppm < 15000), aes(DateTime, ppm)) +
 #  geom_point(color = "steelblue") +
@@ -129,10 +118,38 @@ k600vTime <- ggplot() +
 #    y = "CO2 ppm", x = "") + 
 #  facet_wrap(~ Station)
 
-fig <- plot_ly(df_old%>%filter(Station=='stn_01'),
-        x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'lines+markers')
-fig <- fig %>% add_trace(y = ~Q_m3s*100000, name = 'Q',mode = 'lines')
+fig <- plot_ly(df_corrected%>%filter(Station=='stn_01')%>%
+  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")),x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+#fig <- fig %>% add_trace(y = ~Q_m3s*100000, name = 'Q',mode = 'markers')
 
 fig
+
+
+
+#plot pressure
+
+
+plot_ly(df_corrected %>%filter(Station=='stn_01')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+plot_ly(df_corrected%>%filter(Station=='stn_02')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+plot_ly(df_corrected%>%filter(Station=='stn_03')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+plot_ly(df_corrected%>%filter(Station=='stn_04')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+plot_ly(df_corrected%>%filter(Station=='stn_Well01')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+plot_ly(df_corrected%>%filter(Station=='stn_Well02')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+
+
+```
+
+
+```{r write out, echo=FALSE}
+
+write.csv(df_corrected, here::here("ProcessedData/df_corrected_2022-07-01.csv",sep=""),
+          row.names = FALSE)
+
 
 ```
