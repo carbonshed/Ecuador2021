@@ -6,6 +6,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(here)
+library(lubridate)
+library(chron)
 
 #July 5th
 CO2_eos1_July5 <-  read.csv(here::here("/Synoptic/July5_Edited/EOS1_CO2_Synoptic_Edited_2021-07-05.csv"), skip=6, header = TRUE, sep = ",",
@@ -119,17 +121,53 @@ Flux_July6 <- rbind(Flux_eos1_July6,Flux_eos2_July6)
 
 Flux_synop <- rbind(Flux_July5, Flux_July6)
 
+y <- hms(Flux_synop$Time)
+Flux_synop$Time <- hour(y) + minute(y) / 60 + second(y) / 360
+
+
 Flux_synop_pivot <- Flux_synop  %>%
   drop_na(lat)  %>%
   group_by(lat, lon, ele, Date, EOS_no) %>%
   summarize(Flux_ave = mean(Flux, na.rm = TRUE),
             Tract = mean(Tract, na.rm = TRUE),
-            Point = mean(Point, na.rm = TRUE)) 
+            Point = mean(Point, na.rm = TRUE),
+            Time = mean(Time))
 
 
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("lon","lat","ele","Date", "Tract", "Point","EOS_no"))
 
-write.csv(synop_merge, here::here("Synoptic/ANTE_2021-08-27.csv"))
+synop_merge$Time<- times(synop_merge$Time / 24)
+synop_merge$DateTime <- as.POSIXct(paste(synop_merge$Date, synop_merge$Time))
+              
+##Water Chem
+
+WaterChem <-  read.csv(here::here("/WaterChem/DOC_9-1-2021_UNC_EDIT.csv"), skip=0, header = TRUE, sep = ",",
+                            quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+WaterChem$Date <- as.Date(WaterChem$Date, format = "%m/%d/%Y")
+WaterChem$EOS_no <- gsub("_.*", "", WaterChem$sampleID)     
+
+WaterChem <- WaterChem%>%
+  filter(SampleType == "synoptic")%>%
+  filter(Date == "2021-07-05" | Date == "2021-07-06")
+
+WaterChem$DateTime <- as.POSIXct(paste(WaterChem$Date, WaterChem$Time), format = "%Y-%m-%d %H:%M")
+
+
+#merge with synop 
+synop_merge$EOS_no<-gsub("_","",synop_merge$EOS_no)
+
+synop_merge$DateTime <- round_date(synop_merge$DateTime,unit="15 minutes")
+WaterChem$DateTime <- round_date(WaterChem$DateTime,unit="15 minutes")
+
+synop_merge <- full_join(synop_merge,WaterChem, by=c("DateTime","EOS_no","Date"))
+
+synop_merge$Date.as.fact <- NULL
+synop_merge$Time.y <- NULL
+synop_merge$Time.x <- NULL
+synop_merge$SampleType <- NULL
+
+#Write OUt
+write.csv(synop_merge, here::here("Synoptic/ANTE_2022-01-09.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 
