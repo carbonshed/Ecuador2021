@@ -167,7 +167,7 @@ synop_merge$Time.x <- NULL
 synop_merge$SampleType <- NULL
 
 #Write OUt
-write.csv(synop_merge, here::here("Synoptic/ANTE_2022-01-09.csv"))
+#write.csv(synop_merge, here::here("Synoptic/ANTE_2022-01-09.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 
