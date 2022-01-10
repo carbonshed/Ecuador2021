@@ -234,7 +234,7 @@ ggplot(data = stations#%>%filter(Station=='CO2_04')
   labs(#title = "CO2  stations",
        y = "CO2 ppm", x = "") + 
   facet_wrap(~ Station)
-
+#
 
 ggplot(data = wells%>%filter(ppm < 15000), aes(DateTime, ppm)) +
   geom_point(color = "steelblue") +
