@@ -203,18 +203,18 @@ CO2_Well02 <- CO2_Well02 %>%
 CO2_Well02$Station <- "CO2_Well02"
 
 #plot pressure
-plot_ly(CO2_01 %>%
-  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
-plot_ly(CO2_02%>%
-  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
-plot_ly(CO2_03%>%
-  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
-plot_ly(CO2_04%>%
-  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
-plot_ly(CO2_Well01%>%
-  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
-plot_ly(CO2_Well02%>%
-  filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+plot_ly(CO2_01 #%>% filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC"))
+        , x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+plot_ly(CO2_02 #%>%filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC"))
+  , x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+plot_ly(CO2_03 #%>% filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC"))
+        , x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+plot_ly(CO2_04 #%>%filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC"))
+        , x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+plot_ly(CO2_Well01 #%>% filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC"))
+        , x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
+plot_ly(CO2_Well02 #%>% filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC"))
+        , x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
 
 ```
 
