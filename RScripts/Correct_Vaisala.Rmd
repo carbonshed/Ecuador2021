@@ -120,7 +120,7 @@ all.figs <- ggarrange(NULL,co2, NULL,Q, ncol = 1,
 
 fig <- plot_ly(df_corrected%>%filter(Station=='stn_01')%>%
   filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")),x = ~DateTime, y= ~ppm, type = 'scatter', mode = 'markers')
-fig <- fig %>% add_trace(y = ~Q_m3s*100000, name = 'Q',mode = 'markers')
+#fig <- fig %>% add_trace(y = ~Q_m3s*100000, name = 'Q',mode = 'markers')
 
 fig
 
@@ -129,18 +129,27 @@ fig
 #plot pressure
 
 
-plot_ly(df_all %>%filter(Station=='stn_02')%>%
-  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~WL_m, type = 'scatter', mode = 'markers')
-plot_ly(df_all%>%filter(Station=='stn_02')%>%
+plot_ly(df_corrected %>%filter(Station=='stn_01')%>%
   filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
-plot_ly(df_all%>%filter(Station=='stn_03')%>%
+plot_ly(df_corrected%>%filter(Station=='stn_02')%>%
   filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
-plot_ly(df_all%>%filter(Station=='stn_04')%>%
+plot_ly(df_corrected%>%filter(Station=='stn_03')%>%
   filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
-plot_ly(df_all%>%filter(Station=='well_01')%>%
+plot_ly(df_corrected%>%filter(Station=='stn_04')%>%
   filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
-plot_ly(df_all%>%filter(Station=='well_02')%>%
+plot_ly(df_corrected%>%filter(Station=='stn_Well01')%>%
   filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+plot_ly(df_corrected%>%filter(Station=='stn_Well02')%>%
+  filter(DateTime < as.POSIXct("2021-7-31 07:27:00", tz = "UTC")),x = ~DateTime, y= ~adjusted_ppm, type = 'scatter', mode = 'markers')
+
+
+```
+
+
+```{r write out, echo=FALSE}
+
+write.csv(df_corrected, here::here("ProcessedData/df_corrected_2022-07-01.csv",sep=""),
+          row.names = FALSE)
 
 
 ```
