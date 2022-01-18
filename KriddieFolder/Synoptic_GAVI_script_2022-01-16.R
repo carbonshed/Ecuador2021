@@ -16,6 +16,12 @@ library(wesanderson)
 API_Key <- "AIzaSyAL9hbyMHAI_3a99HJyB4_LjI_M_pGMOGg"
 register_google(key = API_Key, write = TRUE)
 
+#read in continuous data to correct vaisala
+ContinuousData <-  read.csv(here::here("/Synoptic/ContinuousData_forSynop_2022.csv"), skip=6, header = TRUE, sep = ",",
+                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+
+ContinuousData_forSynop_2022
+
 ##June 18th
 #missing GPS coordinates for 1 location
 #this day only new Vaisala
