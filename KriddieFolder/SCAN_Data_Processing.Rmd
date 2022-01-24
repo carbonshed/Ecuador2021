@@ -1,0 +1,114 @@
+---
+title: "SCAN_data_processing"
+author: "KWhitmore"
+date: "1/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r read in data 1}
+
+# continuous?
+
+SCAN_df_1 <- read.delim(here::here("/SCAN/210623-1/2020-03-06_22-54-54.txt"),
+                      skip = 1,
+                      stringsAsFactors=FALSE)
+
+names(SCAN_df_1)[names(SCAN_df_1) == 'Date.Time'] <- 'DateTime'
+
+#format DateTime 
+SCAN_df_1$DateTime <- gsub('[.]', '-', SCAN_df_1$DateTime)
+SCAN_df_1$DateTime <- as.POSIXct(SCAN_df_1$DateTime, 
+                               format = "%Y-%m-%d %H:%M:%S",tz="UTC")
+SCAN_df_1$DateTime <- round_date(SCAN_df_1$DateTime, unit = "1 minute")
+
+SCAN_df_1<- SCAN_df_1%>%filter(DateTime > as.POSIXct('2021-06-21 16:00:00', tz="UTC")&
+           DateTime < as.POSIXct('2021-06-22 10:00:00', tz="UTC"))
+```
+
+```{r read in data 2}
+
+# continuous?
+
+SCAN_df_2 <- read.delim(here::here("/SCAN/210705-1/2019-12-17_01-13-49.txt"),
+                      skip = 1,
+                      stringsAsFactors=FALSE)
+
+names(SCAN_df_2)[names(SCAN_df_2) == 'Date.Time'] <- 'DateTime'
+
+#format DateTime 
+SCAN_df_2$DateTime <- gsub('[.]', '-', SCAN_df_2$DateTime)
+SCAN_df_2$DateTime <- as.POSIXct(SCAN_df_2$DateTime, 
+                               format = "%Y-%m-%d %H:%M:%S",tz="UTC")
+SCAN_df_2$DateTime <- round_date(SCAN_df_2$DateTime, unit = "1 minute")
+
+#SCAN_df_2<- SCAN_df_2%>%filter(DateTime > as.POSIXct('2021-06-21 16:00:00', tz="UTC")&
+#           DateTime < as.POSIXct('2021-06-22 10:00:00', tz="UTC"))
+```
+
+
+
+```{r read in data 3}
+# Synoptic?
+
+SCAN_df_3 <- read.delim(here::here("/SCAN/210629-1/2019-12-14_01-58-50.txt"),
+                      skip = 1,
+                      stringsAsFactors=FALSE)
+
+names(SCAN_df_3)[names(SCAN_df_3) == 'Date.Time'] <- 'DateTime'
+
+#format DateTime 
+SCAN_df_3$DateTime <- gsub('[.]', '-', SCAN_df_3$DateTime)
+SCAN_df_3$DateTime <- as.POSIXct(SCAN_df_3$DateTime, 
+                               format = "%Y-%m-%d %H:%M:%S",tz="UTC")
+SCAN_df_3$DateTime <- round_date(SCAN_df_3$DateTime, unit = "1 minute")
+
+#SCAN_df_3<- SCAN_df_3%>%filter(DateTime > as.POSIXct('2021-06-21 16:00:00', tz="UTC")&
+#           DateTime < as.POSIXct('2021-06-22 10:00:00', tz="UTC"))
+```
+
+```{r read in data 4}
+# Synoptic?
+
+SCAN_df_4 <- read.delim(here::here("/SCAN/210630-1/2019-12-17_00-28-49.txt"),
+                      skip = 1,
+                      stringsAsFactors=FALSE)
+
+names(SCAN_df_4)[names(SCAN_df_4) == 'Date.Time'] <- 'DateTime'
+
+#format DateTime 
+SCAN_df_4$DateTime <- gsub('[.]', '-', SCAN_df_4$DateTime)
+SCAN_df_4$DateTime <- as.POSIXct(SCAN_df_4$DateTime, 
+                               format = "%Y-%m-%d %H:%M:%S",tz="UTC")
+SCAN_df_4$DateTime <- round_date(SCAN_df_4$DateTime, unit = "1 minute")
+
+SCAN_df_4<- SCAN_df_4%>%filter(DateTime > as.POSIXct('2021-06-01 16:00:00', tz="UTC")#&
+#           DateTime < as.POSIXct('2021-06-22 10:00:00', tz="UTC")
+)
+```
+
+##Plots
+
+You can also embed plots, for example:
+
+```{r plot, echo=FALSE}
+plot_ly(data = SCAN_df_1 , x = ~DateTime, y = ~X205.00)
+plot_ly(data = SCAN_df_3 , x = ~DateTime, y = ~X205.00)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
