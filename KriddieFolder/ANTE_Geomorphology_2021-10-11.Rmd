@@ -35,11 +35,12 @@ Geomorph$dist <- NULL
 
 Geomorph <- Geomorph[,c("lon","lat","ele","time","lat_wypt","lon_wypt","ele_wypt")]
 
-synop <- read.csv(here::here("Synoptic/ANTE_2022-01-09.csv"))
+#synop <- read.csv(here::here("Synoptic/ANTE_2022-01-09.csv"))
+synop <- read.csv(here::here("Synoptic/ANTE_2022-01-27.csv"))
+
 synop$X <- NULL
-synop$Date.as.fact <- NULL
 synop$ID <- NULL
-colnames(synop) <- c("lon","lat","ele","Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","DateTime","SampleID","DOC","TDN","Notes")
+#colnames(synop) <- c("lon","lat","ele","Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","DateTime","SampleID","DOC","TDN","Notes")
 
 
 #there is a bad elevation data in synop, I am replacing it here, but need to work on figuring out what is up
@@ -323,7 +324,7 @@ coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
 synop$lon_fit <- pred$lon
 synop$lat_fit <- pred$lat
-synop <- synop[,c("Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","DOC","TDN","lon_fit","lat_fit")]
+synop <- synop[,c("Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","adjusted_ppm", "DOC","TDN","lon_fit","lat_fit")]
 
 
 df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
@@ -399,8 +400,10 @@ pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_ave)) +
-  geom_point()
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(adjusted_ppm))) +
+  geom_point(size=5)
 
 #ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
  # geom_point(size = 3, alpha = .5, color = "blue")

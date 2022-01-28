@@ -30,4 +30,8 @@ data <- data%>%filter(DateTime > as.POSIXct("2021-06-18 08:00:00", tz = "UTC")&
                         DateTime < as.POSIXct("2021-07-09 20:00:00", tz = "UTC"))
 
 
-write.csv(data, here::here("Synoptic/ContinuousData_forSynop_2022-01-16.csv"))
+data$COLM_WaterTempAve<-rowMeans(data[,c("stn5_WLTemp_c", "stn6_WLTemp_c")])
+data$GAVI_waterTempAve<-rowMeans(data[,c("stn1_WLTemp_c", "stn2_WLTemp_c","stn3_WLTemp_c","stn4_WLTemp_c")])
+data <- data[,c("DateTime","GAVI_waterTempAve","COLM_WaterTempAve","Baro_kpa","BaroTemp_c")]
+
+write.csv(data, here::here("Synoptic/ContinuousData_forSynop_2022-01-27.csv"))

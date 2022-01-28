@@ -76,7 +76,9 @@ Geomorph <- rbind(Geomorph_July9,Geomorph)
 ```
 
 ```{r add synop to df}
-synop <- read.csv(here::here("Synoptic/COLMILLO_2021-08-30.csv"))
+#synop <- read.csv(here::here("Synoptic/COLMILLO_2021-08-30.csv"))
+synop <- read.csv(here::here("Synoptic/COLMILLO_2022-01-27.csv"))
+
 synop$X <- NULL
 
 ```
@@ -266,7 +268,7 @@ coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
 synop$lon_fit <- pred$lon
 synop$lat_fit <- pred$lat
-synop <- synop[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
+synop <- synop[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","adjusted_ppm","lon_fit","lat_fit")]
 
 
 df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
@@ -348,13 +350,19 @@ df_prediction$ele_fit <- pred1$fit
 
 flux <- ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
   geom_point()
-CO2 <- ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_ave)) +
+CO2 <- ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=adjusted_ppm)) +
   geom_point()
 
 grid.arrange(flux, CO2, ncol=1)
-
-
 ```
+
+
+```{r write, echo=FALSE}
+
+write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
+```
+
+
 ```{r 3d plot just synop, echo=FALSE}
 
 
@@ -366,5 +374,7 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
                                    zaxis = list(title = 'elevation')))
 
 fig
+
+
 
 ```

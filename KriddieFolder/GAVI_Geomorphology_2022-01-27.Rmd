@@ -67,8 +67,8 @@ synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
 
 synop$X <- NULL
 
-colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","CO2_ppm_ave")
-synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","CO2_ppm_ave")]
+colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")
+synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","CO2_ppm_ave","adjusted_ppm")]
 
 Synopjune18 <- synop %>% filter(Date == "2021-06-18")
 Synopjune22 <- synop %>% filter(Date == "2021-06-22" & EOS_no == "EOS_1" & Tract == 1)
@@ -310,7 +310,8 @@ coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
 synop_mainstem$lon_fit <- pred$lon
 synop_mainstem$lat_fit <- pred$lat
-synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
+#synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
+synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","adjusted_ppm","lon_fit","lat_fit")]
 
 
 df_prediction <- full_join(df_prediction,synop_mainstem,by=c("lon_fit","lat_fit"))
@@ -373,7 +374,7 @@ pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=CO2_ppm_ave)) +
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=adjusted_ppm)) +
   geom_point()
 
 
@@ -432,3 +433,7 @@ ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave
 
 ```
 
+```{r write, echo=FALSE}
+
+write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2022-01-27.csv"))
+```
