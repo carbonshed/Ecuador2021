@@ -412,6 +412,11 @@ ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(ad
 
 ```
 
+```{r write, echo=FALSE}
+
+write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-01-27.csv"))
+```
+
 
 
 
