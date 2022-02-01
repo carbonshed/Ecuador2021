@@ -311,7 +311,7 @@ pred <- as.data.frame(coords_df)
 synop_mainstem$lon_fit <- pred$lon
 synop_mainstem$lat_fit <- pred$lat
 #synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
-synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","adjusted_ppm","lon_fit","lat_fit")]
+synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","adjusted_ppm","lon_fit","lat_fit")]
 
 
 df_prediction <- full_join(df_prediction,synop_mainstem,by=c("lon_fit","lat_fit"))
@@ -423,7 +423,7 @@ pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Date)) +
   geom_point()
 
 #ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
