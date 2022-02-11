@@ -46,7 +46,7 @@ CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS1_CO2_Edited2_
 colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Notes","Wetland")
 
 CO2_eos1_July6$EOS_no <- "EOS_1"
-CO2_eos1_July6$VaisalaType <- "old"
+CO2_eos1_July6$VaisalaType <- "new"
 CO2_eos1_July6$Notes_2 <- NA
 CO2_eos1_July6 <- CO2_eos1_July6 %>%
   filter(Wetland == "ANTE")
@@ -209,7 +209,7 @@ synop_merge$Time.x <- NULL
 synop_merge$SampleType <- NULL
 
 #Write OUt
-write.csv(synop_merge, here::here("Synoptic/ANTE_2022-01-27.csv"))
+write.csv(synop_merge, here::here("Synoptic/ANTE_2022-02-11.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 

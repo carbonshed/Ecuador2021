@@ -36,7 +36,8 @@ Geomorph$dist <- NULL
 Geomorph <- Geomorph[,c("lon","lat","ele","time","lat_wypt","lon_wypt","ele_wypt")]
 
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-01-09.csv"))
-synop <- read.csv(here::here("Synoptic/ANTE_2022-01-27.csv"))
+#synop <- read.csv(here::here("Synoptic/ANTE_2022-01-27.csv"))
+synop <- read.csv(here::here("Synoptic/ANTE_2022-02-11.csv"))
 
 synop$X <- NULL
 synop$ID <- NULL
@@ -324,7 +325,7 @@ coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
 synop$lon_fit <- pred$lon
 synop$lat_fit <- pred$lat
-synop <- synop[,c("Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","adjusted_ppm", "DOC","TDN","lon_fit","lat_fit")]
+synop <- synop[,c("Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","adjusted_ppm", "DOC","TDN","lon_fit","lat_fit","AirTemp_c","VaisalaType","Total_hPa","GAVI_waterTempAve")]
 
 
 df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
@@ -437,7 +438,7 @@ ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(ad
 df_prediction$DOC <- NULL
 df_prediction$TDN <- NULL
 
-write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-01-29.csv"))
+write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-02-11.csv"))
 
 df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 

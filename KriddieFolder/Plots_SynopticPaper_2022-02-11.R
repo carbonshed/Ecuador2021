@@ -19,11 +19,6 @@ ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-01-27.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-01-27.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
 
-#MIGHT WANT TIME LATER
-#ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","time","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
-#COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","time","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
-#GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","time","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
-
 ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
 COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
 GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
@@ -33,24 +28,44 @@ ANTE <- unique(ANTE)
 GAVI <- unique(GAVI)
 COLM <- unique(COLM)
 
+#add weltand info
 GAVI$Wetland <- "GAVI"
 ANTE$Wetland <- "ANTE"
 COLM$Wetland <- "COLM"
 
+#need seperate columns for each stream profile
+ANTE$dist_ANTE <- ANTE$dist
+ANTE$dist_GAVI <- NA
+ANTE$dist_COLM <- NA
+
+GAVI$dist_GAVI <- GAVI$dist
+GAVI$dist_ANTE <- NA
+GAVI$dist_COLM <- NA
+
+COLM$dist_COLM <- COLM$dist
+COLM$dist_ANTE <- NA
+COLM$dist_GAVI <- NA
 
 df <- rbind(GAVI,ANTE,COLM)
+
+
 
 ##plot
 
 ##Flux
 
 flux <- ggplot(data=df ) +
-  geom_line(aes(dist, ele_fit), size = 2, #color="brown",
-             alpha=.5) +
+#  geom_line(aes(dist, ele_fit), size = 2, #color="brown",
+#             alpha=.5) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, #color="brown",
+                         alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, #color="brown",
+            alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2, #color="brown",
+            alpha=.5) +
   geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
   scale_color_gradient(
-    low = "blue",
-    high = "red",
+    low = "blue", high = "red",
     space = "Lab",
     na.value = "grey50",
     guide = "colourbar",
@@ -58,7 +73,7 @@ flux <- ggplot(data=df ) +
     name = "Flux umol m^2 s^-1"
   )+  
   labs(y="elevation", x = "distance")  +
-  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
+#  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
   theme_classic()
 
 dat_text <- data.frame(
@@ -119,14 +134,18 @@ plot_grid(top_row, flux, nrow = 2,
 ###CO2####
 
 CO2 <- ggplot(data=df ) +
-  geom_line(aes(dist, ele_fit), size = 2, #color="brown",
+#  geom_line(aes(dist, ele_fit), size = 2, #color="brown",
+#            alpha=.5) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, #color="brown",
+            alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, #color="brown",
+            alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2, #color="brown",
             alpha=.5) +
   geom_point(data=df%>%drop_na(adjusted_ppm), 
              aes(dist, ele_fit, 
                  color= log10(adjusted_ppm)),size=3)+
-  scale_color_gradient(
-    low = "blue",
-    high = "red",
+  scale_color_gradient(low = "blue", high = "red",
     space = "Lab",
     na.value = "grey50",
     guide = "colourbar",
@@ -134,7 +153,7 @@ CO2 <- ggplot(data=df ) +
     name = "log10(CO2 ppm)"
   )+  
   labs(y="elevation", x = "distance")  +
-  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
+#  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
   theme_classic()
 
 
