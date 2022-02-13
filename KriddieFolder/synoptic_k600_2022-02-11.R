@@ -1,8 +1,8 @@
 #Calc k600 
 
 library(here)
-library(dplyr) # for `rename`
-library(tidyr) # for `gather`
+library(dplyr) 
+library(tidyr) 
 library(ggplot2)
 library(cowplot)
 library(tidyverse)
@@ -10,7 +10,7 @@ library(rstatix)
 library(ggpubr)
 
 #read in df
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-11.csv"))
+ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-13.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-01-27.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
 
@@ -19,6 +19,11 @@ COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave",
 GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa","DOC","TDN")]
 
 ANTE <- unique(ANTE)
+
+
+
+
+
 
 ##run WaterLevel_Discharge.Rmd
 WL_01 <- WL_01[,c(1,3)]

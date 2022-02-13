@@ -41,7 +41,7 @@ rm(CO2_eos1_July5,CO2_eos2_July5)
 
 #July 6th
 #Vaisala new
-CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS1_CO2_Edited2_2021-07-06.csv"), skip=1, header = TRUE, sep = ",",
+CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS1_CO2_Edited3_2021-07-06.csv"), skip=1, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Notes","Wetland")
 
@@ -51,7 +51,8 @@ CO2_eos1_July6$Notes_2 <- NA
 CO2_eos1_July6 <- CO2_eos1_July6 %>%
   filter(Wetland == "ANTE")
 #Vaisala old
-CO2_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/CO2_EOS2_Edited2_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
+
+CO2_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/CO2_EOS2_Edited3_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Wetland")
 CO2_eos2_July6$EOS_no <- "EOS_2"
@@ -108,7 +109,8 @@ CO2_synop_pivot <- rbind(old,new)
 
 #plot
 
-CO2_map <- qmplot(lon, lat, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = as.factor(Date))+
+CO2_map <- qmplot(lat, lon, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = EOS_no#as.factor(Date)
+                  )+
   scale_color_gradient(low="blue", high="red")
 
 ###FLUX Data
@@ -136,7 +138,7 @@ Flux_July5 <- rbind(Flux_eos1_July5,Flux_eos2_July5)
 rm(Flux_eos1_July5,Flux_eos2_July5)
 
 #July 6
-Flux_eos1_July6 <-  read.csv(here::here("Synoptic/July6_Edited/EOS1_Edited_2021-07-06_EDITEDAGAIN.csv"), skip=0, header = TRUE, sep = ",",
+Flux_eos1_July6 <-  read.csv(here::here("Synoptic/July6_Edited/EOS1_Edited_2021-07-06_EDITEDAGAIN2.csv"), skip=0, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 Flux_eos1_July6 <- Flux_eos1_July6[,c(1:6,12:20)]
 colnames(Flux_eos1_July6) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","lon","lat","ele","WaterSample", "Notes","Wetland")
@@ -146,7 +148,7 @@ Flux_eos1_July6 <- Flux_eos1_July6 %>%
   filter(Wetland == "ANTE")
 
 
-Flux_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS2_synoptic_Edited_2021-07-06_EDITEDAGAIN2.csv"), skip=0, header = TRUE, sep = ",",
+Flux_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/EOS2_synoptic_Edited_2021-07-06_EDITEDAGAIN3.csv"), skip=0, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 Flux_eos2_July6 <- Flux_eos2_July6[,c(1:6,16:23)]
 colnames(Flux_eos2_July6) <- c("Month","Day","Year","Time","Flux","Temp","Tract","Description","Point","lon","lat","ele","WaterSample","Wetland")
@@ -209,16 +211,25 @@ synop_merge$Time.x <- NULL
 synop_merge$SampleType <- NULL
 
 #Write OUt
-write.csv(synop_merge, here::here("Synoptic/ANTE_2022-02-11.csv"))
+write.csv(synop_merge, here::here("Synoptic/ANTE_2022-02-13.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
-
-
+synop_merge$Flux_ave
 #plot
-synop_mapFlux <- qmplot(lon, lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = Flux_ave, shape = Date.as.fact)+
+synop_mapCO2 <- qmplot(lat, lon, data = synop_merge, zoom = 13,  maptype = "toner-background", color =CO2_ppm_ave , shape = EOS_no)+
   scale_color_gradient(low="blue", high="red")
-synop_mapCO2 <- qmplot(lon, lat, data = synop_merge, zoom = 13,  maptype = "toner-background", color = CO2_ppm_ave, shape = EOS_no)+
-  scale_color_gradient(low="blue", high="red") 
+synop_mapFlux <- qmplot(lat, lon, data = synop_merge, zoom = 13,  maptype = "toner-background", color =Flux_ave , shape = EOS_no)+
+  scale_color_gradient(low="blue", high="red")
+
+synop_mapCO2 <- qmplot(lat, lon, data = synop_merge%>%
+                         filter(EOS_no=="EOS2"), zoom = 13,  maptype = "toner-background", color = as.factor(Point), shape = as.factor(Date))#+
+#  scale_color_gradient(low="blue", high="red") 
 
 
 
+#coordinate for point 4 eos 1 on 7/6/21 is between last sample for  Eos 2 on 7/5 and last sample for EOS 2 on 7/6 
+#5	-78.19219	-0.3170960
+#	-78.19217	-0.3165369
+#= -78.19218, -0.3168165
+
+#or maybe this instead? halfway between
