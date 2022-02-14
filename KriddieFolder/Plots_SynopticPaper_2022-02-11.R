@@ -38,6 +38,7 @@ ANTE$dist_ANTE <- ANTE$dist
 ANTE$dist_GAVI <- NA
 ANTE$dist_COLM <- NA
 
+
 GAVI$dist_GAVI <- GAVI$dist
 GAVI$dist_ANTE <- NA
 GAVI$dist_COLM <- NA
