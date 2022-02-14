@@ -13,6 +13,7 @@ library(cowplot)
 library(tidyverse)
 library(rstatix)
 library(ggpubr)
+library(plotly)
 
 #read in df
 ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-13.csv"))
@@ -49,21 +50,138 @@ COLM$dist_GAVI <- NA
 
 df <- rbind(GAVI,ANTE,COLM)
 
+#####or start here for k600######
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-14.csv"))
+
+
+##calculate slope please
+
+#so i need to do 10 meters on eather side
+ANTE_tes <- ANTE[,c("ele_fit","dist")]
+
+ANTE$slope_1 <- ANTE$dist - 10
+ANTE$slope_2 <- ANTE$dist + 10
+
+which(df$team == 'Mavs')
+df[2,]$points
+df[which(df$team == 'Mavs'),]$points
+
+df %>% group_by(ID) %>% filter(row_number()==which.min(abs(Y-0.5)))
+ANTE$slope_1 <- ANTE %>%  group_by(ID) %>% filter(row_number()==which.min(abs(dist-10)))
+
+ANTE_tes$slope_1 <- ANTE_tes[which.min(abs(ANTE$dist-10)),]$ele_fit
+
+
+##
+ANTE_tes <- ANTE[,c("ele_fit","dist")]
+ANTE_tes <- ANTE_tes%>%drop_na(ele_fit)
+
+ANTE_tes$dist_minus = ANTE_tes$dist-10
+ANTE_tes$dist_plus = ANTE_tes$dist+10
+
+ANTE_tes$new <- NA
+
+for(i in 1:nrow(ANTE_tes)) {       # for-loop over rows
+  x = ANTE_tes$dist[i]
+  if(ANTE_tes$dist[i+1] < ANTE_tes$dist[i]){
+    x = ANTE_tes$dist[i]
+  }
+#  for(n in 1:now(ANTE_tes)) {       # for-loop over columns
+#    x <- ANTE_tes[ , n] + 10
+#  }
+  ANTE_tes$new[i] <- x
+}
+
+
+ANTE_tes$dist_minus_closest <- ANTE_tes[which.min(abs(ANTE_tes$dist_minus-ANTE_tes$dist))]$dist
+
+ANTE_tes$dist_minus_closest_rownum <- ANTE_tes[row_number()==which.min(abs(dist-10))] 
+
+ANTE_tes$ele_fit[2]
+#first get distance as close to 10 above and ten below
 
 
 ##plot
+df$K600.effective
+
+fig <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+               , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
+               color=~Wetland, size=3)
+
+fig <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+               , x = ~K600.effective, y = ~Flux_ave, 
+               color=~Wetland, size=3)
+
+##gplot
+My_Theme = theme(
+  axis.title.x = element_text(size = 16),
+  axis.text.x = element_text(size = 14),
+  axis.title.y = element_text(size = 16),
+  axis.text.y = element_text(size = 14),
+  plot.title = element_text(size = 12, face = "bold"),
+  legend.title=element_text(size=14), 
+  legend.text=element_text(size=12))
+  
+fig2 <- ggplot(data=df,aes(log10(adjusted_ppm),Flux_ave, color=Wetland)) +
+  geom_point(size=3) +
+  geom_smooth(method=lm, se=FALSE) + 
+  scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value < .001; r2 = .50", "COLM; p-value = .3; r2 < .001", "GAVI; p-value = .7; r2= -.03"))+
+  My_Theme + theme(legend.position = c(0.2, 0.9))
+
+fig3 <- ggplot(data=df,aes(log10(K600.effective),Flux_ave, color=Wetland)) +
+  geom_point(size=3) +
+  geom_smooth(method=lm, se=FALSE) + 
+  scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value = .1; r2 = 0.1", "COLM; p-value < .001; r2 < .4", "GAVI; p-value < .001; r2= .3")) +
+  My_Theme + theme(legend.position = c(0.2, 0.9))
+
+
+fit1 <- lm(Flux_ave ~ log10(K600.effective), data = df%>%filter(Wetland=="ANTE"))
+summary(fit1)
+
+##3d plot
+
+fig <- plot_ly(df#%>%filter(Wetland=="ANTE")
+               , x = ~adjusted_ppm, y = ~Flux_ave, z = ~K600.effective, 
+               color=~Wetland, size = 3)
+
+model <- lm(Flux_ave ~ log10(adjusted_ppm) + K600.effective, 
+            data = df%>%filter(Wetland=="COLM"))
+summary(model)
+
+
+#K600
+
+k600 <- ggplot(data=df ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2, alpha=.5) +
+  geom_point(data=df%>%drop_na(K600.effective), aes(dist, ele_fit, color= log10(K600.effective)),size=3)+
+  scale_color_gradient(
+    low = "blue", high = "red",
+    space = "Lab",
+    na.value = "grey50",
+    guide = "colourbar",
+    aesthetics = "colour",
+    name = "log10(k600)"
+  )+  
+  labs(y="elevation", x = "distance")  +
+  theme_classic() + My_Theme + theme(legend.position = c(0.8, 0.9))
+
+dat_text <- data.frame(
+  label = c("A", "A", "B"), color = "black",
+  Wetland   = c("ANTE", "GAVI", "COLM"),
+  x     = c(3, 3, 3),
+  y     = c(12, 12, 12)
+)
+
+
 
 ##Flux
 
 flux <- ggplot(data=df ) +
-#  geom_line(aes(dist, ele_fit), size = 2, #color="brown",
-#             alpha=.5) +
-  geom_line(aes(dist_ANTE, ele_fit), size = 2, #color="brown",
-                         alpha=.5) +
-  geom_line(aes(dist_GAVI, ele_fit), size = 2, #color="brown",
-            alpha=.5) +
-  geom_line(aes(dist_COLM, ele_fit), size = 2, #color="brown",
-            alpha=.5) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2,alpha=.5) +
   geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
   scale_color_gradient(
     low = "blue", high = "red",
@@ -75,7 +193,7 @@ flux <- ggplot(data=df ) +
   )+  
   labs(y="elevation", x = "distance")  +
 #  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
-  theme_classic()
+  theme_classic() + My_Theme + theme(legend.position = c(0.8, 0.9))
 
 dat_text <- data.frame(
   label = c("A", "A", "B"), color = "black",
@@ -135,27 +253,20 @@ plot_grid(top_row, flux, nrow = 2,
 ###CO2####
 
 CO2 <- ggplot(data=df ) +
-#  geom_line(aes(dist, ele_fit), size = 2, #color="brown",
-#            alpha=.5) +
-  geom_line(aes(dist_ANTE, ele_fit), size = 2, #color="brown",
-            alpha=.5) +
-  geom_line(aes(dist_GAVI, ele_fit), size = 2, #color="brown",
-            alpha=.5) +
-  geom_line(aes(dist_COLM, ele_fit), size = 2, #color="brown",
-            alpha=.5) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2,  alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2, alpha=.5) +
   geom_point(data=df%>%drop_na(adjusted_ppm), 
-             aes(dist, ele_fit, 
-                 color= log10(adjusted_ppm)),size=3)+
+             aes(dist, ele_fit, color= log10(adjusted_ppm)),size=3)+
   scale_color_gradient(low = "blue", high = "red",
     space = "Lab",
     na.value = "grey50",
     guide = "colourbar",
     aesthetics = "colour",
-    name = "log10(CO2 ppm)"
-  )+  
+    name = "log10(CO2 ppm)")+  
   labs(y="elevation", x = "distance")  +
 #  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
-  theme_classic()
+  theme_classic() + My_Theme + theme(legend.position = c(0.8, 0.9))
 
 
 dat_text <- data.frame(
@@ -212,7 +323,8 @@ pwc <- df %>%
 pwc
 
 
-  
+
+plot_grid(flux, CO2,k600, nrow = 1)
  
  ####DOC###
  
