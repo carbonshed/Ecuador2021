@@ -16,8 +16,8 @@ library(ggpubr)
 
 #read in df
 ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-13.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-01-27.csv"))
-COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
+GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-14.csv"))
+COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-14.csv"))
 
 ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
 COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
