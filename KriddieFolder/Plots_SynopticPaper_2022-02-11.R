@@ -51,65 +51,22 @@ COLM$dist_GAVI <- NA
 df <- rbind(GAVI,ANTE,COLM)
 
 #####or start here for k600######
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-14.csv"))
-
-
-##calculate slope please
-
-#so i need to do 10 meters on eather side
-ANTE_tes <- ANTE[,c("ele_fit","dist")]
-
-ANTE$slope_1 <- ANTE$dist - 10
-ANTE$slope_2 <- ANTE$dist + 10
-
-which(df$team == 'Mavs')
-df[2,]$points
-df[which(df$team == 'Mavs'),]$points
-
-df %>% group_by(ID) %>% filter(row_number()==which.min(abs(Y-0.5)))
-ANTE$slope_1 <- ANTE %>%  group_by(ID) %>% filter(row_number()==which.min(abs(dist-10)))
-
-ANTE_tes$slope_1 <- ANTE_tes[which.min(abs(ANTE$dist-10)),]$ele_fit
-
-
-##
-ANTE_tes <- ANTE[,c("ele_fit","dist")]
-ANTE_tes <- ANTE_tes%>%drop_na(ele_fit)
-
-ANTE_tes$dist_minus = ANTE_tes$dist-10
-ANTE_tes$dist_plus = ANTE_tes$dist+10
-
-ANTE_tes$new <- NA
-
-for(i in 1:nrow(ANTE_tes)) {       # for-loop over rows
-  x = ANTE_tes$dist[i]
-  if(ANTE_tes$dist[i+1] < ANTE_tes$dist[i]){
-    x = ANTE_tes$dist[i]
-  }
-#  for(n in 1:now(ANTE_tes)) {       # for-loop over columns
-#    x <- ANTE_tes[ , n] + 10
-#  }
-  ANTE_tes$new[i] <- x
-}
-
-
-ANTE_tes$dist_minus_closest <- ANTE_tes[which.min(abs(ANTE_tes$dist_minus-ANTE_tes$dist))]$dist
-
-ANTE_tes$dist_minus_closest_rownum <- ANTE_tes[row_number()==which.min(abs(dist-10))] 
-
-ANTE_tes$ele_fit[2]
-#first get distance as close to 10 above and ten below
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-15.csv"))
 
 
 ##plot
-df$K600.effective
 
-fig <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+fig1 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
                , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
                color=~Wetland, size=3)
 
-fig <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+fig2 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
                , x = ~K600.effective, y = ~Flux_ave, 
+               color=~Wetland, size=3)
+
+
+fig3 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+               , x = ~slope, y = ~Flux_ave, 
                color=~Wetland, size=3)
 
 ##gplot
@@ -134,6 +91,11 @@ fig3 <- ggplot(data=df,aes(log10(K600.effective),Flux_ave, color=Wetland)) +
   scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value = .1; r2 = 0.1", "COLM; p-value < .001; r2 < .4", "GAVI; p-value < .001; r2= .3")) +
   My_Theme + theme(legend.position = c(0.2, 0.9))
 
+fig4 <- ggplot(data=df,aes(slope,K600.effective, color=Wetland)) +
+  geom_point(size=3) +
+  geom_smooth(method=lm, se=FALSE) + 
+  My_Theme + theme(legend.position = c(0.2, 0.9))
+
 
 fit1 <- lm(Flux_ave ~ log10(K600.effective), data = df%>%filter(Wetland=="ANTE"))
 summary(fit1)
@@ -145,7 +107,7 @@ fig <- plot_ly(df#%>%filter(Wetland=="ANTE")
                color=~Wetland, size = 3)
 
 model <- lm(Flux_ave ~ log10(adjusted_ppm) + K600.effective, 
-            data = df%>%filter(Wetland=="COLM"))
+            data = df%>%filter(Wetland=="ANTE"))
 summary(model)
 
 
