@@ -424,7 +424,7 @@ pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-#how about we find the slope of 
+#how about we find the slope of the first predicted point = 0.7506700
 
 
 

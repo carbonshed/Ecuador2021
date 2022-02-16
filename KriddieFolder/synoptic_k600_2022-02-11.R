@@ -152,3 +152,4 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 synoptic.df <- synoptic.df%>%drop_na(EOS_no)
 
 write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-02-16.csv"))
+
