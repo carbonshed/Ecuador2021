@@ -1,0 +1,124 @@
+---
+title: "ANTE_moreGeomorph_2022-02-16"
+author: "Kriddie"
+date: "2/16/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(plotly)
+library(dplyr)
+library(tidyr)
+library(zoo)
+library(plot3D)
+library(splines)
+library(Ecdat)
+library(dplyr)
+library(sp)
+library(geosphere)
+```
+
+##Geomorph Data
+make a different data frame with rest of the geomorphdata
+```{r read in data}
+df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-02-16.csv"))
+df_prediction$X <-NULL
+```
+
+```{r x and w and d, echo=FALSE}
+XWD <- read.csv(here::here("/Geomorphology/Atenas/Antenas_Geomorph_2022-01-28.csv"))
+
+#this is used to flip upstream to downstream, it's not necessary here, but I'm saving it in case I need it
+#XWD_x<- XWD[,c("x")] 
+#XWD_x <- sort(XWD_x, decreasing = TRUE)
+#XWD$x <- NULL
+#XWD$x <- XWD_x
+#rm(XWD_x)
+###
+
+XWD <- XWD[,c("lon","lat","x","d","w","ele","notes")]
+XWD_1 <- XWD %>%drop_na(lon)
+
+x <- SpatialPoints(XWD_1[,c(1:2)])
+y <- SpatialPoints(df_prediction[,c(1:2)]) 
+plot(x, col = "red")
+points(y, col = "green")
+snap = apply(spDists(x, y), 1, which.min)
+points(y[snap,], pch = 3)
+
+
+snap_df <- y[snap,]
+coords_df <- snap_df@coords
+pred <- as.data.frame(coords_df)
+XWD_1$lon_fit <- pred$lon
+XWD_1$lat_fit <- pred$lat
+#XWD_1 <- full_join(XWD,XWD_1,by=c("lon","lat","x","d","w","ele","notes"))
+XWD_1 <- full_join(XWD[,c("x","d","w","notes")],XWD_1[,c("lon_fit","lat_fit","x","d","w","notes")],by=c("x","d","w","notes"))
+
+df_prediction_1 <- full_join(df_prediction,XWD_1,by=c("lon_fit","lat_fit"))
+#df_prediction_1 <- df_prediction_1%>%drop_na(x) 
+df_prediction_1 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x","d","w","notes")]
+df_prediction_1 <- unique(df_prediction_1)
+
+```
+We've snapped in the waypoints collected while sampling x/width/depth, but there are many points in between don't have corresponding lat/lon/ele. So how to fix these gaps?
+
+
+#distance =
+
+Our tools are dist (modeled) and x (measured). Some x are already associated with dist we need to associate all xs with distance. 
+
+If we can identify the xs assiciated with distance, we can then calcualte the difference between each each one. Then calcualte the ratio of x inbetween and total difference
+
+do the same with the difference between the distance assciated with x
+
+then see wich ratio is the closest --> link them up
+
+(x_x-x_1)/(x_2 - x_1) = column A
+(dist_2 - dist_1)*column A + dist_1 = column B
+
+Then identify closest dist to column B
+
+
+```{r dist and x, echo=FALSE}
+
+```
+
+
+#SLOPE
+
+```{r loopy, echo=FALSE}
+ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
+ANTE$X <- NULL
+
+##choose the length of distance to use for calculating slope
+#also consider how much before or after the sample point
+#remeber - gps accuracy is 3m at best
+
+save = ANTE[1,]
+save$slope <- NA
+loop <- ANTE%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 10
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 3
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+ANTE <- rbind(save, loop)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

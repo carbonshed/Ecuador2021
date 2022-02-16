@@ -7,7 +7,7 @@
 #can be adjusted to change distance segment 
 
 
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-13.csv"))
+ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
 ANTE$X <- NULL
 ##calculate slope please
 
@@ -34,7 +34,7 @@ loop$ele_plus <- NULL
 ANTE <- rbind(save, loop)
 
 #
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-15.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-16.csv"))
 test <- left_join(ANTE,df[,c("lon_fit","lat_fit","K600.effective")],by=c("lon_fit","lat_fit"))
 
 ggplot(data=test,aes(slope,adjusted_ppm)) +

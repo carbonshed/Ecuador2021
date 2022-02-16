@@ -16,7 +16,7 @@ library(ggpubr)
 library(plotly)
 
 #read in df
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-13.csv"))
+ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-14.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-14.csv"))
 
@@ -51,7 +51,7 @@ COLM$dist_GAVI <- NA
 df <- rbind(GAVI,ANTE,COLM)
 
 #####or start here for k600######
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-15.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-16.csv"))
 
 
 ##plot
@@ -91,7 +91,7 @@ fig3 <- ggplot(data=df,aes(log10(K600.effective),Flux_ave, color=Wetland)) +
   scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value = .1; r2 = 0.1", "COLM; p-value < .001; r2 < .4", "GAVI; p-value < .001; r2= .3")) +
   My_Theme + theme(legend.position = c(0.2, 0.9))
 
-fig4 <- ggplot(data=df,aes(slope,K600.effective, color=Wetland)) +
+fig4 <- ggplot(data=df,aes(slope,Flux_ave, color=Wetland)) +
   geom_point(size=3) +
   geom_smooth(method=lm, se=FALSE) + 
   My_Theme + theme(legend.position = c(0.2, 0.9))
