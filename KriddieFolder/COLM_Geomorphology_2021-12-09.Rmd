@@ -317,6 +317,10 @@ ele_fit<-as.data.frame(dist)
 ele_fit$ele <- ele
 
 ```
+
+
+
+
 ##loess spline
 i think loess might be a little better for this? IT IS BETTER!
 
@@ -324,7 +328,7 @@ i think loess might be a little better for this? IT IS BETTER!
 
 df_prediction <- df_prediction %>% filter(dist > 0)
 
-fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
+fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction)
 
 df_prediction %>% 
   drop_na(ele) %>%
@@ -333,6 +337,45 @@ df_prediction %>%
   geom_point(size = 3, alpha = .5, color = "grey") +
   geom_line(aes(dist, smooth), color="red")
 
+
+```
+
+```{r calc slope, echo=FALSE}
+
+df_prediction$slope <- NA
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  df_prediction$dist_down[i] <- df_prediction$dist[i+1]
+  df_prediction$ele_down[i] <- df_prediction$ele_fit[i+1]
+}
+
+df_prediction$slope <- (df_prediction$ele_fit - df_prediction$ele_down)/(df_prediction$dist - df_prediction$dist_down)
+df_prediction$dist_down <- NULL
+df_prediction$ele_down <- NULL
+
+df_predictionblah <- df_prediction%>%filter(slope>0)
+
+###
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 5
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 5
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction <- loop 
 
 ```
 
@@ -355,6 +398,8 @@ CO2 <- ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=
 
 grid.arrange(flux, CO2, ncol=1)
 ```
+
+
 
 
 ```{r write, echo=FALSE}

@@ -189,17 +189,11 @@ This is looking pretty darn good. But there is a gap in the lon data that we nee
 So we will add some data to the dataframe  to fill the gap.
 Just a simple linear regression between the df1 and df3
 ```{r manual add dataframes}
-#-0.3152791	-78.19296
-#-0.3152543	-78.19312
-
-# point1	-0.3152741	-78.19294	1
-# point 2	-0.3152553	-78.19312 2
-
+#point1 -0.3152791	-78.19296
+#point2 -0.3152543	-78.19312
 m = (-78.19312	- (-78.19296))/(-0.3152543 - (-0.3152791))
-
 #slope = 3.597122
 b = -78.19296 - m*(-0.3152791)
-
 latlims <- range(Geomorph_sub$lat)
 lat.grid <- seq(from=-0.3152791,to=-0.3152543, by=.000001)
 
@@ -213,6 +207,25 @@ df4 <-df4 %>% filter(lon < -78.19296)
 df4$num <- '4'
 df4 <- df4[order(lat),]
 
+##also fill in between df 2 and 3 
+#point1 -0.3153853	-78.19334	2
+#point2 -0.3153644	-78.19338	3
+m = (-78.19334	- (-78.19338))/(-0.3153853 - (-0.3153644))
+#slope = 3.597122
+b = -78.19338 - m*(-0.3153644)
+latlims <- range(Geomorph_sub$lat)
+lat.grid <- seq(from=-0.3153853,to=-0.3153644, by=.000001)
+
+##dataframe 5
+lat <- lat.grid
+df5<-as.data.frame(lat)
+df5$lon <- m*df5$lat + b
+
+df5 <-df5 %>% filter(lat > -0.3153853 & lat < -0.3146854)
+
+df5$num <- '5'
+df5 <- df5[order(lat),]
+
 ```
 
 ok, lets bind in that last dataframe
@@ -220,7 +233,7 @@ ok, lets bind in that last dataframe
 ```{r bind dataframes, echo=FALSE}
 
 #now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- rbind(df1,df4,df2,df3)
+df_prediction <- rbind(df1,df4,df2,df3,df5)
 
 plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
 
@@ -231,7 +244,7 @@ now we have a smooth data frame of lat/lon data, we calculate the distance betwe
 ```{r calc dist}
 
 ###create a loop and calculate distance along the river from the predict_df. THen we can bind in the GEOMORPH!
-df_prediction <- rbind(df1,df4,df2,df3) %>% drop_na(lat)
+df_prediction <- rbind(df1,df4,df2,df5,df3) %>% drop_na(lat)
 
 df_prediction$num <- NULL
 df_prediction <- df_prediction[,c("lon","lat")]
@@ -414,32 +427,151 @@ we have a bit of a problem with the two ends. The spline is not extrapolating th
 take the loess spline and make a data frame that interpolates these data points
 
 ```{r interpolate loess, echo=FALSE}
+#save <- df_prediction
+#df_prediction <- save
 
 #fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
 fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction)
 distlims <- range(df_prediction$dist)
 
-
 pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 
-#how about we find the slope of the first predicted point = 0.7506700
+##fix upstream
+#how about we find the slope of the first predicted point dist = 0.7506700 and about a meter downstream
+up <- which.min(abs(df_prediction$dist-0.7506700))
+down <- which.min(abs(df_prediction$dist-1.8))
 
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[down,"ele_fit"] - slope*df_prediction[down,"dist"]
+df_prediction_a <- df_prediction %>% filter(dist < df_prediction[up,"dist"])
+df_prediction_b <- df_prediction %>% filter(dist >= df_prediction[up,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+###
+##fix downstream
+up <- which.min(abs(df_prediction$dist-429))
+down <- which.min(abs(df_prediction$dist-434))
 
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
+df_prediction_a <- df_prediction %>% filter(dist > df_prediction[up,"dist"])
+df_prediction_b <- df_prediction %>% filter(dist < df_prediction[up,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+##
 
+## there are problems in the middle too. 
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+up <- which.min(abs(df_prediction$dist-347))
+down <- which.min(abs(df_prediction$dist-355))
+
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
+df_prediction_a <- df_prediction %>% 
+  filter(dist > df_prediction[up,"dist"] & dist < df_prediction[down,"dist"])
+df_prediction_b <- df_prediction %>% 
+  filter(dist < df_prediction[up,"dist"] | dist > df_prediction[down,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+
+##
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(df_prediction$dist-375))
+down <- which.min(abs(df_prediction$dist-391))
+
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
+df_prediction_a <- df_prediction %>% 
+  filter(dist > df_prediction[up,"dist"] & dist < df_prediction[down,"dist"])
+df_prediction_b <- df_prediction %>% 
+  filter(dist < df_prediction[up,"dist"] | dist > df_prediction[down,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+
+##
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(df_prediction$dist-240))
+down <- which.min(abs(df_prediction$dist-250.0963))
+
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
+df_prediction_a <- df_prediction %>% 
+  filter(dist > df_prediction[up,"dist"] & dist < df_prediction[down,"dist"])
+df_prediction_b <- df_prediction %>% 
+  filter(dist < df_prediction[up,"dist"] | dist > df_prediction[down,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+
+##
+```
+
+```{r calc slope, echo=FALSE}
+
+df_prediction$slope <- NA
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  df_prediction$dist_down[i] <- df_prediction$dist[i+1]
+  df_prediction$ele_down[i] <- df_prediction$ele_fit[i+1]
+}
+
+df_prediction$slope <- (df_prediction$ele_fit - df_prediction$ele_down)/(df_prediction$dist - df_prediction$dist_down)
+df_prediction$dist_down <- NULL
+df_prediction$ele_down <- NULL
+
+#df_predictionblah <- df_prediction%>%filter(slope>0)
+
+###
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 5
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 5
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction <- loop 
+
+```
+
+```{r plot final predict, echo=FALSE}
+ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
+
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) + geom_point(size=5)
 ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(adjusted_ppm))) +
+  geom_point(size=5)
+ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
   geom_point(size=5)
 
 #ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
  # geom_point(size = 3, alpha = .5, color = "blue")
 
-
-
+#fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
+#fig
 ```
+
 
 ##write it out
 
@@ -448,8 +580,8 @@ ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(ad
 #df_prediction$TDN <- NULL
 
 #we have an issue with Antenas data where it goes from upstream to downstream instead of the other way around, so I'm going to swap the distance before wrting out'
-df_prediction <- df_prediction_1 
 
+df_prediction <- df_prediction[order(df_prediction$dist),]
 predict_dist<- df_prediction[,c("dist")] 
 predict_dist <- sort(predict_dist, decreasing = TRUE)
 df_prediction$dist <- NULL

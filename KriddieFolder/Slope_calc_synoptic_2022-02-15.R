@@ -6,6 +6,8 @@
 #Ante,Gavi,Colm
 #can be adjusted to change distance segment 
 
+##this is now a part of the geomorph script :)
+
 
 ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
 ANTE$X <- NULL

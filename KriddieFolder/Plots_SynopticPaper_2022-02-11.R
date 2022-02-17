@@ -17,7 +17,7 @@ library(plotly)
 
 #read in df
 ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-14.csv"))
+GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-16.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-14.csv"))
 
 ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
@@ -56,7 +56,7 @@ df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-16.csv"))
 
 ##plot
 
-fig1 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+fig1 <- plot_ly(data = df%>%filter(Wetland=="ANTE")
                , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
                color=~Wetland, size=3)
 
@@ -65,7 +65,7 @@ fig2 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
                color=~Wetland, size=3)
 
 
-fig3 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+fig3 <- plot_ly(data = df%>%filter(Wetland=="ANTE")
                , x = ~slope, y = ~Flux_ave, 
                color=~Wetland, size=3)
 
