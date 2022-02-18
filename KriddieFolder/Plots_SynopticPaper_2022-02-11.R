@@ -26,23 +26,28 @@ GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave",
 
 
 #####or start here for k600######
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-17.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
+
 
 
 ##plot
 
-fig1 <- plot_ly(data = df%>%filter(Wetland=="ANTE")
+fig1 <- plot_ly(data = df%>%filter(Wetland=="COLM")
                , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
                color=~Wetland, size=3)
 
-fig2 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+fig2 <- plot_ly(data = df%>%filter(Wetland=="COLM")
                , x = ~K600.effective, y = ~Flux_ave, 
                color=~Wetland, size=3)
 
 
-fig3 <- plot_ly(data = df%>%filter(Wetland=="ANTE")
-               , x = ~slope, y = ~Flux_ave, 
+fig3 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+               , x = ~ante_slope, y = ~K600.effective, 
                color=~Wetland, size=3)
+
+fig4 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+                , x = ~ante_slope, y = ~adjusted_ppm, 
+                color=~Wetland, size=3)
 
 ##gplot
 My_Theme = theme(

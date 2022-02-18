@@ -451,14 +451,15 @@ df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
 df_prediction <- rbind(df_prediction_a,df_prediction_b)
 rm(df_prediction_a,df_prediction_b)
 ###
-##fix downstream
-up <- which.min(abs(df_prediction$dist-429))
-down <- which.min(abs(df_prediction$dist-434))
+##fix downstream - maybe i should just approximate to .01?
 
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+up <- which.min(abs(df_prediction$dist-432.7489))
+#down <- which.min(abs(df_prediction$dist-434))
+
+slope <- -.01
 b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% filter(dist > df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% filter(dist < df_prediction[up,"dist"])
+df_prediction_a <- df_prediction %>% filter(dist > 432.7489)
+df_prediction_b <- df_prediction %>% filter(dist <= 432.7489)
 df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
 df_prediction <- rbind(df_prediction_a,df_prediction_b)
 rm(df_prediction_a,df_prediction_b)
@@ -466,25 +467,8 @@ rm(df_prediction_a,df_prediction_b)
 
 ## there are problems in the middle too. 
 
-up <- which.min(abs(df_prediction$dist-347))
-down <- which.min(abs(df_prediction$dist-355))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] & dist < df_prediction[down,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist < df_prediction[up,"dist"] | dist > df_prediction[down,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-##
-
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-375))
-down <- which.min(abs(df_prediction$dist-391))
+up <- which.min(abs(df_prediction$dist-240.6755))
+down <- which.min(abs(df_prediction$dist-245.2735))
 
 slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
 b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
@@ -500,8 +484,42 @@ rm(df_prediction_a,df_prediction_b)
 
 ## there are problems in the middle too. 
 
-up <- which.min(abs(df_prediction$dist-240))
-down <- which.min(abs(df_prediction$dist-250.0963))
+up <- which.min(abs(df_prediction$dist-247.8527))
+down <- which.min(abs(df_prediction$dist-251.5112))
+
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
+df_prediction_a <- df_prediction %>% 
+  filter(dist > df_prediction[up,"dist"] & dist < df_prediction[down,"dist"])
+df_prediction_b <- df_prediction %>% 
+  filter(dist < df_prediction[up,"dist"] | dist > df_prediction[down,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+
+##
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(df_prediction$dist-348.5920))
+down <- which.min(abs(df_prediction$dist-355.0635	))
+
+slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
+b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
+df_prediction_a <- df_prediction %>% 
+  filter(dist > df_prediction[up,"dist"] & dist < df_prediction[down,"dist"])
+df_prediction_b <- df_prediction %>% 
+  filter(dist < df_prediction[up,"dist"] | dist > df_prediction[down,"dist"])
+df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
+df_prediction <- rbind(df_prediction_a,df_prediction_b)
+rm(df_prediction_a,df_prediction_b)
+
+##
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(df_prediction$dist-376.3404))
+down <- which.min(abs(df_prediction$dist-390.7298	))
 
 slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
 b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
@@ -528,7 +546,7 @@ df_prediction$slope <- (df_prediction$ele_fit - df_prediction$ele_down)/(df_pred
 df_prediction$dist_down <- NULL
 df_prediction$ele_down <- NULL
 
-#df_predictionblah <- df_prediction%>%filter(slope>0)
+df_predictionblah <- df_prediction%>%filter(slope>0)
 
 ###
 df_prediction <- df_prediction[order(df_prediction$dist),]
@@ -543,7 +561,34 @@ for(i in 1:nrow(loop)) {       # for-loop over rows
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
-  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  loop$slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction <- loop 
+
+```
+
+```{r calc ante slope, echo=FALSE}
+
+###
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$ante_slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 10
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 0
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
   
 }
 loop$dist_minus <- NULL
@@ -587,7 +632,7 @@ predict_dist <- sort(predict_dist, decreasing = TRUE)
 df_prediction$dist <- NULL
 df_prediction$dist <- predict_dist
 
-write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-02-16.csv"))
+write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-02-18.csv"))
 
 df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 

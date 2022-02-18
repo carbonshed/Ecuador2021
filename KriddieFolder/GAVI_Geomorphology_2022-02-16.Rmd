@@ -82,7 +82,7 @@ rm(Synopjune18,Synopjune22,Synopjune29,Synopjune30)
 ```{r look at all synop data}
 df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
 
-TrackMap <- qmplot(lon, lat, data = synop_mainstem, zoom = 13,
+TrackMap <- qmplot(lon, lat, data = synop, zoom = 13,
                    maptype = "toner-background", color=as.factor(Date), shape = EOS_no
                    )
 
@@ -344,6 +344,8 @@ But maybe just because data is not great. please revisit
 
 ok i did revisit, and I think this is better now
 
+but we do need to split up downstream and upstream data
+
 ```{r diff 1 way}
 
 df_prediction_1 <- df_prediction %>% filter(dist > 770)
@@ -370,8 +372,11 @@ fig
 
 predict <- df_prediction_1
 ##fix downstream
-up <- which.min(abs(predict$dist-822))
-down <- which.min(abs(predict$dist-820.8406))
+#up <- which.min(abs(predict$dist-822))
+#down <- which.min(abs(predict$dist-820.8406))
+
+up <- which.min(abs(predict$dist-854.3283))
+down <- which.min(abs(predict$dist-772.5268))
 
 slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
 b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
@@ -453,7 +458,10 @@ fig
 
 ```{r diff 2 way}
 
-df_prediction_2 <- df_prediction %>% filter(dist < 600)
+df_prediction_2 <- df_prediction %>% 
+  filter(dist < 600 & dist > 32)%>%
+  filter(ele > 4096.3 | dist < 476.4)
+  
 
 distlims <- range(df_prediction_2$dist)
 fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_2)
@@ -467,7 +475,7 @@ df_prediction_2 %>%
   geom_point(size = 3, alpha = .5, color = "grey") +
   geom_line(aes(dist, smooth), color="red")
 
-fig <- plot_ly(df_prediction_2, x = ~dist, y = ~ele_fit, size = 1)
+fig <- plot_ly(df_prediction_2, x = ~dist, y = ~ele, size = 1)
 fig
 
 
@@ -480,23 +488,12 @@ fig
 #save <- df_prediction
 
 predict <- df_prediction_2
-##fix downstream
-up <- which.min(abs(predict$dist-33.5))
-down <- which.min(abs(predict$dist-31.5))
 
-slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
-b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
-predict_a <- predict %>% filter(dist < predict[up,"dist"])
-predict_b <- predict %>% filter(dist > predict[up,"dist"])
-predict_a$ele_fit <- slope*predict_a$dist + b
-predict <- rbind(predict_a,predict_b)
-rm(predict_a,predict_b)
-##
 
 ## there are problems in the middle too. 
 
-up <- which.min(abs(predict$dist-96.90593))
-down <- which.min(abs(predict$dist-81.54697))
+up <- which.min(abs(predict$dist-119.15346))
+down <- which.min(abs(predict$dist-79.28031))
 
 slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
 b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
@@ -511,8 +508,40 @@ rm(df_prediction_a,predict_b)
 
 ## there are problems in the middle too. 
 
-up <- which.min(abs(predict$dist-327.2532))
-down <- which.min(abs(predict$dist-261.5699))
+up <- which.min(abs(predict$dist-333.8035))
+down <- which.min(abs(predict$dist-274.2532))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(predict_a,predict_b)
+
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-433.8057))
+down <- which.min(abs(predict$dist-424.8035))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(predict_a,predict_b)
+
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-4103.701))
+down <- which.min(abs(predict$dist-512.9065))
 
 slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
 b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
@@ -602,7 +631,7 @@ for(i in 1:nrow(loop)) {       # for-loop over rows
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
-  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  loop$slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
   
 }
 loop$dist_minus <- NULL
@@ -614,6 +643,31 @@ df_prediction <- loop
 
 ```
 
+```{r ante calc slope, echo=FALSE}
+
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$ante_slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 0
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 10
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction <- loop 
+
+```
 #plot
 
 ```{r write, echo=FALSE}
@@ -623,6 +677,6 @@ fig
 
 ```{r write, echo=FALSE}
 
-write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2022-02-16.csv"))
+write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2022-02-18.csv"))
 ```
 

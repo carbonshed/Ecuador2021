@@ -315,23 +315,22 @@ df_prediction %>%
   geom_point(size = 3, alpha = .5, color = "grey") +
   geom_line(aes(dist, smooth), color="red")
 
-fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
+#fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
 distlims <- range(df_prediction$dist)
-
 
 pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 
 df_prediction$ele_fit <- pred1$fit
 #save <- df_prediction
-df_prediction <- save
+#df_prediction <- save
 ```
 
 ```{r fix some slope problems, echo=FALSE}
 
 ## there are problems in the middle 
 
-up <- which.min(abs(df_prediction$dist-256.6658))
-down <- which.min(abs(df_prediction$dist-223))
+up <- which.min(abs(df_prediction$dist-353.6931))
+down <- which.min(abs(df_prediction$dist-263.3461))
 
 slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
 b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
@@ -346,8 +345,8 @@ rm(df_prediction_a,df_prediction_b)
 
 ## there are problems in the middle 
 
-up <- which.min(abs(df_prediction$dist-315.0067))
-down <- which.min(abs(df_prediction$dist-264.4607))
+up <- which.min(abs(df_prediction$dist-930.3517))
+down <- which.min(abs(df_prediction$dist-871.4165))
 
 slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
 b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
@@ -362,7 +361,7 @@ rm(df_prediction_a,df_prediction_b)
 ```
 
 
-```{r calc slope, echo=FALSE}
+```{r calc  slope, echo=FALSE}
 
 df_prediction$slope <- NA
 for(i in 1:nrow(df_prediction)) {       # for-loop over rows
@@ -389,7 +388,7 @@ for(i in 1:nrow(loop)) {       # for-loop over rows
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
-  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  loop$slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
   
 }
 loop$dist_minus <- NULL
@@ -400,6 +399,34 @@ loop$ele_plus <- NULL
 df_prediction <- loop 
 
 ```
+
+```{r calc slope, echo=FALSE}
+
+###
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$ante_slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 0
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 10
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction <- loop 
+
+```
+
 
 take the loess spline and make a data frame that interpolates these data points
 
@@ -418,7 +445,7 @@ grid.arrange(flux, CO2, ncol=1)
 
 ```{r write, echo=FALSE}
 
-write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-02-17.csv"))
+write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-02-18.csv"))
 ```
 
 

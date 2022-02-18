@@ -1,0 +1,363 @@
+---
+title: "Geomorphology_GAVI"
+author: "KWhitmore"
+date: "12/09/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(lubridate)
+library(plotly)
+library(dplyr)
+library(tidyr)
+library(zoo)
+library(plot3D)
+library(splines)
+library(Ecdat)
+library(dplyr)
+library(sp)
+library(geosphere)
+library(ggmap)
+
+
+```
+
+## BUild the geomorphology data frame for GAVI tributaries
+this was collected near the end of the field season
+
+```{r build df 2021-12-18}
+Geomorph <- read.csv(here::here("/Geomorphology/Gavilan/GAVI_Dec2021.csv"), skip = 70)
+
+Geomorph <- Geomorph[,3:6]
+
+#convert time in UTC to local time
+Geomorph$time <- gsub("T"," ", Geomorph$time)
+Geomorph$time <- gsub("Z","", Geomorph$time)
+
+Geomorph$time <- as.POSIXct(Geomorph$time, format = "%Y-%m-%d %H:%M:%S", tz = "UTC" )
+Geomorph$time <-Geomorph$time - 5*60*60 
+#round to nearest half second
+Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
+
+Geomorph_1 <- subset(Geomorph,
+      time > as.POSIXct('2021-12-18 13:19:30', tz="UTC"))
+
+```
+
+
+Let's do the synoptic one trib at a time
+
+
+```{r add synop to df}
+#synop <- read.csv(here::here("Synoptic/GAVI.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
+
+synop$X <- NULL
+
+colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")
+synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")]
+
+#long trib that tessa measured
+Synop_1 <- synop %>% filter(EOS_no=="EOS_1") %>%
+  filter(Date == "2021-06-23" | Date == "2021-06-29") %>%
+  filter(Tract == 1 | Tract == 3)%>%
+  filter(lat	> -0.3305667)
+#stream that goes up to the refuge
+Synop_2 <- synop %>% filter(Date == "2021-06-23" & Tract == 1)
+
+```
+
+```{r look at all synop data}
+
+df <- full_join(Synop_1,Geomorph_1, by=c("lat","lon")) 
+
+TrackMap <- qmplot(lon, lat, data = df, zoom = 13,
+                   maptype = "toner-background", color=Point,shape = EOS_no)
+TrackMap
+
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph_1, zoom = 13, maptype = "toner-background")
+TrackMap_geo
+
+```
+
+
+
+```{r first spline, echo=FALSE}
+
+#Cut up lat long into peices, and then fit spline
+
+Geomorph_sub <- Geomorph_1 
+model <- lm(lon~bs(lat,
+                   degree = 9),
+            data=Geomorph_sub)
+
+latlims <- range(Geomorph_sub$lat)
+lat.grid <- seq(from=latlims[1],to=latlims[2], by=.0000001)
+pred <-predict(model,newdata=list(lat=lat.grid),se=T)
+
+plot(Geomorph_sub$lat,Geomorph_sub$lon,main="regressionSplinePLot")
+lines(lat.grid,pred$fit,col='red',lwd=3)
+
+fig<-plot_ly(data = Geomorph_sub, x = ~lat, y = ~lon)
+
+#this looks pretty good! So we will save the data in a data frame
+
+lat <- lat.grid
+lon <- pred$fit
+df1<-as.data.frame(lat)
+df1$lon <- lon
+df1$num <- '1'
+```
+now we have a smooth data frame of lat/lon data, we calculate the distance between each point
+
+```{r calc dist}
+
+###create a loop and calculate distance along the river from the predict_df. THen we can bind in the GEOMORPH!
+df_prediction <- df1
+
+df_prediction$num <- NULL
+#df_prediction <- df_prediction[,c("lon","lat")]
+colnames(df_prediction) <- c("lat_fit","lon_fit")
+df_prediction$lon_dist <- NA
+df_prediction$lat_dist <- NA
+i <- 2
+for(i in 1:nrow(df_prediction)) {
+  if (i == 1) {
+
+      df_prediction$dist <- 0
+      
+    } else {
+      df_prediction[i,"lon_dist"] <- df_prediction[i-1,"lon_fit"]
+      df_prediction[i,"lat_dist"] <- df_prediction[i-1,"lat_fit"]
+      df_prediction[i,"dist"] <- df_prediction[i-1,"dist"] + distHaversine(
+        c(df_prediction[i,"lon_fit"], df_prediction[i,"lat_fit"]), 
+        c(df_prediction[i,"lon_dist"], df_prediction[i,"lat_dist"]))
+      }
+}
+```
+
+```{r snap points to lat lon}
+
+x <- SpatialPoints(Geomorph_1[,c(1:2)])
+y <- SpatialPoints(df_prediction[,c(1:2)]) 
+plot(y, col = "red")
+points(y, col = "green")
+snap = apply(spDists(x, y), 1, which.min)
+points(y[snap,], pch = 3)
+
+
+snap_df <- y[snap,]
+coords_df <- snap_df@coords
+pred <- as.data.frame(coords_df)
+Geomorph_1$lon_fit <- pred$lon
+Geomorph_1$lat_fit <- pred$lat
+
+
+df_prediction_1 <- full_join(df_prediction,Geomorph_1,by=c("lon_fit","lat_fit"))
+```
+
+We also need to snap the synoptic df (for later)
+```{r snap synop pts}
+
+x <- SpatialPoints(Synop_1[,c(1:2)])
+y <- SpatialPoints(df_prediction_1[,c(1:2)]) 
+plot(x, col = "red")
+points(y, col = "green")
+snap = apply(spDists(x, y), 1, which.min)
+points(y[snap,], pch = 3)
+
+
+snap_df <- y[snap,]
+coords_df <- snap_df@coords
+pred <- as.data.frame(coords_df)
+Synop_1$lon_fit <- pred$lon
+Synop_1$lat_fit <- pred$lat
+#synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
+Synop_1 <- Synop_1[,c("lon_fit","lat_fit","Date","EOS_no","Flux_ave","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")]
+
+
+df_prediction_1 <- full_join(df_prediction_1,Synop_1,by=c("lon_fit","lat_fit"))
+
+```
+
+
+snap the points in our origional dama frame to bring in the elevation data
+
+
+first I need to make sure that what I have done really worked
+
+```{r testing snap to line, echo=FALSE}
+
+
+fig <- plot_ly(df_prediction_1, x = ~lat, y = ~lon, z = ~ele, size = 1)
+fig <- fig %>% add_markers()
+fig <- fig %>% add_trace(x = ~lat_fit, y = ~lon_fit, z = ~ele, colors = c('Yellow'),
+                         mode = 'markers')
+fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
+                                   yaxis = list(title = 'lon'),
+                                   zaxis = list(title = 'elevation')))
+
+fig
+
+
+```
+
+ok sweet that looks really good
+
+We also need to snap the synoptic df (for later)
+
+
+##calculate distance between each coordinate.
+Here's the deal. We need to calcualte the distance between each coordinate 
+
+First, lets find the most western lat point
+
+
+
+now we have created a distance column that we can plot the elevation data against. lets see how that looks
+
+```{r plot dist v ele, echo = FALSE}
+
+
+fig <- plot_ly(df_prediction_1, x = ~dist, y = ~ele, size = 1)
+fig
+```
+
+
+##loess spline
+
+```{r diff 1 way}
+
+df_prediction_1 <- df_prediction_1 %>% filter(dist > 3)
+distlims <- range(df_prediction_1$dist)
+fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_1)
+pred1 <- predict(fit, data.frame(dist = df_prediction_1$dist), se = TRUE)
+df_prediction_1$ele_fit <- pred1$fit
+
+df_prediction_1 %>% 
+  drop_na(ele) %>%
+  mutate(smooth = fit$fitted) %>%
+  ggplot(aes(dist, ele)) +
+  geom_point(size = 3, alpha = .5, color = "grey") +
+  geom_line(aes(dist, smooth), color="red")
+
+fig <- plot_ly(df_prediction_1, x = ~dist, y = ~ele_fit, size = 1)
+fig
+
+
+```
+
+```{r check slope, echo=FALSE}
+#save <- df_prediction
+
+predict <- df_prediction_1
+
+###slope check
+
+predict <- predict[order(predict$dist),]
+
+predict$slope <- NA
+for(i in 1:nrow(predict)) {       # for-loop over rows
+  predict$dist_down[i] <- predict$dist[i+1]
+  predict$ele_down[i] <- predict$ele_fit[i+1]
+}
+
+predict$slope <- (predict$ele_fit - predict$ele_down)/(predict$dist - predict$dist_down)
+predict$dist_down <- NULL
+predict$ele_down <- NULL
+
+df_predictionblah <- predict%>%filter(slope<0)
+
+#df_prediction_1 <- predict
+
+fig <- plot_ly(predict, x = ~dist, y = ~ele_fit, size = 1)
+fig
+
+```
+
+
+
+
+
+
+#fix some things here
+
+
+
+```{r calc slope, echo=FALSE}
+
+
+###
+df_prediction <- df_prediction_1[order(df_prediction_1$dist),]
+df_prediction$slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 5
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 5
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction_1 <- loop 
+
+```
+
+```{r ante calc slope, echo=FALSE}
+
+df_prediction <- df_prediction_1[order(df_prediction_1$dist),]
+df_prediction$ante_slope <- NA
+loop <- df_prediction%>%drop_na(ele_fit)
+for(i in 1:nrow(loop)) {       # for-loop over rows
+  x = loop$dist[i] - 0
+  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
+  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
+  
+  y = loop$dist[i] + 10
+  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
+  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
+  
+  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  
+}
+loop$dist_minus <- NULL
+loop$dist_plus <- NULL
+loop$ele_minus <- NULL
+loop$ele_plus <- NULL
+
+df_prediction_1 <- loop 
+
+```
+#plot
+
+```{r bind df , echo=FALSE}
+#save <- df_prediction
+
+ggplot(data=df_prediction_1%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Date)) +
+  geom_point()
+
+ggplot(data=df_prediction_1, aes(dist, ele_fit, col="CO2_ppm_ave")) +
+  geom_point(size = 3, alpha = .5, color = "blue")
+
+
+fig <- plot_ly(df_prediction_1, x = ~dist, y = ~ele_fit, size = 1)
+fig
+
+```
+
+```{r write, echo=FALSE}
+
+write.csv(df_prediction_1, here::here("ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))
+```
+

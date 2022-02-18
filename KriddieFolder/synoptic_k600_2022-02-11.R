@@ -13,13 +13,13 @@ library(lubridate)
 
 #read in df
 
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-16.csv"))
-COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-17.csv"))
+ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-18.csv"))
+GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-18.csv"))
+COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-18.csv"))
 
-ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
-COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa")]
-GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
+COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa")]
+GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
 
 colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
 colnames(COLM)[which(names(COLM) == "COLM_waterTempAve")] <- "WaterTemp_c"
@@ -151,5 +151,5 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 
 synoptic.df <- synoptic.df%>%drop_na(EOS_no)
 
-write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-02-17.csv"))
+write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
 
