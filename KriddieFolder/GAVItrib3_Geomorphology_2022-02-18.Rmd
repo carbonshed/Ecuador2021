@@ -72,7 +72,14 @@ colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","Va
 synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")]
 
 #stream that goes up to the refuge
-Synop_2 <- synop %>% filter(Date == "2021-06-23" & Tract == 1)
+Synop_3 <- synop %>%
+  filter(Date == "2021-06-22" | Date == "2021-06-23")%>%
+  filter(EOS_no == "EOS_2")
+
+TrackMap <- qmplot(lon, lat, data = synop, zoom = 13,
+                   maptype = "toner-background", color=EOS_no,shape = as.factor(Date))
+TrackMap
+
 
 ```
 
