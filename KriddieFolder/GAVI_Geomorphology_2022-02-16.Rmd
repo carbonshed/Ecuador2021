@@ -254,8 +254,6 @@ snap the points in our origional dama frame to bring in the elevation data
 
 ```{r snap points to lat lon}
 
-
-#df_prediction <- df_prediction[,c("lon_fit","lat_fit","ele")] 
 x <- SpatialPoints(Geomorph[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
 plot(y, col = "red")
@@ -350,7 +348,7 @@ ok i did revisit, and I think this is better now
 
 df_prediction_1 <- df_prediction %>% filter(dist > 770)
 distlims <- range(df_prediction_1$dist)
-fit <- loess(ele ~ dist, degree=2, span = 0.2, data=df_prediction_1)
+fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_1)
 pred1 <- predict(fit, data.frame(dist = df_prediction_1$dist), se = TRUE)
 df_prediction_1$ele_fit <- pred1$fit
 
@@ -367,12 +365,98 @@ fig
 
 ```
 
+```{r fix slope 1, echo=FALSE}
+#save <- df_prediction
+
+predict <- df_prediction_1
+##fix downstream
+up <- which.min(abs(predict$dist-822))
+down <- which.min(abs(predict$dist-820.8406))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% filter(dist < predict[up,"dist"]& dist > 770)
+predict_b <- predict %>% filter(dist > predict[up,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(predict_a,predict_b)
+##
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-905.1004))
+down <- which.min(abs(predict$dist-886.5401))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(df_prediction_a,predict_b)
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-948.6438))
+down <- which.min(abs(predict$dist-947.1718))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(df_prediction_a,predict_b)
+
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-1052.228))
+down <- which.min(abs(predict$dist-1015.883))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(df_prediction_a,predict_b)
+
+###slope check
+
+predict <- predict[order(predict$dist),]
+
+predict$slope <- NA
+for(i in 1:nrow(predict)) {       # for-loop over rows
+  predict$dist_down[i] <- predict$dist[i+1]
+  predict$ele_down[i] <- predict$ele_fit[i+1]
+}
+
+predict$slope <- (predict$ele_fit - predict$ele_down)/(predict$dist - predict$dist_down)
+predict$dist_down <- NULL
+predict$ele_down <- NULL
+
+df_predictionblah <- predict%>%filter(slope<0)
+
+df_prediction_1 <- predict
+
+fig <- plot_ly(predict, x = ~dist, y = ~ele_fit, size = 1)
+fig
+
+```
+
 ```{r diff 2 way}
 
 df_prediction_2 <- df_prediction %>% filter(dist < 600)
 
 distlims <- range(df_prediction_2$dist)
-fit <- loess(ele ~ dist, degree=2, span = 0.2, data=df_prediction_2)
+fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_2)
 pred1 <- predict(fit, data.frame(dist = df_prediction_2$dist), se = TRUE)
 df_prediction_2$ele_fit <- pred1$fit
 
@@ -391,24 +475,93 @@ fig
 
 ```
 
+
+```{r fix slope 2, echo=FALSE}
+#save <- df_prediction
+
+predict <- df_prediction_2
+##fix downstream
+up <- which.min(abs(predict$dist-33.5))
+down <- which.min(abs(predict$dist-31.5))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% filter(dist < predict[up,"dist"])
+predict_b <- predict %>% filter(dist > predict[up,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(predict_a,predict_b)
+##
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-96.90593))
+down <- which.min(abs(predict$dist-81.54697))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(df_prediction_a,predict_b)
+
+
+## there are problems in the middle too. 
+
+up <- which.min(abs(predict$dist-327.2532))
+down <- which.min(abs(predict$dist-261.5699))
+
+slope <- (predict[down,"ele_fit"] - predict[up,"ele_fit"])/(predict[down,"dist"] - predict[up,"dist"])
+b = predict[up,"ele_fit"] - slope*predict[up,"dist"]
+predict_a <- predict %>% 
+  filter(dist > predict[down,"dist"] & dist < predict[up,"dist"])
+predict_b <- predict %>% 
+  filter(dist > predict[up,"dist"] | dist < predict[down,"dist"])
+predict_a$ele_fit <- slope*predict_a$dist + b
+predict <- rbind(predict_a,predict_b)
+rm(predict_a,predict_b)
+
+###slope check
+
+predict <- predict[order(predict$dist),]
+
+predict$slope <- NA
+for(i in 1:nrow(predict)) {       # for-loop over rows
+  predict$dist_down[i] <- predict$dist[i+1]
+  predict$ele_down[i] <- predict$ele_fit[i+1]
+}
+
+predict$slope <- (predict$ele_fit - predict$ele_down)/(predict$dist - predict$dist_down)
+predict$dist_down <- NULL
+predict$ele_down <- NULL
+
+df_predictionblah <- predict%>%filter(slope<0)
+
+
+df_prediction_2 <- predict
+
+fig <- plot_ly(predict, x = ~dist, y = ~ele_fit, size = 1)
+fig
+
+```
 take the loess spline and make a data frame that interpolates these data points
 
-```{r interpolate loess, echo=FALSE}
+```{r bind df , echo=FALSE}
 #save <- df_prediction
+
 df_prediction <- rbind(df_prediction_1, df_prediction_2)
-#fit <- loess(ele ~ dist, degree=2, span = 0.30, data=df_prediction)
-#distlims <- range(df_prediction$dist)
-#fit <- loess(ele ~ dist, degree=2, span = 0.2, data=df_prediction)
 
-#pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
-
-#df_prediction$ele_fit <- pred1$fit
 
 ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Date)) +
   geom_point()
 
 ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
   geom_point(size = 3, alpha = .5, color = "blue")
+
+df_prediction_2 <- predict
 
 fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
 fig
@@ -417,132 +570,8 @@ fig
 
 #fix some things here
 
-```{r interpolate loess, echo=FALSE}
-#save <- df_prediction
-df_prediction <- save
-
-##fix downstream
-up <- which.min(abs(df_prediction$dist-33.5))
-down <- which.min(abs(df_prediction$dist-31.5))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% filter(dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% filter(dist > df_prediction[up,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-##
-
-```
 
 
-
-```{r save  later, echo=FALSE}
-fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
-fig
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-91.6))
-down <- which.min(abs(df_prediction$dist-74))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > df_prediction[down,"dist"] & dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] | dist < df_prediction[down,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-##
-
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-304))
-down <- which.min(abs(df_prediction$dist-242))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > df_prediction[down,"dist"] & dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] | dist < df_prediction[down,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-900))
-down <- which.min(abs(df_prediction$dist-863))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > df_prediction[down,"dist"] & dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] | dist < df_prediction[down,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-##
-
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-842))
-down <- which.min(abs(df_prediction$dist-797))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > 772 & dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] | dist < 772)
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-##
-
-
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-1038))
-down <- which.min(abs(df_prediction$dist-986))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > df_prediction[down,"dist"] & dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] | dist < df_prediction[down,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-
-## there are problems in the middle too. 
-
-up <- which.min(abs(df_prediction$dist-948.7))
-down <- which.min(abs(df_prediction$dist-946.3))
-
-slope <- (df_prediction[down,"ele_fit"] - df_prediction[up,"ele_fit"])/(df_prediction[down,"dist"] - df_prediction[up,"dist"])
-b = df_prediction[up,"ele_fit"] - slope*df_prediction[up,"dist"]
-df_prediction_a <- df_prediction %>% 
-  filter(dist > df_prediction[down,"dist"] & dist < df_prediction[up,"dist"])
-df_prediction_b <- df_prediction %>% 
-  filter(dist > df_prediction[up,"dist"] | dist < df_prediction[down,"dist"])
-df_prediction_a$ele_fit <- slope*df_prediction_a$dist + b
-df_prediction <- rbind(df_prediction_a,df_prediction_b)
-rm(df_prediction_a,df_prediction_b)
-
-##
-```
-
-keep wrking on this GAVI
 ```{r calc slope, echo=FALSE}
 
 df_prediction <- df_prediction[order(df_prediction$dist),]
@@ -583,6 +612,13 @@ loop$ele_plus <- NULL
 
 df_prediction <- loop 
 
+```
+
+#plot
+
+```{r write, echo=FALSE}
+fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
+fig
 ```
 
 ```{r write, echo=FALSE}

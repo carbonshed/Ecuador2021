@@ -24,34 +24,9 @@ ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave",
 COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
 GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
 
-#Remove unique
-ANTE <- unique(ANTE)
-GAVI <- unique(GAVI)
-COLM <- unique(COLM)
-
-#add weltand info
-GAVI$Wetland <- "GAVI"
-ANTE$Wetland <- "ANTE"
-COLM$Wetland <- "COLM"
-
-#need seperate columns for each stream profile
-ANTE$dist_ANTE <- ANTE$dist
-ANTE$dist_GAVI <- NA
-ANTE$dist_COLM <- NA
-
-
-GAVI$dist_GAVI <- GAVI$dist
-GAVI$dist_ANTE <- NA
-GAVI$dist_COLM <- NA
-
-COLM$dist_COLM <- COLM$dist
-COLM$dist_ANTE <- NA
-COLM$dist_GAVI <- NA
-
-df <- rbind(GAVI,ANTE,COLM)
 
 #####or start here for k600######
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-16.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-17.csv"))
 
 
 ##plot
@@ -91,7 +66,7 @@ fig3 <- ggplot(data=df,aes(log10(K600.effective),Flux_ave, color=Wetland)) +
   scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value = .1; r2 = 0.1", "COLM; p-value < .001; r2 < .4", "GAVI; p-value < .001; r2= .3")) +
   My_Theme + theme(legend.position = c(0.2, 0.9))
 
-fig4 <- ggplot(data=df,aes(slope,Flux_ave, color=Wetland)) +
+fig4 <- ggplot(data=df,aes(slope,K600.effective, color=Wetland)) +
   geom_point(size=3) +
   geom_smooth(method=lm, se=FALSE) + 
   My_Theme + theme(legend.position = c(0.2, 0.9))
