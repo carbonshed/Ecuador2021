@@ -32,17 +32,17 @@ df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
 
 ##plot
 
-fig1 <- plot_ly(data = df%>%filter(Wetland=="GAVI")
+fig1 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
                , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
-               color=~Wetland, size=3)
+               color=~Wetland, size=1)
 
-fig2 <- plot_ly(data = df%>%filter(Wetland=="COLM")
+fig2 <- plot_ly(data = df#%>%filter(Wetland=="COLM")
                , x = ~K600.effective, y = ~Flux_ave, 
                color=~Wetland, size=3)
 
 
 fig3 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
-               , x = ~ante_slope, y = ~K600.effective, 
+               , x = ~slope, y = ~K600.effective, 
                color=~Wetland, size=3)
 
 fig4 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
