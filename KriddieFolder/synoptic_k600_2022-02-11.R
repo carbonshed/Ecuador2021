@@ -16,10 +16,17 @@ library(lubridate)
 ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-18.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-18.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-18.csv"))
+GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))
+GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
+
 
 ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
 COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa")]
 GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+
+
 
 colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
 colnames(COLM)[which(names(COLM) == "COLM_waterTempAve")] <- "WaterTemp_c"
@@ -30,26 +37,48 @@ ANTE <- unique(ANTE)
 GAVI <- unique(GAVI)
 COLM <- unique(COLM)
 
+GAVItrib1 <- unique(GAVItrib1)
+GAVItrib2 <- unique(GAVItrib2)
+
 #add weltand info
 GAVI$Wetland <- "GAVI"
 ANTE$Wetland <- "ANTE"
 COLM$Wetland <- "COLM"
+GAVItrib1$Wetland <- "GAVItrib1"
+GAVItrib2$Wetland <- "GAVItrib2"
 
 #need seperate columns for each stream profile
 ANTE$dist_ANTE <- ANTE$dist
 ANTE$dist_GAVI <- NA
 ANTE$dist_COLM <- NA
+ANTE$dist_GAVItrib1 <- NA
+ANTE$dist_GAVItrib2 <- NA
 
-
-GAVI$dist_GAVI <- GAVI$dist
 GAVI$dist_ANTE <- NA
+GAVI$dist_GAVI <- GAVI$dist
 GAVI$dist_COLM <- NA
+GAVI$dist_GAVItrib1 <- NA
+GAVI$dist_GAVItrib2 <- NA
 
 COLM$dist_COLM <- COLM$dist
 COLM$dist_ANTE <- NA
 COLM$dist_GAVI <- NA
+COLM$dist_GAVItrib1 <- NA
+COLM$dist_GAVItrib2 <- NA
 
-synoptic.df <- rbind(ANTE,GAVI,COLM)
+GAVItrib1$dist_GAVItrib1 <- GAVItrib1$dist
+GAVItrib1$dist_ANTE <- NA
+GAVItrib1$dist_GAVI <- NA
+GAVItrib1$dist_COLM <- NA
+GAVItrib1$dist_GAVItrib2 <- NA
+
+GAVItrib2$dist_GAVItrib2 <- GAVItrib2$dist
+GAVItrib2$dist_ANTE <- NA
+GAVItrib2$dist_GAVI <- NA
+GAVItrib2$dist_COLM <- NA
+GAVItrib2$dist_GAVItrib1 <- NA
+
+synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItrib1,GAVItrib2)
 
 ###calculate K600 using data collected from EOS and Viasala 
 #calculate using direct units

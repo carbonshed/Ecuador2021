@@ -32,7 +32,7 @@ df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
 
 ##plot
 
-fig1 <- plot_ly(data = df%>%filter(Wetland=="COLM")
+fig1 <- plot_ly(data = df%>%filter(Wetland=="GAVI")
                , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
                color=~Wetland, size=3)
 
@@ -62,7 +62,7 @@ My_Theme = theme(
 fig2 <- ggplot(data=df,aes(log10(adjusted_ppm),Flux_ave, color=Wetland)) +
   geom_point(size=3) +
   geom_smooth(method=lm, se=FALSE) + 
-  scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value < .001; r2 = .50", "COLM; p-value = .3; r2 < .001", "GAVI; p-value = .7; r2= -.03"))+
+#  scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value < .001; r2 = .50", "COLM; p-value = .3; r2 < .001", "GAVI; p-value = .7; r2= -.03"))+
   My_Theme + theme(legend.position = c(0.2, 0.9))
 
 fig3 <- ggplot(data=df,aes(log10(K600.effective),Flux_ave, color=Wetland)) +

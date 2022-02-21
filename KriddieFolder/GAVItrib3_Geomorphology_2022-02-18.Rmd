@@ -47,12 +47,12 @@ Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
 #      time > as.POSIXct('2021-07-27 10:50:00', tz="UTC")&
 #        time < as.POSIXct('2021-07-27 11:12:00', tz="UTC"))
 
-Geomorph_2 <- subset(Geomorph,
-      time > as.POSIXct('2021-07-27 11:16:00', tz="UTC")&
-        time < as.POSIXct('2021-07-27 11:36:00', tz="UTC"))
+Geomorph <- subset(Geomorph,
+      time > as.POSIXct('2021-07-27 10:16:00', tz="UTC")&
+        time < as.POSIXct('2021-07-27 13:36:00', tz="UTC"))
 
 
-TrackMap_geo <- qmplot(lon, lat, data = Geomorph_2, zoom = 13, maptype = "toner-background")
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph, zoom = 13, maptype = "toner-background")
 TrackMap_geo
 
 
