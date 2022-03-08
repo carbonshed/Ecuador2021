@@ -26,19 +26,22 @@ GAVI <- GAVI[,c("lon_fit","lat_fit","lon","lat","ele_fit","dist","slope","ante_s
 GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","lon","lat","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
 GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","lon","lat","ele_fit","dist","slope","ante_slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
 
-
+###
 ANTE <- read.csv(here::here("/Synoptic/ANTE_2022-02-13.csv"))
-GAVI <- read.csv(here::here("/Synoptic/GAVI_2022-01-27.csv"))
-COLM <- read.csv(here::here("/Synoptic/COLMILLO_2022-02-14.csv"))
 ANTE <- ANTE[,c("lon","lat","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
+colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
+colnames(ANTE) <- c("lat","lon","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")
+
+GAVI <- read.csv(here::here("/Synoptic/GAVI_2022-01-27.csv"))
+GAVI <- GAVI[,c("Lon","Lat","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
+colnames(GAVI)[which(names(GAVI) == "GAVI_waterTempAve")] <- "WaterTemp_c"
+colnames(GAVI) <- c("lat","lon","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")
+
+COLM <- read.csv(here::here("/Synoptic/COLMILLO_2022-02-14.csv"))
 COLM <- COLM[,c("lon","lat","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa")]
 COLM$Tract <- NA
-GAVI <- GAVI[,c("Lon","Lat","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
-
-colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
-colnames(GAVI)[which(names(GAVI) == "GAVI_waterTempAve")] <- "WaterTemp_c"
 colnames(COLM)[which(names(COLM) == "COLM_waterTempAve")] <- "WaterTemp_c"
-colnames(GAVI) <- c("lon","lat","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")
+
 
 #Remove unique
 ANTE <- unique(ANTE)

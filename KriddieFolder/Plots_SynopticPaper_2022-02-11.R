@@ -32,7 +32,7 @@ df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
 
 ##plot
 
-fig1 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
+fig1 <- plot_ly(data = df#%>%filter(Wetland=="GAVImainstem")
                , x = ~log10(adjusted_ppm), y = ~Flux_ave, 
                color=~Wetland, size=1)
 
@@ -40,14 +40,15 @@ fig2 <- plot_ly(data = df#%>%filter(Wetland=="COLM")
                , x = ~K600.effective, y = ~Flux_ave, 
                color=~Wetland, size=3)
 
+df$Wetland
 
-fig3 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
-               , x = ~slope, y = ~K600.effective, 
-               color=~Wetland, size=3)
+fig3 <- plot_ly(data = df%>%filter(Wetland=="GAVI-mainstem")
+               , x = ~Slope*FlowAccu, y = ~K600_effective, 
+               color=~Elevation, size=3)
 
-fig4 <- plot_ly(data = df#%>%filter(Wetland=="GAVI")
-                , x = ~ante_slope, y = ~adjusted_ppm, 
-                color=~Wetland, size=3)
+
+
+
 
 ##gplot
 My_Theme = theme(
