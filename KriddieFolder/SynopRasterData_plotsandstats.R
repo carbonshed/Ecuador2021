@@ -17,7 +17,7 @@ df <- read.csv(here::here("/Synoptic/Synop_all_raster3.csv"))
 
 ##plot
 df$Slope
-
+###models####
 #Factors: Slope, adjusted_ppm, FlowAccu, Flowlen, Elevation
 
 #signifianct for everything adjusted_ppm, FlowAccu, Flowlen, Elevation
@@ -27,9 +27,16 @@ model <- lm(Flux_ave ~ Elevation,
 summary(model)
 
 #significant for less than 1000 = adjusted_ppm, FlowAccu, Flowlen, Elevation
-model1 <- lm(Flux_ave ~ adjusted_ppm + FlowAccu +Flowlen +Elevation, 
+model1 <- lm(Flux_ave ~ adjusted_ppm +Elevation, #r2 = .72
             data = df%>%filter(FlowAccu<1000)
             )
+summary(model1)
+#flux = 7.220e+00 + 1.608e-04*adjusted_ppm + -1.661e-03*Elevation 
+
+#significant for less than 4000 = adjusted_ppm, Elevation == r2=.5
+model1 <- lm(Flux_ave ~ adjusted_ppm + Elevation, 
+             data = df%>%filter(FlowAccu<4000)
+)
 summary(model1)
 
 #Factors: Slope, adjusted_ppm, FlowAccu, Flowlen, Elevation
@@ -74,9 +81,22 @@ model3 <- lm(Flux_ave ~ Elevation,
              data = df%>%filter(FlowAccu>4000)
 )
 summary(model3)
+###box and wisker####
+ggplot(df, aes(x=factor(Wetland), y=Flux_ave,fill=factor(Wetland))) +
+  geom_boxplot()+
+  stat_summary(fun.y=mean, geom="point", shape=18, size=3, color="white")+
+  geom_dotplot(binaxis='y', stackdir='center', dotsize=1,binwidth = .1)
 
+ggplot(df, aes(x=Flux_ave,color=Wetland)) +
+  geom_histogram(binwidth=.1,fill="white")+
+  facet_wrap("Wetland")
+
+###figures####
 #Factors: Slope, adjusted_ppm, FlowAccu, Flowlen, Elevation, CO2_ppm_ave
-
+df$adjusted_ppm
+fig1 <- plot_ly(data = df%>%filter(FlowAccu<1000)#%>%filter(Wetland=="GAVI")
+                , x = ~7.220e+00 + 1.608e-04*adjusted_ppm + -1.661e-03*Elevation, y = ~Flux_ave, 
+                color=~FlowAccu, size=1)
 
 fig1 <- plot_ly(data = df%>%filter(FlowAccu>4000)#%>%filter(Wetland=="GAVI")
                 , x = ~FlowAccu, y = ~Flux_ave, 
