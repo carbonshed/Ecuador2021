@@ -8,7 +8,7 @@ library(tidyverse)
 library(rstatix)
 library(ggpubr)
 library(plotly)
-
+library(rstatix)
 ##stories
 
 
@@ -90,6 +90,26 @@ ggplot(df, aes(x=factor(Wetland), y=Flux_ave,fill=factor(Wetland))) +
 ggplot(df, aes(x=Flux_ave,color=Wetland)) +
   geom_histogram(binwidth=.1,fill="white")+
   facet_wrap("Wetland")
+###histograms###
+flux_hist <- ggplot(df%>%drop_na(Flux_ave),
+                    aes(x=Flux_ave, color=Wetland, fill=Wetland
+                    )) +
+  geom_histogram(bins = 10)+ 
+  facet_grid(~factor(Wetland))
+
+stat <- df%>%drop_na(Flux_ave)%>%filter(Wetland=="COLM"|Wetland=="GAVI-mainstem"|Wetland=="ANTE")
+#stat$logFlux <- log10(stat$Flux_ave)
+#stat <- stat%>%drop_na(Flux_ave)
+stat <- df %>%
+#  drop_na(Flux_ave)
+  group_by(Wetland) %>%
+  summarise(flux_mean = mean(Flux_ave,na.rm=TRUE),
+            flux_median = median(Flux_ave,na.rm=TRUE),
+            flux_n = n_distinct(Flux_ave,na.rm=TRUE))
+
+a1 <- aov(stat$Wetland ~ stat$Flux_ave) 
+summary(a1)
+TukeyHSD(a1)
 
 ###figures####
 #Factors: Slope, adjusted_ppm, FlowAccu, Flowlen, Elevation, CO2_ppm_ave
@@ -111,11 +131,12 @@ fig3 <- plot_ly(data = df%>%filter(FlowAccu>1000)#%>%filter(Wetland=="GAVI")
                 , x = ~Elevation, y = ~Flux_ave, 
                 color=~Slope, size=1)
 
-fig3 <- plot_ly(data = df#%>%filter(FlowAccu>10000)#%>%filter(Wetland=="GAVI")
-                , x = ~Flowlen, y = ~Flux_ave, 
+fig3 <- plot_ly(data = df%>%filter(FlowAccu<500)#
+                %>%filter(Wetland=="ANTE")
+                , x = ~FlowAccu, y = ~adjusted_ppm, 
                 color=~EOS_no, size=1)
 
-
+df$adjusted_ppm
 df$EOS_no
 
 
