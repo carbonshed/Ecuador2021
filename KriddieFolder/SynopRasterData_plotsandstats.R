@@ -10,7 +10,175 @@ library(ggpubr)
 library(plotly)
 library(rstatix)
 ##stories
+#1. This much carbon is being emitted from this stream reach at this particular time
+    ##can I take the average width? or is it more complex than that?
+        #does width relate to distance? - it does for COLM, not for the others
+          #but let's start with the average to begin
 
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
+fluxCO2_summary<- df%>%group_by(Wetland)%>%
+  summarise(flux_mean = mean(Flux_ave,na.rm = TRUE),
+            flux_median = median(Flux_ave,na.rm = TRUE),
+            flux_sd = sd(Flux_ave,na.rm = TRUE),
+            CO2_mean = mean(adjusted_ppm,na.rm = TRUE),
+            CO2_median = median(adjusted_ppm,na.rm = TRUE),
+            CO2_sd = sd(adjusted_ppm,na.rm = TRUE))
+
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
+summary <- df%>%group_by(Wetland)%>%
+  summarise(max_dist = mean(dist))
+#wetland: GAVI ANTE COLM
+#mean width: 57.91489  44.20482 123.11972
+
+#wetland      ANTE      COLM      GAVI      GAVItrib1     GAVItrib2
+#mean flux: 0.3144167 1.1860937 0.6067742 1.1034615     1.5062500
+#max dist : 242.62497 638.80104 563.32217 146.29565   79.23857
+
+summary <- left_join(dist_summary,flux_summary,by="Wetland")
+summary <- left_join(summary,width_summary,by="Wetland")
+summary$co2_umolpers <- summary$mean_flux * summary$width_mean * 1
+molTOmg <- 44*100
+summary$CO2_mg_s <- summary$co2_umolpers * 1/100 * molTOmg
+
+summary <- summary[,c("Wetland","CO2_mg_s")]
+
+##
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-10.csv"))
+df <- df%>%filter(Wetland != "GAVItrib1")%>%filter(Wetland != "GAVItrib2")
+
+####point 2####
+
+flux_hist <- ggplot(df%>%drop_na(Flux_ave),
+                    aes(x=Flux_ave, color=Wetland, fill=Wetland
+                    )) +
+  geom_histogram(bins = 30)+ 
+  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
+  geom_density(color="black",fill="black")+
+  theme_classic()+
+  geom_text(data    = dat_text,
+            mapping = aes(x = x, y = y, label = label))+
+  labs( x = "Flux")# +
+#  theme(
+#    strip.background = element_blank(),
+#    strip.text.x = element_blank(),
+#    legend.position = "none"  
+#  ) 
+
+
+CO2_hist <- 
+  ggplot(df %>%drop_na(adjusted_ppm),
+         aes(x=log10(adjusted_ppm),
+             color=Wetland, fill=Wetland)) +
+  geom_histogram(bins = 15)+ 
+  geom_density(color="black",fill="black")+
+  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
+  theme_classic()+
+  labs(x ="log10(CO2)") +
+  geom_text(data    = dat_text,
+            mapping = aes(x = x, y = y, label = label))#+
+#  theme(
+#    strip.background = element_blank(),
+#    strip.text.x = element_blank(),
+#    legend.position = "none"  
+#  ) 
+
+plot_grid(CO2_hist, flux_hist, nrow = 2
+          #,
+          #labels = c("CO2","Flux")#, rel_heights = c(.5, 1)
+          )
+
+
+######point 3 CO2 does not decrease with distance ####
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-10.csv"))
+
+#significance of co2 and distance
+#ANTE: pvalue = .06099, r2 = 0.1361
+#GAVI: pvalue < .001, r2 = 0.4349
+#COLM: pvalue 0.7155, r2 = -0.03185 
+#GaviTrib1 pvalue = 0.216, r2 = 0.05684 
+#GaviTrib2 pvalue = 0.589, r2 = 0.148
+
+model <- lm(adjusted_ppm ~ dist, 
+            data = df%>%filter(Wetland=="ANTE")
+)
+summary(model)
+
+
+fig3 <- plot_ly(data = df%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib1")
+                , x = ~dist, y = ~adjusted_ppm, 
+                color=~Wetland, size=3)
+
+fig3 <- ggplot(data = df%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib1"),
+               aes(dist,log10(adjusted_ppm), color=Wetland)) +
+  geom_point(size=3) +
+#  geom_smooth(method=lm, se=FALSE) + 
+#  scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value = .1; r2 = 0.1", "COLM; p-value < .001; r2 < .4", "GAVI; p-value < .001; r2= .3")) +
+  My_Theme +
+#  theme(ylab = "CO2 ppm") +
+  theme_classic()
+# + theme(legend.position = c(0.2, 0.9))
+
+#####
+
+
+flux <- ggplot(data=df ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2,alpha=.5) +
+  geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
+  scale_color_gradient(
+    low = "blue", high = "red",
+    space = "Lab",
+    na.value = "grey50",
+    guide = "colourbar",
+    aesthetics = "colour",
+    name = "Flux umol m^2 s^-1"
+  )+  
+  labs(y="elevation", x = "distance")  +
+  #  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
+  theme_classic() + My_Theme + theme(legend.position = "Top")#+ theme(legend.position = c(0.9, 0.9))
+
+flux
+
+dat_text <- data.frame(
+  label = c("A", "A", "B"), color = "black",
+  Wetland   = c("ANTE", "GAVI", "COLM"),
+  x     = c(3, 3, 3),
+  y     = c(12, 12, 12)
+)
+
+
+
+#2. 
+model <- lm(Flux_ave ~ Elevation, 
+            data = df#%>%filter(FlowAccu>6000)
+)
+summary(model)
+
+
+test <- df%>%filter(FlowAccu>1000)
+test$ppm_stnd <- test$adjusted_ppm/3432.5570
+test$k600_stnd<- test$K600_effective/706.470986
+test$FlowAccu_std<- test$FlowAccu/14598
+
+### compare significance of 
+model <- lm(Flux_ave ~ ppm_stnd + FlowAccu_std, 
+            data = test%>%filter(FlowAccu>1000)
+)
+summary(model)
+
+##
+#less than 1000
+test <- df%>%filter(FlowAccu<1000)
+test$ppm_stnd <- test$adjusted_ppm/11174.6524
+test$k600_stnd<- test$K600_effective/140.025195	
+test$FlowAccu_std<- test$FlowAccu/752
+
+
+model <- lm(Flux_ave ~ ppm_stnd + FlowAccu_std, 
+            data = test%>%filter(FlowAccu<1000)
+)
+summary(model)
 
 #riparian to upland
 df <- read.csv(here::here("/Synoptic/Synop_all_raster3.csv"))
@@ -19,10 +187,10 @@ df <- read.csv(here::here("/Synoptic/Synop_all_raster3.csv"))
 df$Slope
 ###models####
 #Factors: Slope, adjusted_ppm, FlowAccu, Flowlen, Elevation
-
+df$adj
 #signifianct for everything adjusted_ppm, FlowAccu, Flowlen, Elevation
-model <- lm(Flux_ave ~ Elevation, 
-             data = df#%>%filter(FlowAccu>6000)
+model <- lm(Flux_ave ~ adjusted_ppm+FlowAccu, 
+             data = df%>%filter(FlowAccu<1000)
 )
 summary(model)
 

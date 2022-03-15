@@ -51,6 +51,12 @@ TrackMap_geo
 #####or start here for k600######
 df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
 
+##multiple linear regression
+model <- lm(Flux_ave ~ adjusted_ppm + K600.effective, 
+            data = df#%>%filter(Wetland=="ANTE")
+            )
+summary(model)
+
 
 ##plot
 
@@ -92,7 +98,7 @@ My_Theme = theme(
   legend.title=element_text(size=14), 
   legend.text=element_text(size=12))
   
-fig2 <- ggplot(data=df,aes(log10(adjusted_ppm),Flux_ave, color=Wetland)) +
+fig2 <- ggplot(data=df,aes(log10(adjusted_ppm),dist, color=Wetland)) +
   geom_point(size=3) +
   geom_smooth(method=lm, se=FALSE) + 
 #  scale_color_discrete(name = "Wetland", labels = c("ANTE; p-value < .001; r2 = .50", "COLM; p-value = .3; r2 < .001", "GAVI; p-value = .7; r2= -.03"))+
@@ -341,6 +347,9 @@ Width_plot <- ggplot(data=width_df ) +
   facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
   theme_classic()
 
+
+fit1 <- lm(width ~ dist, data = width_df%>%filter(Wetland=="COLM"))
+summary(fit1)
 ##
 
 dat_text <- data.frame(
@@ -350,9 +359,17 @@ dat_text <- data.frame(
   y     = c(30, 30, 30)
 )
 
+
+width_summary <- width_df %>%group_by(Wetland)%>%
+  summarize(width_mean=mean(width,na.rm = TRUE),
+            width_median=median(width,na.rm = TRUE),
+            width_stdev=sd(width,na.rm=TRUE))
+
+
+
 width_hist <- 
   ggplot(width_df %>%drop_na(width), 
-         aes(x=log10(width), color=Wetland, fill=Wetland)) +
+         aes(x=width, color=Wetland, fill=Wetland)) +
    geom_histogram(bins = 20)+ 
   geom_density(color="black",fill="black")+
   facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
