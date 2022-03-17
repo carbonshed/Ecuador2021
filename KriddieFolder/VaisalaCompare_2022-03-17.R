@@ -14,11 +14,18 @@ NewV <- NewV[,c(1:3,6)]
 colnames(NewV) <- c("Date","Time","ppm","point")
 NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
-NewV_0618 <- NewV %>% replace_na(list(point = 'air'))
+NewV_0618 <- NewV
+NewV_0618$point[is.na(NewV_0618$point)] <- "air"
 
-fig <- plot_ly(NewV_0618%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(NewV%>%drop_na(point),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig1
+
+fig2 <- plot_ly(NewV_0618%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+               x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig2
+
+
 
 ####6/22/21####
 ##GAVI
@@ -37,11 +44,16 @@ NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
 
 df_V <- rbind(NewV,OldV)
-df_V_0622 <- df_V %>% replace_na(list(point = 'air'))
+df_V_0622 <- df_V
+df_V_0622$point[is.na(df_V_0622$point)] <- "air"
 
-fig <- plot_ly(df_V_0622%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(df_V%>%drop_na(point),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig1
+
+fig2 <- plot_ly(df_V_0622%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+               x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig2
 
 
 ###6/23/21#####
@@ -60,14 +72,16 @@ NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
 
 df_V <- rbind(NewV,OldV)
-df_V_0623 <- df_V %>% replace_na(list(point = 'air'))
+df_V_0623 <- df_V
+df_V_0623$point[is.na(df_V_0623$point)] <- "air"
 
-fig <- plot_ly(df_V_0623%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(df_V_0623%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig <- plot_ly(df_V%>%drop_na(point)#%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
-               ,
+fig1
+
+fig2 <- plot_ly(df_V%>%drop_na(point),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig2
 
 
 ####6/29/21####
@@ -90,19 +104,22 @@ NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%
 
 df_V <- rbind(NewV,OldV_1,OldV_2)
 #df_V$point <- as.factor(df_V$point)
-df_V$point[is.na(df_V$point)] <- "air"
+df_V_0629$point[is.na(df_V_0629$point)] <- "air"
 df_V_0629 <- df_V%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<600)
 
-fig <- plot_ly(df_V #%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
+fig1 <- plot_ly(df_V%>%drop_na(point),
+                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig1
+
+fig2 <- plot_ly(df_V %>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
                ,
-               x = ~DateTime, y = ~CO2_ppm, size = 1, color = ~Vaisala)
-fig
+               x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig2
 
+
+##make data frame to share with Vaisala people
 df_V_0629$DateTime <- lubridate::round_date(df_V_0629$DateTime, "5 seconds") 
-
-
 df_V_0629 <- left_join(df_V_0629,Baro,by="DateTime")
-
 #write.csv(df_V_0629, here::here("/Synoptic/VaisalaCheck/VaisalaAtAltitude.csv",sep=""),
 #          row.names = FALSE)
 
@@ -131,16 +148,19 @@ NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%
 df_V <- rbind(NewV,OldV)
 df_V_0630 <- df_V %>% replace_na(list(point = 'air'))
 
-fig <- plot_ly(df_V_0630%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(df_V%>%drop_na(point),
+                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig1
+
+fig2 <- plot_ly(df_V_0630%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig2
 
 
 
 
 ###7/05/21###
 OldV <- read.csv(here::here("/Synoptic/VaisalaCheck/Vold_EOS2_synoptic_2021-07-05.csv"), skip = 6)
-#colnames(OldV) <- c("Date","Time","ppm","Tract","Description","Point","lat","lon","ele","WaterSample")
 OldV <- OldV[,c(1:3,6)]
 colnames(OldV) <- c("Date","Time","ppm","point")
 OldV$vaisala_type <- "old"
@@ -155,10 +175,14 @@ NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%
 df_V <- rbind(NewV,OldV)
 df_V_0705 <- df_V %>% replace_na(list(point = 'air'))
 
-fig <- plot_ly(df_V_0705%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
+fig1 <- plot_ly(df_V%>%drop_na(point),
+                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig1
+
+fig2 <- plot_ly(df_V_0705%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
                ,
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig2
 
 
 ###7/06/21###
@@ -178,9 +202,13 @@ NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%
 df_V <- rbind(NewV,OldV)
 df_V_0706 <- df_V %>% replace_na(list(point = 'air'))
 
-fig <- plot_ly(df_V_0706%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(df_V%>%drop_na(point),
+                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig1
+
+fig2 <- plot_ly(df_V_0706%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig2
 
 
 ###7/07/21###
@@ -201,14 +229,13 @@ NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%
 df_V <- rbind(NewV,OldV)
 df_V_0707 <- df_V %>% replace_na(list(point = 'air'))
 
-fig <- plot_ly(df_V%>%drop_na(point),
+fig1 <- plot_ly(df_V%>%drop_na(point),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig1
 
-
-fig <- plot_ly(df_V_0707%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<400),
+fig2 <- plot_ly(df_V_0707%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<400),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig2
 
 
 ###7/09/21###
@@ -229,9 +256,13 @@ NewV$point <- NA
 df_V <- rbind(NewV,OldV)
 df_V_0709 <- df_V %>% replace_na(list(point = 'air'))
 
-fig <- plot_ly(df_V_0709%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(df_V%>%drop_na(point),
+                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
+fig1
+
+fig2 <- plot_ly(df_V_0709%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
-fig
+fig2
 
 ####all together####
 df_V <- rbind(NewV_0618,df_V_0622,df_V_0623,df_V_0629,df_V_0630,df_V_0705,df_V_0706,df_V_0707,df_V_0709)
