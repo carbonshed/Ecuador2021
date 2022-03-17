@@ -25,7 +25,7 @@ ContinuousData$DateTime <- as.POSIXct(ContinuousData$DateTime,  format="%Y-%m-%d
 ##June 18th
 #missing GPS coordinates for 1 location
 #this day only new Vaisala
-CO2_eos1_June18 <-  read.csv(here::here("/Synoptic/June18_Edited/CO2_EOS1_synoptic_EDITED_2021-06-18.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos1_June18 <-  read.csv(here::here("/Synoptic/June18_Edited/Vnew_EOS1_synoptic_2021-06-18.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_June18) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample", "Notes", "Notes_2")
 CO2_eos1_June18$EOS_no <- "EOS_1"
@@ -35,7 +35,7 @@ rm(CO2_eos1_June18)
 
 #June 22
 #new vaisala
-CO2_eos1_June22 <-  read.csv(here::here("/Synoptic/June22/CO2_EOS1synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos1_June22 <-  read.csv(here::here("/Synoptic/June22/Vnew_EOS1_synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
                  quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_June22) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 
@@ -45,8 +45,9 @@ CO2_eos1_June22$Notes <- NA
 CO2_eos1_June22$Notes_2 <- NA
 
 #old vaisala
-CO2_eos2_June22 <-  read.csv(here::here("/Synoptic/June22/CO2_EOS2synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
-                 quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+## i can't find this in the field notebook, so i can't fix. removing for now so I really remember
+#CO2_eos2_June22 <-  read.csv(here::here("/Synoptic/June22/CO2_EOS2synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
+#                 quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 CO2_eos2_June22$Voltage..ppm. <- NULL
 colnames(CO2_eos2_June22) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 CO2_eos2_June22$EOS_no <- "EOS_2"
@@ -58,7 +59,7 @@ CO2_June22 <- rbind(CO2_eos1_June22,CO2_eos2_June22)
 rm(CO2_eos1_June22,CO2_eos2_June22)
 ## June  23
 #old vaisala
-CO2_eos1_June23 <-  read.csv(here::here("/Synoptic/June23/CO2_EOS1_Synoptics_EDITAGAIN_2021-06-23.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos1_June23 <-  read.csv(here::here("/Synoptic/June23/Vold_EOS1_synoptic_2021-06-23.csv"), skip=6, header = TRUE, sep = ",",
                       quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 CO2_eos1_June23$Voltage..ppm. <- NULL
 colnames(CO2_eos1_June23) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
@@ -68,7 +69,7 @@ CO2_eos1_June23$Notes <- NA
 CO2_eos1_June23$Notes_2 <- NA
 
 #new Vaiala
-CO2_eos2_June23 <-  read.csv(here::here("/Synoptic/June23/CO2_EOS2_Synoptics_2021-06-23.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos2_June23 <-  read.csv(here::here("/Synoptic/June23/Vnew_EOS2_synoptic_2021-06-23.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos2_June23) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 CO2_eos2_June23$EOS_no <- "EOS_2"
@@ -81,19 +82,28 @@ rm(CO2_eos1_June23,CO2_eos2_June23)
 
 ## June  29
 
-#SynopticNew - New Vaisala
-CO2_eos1_June29 <-  read.csv(here::here("/Synoptic/June29_Edited/EOS1_CO2_Edited_2021-06-29_EditAgain.csv"), skip=6, header = TRUE, sep = ",",
+#SynopticNew - New Vaisala THERE IS A SWITCH IN VIASIALA but I don't know if the "new" vaisala is an old one or a new one
+    # this happens 12:34 - 13:05
+CO2_eos1_June29 <-  read.csv(here::here("/Synoptic/June29_Edited/Vnew_EOS1_synoptic_2021-06-29.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_June29) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes","Notes_2")
 CO2_eos1_June29$EOS_no <- "EOS_1"
 CO2_eos1_June29$VaisalaType <- "new"
 
-#SynopticOld - Old Vaisala
-CO2_eos2_June29 <-  read.csv(here::here("/Synoptic/June29_Edited/EOS2_CO2_Edited_2021-06-29.csv"), skip=6, header = TRUE, sep = ",",
+#SynopticOld - Old Vaisala and switch to New
+  #vaisala sleeve ripped so switch to stn 2 Vaisala wich is New, at 
+CO2_eos2_June29 <-  read.csv(here::here("/Synoptic/June29_Edited/Vold_EOS2_synoptic_2021-06-29.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos2_June29) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 CO2_eos2_June29$EOS_no <- "EOS_2"
-CO2_eos2_June29$VaisalaType <- "old"
+CO2_eos2_June29$DateTime <- as.POSIXct(paste(CO2_eos2_June29$Date, CO2_eos2_June29$Time),format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC" )
+CO2_eos2_June29_1 <- subset(CO2_eos2_June29, DateTime < as.POSIXct('2021-06-29 12:00:00', tz="UTC"))
+CO2_eos2_June29_1$VaisalaType <- "old"
+CO2_eos2_June29_2 <- subset(CO2_eos2_June29, DateTime > as.POSIXct('2021-06-29 12:00:00', tz="UTC"))
+CO2_eos2_June29_2$VaisalaType <- "new"
+
+CO2_eos2_June29 <- rbind(CO2_eos2_June29_1,CO2_eos2_June29_2)
+rm(CO2_eos2_June29_1,CO2_eos2_June29_2)
 CO2_eos2_June29$Notes <- NA
 CO2_eos2_June29$Notes_2 <- NA
 
@@ -105,7 +115,7 @@ rm(CO2_eos1_June29,CO2_eos2_June29)
 #EOS1 data has missing coodinates for GPS, however we can approximaTE LOCATION BC IT WAS AROUND WHERE lIZ (eos2) STARTED ON THE SAME DAY
 
 #SynopticNew -New Vaisala
-CO2_eos1_June30 <-  read.csv(here::here("/Synoptic/June30_Edited/EOS1_CO2_Edited2_2021-06-30.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos1_June30 <-  read.csv(here::here("/Synoptic/June30_Edited/Vnew_EOS1_synoptic_2021-06-30.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_June30) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes")
 CO2_eos1_June30$EOS_no <- "EOS_1"
@@ -115,7 +125,7 @@ CO2_eos1_June30$Lon <- as.numeric(CO2_eos1_June30$Lon)
 CO2_eos1_June30$Lat <- as.numeric(CO2_eos1_June30$Lat)
 
 #SynoticOld - Old Vaisala 
-CO2_eos2_June30 <-  read.csv(here::here("/Synoptic/June30_Edited/EOS02_CO2_EDITED_2021-06-30.csv"), skip=6, header = TRUE, sep = ",",
+CO2_eos2_June30 <-  read.csv(here::here("/Synoptic/June30_Edited/Vold_EOS2_synoptic_2021-06-30.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos2_June30) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 CO2_eos2_June30$EOS_no <- "EOS_2"

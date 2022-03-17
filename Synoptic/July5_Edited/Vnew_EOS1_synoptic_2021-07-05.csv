@@ -1,0 +1,2661 @@
+Device Name:,,OM-CP-VOLT101A,,,,,,,,
+Device Description:,,Voltage Data Logger,,,,,,,,
+Serial Number:,,R37298,,,,,,,,
+Device ID:,,SynopticNew,,,,,,,,
+,,,,,,,,,,
+,,Channel 1,,,,,,,,
+Date,Time,Voltage (ppm),Tract,Description,Point,lat,lon,ele,WaterSample,
+7/5/2021,12:15:00 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:05 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:10 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:15 PM,161.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:20 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:25 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:30 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:35 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:40 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:45 PM,163.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:50 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:15:55 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:00 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:05 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:10 PM,163.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:15 PM,163.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:20 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:25 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:30 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:35 PM,165.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:40 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:45 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:50 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:16:55 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:00 PM,166.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:05 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:10 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:15 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:20 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:25 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:30 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:35 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:40 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:45 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:50 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:17:55 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:00 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:05 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:10 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:15 PM,174.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:20 PM,173.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:25 PM,173.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:30 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:35 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:40 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:45 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:50 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:18:55 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:00 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:05 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:10 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:15 PM,166.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:20 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:25 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:30 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:35 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:40 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:45 PM,164.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:50 PM,165.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:19:55 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:00 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:05 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:10 PM,148.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:15 PM,145.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:20 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:25 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:30 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:35 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:40 PM,173.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:45 PM,174.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:50 PM,176.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:20:55 PM,177.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:00 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:05 PM,178.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:10 PM,177.42,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:15 PM,178.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:20 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:25 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:30 PM,177.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:35 PM,177.42,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:40 PM,174.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:45 PM,173.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:50 PM,176.42,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:21:55 PM,178.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:00 PM,178.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:05 PM,179.43,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:10 PM,178.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:15 PM,178.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:20 PM,178.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:25 PM,178.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:30 PM,179.18,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:35 PM,178.42,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:40 PM,179.18,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:45 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:50 PM,185.19,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:22:55 PM,220.52,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:00 PM,217.52,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:05 PM,208.25,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:10 PM,174.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:15 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:20 PM,164.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:25 PM,163.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:30 PM,165.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:35 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:40 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:45 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:50 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:23:55 PM,168.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:00 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:05 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:10 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:15 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:20 PM,169.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:25 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:30 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:35 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:40 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:45 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:50 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:24:55 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:00 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:05 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:10 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:15 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:20 PM,169.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:25 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:30 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:35 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:40 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:45 PM,169.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:50 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:25:55 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:00 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:05 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:10 PM,170.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:15 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:20 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:25 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:30 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:35 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:40 PM,170.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:45 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:50 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:26:55 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:00 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:05 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:10 PM,170.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:15 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:20 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:25 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:30 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:35 PM,171.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:40 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:45 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:50 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:27:55 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:00 PM,199.47,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:05 PM,199.98,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:10 PM,200.48,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:15 PM,198.97,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:20 PM,190.2,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:25 PM,182.18,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:30 PM,178.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:35 PM,176.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:40 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:45 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:50 PM,174.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:28:55 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:00 PM,168.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:05 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:10 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:15 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:20 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:25 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:30 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:35 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:40 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:50 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:29:55 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:00 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:05 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:10 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:15 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:20 PM,164.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:25 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:30 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:35 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:40 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:45 PM,172.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:50 PM,172.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:30:55 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:00 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:05 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:10 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:15 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:20 PM,166.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:25 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:30 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:35 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:40 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:45 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:50 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:31:55 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:00 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:05 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:10 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:15 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:20 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:25 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:30 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:35 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:40 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:45 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:50 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:32:55 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:00 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:05 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:10 PM,170.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:15 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:20 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:25 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:30 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:35 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:40 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:45 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:50 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:33:55 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:00 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:05 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:10 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:15 PM,176.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:20 PM,181.43,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:25 PM,181.43,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:30 PM,181.68,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:35 PM,179.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:40 PM,179.18,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:45 PM,176.42,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:50 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:34:55 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:00 PM,176.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:05 PM,176.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:10 PM,176.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:15 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:20 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:25 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:30 PM,170.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:35 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:40 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:50 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:35:55 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:00 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:05 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:10 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:15 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:20 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:25 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:30 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:35 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:40 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:50 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:36:55 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:00 PM,160.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:05 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:10 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:15 PM,163.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:20 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:25 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:30 PM,166.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:35 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:40 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:50 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:37:55 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:00 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:05 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:10 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:15 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:20 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:25 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:30 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:35 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:40 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:45 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:50 PM,173.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:38:55 PM,172.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:00 PM,172.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:05 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:10 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:15 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:20 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:25 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:30 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:35 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:40 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:45 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:50 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:39:55 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:00 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:05 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:10 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:15 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:20 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:25 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:30 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:35 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:40 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:45 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:50 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:40:55 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:00 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:05 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:10 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:15 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:20 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:25 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:30 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:35 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:40 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:50 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:41:55 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:00 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:05 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:10 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:15 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:20 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:25 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:30 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:35 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:40 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:50 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:42:55 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:00 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:05 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:10 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:15 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:20 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:25 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:30 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:35 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:40 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:45 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:50 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:43:55 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:00 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:05 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:10 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:15 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:20 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:25 PM,170.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:30 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:35 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:40 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:45 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:50 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:44:55 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:00 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:05 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:10 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:15 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:20 PM,172.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:25 PM,172.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:30 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:35 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:40 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:45 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:50 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:45:55 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:00 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:05 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:10 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:15 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:20 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:25 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:30 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:35 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:40 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:45 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:50 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:46:55 PM,166.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:00 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:05 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:10 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:15 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:20 PM,165.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:25 PM,164.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:30 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:35 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:40 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:45 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:50 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:47:55 PM,166.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:00 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:05 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:10 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:15 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:20 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:25 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:30 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:35 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:40 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:45 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:50 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:48:55 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:00 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:05 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:10 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:15 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:20 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:25 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:30 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:35 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:40 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:45 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:50 PM,170.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:49:55 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:00 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:05 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:10 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:15 PM,172.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:20 PM,172.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:25 PM,173.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:30 PM,174.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:35 PM,173.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:40 PM,173.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:45 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:50 PM,172.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:50:55 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:00 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:05 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:10 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:15 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:20 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:25 PM,167.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:30 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:35 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:40 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:45 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:50 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:51:55 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:00 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:05 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:10 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:15 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:20 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:25 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:30 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:35 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:40 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:45 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:50 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:52:55 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:00 PM,169.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:05 PM,170.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:10 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:15 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:20 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:25 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:30 PM,244.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:35 PM,242.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:40 PM,217.02,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:45 PM,203.99,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:50 PM,193.96,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:53:55 PM,191.71,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,12:54:00 PM,189.95,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:05 PM,191.96,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:10 PM,192.71,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:15 PM,193.96,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:20 PM,196.47,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:25 PM,198.22,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:30 PM,200.98,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:35 PM,202.48,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:40 PM,205.74,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:45 PM,212.51,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:50 PM,214.26,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:54:55 PM,216.77,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:00 PM,217.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:05 PM,219.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:10 PM,220.27,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:15 PM,221.53,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:20 PM,221.78,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:25 PM,221.28,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:30 PM,222.03,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:35 PM,220.27,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:40 PM,220.27,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:45 PM,216.77,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:50 PM,212.76,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:55:55 PM,210.75,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:00 PM,203.73,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:05 PM,201.73,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:10 PM,197.72,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:15 PM,196.47,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:20 PM,195.46,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:25 PM,193.71,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:30 PM,191.71,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:35 PM,189.2,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:40 PM,186.44,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:45 PM,183.94,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:50 PM,183.69,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:56:55 PM,184.44,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:00 PM,182.43,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:05 PM,183.94,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:10 PM,183.94,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:15 PM,185.19,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:20 PM,188.2,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:25 PM,188.7,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:30 PM,192.21,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:35 PM,196.47,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:40 PM,200.23,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:45 PM,202.98,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:50 PM,205.99,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:57:55 PM,209.25,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:00 PM,211.5,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:05 PM,214.01,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:10 PM,216.77,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:15 PM,217.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:20 PM,218.27,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:25 PM,220.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:30 PM,224.28,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:35 PM,225.54,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:40 PM,226.29,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:45 PM,228.29,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:50 PM,229.04,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:58:55 PM,230.55,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:00 PM,231.8,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:05 PM,233.81,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:10 PM,235.81,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:15 PM,236.56,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:20 PM,239.32,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:25 PM,243.08,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:30 PM,245.58,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:35 PM,249.84,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:40 PM,251.6,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:45 PM,253.1,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:50 PM,254.35,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,12:59:55 PM,255.36,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:00 PM,257.36,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:05 PM,259.12,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:10 PM,260.62,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:15 PM,260.62,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:20 PM,261.62,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:25 PM,263.63,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:30 PM,264.13,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:35 PM,265.13,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:40 PM,266.88,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:45 PM,269.14,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:50 PM,269.64,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:00:55 PM,270.39,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:00 PM,270.89,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:05 PM,273.15,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:10 PM,274.4,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:15 PM,277.16,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:20 PM,276.66,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:25 PM,278.41,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:30 PM,278.41,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:35 PM,279.41,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:40 PM,280.92,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:45 PM,281.42,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:50 PM,283.42,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:01:55 PM,284.43,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:00 PM,284.43,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:05 PM,285.93,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:10 PM,285.43,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:15 PM,286.18,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:20 PM,285.68,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:25 PM,286.93,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:30 PM,287.18,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:35 PM,287.93,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:40 PM,289.94,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:45 PM,290.69,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:50 PM,291.94,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:02:55 PM,292.19,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:00 PM,291.69,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:05 PM,293.7,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:10 PM,293.2,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:15 PM,293.2,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:20 PM,293.2,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:25 PM,294.45,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:30 PM,294.95,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:35 PM,295.45,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:40 PM,295.7,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:45 PM,295.7,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:50 PM,296.96,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:03:55 PM,297.46,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:00 PM,297.96,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:05 PM,298.46,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:10 PM,298.21,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:15 PM,298.21,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:20 PM,299.96,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:25 PM,300.46,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:30 PM,303.47,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:35 PM,304.47,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:40 PM,304.47,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:45 PM,305.98,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:50 PM,305.48,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:04:55 PM,307.48,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:00 PM,308.23,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:05 PM,309.49,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:10 PM,309.74,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:15 PM,311.74,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:20 PM,313.75,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:25 PM,314.5,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:30 PM,316,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:35 PM,318.51,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:40 PM,319.76,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:45 PM,321.26,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:50 PM,322.02,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:05:55 PM,323.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:00 PM,323.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:05 PM,324.52,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:10 PM,325.27,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:15 PM,325.77,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:20 PM,327.28,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:25 PM,328.53,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:30 PM,330.79,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:35 PM,332.54,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:40 PM,333.04,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:45 PM,334.8,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:50 PM,334.8,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:06:55 PM,336.05,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:00 PM,336.3,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:05 PM,336.8,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:10 PM,337.55,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:15 PM,337.3,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:20 PM,337.3,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:25 PM,338.56,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:30 PM,338.05,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:35 PM,338.81,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:40 PM,339.81,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:45 PM,341.06,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:50 PM,341.06,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:07:55 PM,340.81,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:00 PM,341.56,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:05 PM,340.81,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:10 PM,341.06,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:15 PM,341.06,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:20 PM,342.06,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:25 PM,344.07,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:30 PM,344.57,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:35 PM,344.82,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:40 PM,346.07,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:45 PM,346.07,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:50 PM,346.32,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:08:55 PM,345.57,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:00 PM,347.33,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:05 PM,347.33,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:10 PM,348.58,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:15 PM,350.08,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:20 PM,349.33,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:25 PM,351.34,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:30 PM,351.08,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:35 PM,351.08,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:40 PM,351.34,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:45 PM,351.84,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:50 PM,352.59,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:09:55 PM,352.34,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:00 PM,352.34,1,start way downstream of wetland in antenas,1,NA,NA,NA,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:05 PM,352.34,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:10 PM,352.09,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:15 PM,352.84,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:20 PM,353.59,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:25 PM,353.59,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:30 PM,353.59,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:35 PM,353.34,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:40 PM,354.09,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:45 PM,353.59,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:50 PM,354.84,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:10:55 PM,355.85,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:11:00 PM,357.35,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:11:05 PM,359.1,1,start way downstream of wetland in antenas,1,-0.314768963,-78.19407203,4266.904297,1255,"Below lowest wetland in Antenas, this is below the big srop off and where there is noticably more flow"
+7/5/2021,1:11:10 PM,358.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:15 PM,358.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:20 PM,358.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:25 PM,358.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:30 PM,358.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:35 PM,359.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:40 PM,360.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:45 PM,359.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:50 PM,360.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:11:55 PM,361.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:00 PM,360.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:05 PM,361.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:10 PM,361.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:15 PM,361.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:20 PM,361.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:25 PM,360.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:30 PM,361.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:35 PM,357.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:40 PM,314.75,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:45 PM,279.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:50 PM,252.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:12:55 PM,225.04,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:00 PM,206.49,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:05 PM,184.44,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:10 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:15 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:20 PM,165.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:25 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:30 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:35 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:40 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:45 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:50 PM,150.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:13:55 PM,150.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:14:00 PM,148.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:05 PM,148.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:10 PM,147.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:15 PM,147.35,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:20 PM,147.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:25 PM,147.6,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:30 PM,146.35,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:35 PM,146.35,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:40 PM,146.1,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:45 PM,146.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:50 PM,146.35,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:14:55 PM,143.84,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:00 PM,127.55,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:05 PM,126.05,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:10 PM,130.31,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:15 PM,145.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:20 PM,166.4,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:25 PM,183.94,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:30 PM,209,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:35 PM,233.56,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:40 PM,241.57,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:45 PM,253.6,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:50 PM,282.42,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:15:55 PM,317.25,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:00 PM,337.3,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:05 PM,345.82,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:10 PM,358.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:15 PM,372.39,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:20 PM,389.93,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:25 PM,397.7,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:30 PM,409.97,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:35 PM,415.74,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:40 PM,421.25,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:45 PM,431.53,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:50 PM,441.55,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:16:55 PM,447.06,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:00 PM,453.33,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:05 PM,464.6,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:10 PM,474.13,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:15 PM,487.91,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:20 PM,494.18,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:25 PM,505.95,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:30 PM,511.72,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:35 PM,518.23,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:40 PM,523.24,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:45 PM,528.26,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:50 PM,535.02,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:17:55 PM,548.05,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:00 PM,557.83,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:05 PM,568.35,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:10 PM,576.87,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:15 PM,583.64,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:20 PM,588.15,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:25 PM,593.66,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:30 PM,603.69,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:35 PM,611.2,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:40 PM,621.48,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:45 PM,625.74,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:50 PM,635.26,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:18:55 PM,639.02,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:00 PM,645.03,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:05 PM,650.05,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:10 PM,652.3,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:15 PM,659.07,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:20 PM,661.32,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:25 PM,668.84,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:30 PM,674.1,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:35 PM,679.87,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:40 PM,684.38,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:45 PM,692.9,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:50 PM,697.91,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:19:55 PM,702.92,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:00 PM,705.43,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:05 PM,709.69,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:10 PM,718.46,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:15 PM,725.48,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:20 PM,732.99,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:25 PM,736.75,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:30 PM,742.27,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:35 PM,745.27,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:40 PM,750.79,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:45 PM,753.29,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:50 PM,755.55,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:20:55 PM,759.81,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:00 PM,766.57,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:05 PM,769.58,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:10 PM,771.84,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:15 PM,775.59,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:20 PM,779.85,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:25 PM,781.61,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:30 PM,783.36,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:35 PM,790.88,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:40 PM,797.15,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:45 PM,804.66,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:50 PM,807.92,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:21:55 PM,816.19,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:00 PM,819.95,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:05 PM,824.71,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:10 PM,832.98,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:15 PM,836.74,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:20 PM,841.5,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:25 PM,843.51,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:30 PM,847.26,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:35 PM,850.02,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:40 PM,850.77,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:45 PM,855.28,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:50 PM,859.79,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:22:55 PM,863.55,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:00 PM,867.56,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:05 PM,873.08,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:10 PM,879.09,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:15 PM,882.1,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:20 PM,885.1,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:25 PM,890.12,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:30 PM,892.37,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:35 PM,896.88,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:40 PM,897.38,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:45 PM,902.65,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:50 PM,906.41,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:23:55 PM,911.17,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:00 PM,916.93,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:05 PM,921.44,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:10 PM,925.95,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:15 PM,927.71,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:20 PM,929.96,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:25 PM,931.97,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:30 PM,932.47,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:35 PM,933.97,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:40 PM,935.22,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:45 PM,936.48,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:50 PM,938.23,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:24:55 PM,938.73,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:00 PM,942.74,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:05 PM,944.25,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:10 PM,950.26,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:15 PM,954.27,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:20 PM,956.27,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:25 PM,958.03,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:30 PM,960.53,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:35 PM,964.04,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:40 PM,967.05,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:45 PM,968.8,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:50 PM,970.56,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:25:55 PM,973.06,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:00 PM,974.07,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:05 PM,978.33,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:10 PM,981.83,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:15 PM,988.35,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:20 PM,990.61,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:25 PM,991.86,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:30 PM,995.62,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:35 PM,996.37,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:40 PM,999.63,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:45 PM,1000.63,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:50 PM,1001.88,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:26:55 PM,1003.14,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:00 PM,1005.14,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:05 PM,1005.89,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:10 PM,1005.64,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:15 PM,1007.4,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:20 PM,1011.91,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:25 PM,1014.16,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:30 PM,1017.42,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:35 PM,1020.68,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:40 PM,1021.93,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:45 PM,1025.69,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:50 PM,1026.69,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:27:55 PM,1031.2,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:00 PM,1034.46,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:05 PM,1039.47,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:10 PM,1042.23,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:15 PM,1044.23,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:20 PM,1047.24,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:25 PM,1046.99,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:30 PM,1048.24,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:35 PM,1049.75,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:40 PM,1051.75,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:45 PM,1053.76,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:50 PM,1054.51,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:28:55 PM,1054.51,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:00 PM,1056.01,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:05 PM,1057.01,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:10 PM,1058.77,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:15 PM,1059.77,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:20 PM,1063.53,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:25 PM,1066.79,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:30 PM,1069.54,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:35 PM,1071.3,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:40 PM,1071.8,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:45 PM,1074.81,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:50 PM,1076.06,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:29:55 PM,1078.31,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:00 PM,1081.32,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:05 PM,1085.58,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:10 PM,1086.08,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:15 PM,1087.34,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:20 PM,1087.84,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:25 PM,1088.84,1,in stream through wetland,2,NA,NA,NA,NA,In stream within wetland
+7/5/2021,1:30:30 PM,1089.09,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:30:35 PM,1090.09,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:30:40 PM,1091.09,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:30:45 PM,1092.35,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:30:50 PM,1092.6,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:30:55 PM,1093.1,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:00 PM,1095.1,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:05 PM,1096.11,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:10 PM,1096.11,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:15 PM,1096.11,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:20 PM,1095.61,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:25 PM,1097.11,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:30 PM,1097.36,1,in stream through wetland,2,-0.314857978,-78.19380901,4269.324219,NA,In stream within wetland
+7/5/2021,1:31:35 PM,1066.54,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:31:40 PM,956.78,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:31:45 PM,815.44,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:31:50 PM,722.22,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:31:55 PM,607.7,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:00 PM,558.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:05 PM,459.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:10 PM,426.26,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:15 PM,352.84,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:20 PM,322.02,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:25 PM,289.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:30 PM,268.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:35 PM,252.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:40 PM,234.06,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:45 PM,224.28,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:50 PM,216.77,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:32:55 PM,215.76,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:33:00 PM,215.26,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:05 PM,217.27,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:10 PM,219.27,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:15 PM,221.78,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:20 PM,228.29,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:25 PM,234.31,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:30 PM,239.82,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:35 PM,249.84,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:40 PM,257.11,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:45 PM,260.87,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:50 PM,264.13,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:33:55 PM,269.89,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:00 PM,273.15,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:05 PM,279.67,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:10 PM,282.17,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:15 PM,286.93,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:20 PM,290.19,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:25 PM,293.2,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:30 PM,296.71,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:35 PM,299.71,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:40 PM,303.22,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:45 PM,305.23,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:50 PM,308.23,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:34:55 PM,312.24,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:00 PM,318.51,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:05 PM,320.76,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:10 PM,324.02,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:15 PM,324.52,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:20 PM,327.28,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:25 PM,330.03,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:30 PM,332.29,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:35 PM,336.3,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:40 PM,338.3,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:45 PM,339.81,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:50 PM,341.06,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:35:55 PM,342.31,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:00 PM,342.82,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:05 PM,343.32,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:10 PM,345.07,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:15 PM,347.33,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:20 PM,348.58,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:25 PM,351.59,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:30 PM,354.84,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:35 PM,357.6,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:40 PM,359.86,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:45 PM,362.36,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:50 PM,365.37,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:36:55 PM,365.87,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:00 PM,368.88,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:05 PM,368.88,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:10 PM,371.13,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:15 PM,374.14,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:20 PM,374.64,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:25 PM,376.4,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:30 PM,377.4,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:35 PM,378.9,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:40 PM,380.15,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:45 PM,380.91,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:50 PM,381.66,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:37:55 PM,382.66,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:00 PM,383.91,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:05 PM,385.17,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:10 PM,385.92,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:15 PM,389.18,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:20 PM,390.18,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:25 PM,390.18,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:30 PM,390.18,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:35 PM,390.93,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:40 PM,392.93,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:45 PM,393.69,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:50 PM,397.45,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:38:55 PM,398.95,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:00 PM,402.46,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:05 PM,405.71,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:10 PM,407.47,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:15 PM,408.97,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:20 PM,410.23,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:25 PM,409.97,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:30 PM,411.98,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:35 PM,412.73,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:40 PM,415.24,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:45 PM,416.49,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:50 PM,417.49,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:39:55 PM,420.75,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:00 PM,421.25,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:05 PM,422.76,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:10 PM,424.01,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:15 PM,425.01,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:20 PM,425.76,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:25 PM,426.26,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:30 PM,426.51,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:35 PM,427.77,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:40 PM,429.52,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:45 PM,432.03,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:50 PM,431.03,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:40:55 PM,431.53,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:00 PM,432.78,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:05 PM,432.78,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:10 PM,433.03,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:15 PM,432.28,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:20 PM,434.28,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:25 PM,434.03,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:30 PM,434.03,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:35 PM,434.28,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:40 PM,434.78,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:45 PM,435.54,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:50 PM,436.54,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:41:55 PM,436.54,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:00 PM,438.04,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:05 PM,438.54,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:10 PM,440.55,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:15 PM,440.3,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:20 PM,440.3,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:25 PM,440.55,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:30 PM,441.05,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:35 PM,441.8,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:40 PM,442.8,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:45 PM,442.8,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:50 PM,444.31,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:42:55 PM,445.06,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:00 PM,446.81,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:05 PM,446.56,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:10 PM,447.81,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:15 PM,449.32,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:20 PM,450.07,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:25 PM,452.08,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:30 PM,451.57,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:35 PM,451.57,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:40 PM,452.83,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:45 PM,452.58,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:50 PM,454.58,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:43:55 PM,454.08,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:00 PM,454.08,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:05 PM,454.08,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:10 PM,455.33,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:15 PM,455.83,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:20 PM,455.08,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:25 PM,458.09,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:30 PM,457.84,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:35 PM,459.09,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:40 PM,459.59,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:45 PM,458.84,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:50 PM,459.34,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:44:55 PM,459.09,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:45:00 PM,459.09,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:45:05 PM,459.59,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:45:10 PM,459.84,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:45:15 PM,460.6,1,in stream;top of wetland,3,NA,NA,NA,NA,in stream;top of wetland
+7/5/2021,1:45:20 PM,460.34,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:25 PM,460.34,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:30 PM,460.6,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:35 PM,461.1,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:40 PM,463.1,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:45 PM,462.85,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:50 PM,464.1,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:45:55 PM,464.35,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:46:00 PM,463.85,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:46:05 PM,464.6,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:46:10 PM,464.35,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:46:15 PM,464.35,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:46:20 PM,463.1,1,in stream;top of wetland,3,-0.315049002,-78.19372301,4271.750488,NA,in stream;top of wetland
+7/5/2021,1:46:25 PM,448.82,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:46:30 PM,442.05,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:46:35 PM,420.25,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:46:40 PM,401.45,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:46:45 PM,373.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:46:50 PM,351.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:46:55 PM,323.77,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:00 PM,294.95,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:05 PM,270.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:10 PM,252.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:15 PM,235.31,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:20 PM,219.52,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:25 PM,214.26,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:30 PM,194.21,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:35 PM,186.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:40 PM,179.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:45 PM,179.43,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:50 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:47:55 PM,172.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:00 PM,171.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:05 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:10 PM,176.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:15 PM,190.2,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:20 PM,199.22,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:25 PM,214.26,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:30 PM,222.78,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:35 PM,237.31,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:40 PM,246.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:45 PM,261.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:50 PM,274.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:48:55 PM,284.43,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:00 PM,292.95,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:05 PM,301.97,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:10 PM,314.5,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:15 PM,321.01,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:20 PM,325.77,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:25 PM,332.79,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:30 PM,338.3,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:35 PM,341.06,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:40 PM,348.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:45 PM,353.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:50 PM,361.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:49:55 PM,367.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,1:50:00 PM,375.14,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:05 PM,381.16,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:10 PM,384.92,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:15 PM,390.43,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:20 PM,392.43,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:25 PM,398.95,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:30 PM,402.71,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:35 PM,407.47,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:40 PM,409.47,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:45 PM,414.99,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:50 PM,417.74,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:50:55 PM,422.76,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:00 PM,425.51,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:05 PM,429.52,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:10 PM,434.78,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:15 PM,439.29,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:20 PM,444.06,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:25 PM,450.32,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:30 PM,457.09,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:35 PM,458.84,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:40 PM,464.35,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:45 PM,470.62,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:50 PM,474.13,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:51:55 PM,475.88,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:00 PM,480.14,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:05 PM,483.9,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:10 PM,486.91,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:15 PM,492.92,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:20 PM,496.18,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:25 PM,498.94,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:30 PM,501.94,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:35 PM,503.2,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:40 PM,504.2,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:45 PM,507.21,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:50 PM,509.21,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:52:55 PM,511.97,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:00 PM,513.47,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:05 PM,518.23,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:10 PM,519.99,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:15 PM,521.74,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:20 PM,525.75,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:25 PM,529.51,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:30 PM,533.27,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:35 PM,536.28,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:40 PM,539.28,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:45 PM,540.79,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:50 PM,543.29,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:53:55 PM,544.54,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:00 PM,546.3,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:05 PM,548.3,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:10 PM,551.06,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:15 PM,552.31,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:20 PM,555.82,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:25 PM,558.83,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:30 PM,560.58,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:35 PM,563.59,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:40 PM,566.1,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:45 PM,569.6,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:50 PM,572.61,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:54:55 PM,574.37,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:00 PM,576.12,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:05 PM,579.88,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:10 PM,582.13,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:15 PM,585.14,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:20 PM,586.65,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:25 PM,588.65,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:30 PM,589.9,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:35 PM,592.16,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:40 PM,596.42,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:45 PM,598.17,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:50 PM,601.18,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:55:55 PM,604.94,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:00 PM,608.7,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:05 PM,611.45,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:10 PM,611.96,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:15 PM,612.46,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:20 PM,613.71,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:25 PM,619.72,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:30 PM,623.98,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:35 PM,625.74,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:40 PM,629,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:45 PM,631.25,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:50 PM,632.5,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:56:55 PM,632.75,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:00 PM,633.26,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:05 PM,637.77,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:10 PM,640.02,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:15 PM,642.53,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:20 PM,645.03,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:25 PM,646.04,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:30 PM,648.04,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:35 PM,648.79,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:40 PM,650.05,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:45 PM,651.55,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:50 PM,652.3,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:57:55 PM,654.31,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:00 PM,657.56,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:05 PM,660.07,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:10 PM,661.57,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:15 PM,661.07,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:20 PM,663.08,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:25 PM,662.58,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:30 PM,662.58,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:35 PM,664.08,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:40 PM,664.83,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:45 PM,666.84,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:50 PM,667.59,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:58:55 PM,667.59,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:00 PM,670.34,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:05 PM,675.11,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:10 PM,678.36,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:15 PM,678.86,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:20 PM,680.87,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:25 PM,682.87,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:30 PM,685.13,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:35 PM,685.63,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:40 PM,686.38,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:45 PM,686.63,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:50 PM,686.63,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,1:59:55 PM,687.64,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:00 PM,690.89,1,back in wetland;out of order,4,NA,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:05 PM,692.4,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:10 PM,694.15,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:15 PM,695.4,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:20 PM,696.41,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:25 PM,699.41,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:30 PM,699.91,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:35 PM,702.92,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:40 PM,707.93,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:45 PM,710.44,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:50 PM,711.94,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:00:55 PM,712.44,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:00 PM,713.2,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:05 PM,712.95,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:10 PM,714.2,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:15 PM,716.95,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:20 PM,717.46,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:25 PM,719.46,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:30 PM,720.46,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:35 PM,721.72,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:40 PM,724.47,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:45 PM,724.97,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:50 PM,725.73,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:01:55 PM,725.48,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:00 PM,726.73,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:05 PM,728.23,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:10 PM,728.98,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:15 PM,730.99,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:20 PM,732.99,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:25 PM,736.25,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:30 PM,738.26,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:35 PM,740.01,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:40 PM,742.27,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:45 PM,744.27,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:50 PM,745.52,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:02:55 PM,748.28,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:00 PM,749.03,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:05 PM,752.29,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:10 PM,751.79,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:15 PM,753.04,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:20 PM,753.29,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:25 PM,754.04,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:30 PM,755.8,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:35 PM,756.8,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:40 PM,760.56,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:45 PM,763.32,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:50 PM,764.32,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:03:55 PM,764.82,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:00 PM,764.32,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:05 PM,764.57,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:10 PM,764.57,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:15 PM,765.57,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:20 PM,767.32,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:25 PM,768.08,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:30 PM,769.58,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:35 PM,769.58,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:40 PM,770.58,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:45 PM,771.08,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:50 PM,770.33,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:04:55 PM,770.83,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:00 PM,772.09,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:05 PM,773.09,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:10 PM,774.84,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:15 PM,775.34,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:20 PM,775.85,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:25 PM,775.85,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:30 PM,776.85,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:35 PM,778.6,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:40 PM,779.1,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:45 PM,779.6,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:50 PM,779.6,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:05:55 PM,779.6,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:06:00 PM,781.11,1,back in wetland;out of order,4,-0.314868959,NA,NA,NA,back in wetland;out of order
+7/5/2021,2:06:05 PM,780.36,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:10 PM,780.86,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:15 PM,782.11,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:20 PM,782.11,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:25 PM,783.36,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:30 PM,782.86,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:35 PM,784.62,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:40 PM,785.87,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:45 PM,789.38,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:50 PM,792.38,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:06:55 PM,795.39,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:07:00 PM,795.89,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:07:05 PM,794.64,1,back in wetland;out of order,4,-0.314868959,-78.19395502,4274.375977,NA,back in wetland;out of order
+7/5/2021,2:07:10 PM,777.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:15 PM,735.75,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:20 PM,684.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:25 PM,626.49,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:30 PM,567.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:35 PM,513.22,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:40 PM,469.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:45 PM,436.04,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:50 PM,397.45,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:07:55 PM,375.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:00 PM,349.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:05 PM,333.54,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:10 PM,305.48,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:15 PM,292.45,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:20 PM,273.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:25 PM,265.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:30 PM,253.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:35 PM,242.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:40 PM,234.81,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:45 PM,228.29,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:50 PM,218.27,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:08:55 PM,209.5,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:00 PM,205.24,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:05 PM,198.72,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:10 PM,191.46,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:15 PM,186.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:20 PM,184.19,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:25 PM,178.93,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:30 PM,175.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:35 PM,171.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:40 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:45 PM,164.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:50 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:09:55 PM,159.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:10:00 PM,153.87,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:05 PM,151.61,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:10 PM,150.36,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:15 PM,148.85,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:20 PM,148.35,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:25 PM,144.84,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:30 PM,142.84,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:35 PM,142.84,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:40 PM,141.34,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:45 PM,141.09,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:50 PM,137.33,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:10:55 PM,135.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:00 PM,135.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:05 PM,135.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:10 PM,135.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:15 PM,134.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:20 PM,135.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:25 PM,134.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:30 PM,133.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:35 PM,134.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:40 PM,133.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:45 PM,132.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:50 PM,132.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:11:55 PM,132.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:00 PM,131.56,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:05 PM,130.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:10 PM,131.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:15 PM,131.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:20 PM,131.06,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:25 PM,131.56,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:30 PM,130.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:35 PM,131.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:40 PM,131.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:45 PM,131.06,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:50 PM,131.56,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:12:55 PM,130.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:00 PM,131.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:05 PM,132.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:10 PM,133.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:15 PM,137.58,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:20 PM,138.33,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:25 PM,146.6,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:30 PM,150.11,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:35 PM,155.12,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:40 PM,157.88,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:45 PM,160.88,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:50 PM,165.64,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:13:55 PM,168.9,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:00 PM,171.16,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:05 PM,174.16,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:10 PM,182.18,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:15 PM,186.69,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:20 PM,188.95,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:25 PM,190.2,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:30 PM,192.96,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:35 PM,193.71,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:40 PM,195.72,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:45 PM,196.47,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:50 PM,197.72,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:14:55 PM,199.22,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:00 PM,199.98,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:05 PM,201.73,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:10 PM,201.48,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:15 PM,202.73,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:20 PM,202.98,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:25 PM,202.48,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:30 PM,203.23,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:35 PM,203.99,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:40 PM,203.99,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:45 PM,205.49,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:50 PM,204.99,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:15:55 PM,205.74,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:00 PM,205.24,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:05 PM,206.49,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:10 PM,206.74,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:15 PM,207.49,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:20 PM,208.25,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:25 PM,209,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:30 PM,209,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:35 PM,209.25,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:40 PM,209,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:45 PM,210.75,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:50 PM,210.25,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:16:55 PM,212.25,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:00 PM,213.01,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:05 PM,213.76,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:10 PM,214.51,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:15 PM,213.76,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:20 PM,214.01,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:25 PM,215.26,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:30 PM,215.26,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:35 PM,217.02,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:40 PM,216.26,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:45 PM,218.02,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:50 PM,218.02,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:17:55 PM,219.02,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:00 PM,219.52,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:05 PM,220.02,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:10 PM,223.03,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:15 PM,224.03,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:20 PM,224.03,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:25 PM,225.79,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:30 PM,226.29,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:35 PM,226.79,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:40 PM,226.54,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:45 PM,227.79,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:50 PM,228.04,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:18:55 PM,227.54,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:00 PM,228.29,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:05 PM,229.3,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:10 PM,229.04,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:15 PM,230.55,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:20 PM,230.05,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:25 PM,230.8,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:30 PM,230.3,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:35 PM,231.8,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:40 PM,231.8,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:45 PM,231.3,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:50 PM,232.05,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:19:55 PM,231.55,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:00 PM,233.05,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:05 PM,233.05,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:10 PM,232.8,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:15 PM,233.3,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:20 PM,234.06,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:25 PM,234.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:30 PM,234.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:35 PM,234.06,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:40 PM,234.56,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:45 PM,235.06,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:50 PM,236.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:20:55 PM,236.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:00 PM,236.56,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:05 PM,237.06,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:10 PM,236.31,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:15 PM,236.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:20 PM,236.81,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:25 PM,237.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:30 PM,238.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:35 PM,237.56,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:40 PM,238.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:45 PM,238.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:50 PM,238.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:21:55 PM,239.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:00 PM,238.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:05 PM,239.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:10 PM,239.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:15 PM,239.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:20 PM,239.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:25 PM,240.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:30 PM,240.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:35 PM,240.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:40 PM,240.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:45 PM,240.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:50 PM,240.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:22:55 PM,240.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:00 PM,239.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:05 PM,239.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:10 PM,239.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:15 PM,239.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:20 PM,239.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:25 PM,239.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:30 PM,240.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:35 PM,240.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:40 PM,240.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:45 PM,240.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:50 PM,240.07,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:23:55 PM,240.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:00 PM,240.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:05 PM,240.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:10 PM,240.82,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:15 PM,241.32,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:20 PM,241.83,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:25 PM,241.83,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:30 PM,241.57,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:35 PM,243.08,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:40 PM,243.83,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:45 PM,244.33,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:50 PM,244.33,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:24:55 PM,244.33,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:00 PM,244.33,1,continued upstream,5,NA,NA,NA,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:05 PM,245.08,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:10 PM,245.83,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:15 PM,245.58,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:20 PM,246.84,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:25 PM,246.84,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:30 PM,246.34,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:35 PM,247.09,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:40 PM,246.59,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:45 PM,248.09,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:50 PM,249.34,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:25:55 PM,250.35,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:26:00 PM,250.85,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:26:05 PM,250.35,1,continued upstream,5,-0.315152016,-78.19360499,4276.964355,1425,continued upstream (this means above wetland and below the waterfall)
+7/5/2021,2:26:10 PM,249.34,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:15 PM,249.34,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:20 PM,247.84,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:25 PM,248.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:30 PM,247.84,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:35 PM,246.84,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:40 PM,246.84,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:45 PM,245.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:50 PM,243.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:26:55 PM,240.07,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:00 PM,235.56,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:05 PM,233.05,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:10 PM,226.79,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:15 PM,213.26,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:20 PM,203.73,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:25 PM,198.22,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:30 PM,194.21,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:35 PM,189.2,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:40 PM,186.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:45 PM,183.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:50 PM,180.68,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:27:55 PM,173.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:00 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:05 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:10 PM,164.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:15 PM,159.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:20 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:25 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:30 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:35 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:40 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:45 PM,149.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:50 PM,147.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:28:55 PM,147.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:00 PM,147.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:05 PM,146.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:10 PM,146.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:15 PM,145.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:20 PM,145.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:25 PM,142.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:30 PM,143.09,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:35 PM,141.09,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:40 PM,141.34,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:45 PM,141.34,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:50 PM,140.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:29:55 PM,140.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:00 PM,139.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:05 PM,140.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:10 PM,140.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:15 PM,138.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:20 PM,139.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:25 PM,138.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:30 PM,139.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:35 PM,138.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:40 PM,138.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:45 PM,139.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:50 PM,138.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:30:55 PM,139.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:00 PM,138.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:05 PM,138.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:10 PM,138.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:15 PM,138.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:20 PM,139.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:25 PM,137.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:30 PM,137.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:35 PM,137.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:40 PM,137.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:45 PM,138.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:50 PM,137.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:31:55 PM,137.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:00 PM,137.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:05 PM,137.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:10 PM,137.83,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:15 PM,137.33,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:20 PM,137.58,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:25 PM,140.08,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:30 PM,142.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:35 PM,144.09,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:40 PM,144.59,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:45 PM,145.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:50 PM,145.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:32:55 PM,146.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:00 PM,146.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:05 PM,146.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:10 PM,146.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:15 PM,147.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:20 PM,147.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:25 PM,147.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:30 PM,147.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:35 PM,149.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:40 PM,148.6,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:45 PM,148.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:50 PM,148.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:33:55 PM,148.85,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:00 PM,149.1,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:05 PM,148.35,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:10 PM,150.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:15 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:20 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:25 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:30 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:35 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:40 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:45 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:50 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:34:55 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:00 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:05 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:10 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:15 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:20 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:25 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:30 PM,154.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:35 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:40 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:45 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:50 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:35:55 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:00 PM,156.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:05 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:10 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:15 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:20 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:25 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:30 PM,158.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:35 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:40 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:45 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:50 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:36:55 PM,160.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:00 PM,165.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:05 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:10 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:15 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:20 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:25 PM,169.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:30 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:35 PM,167.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:40 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:45 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:50 PM,165.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:37:55 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:00 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:05 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:10 PM,167.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:15 PM,170.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:20 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:25 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:30 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:35 PM,172.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:40 PM,172.91,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:45 PM,172.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:50 PM,174.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:38:55 PM,180.18,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:00 PM,185.19,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:05 PM,186.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:10 PM,185.94,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:15 PM,186.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:20 PM,180.18,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:25 PM,176.92,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:30 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:35 PM,172.41,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:40 PM,170.66,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:45 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:50 PM,170.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:39:55 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:00 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:05 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:10 PM,168.65,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:15 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:20 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:25 PM,168.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:30 PM,169.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:35 PM,168.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:40 PM,167.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:45 PM,166.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:50 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:40:55 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:00 PM,163.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:05 PM,164.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:10 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:15 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:20 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:25 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:30 PM,165.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:35 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:40 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:45 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:50 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:41:55 PM,165.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:00 PM,164.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:05 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:10 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:15 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:20 PM,165.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:25 PM,164.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:30 PM,169.9,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:35 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:40 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:45 PM,177.67,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:50 PM,183.44,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:42:55 PM,186.94,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:00 PM,188.95,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:05 PM,190.2,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:10 PM,192.71,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:15 PM,194.96,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:20 PM,195.72,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:25 PM,193.71,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:30 PM,193.96,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:35 PM,195.21,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:40 PM,195.21,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:45 PM,195.46,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:50 PM,192.21,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:43:55 PM,189.2,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:00 PM,187.7,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:05 PM,187.7,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:10 PM,186.69,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:15 PM,185.94,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:20 PM,185.44,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:25 PM,181.43,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:30 PM,178.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:35 PM,175.17,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:40 PM,171.16,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:45 PM,169.4,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:50 PM,166.15,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:44:55 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:00 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:05 PM,161.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:10 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:15 PM,162.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:20 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:25 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:30 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:35 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:40 PM,163.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:45 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:50 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:45:55 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:00 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:05 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:10 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:15 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:20 PM,163.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:25 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:30 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:35 PM,163.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:40 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:45 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:50 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:46:55 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:00 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:05 PM,161.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:10 PM,160.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:15 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:20 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:25 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:30 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:35 PM,160.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:40 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:45 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:50 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:47:55 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:00 PM,160.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:05 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:10 PM,160.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:15 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:20 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:25 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:30 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:35 PM,160.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:40 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:45 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:50 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:48:55 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:00 PM,160.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:05 PM,158.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:10 PM,159.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:15 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:20 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:25 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:30 PM,158.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:35 PM,159.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:40 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:45 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:50 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:49:55 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:00 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:05 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:10 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:15 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:20 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:25 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:30 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:35 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:40 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:45 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:50 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:50:55 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:00 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:05 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:10 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:15 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:20 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:25 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:30 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:35 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:40 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:45 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:50 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:51:55 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:00 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:05 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:10 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:15 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:20 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:25 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:30 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:35 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:40 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:45 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:50 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:52:55 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:00 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:05 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:10 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:15 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:20 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:25 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:30 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:35 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:40 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:45 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:50 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:53:55 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:00 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:05 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:10 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:15 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:20 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:25 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:30 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:35 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:40 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:45 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:50 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:54:55 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:00 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:05 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:10 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:15 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:20 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:25 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:30 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:35 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:40 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:45 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:50 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:55:55 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:00 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:05 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:10 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:15 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:20 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:25 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:30 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:35 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:40 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:45 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:50 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:56:55 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:00 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:05 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:10 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:15 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:20 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:25 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:30 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:35 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:40 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:45 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:50 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:57:55 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:00 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:05 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:10 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:15 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:20 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:25 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:30 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:35 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:40 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:45 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:50 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:58:55 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:00 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:05 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:10 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:15 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:20 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:25 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:30 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:35 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:40 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:45 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:50 PM,156.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,2:59:55 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:00 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:05 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:10 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:15 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:20 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:25 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:30 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:35 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:40 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:45 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:50 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:00:55 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:00 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:05 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:10 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:15 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:20 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:25 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:30 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:35 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:40 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:45 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:50 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:01:55 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:00 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:05 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:10 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:15 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:20 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:25 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:30 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:35 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:40 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:45 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:50 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:02:55 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:00 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:05 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:10 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:15 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:20 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:25 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:30 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:35 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:40 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:45 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:50 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:03:55 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:00 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:05 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:10 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:15 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:20 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:25 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:30 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:35 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:40 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:45 PM,156.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:50 PM,155.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:04:55 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:00 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:05 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:10 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:15 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:20 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:25 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:30 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:35 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:40 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:45 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:50 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:05:55 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:00 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:05 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:10 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:15 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:20 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:25 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:30 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:35 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:40 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:45 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:50 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:06:55 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:00 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:05 PM,150.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:10 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:15 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:20 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:25 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:30 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:35 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:40 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:45 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:50 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:07:55 PM,149.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:00 PM,150.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:05 PM,150.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:10 PM,150.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:15 PM,150.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:20 PM,149.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:25 PM,150.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:30 PM,149.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:35 PM,150.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:40 PM,150.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:45 PM,150.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:50 PM,151.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:08:55 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:00 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:05 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:10 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:15 PM,152.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:20 PM,151.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:25 PM,156.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:30 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:35 PM,162.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:40 PM,161.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:45 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:50 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:09:55 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:00 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:05 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:10 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:15 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:20 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:25 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:30 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:35 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:40 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:45 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:50 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:10:55 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:00 PM,157.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:05 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:10 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:15 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:20 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:25 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:30 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:35 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:40 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:45 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:50 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:11:55 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:00 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:05 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:10 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:15 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:20 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:25 PM,152.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:30 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:35 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:40 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:45 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:50 PM,152.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:12:55 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:00 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:05 PM,150.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:10 PM,150.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:15 PM,149.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:20 PM,151.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:25 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:30 PM,151.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:35 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:40 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:45 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:50 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:13:55 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:00 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:05 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:10 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:15 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:20 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:25 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:30 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:35 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:40 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:45 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:50 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:14:55 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:00 PM,153.11,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:05 PM,152.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:10 PM,152.86,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:15 PM,152.61,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:20 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:25 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:30 PM,153.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:35 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:40 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:45 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:50 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:15:55 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:00 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:05 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:10 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:15 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:20 PM,158.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:25 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:30 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:35 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:40 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:45 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:50 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:16:55 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:00 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:05 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:10 PM,157.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:15 PM,156.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:20 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:25 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:30 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:35 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:40 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:45 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:50 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:17:55 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:00 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:05 PM,154.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:10 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:15 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:20 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:25 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:30 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:35 PM,158.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:40 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:45 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:50 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:18:55 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:00 PM,160.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:05 PM,164.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:10 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:15 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:20 PM,164.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:25 PM,163.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:30 PM,164.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:35 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:40 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:45 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:50 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:19:55 PM,165.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:00 PM,164.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:05 PM,165.14,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:10 PM,163.89,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:15 PM,163.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:20 PM,164.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:25 PM,162.39,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:30 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:35 PM,162.64,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:40 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:45 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:50 PM,160.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:20:55 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:00 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:05 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:10 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:15 PM,158.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:20 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:25 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:30 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:35 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:40 PM,158.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:45 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:50 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:21:55 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:00 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:05 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:10 PM,158.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:15 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:20 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:25 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:30 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:35 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:40 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:45 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:50 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:22:55 PM,157.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:00 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:05 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:10 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:15 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:20 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:25 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:30 PM,154.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:35 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:40 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:45 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:50 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:23:55 PM,154.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:00 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:05 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:10 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:15 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:20 PM,154.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:25 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:30 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:35 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:40 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:45 PM,158.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:50 PM,159.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:24:55 PM,158.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:00 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:05 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:10 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:15 PM,160.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:20 PM,161.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:25 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:30 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:35 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:40 PM,161.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:45 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:50 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:25:55 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:00 PM,161.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:05 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:10 PM,160.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:15 PM,161.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:20 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:25 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:30 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:35 PM,159.63,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:40 PM,160.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:45 PM,160.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:50 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:26:55 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:00 PM,158.38,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:05 PM,159.13,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:10 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:15 PM,158.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:20 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:25 PM,156.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:30 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:35 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:40 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:45 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:50 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:27:55 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:00 PM,153.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:05 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:10 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:15 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:20 PM,154.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:25 PM,153.36,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:30 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:35 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:40 PM,153.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:45 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:50 PM,155.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:28:55 PM,156.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:00 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:05 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:10 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:15 PM,157.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:20 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:25 PM,157.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:30 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:35 PM,157.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:40 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:45 PM,156.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:50 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:29:55 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:00 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:05 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:10 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:15 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:20 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:25 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:30 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:35 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:40 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:45 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:50 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:30:55 PM,155.12,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:00 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:05 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:10 PM,155.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:15 PM,154.87,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:20 PM,155.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:25 PM,156.62,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:30 PM,156.37,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:35 PM,159.88,NA,NA,NA,NA,NA,NA,NA,
+7/5/2021,3:31:40 PM,94.73,NA,NA,NA,NA,NA,NA,NA,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
