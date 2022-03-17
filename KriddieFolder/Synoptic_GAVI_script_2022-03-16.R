@@ -45,9 +45,8 @@ CO2_eos1_June22$Notes <- NA
 CO2_eos1_June22$Notes_2 <- NA
 
 #old vaisala
-## i can't find this in the field notebook, so i can't fix. removing for now so I really remember
-#CO2_eos2_June22 <-  read.csv(here::here("/Synoptic/June22/CO2_EOS2synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
-#                 quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+CO2_eos2_June22 <-  read.csv(here::here("/Synoptic/June22/Vold_EOS2_synoptic_2021-06-22.csv"), skip=6, header = TRUE, sep = ",",
+                 quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 CO2_eos2_June22$Voltage..ppm. <- NULL
 colnames(CO2_eos2_June22) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 CO2_eos2_June22$EOS_no <- "EOS_2"
