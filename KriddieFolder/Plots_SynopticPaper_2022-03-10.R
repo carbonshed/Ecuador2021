@@ -15,6 +15,7 @@ library(rstatix)
 library(ggpubr)
 library(plotly)
 
+
 #read in df
 ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-18.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-18.csv"))
@@ -50,6 +51,7 @@ TrackMap_geo
 
 #####or start here for k600######
 df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-10.csv"))
 
 ##multiple linear regression
 model <- lm(Flux_ave ~ adjusted_ppm + K600.effective, 
