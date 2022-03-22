@@ -111,15 +111,21 @@ key to this is being able idntify the next known x in between NAs.
 
 
 ```{r dist and x, echo=FALSE}
-df_prediction_1$x_pred <- NA
+df_prediction_1 <- df_prediction_1[order(df_prediction_1$dist),]
+
 for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
   if (is.na(df_prediction_1[i,"x"]) == FALSE) {
-    df_prediction_1$x_pred[i] <- df_prediction_1$x[i]
+    df_prediction_1$dist_pred[i] <- df_prediction_1$dist[i]
+    pt1dist = df_prediction_1$dist[i]
+    pt1x = df_prediction_1$x[i]
+    pt2x = na.omit(df_prediction_1$x[i+1]) 
   } else {
-    df_prediction_1$x_pred[i] <- "try"
+    df_prediction_1$dist_pred[i] <- NA
   }
 }
-
+i=55
+pt1dist
+pt2dist
 ```
 
 
