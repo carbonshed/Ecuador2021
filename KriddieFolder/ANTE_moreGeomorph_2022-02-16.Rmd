@@ -18,6 +18,8 @@ library(Ecdat)
 library(dplyr)
 library(sp)
 library(geosphere)
+library(DescTools)
+library(data.table)
 ```
 
 ##Geomorph Data
@@ -109,25 +111,60 @@ unknown = (Dist[pt-btw] - Dist[pt1])/(Dist[pt2] - Dist[pt1])*(x[pt2] - x[pt1]) +
 ##but how do that in a loop?
 key to this is being able idntify the next known x in between NAs.
 
+the code below realtes x as measured in the field to distance as calculated with way points. The ancors are waypoints collected every 50 meters in the field 
 
 ```{r dist and x, echo=FALSE}
+df_prediction_1$notes <- NULL
+df_prediction_1$dist_pred <- NULL
+df_prediction_1$x_pred <- NULL
+
 df_prediction_1 <- df_prediction_1[order(df_prediction_1$dist),]
+pred_df <- na.omit(df_prediction_1[,c("x","dist")])
+
 
 for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
   if (is.na(df_prediction_1[i,"x"]) == FALSE) {
-    df_prediction_1$dist_pred[i] <- df_prediction_1$dist[i]
-    pt1dist = df_prediction_1$dist[i]
-    pt1x = df_prediction_1$x[i]
-    pt2x = na.omit(df_prediction_1$x[i+1]) 
+    df_prediction_1$x_pred[i] <- df_prediction_1$x[i]
+
   } else {
     df_prediction_1$dist_pred[i] <- NA
+    pt2btw <- df_prediction_1$dist[i]
+    dist1 = Closest(pred_df$dist, pt2btw, which = FALSE, na.rm = FALSE)
+    if (dist1 < pt2btw ) {#x[! x %in% 2:10]
+    dist2 = Closest(pred_df$dist[pred_df$dist > dist1], pt2btw, which = FALSE, na.rm = FALSE)}
+    else{
+      dist2 = Closest(pred_df$dist[pred_df$dist < dist1], pt2btw, which = FALSE, na.rm = FALSE)
+    }
+    pt1dist = min(dist1,dist2)
+    pt2dist = max(dist1,dist2)
+    
+    pt1x = pred_df$x[which(pred_df$dist == pt1dist)]
+    pt2x = pred_df$x[which(pred_df$dist == pt2dist)]
+    df_prediction_1$x_pred[i] <- pt2x - (pt2dist-df_prediction_1$dist[i])/(pt2dist-pt1dist)*(pt2x-pt1x)
   }
 }
-i=55
-pt1dist
-pt2dist
 ```
 
+Now we have a data frame with x predicted and associated with distance. Now we associate the closest actual x measurments, depth and width with the predicted x  
+
+
+
+```{r width loop, echo=FALSE}
+df_prediction_2 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x_pred")]%>%drop_na(dist)
+
+XWD_fit <- XWD_1[,c("x","w","d","notes")]
+colnames(XWD_fit) <- c("x_pred","w","d","notes")
+
+setDT(df_prediction_2)
+setDT(XWD_fit)
+
+df_prediction_3 <- df_prediction_2[XWD_fit, roll = "nearest", on = "x_pred"]
+
+for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
+ }
+```
+
+AHHHH i can't believe that wooooorrrrkkkkeedddddddddddd!!!!!!
 
 #SLOPE
 
