@@ -177,13 +177,14 @@ for(i in 1:nrow(df)) {       # for-loop over rows
     df$midpoint[i] <- 0
     df$length[i] <- (df$dist[i+1] + (df$dist[i] - df$dist[i+1])/2) - 0
     df$area[i] <- df$length[i] * df$w[i]/100
-    
   } else {
     df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
-    df$length[i] <- df$midpoint[i] - df$midpoint[i-1]
+    df$length[i] <- df$midpoint[i+1] - df$midpoint[i]
     df$area[i] <- df$length[i] * df$w[i]/100
   }
 }
+
+
 
 df$midpoint[which(df$x_pred==40)] <- (53.7102887 - 41.450288)/2 + 41.450288
 df$length[which(df$x_pred==40)] <- 53.7102887 - 41.450288
@@ -192,10 +193,6 @@ df$area[which(df$x_pred==40)] <- df$w[which(df$x_pred==40)]/100 * df$length[whic
 df$midpoint[which(df$x_pred==95)] <- (108.0099436 - 3)
 df$length[which(df$x_pred==95)] <- 3
 df$area[which(df$x_pred==95)] <- df$w[which(df$x_pred==95)]/100 * df$length[which(df$x_pred==95)]
-
-df$length[which(df$x_pred==100)] <- 109.969768 - 	105.009944
-df$area[which(df$x_pred==100)] <- df$w[which(df$x_pred==100)]/100 * df$length[which(df$x_pred==100)]
-
 
 df_prediction_3 <- df
 
@@ -277,6 +274,6 @@ I now have some cra
 ggplot(data=df_prediction_4, aes(dist, Totalflux_umolpers),size=5) +
   geom_point(size=5)
 
-write.csv(WaterChem2, here::here("ProcessedData/ANTE_synopticGeom_2022-03-24.csv"))
+write.csv(df_prediction_4, here::here("ProcessedData/ANTE_synopticGeom_2022-03-24.csv"))
 
 ```

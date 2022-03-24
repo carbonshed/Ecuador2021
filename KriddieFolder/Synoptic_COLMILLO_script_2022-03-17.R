@@ -17,7 +17,7 @@ ContinuousData$DateTime <- as.POSIXct(ContinuousData$DateTime,  format="%Y-%m-%d
 
 #July 6th
 #vaisala new
-CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/Vnew_EOS1_synoptic_2021-07-06.csv"), skip=1, header = TRUE, sep = ",",
+CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/Vnew_EOS1_synoptic_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lat","lon","ele","WaterSample","Notes","Wetland")
 
@@ -30,7 +30,7 @@ CO2_eos1_July6 <- CO2_eos1_July6 %>%
 #Vaisala old
 CO2_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/Vold_EOS2_synoptic_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lat","lon","ele","WaterSample","Wetland")
+colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lat","lon","ele","WaterSample","Wetland","Notes")
 CO2_eos2_July6$EOS_no <- "EOS_2"
 CO2_eos2_July6$VaisalaType <- "old"
 CO2_eos2_July6$Notes <- NA
@@ -48,7 +48,7 @@ CO2_July6$Wetland <- NULL
 
 #there is a missing waypoint at pt 4 EOS 1
 #Vaisala new
-CO2_eos1_July7 <-  read.csv(here::here("/Synoptic/July7_Edited/Vnew_EOS1_synoptic_2021-07-07.csv"), skip=5, header = TRUE, sep = ",",
+CO2_eos1_July7 <-  read.csv(here::here("/Synoptic/July7_Edited/Vnew_EOS1_synoptic_2021-07-07.csv"), skip=7, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_July7) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lat","lon","ele","WaterSample","Notes")
 CO2_eos1_July7$EOS_no <- "EOS_1"
@@ -225,7 +225,7 @@ synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("lat","lon","e
 
 
 
-#write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-02-14.csv"))
+#write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-03-24.csv"))
 
 
 #plot

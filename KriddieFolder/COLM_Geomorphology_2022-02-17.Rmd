@@ -190,7 +190,8 @@ snap the points in our origional dama frame to bring in the elevation data
 ```{r add synop to lat lon}
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2021-08-30.csv"))
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2022-01-27.csv"))
-synop <- read.csv(here::here("Synoptic/COLMILLO_2022-02-14.csv"))
+#synop <- read.csv(here::here("Synoptic/COLMILLO_2022-02-14.csv"))
+synop <- read.csv(here::here("Synoptic/COLMILLO_2022-03-24.csv"))
 
 synop$X <- NULL
 
@@ -361,61 +362,63 @@ rm(df_prediction_a,df_prediction_b)
 ```
 
 
-```{r calc  slope, echo=FALSE}
+#reverse order
+unfortunatly gavi is going from downstream to up, and we want upstream to down. so reverse this order
+you can't just reverse order the distance column because they are not collected at even intervals.
 
-df_prediction$slope <- NA
-for(i in 1:nrow(df_prediction)) {       # for-loop over rows
-  df_prediction$dist_down[i] <- df_prediction$dist[i+1]
-  df_prediction$ele_down[i] <- df_prediction$ele_fit[i+1]
-}
+#loops below switch order of distance
 
-df_prediction$slope <- (df_prediction$ele_fit - df_prediction$ele_down)/(df_prediction$dist - df_prediction$dist_down)
-df_prediction$dist_down <- NULL
-df_prediction$ele_down <- NULL
+```{r reverse, echo=FALSE}
 
-df_predictionblah <- df_prediction%>%filter(slope<0)
 
-###
 df_prediction <- df_prediction[order(df_prediction$dist),]
-df_prediction$slope <- NA
-loop <- df_prediction%>%drop_na(ele_fit)
-for(i in 1:nrow(loop)) {       # for-loop over rows
-  x = loop$dist[i] - 5
-  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
-  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
-  
-  y = loop$dist[i] + 5
-  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
-  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
-  
-  loop$slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
-  
-}
-loop$dist_minus <- NULL
-loop$dist_plus <- NULL
-loop$ele_minus <- NULL
-loop$ele_plus <- NULL
+df_prediction$dist_diff <- NA
+df_prediction$Total_flux <- NA
 
-df_prediction <- loop 
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  if (i == 1) {
+    df_prediction$dist_diff[i] <- 0
+  } else {
+    df_prediction[i,"dist_diff"] <-   df_prediction[i,"dist"] - df_prediction[i-1,"dist"]
+  }
+}
+
+df_prediction <- df_prediction[order(-df_prediction$dist),]
+df_prediction$dist_new <- NA
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  if (i == 1) {
+    df_prediction$dist_new[i] <- 0
+  } else {
+    df_prediction[i,"dist_new"] <-   df_prediction[i,"dist_diff"] + df_prediction[i-1,"dist_new"]
+  }
+}
+
+df_prediction$X <-NULL
+df_prediction$dist <- NULL
+names(df_prediction)[names(df_prediction)=="dist_new"] <- "dist"
+
 
 ```
+
+#calcualte slope
+here we calculate slope from the sample point and upstream 50m
 
 ```{r calc slope, echo=FALSE}
 
 ###
 df_prediction <- df_prediction[order(df_prediction$dist),]
-df_prediction$ante_slope <- NA
+df_prediction$slope50m <- NA
 loop <- df_prediction%>%drop_na(ele_fit)
 for(i in 1:nrow(loop)) {       # for-loop over rows
-  x = loop$dist[i] - 0
+  x = loop$dist[i] - 50
   loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
   loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
   
-  y = loop$dist[i] + 10
+  y = loop$dist[i] + 3
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
-  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  loop$slope50m <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
   
 }
 loop$dist_minus <- NULL
@@ -445,7 +448,7 @@ grid.arrange(flux, CO2, ncol=1)
 
 ```{r write, echo=FALSE}
 
-write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-02-18.csv"))
+write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-03-24.csv"))
 ```
 
 

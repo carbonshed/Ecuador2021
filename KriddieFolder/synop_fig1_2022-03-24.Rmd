@@ -1,0 +1,85 @@
+---
+title: "synop_fig1_2022-03-21"
+author: "Kriddie"
+date: "3/21/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(dplyr)
+library(ggplot2)
+```
+
+## synop_fig1_2022-03-21
+This file is meant to keep better track of my progress towards figure 1 for my synop paper
+The goal of this figure is to show how much CO2 is coming off these rivers on a grams of carbon per sec bases
+
+or something like that
+
+
+We start with the most recently processes synoptic data. It includes calculates k600 values.
+
+
+```{r read in}
+#read in the most recent synoptic data
+
+#df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-21.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
+df$X <- NULL
+df <- unique(df)
+
+##add raster data
+Synop_all_raster3 <- read.csv(here::here("Synoptic/Synop_all_raster3.csv"))
+```
+
+## Plot data
+
+plot the data by wetland to see whats up.
+
+Most of the streams go from dist = 0 is downstream and then progress upstream. Too bad, because we actually want it to be the other way around. The only one that doesn't need to be fixed in ANTE
+
+```{r visualize streamprofile, echo=FALSE}
+ggplot(data=df%>%filter(Wetland=="GAVItrib2"), aes(x=dist, y=ele_fit, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+
+#use plot below to visualize new stream profile
+and flux total data
+
+```{r visualize profile again, echo=FALSE}
+ggplot(data=df%>%filter(Wetland=="GAVI"), aes(x=dist, y=ele_fit, group=1)) +
+  geom_line()+
+  geom_point()
+
+ggplot(data=df %>%filter(Wetland=="GAVI")%>%drop_na(adjusted_ppm), aes(x=dist, y=Totalflux_umolpers, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+
+#join
+
+```{r join and plot, echo=FALSE}
+
+
+ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist<250)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
+  geom_line(aes(#linetype=Wetland,
+    color=Wetland),
+    size=2)
+
+
+ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist>500)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
+  geom_line(aes(#linetype=Wetland,
+    color=Wetland),
+    size=2)
+  
+
+```
+

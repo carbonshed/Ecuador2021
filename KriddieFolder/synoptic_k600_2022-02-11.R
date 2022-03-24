@@ -14,17 +14,17 @@ library(lubridate)
 #read in df
 
 ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-03-24.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-18.csv"))
-COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-18.csv"))
-GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))
-GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
+GAVI <- read.csv(here::here("/ProcessedData/GAVI_synopticGeom_2022-03-24.csv"))
+COLM <- read.csv(here::here("/ProcessedData/COLM_synopticGeom_2022-03-24.csv"))
+#GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))
+#GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
 
 
-ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa")]
-COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa")]
-GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
-GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
-GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope50m", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
+COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
+GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
+#GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+#GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
 
 colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
 colnames(GAVI)[which(names(GAVI) == "GAVI_waterTempAve")] <- "WaterTemp_c"
@@ -58,8 +58,8 @@ GAVItrib2 <- unique(GAVItrib2)
 GAVI$Wetland <- "GAVI"
 ANTE$Wetland <- "ANTE"
 COLM$Wetland <- "COLM"
-GAVItrib1$Wetland <- "GAVItrib1"
-GAVItrib2$Wetland <- "GAVItrib2"
+#GAVItrib1$Wetland <- "GAVItrib1"
+#GAVItrib2$Wetland <- "GAVItrib2"
 
 #need seperate columns for each stream profile
 ANTE$dist_ANTE <- ANTE$dist
@@ -92,7 +92,8 @@ GAVItrib2$dist_GAVI <- NA
 GAVItrib2$dist_COLM <- NA
 GAVItrib2$dist_GAVItrib1 <- NA
 
-synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItrib1,GAVItrib2)
+#synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItrib1,GAVItrib2)
+synoptic.df <- rbind(ANTE,GAVI,COLM)
 
 ###calculate K600 using data collected from EOS and Viasala 
 #calculate using direct units
@@ -195,5 +196,5 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 #synoptic.df <- synoptic.df%>%drop_na(lat)
 
 ##write out
-write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-03-21.csv"))
+write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
 
