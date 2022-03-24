@@ -192,13 +192,42 @@ So now we need to associate this data frame with actual measurments from the syn
 we need to get synop data back in here. deep breath. here we go
 
 ```{r synop, echo=FALSE}
-synop <- left_join(df_prediction,df_prediction_3, by=c("lon_fit","lat_fit","dist"))
-synop <- synop[,-c(6:12)]
+
+##find midpoint distance between synop measurments. Then add up all areas that fall between way points
+
+synop <- df_prediction[,c("lon_fit","lat_fit","dist","Flux_ave")]%>%drop_na(Flux_ave)
+
+
+for(i in 1:nrow(synop)) {       # for-loop over rows
+  if (i==50) {
+        synop$midpoint[i] <- 0
+  } else {
+synop$midpoint[i] <- (synop$dist[i+1] - synop$dist[i])/2 + synop$dist[i]
+  }
+}
+
+## now we add up all of 
+
+#
 synop <- synop[order(synop$dist),]
-test <- synop[,c("lon_fit","lat_fit","dist","Date","Flux_ave","x_pred","w","d")]
-##find midpoint distance between synop measurments.
 
+synop$total_area <- NULL
 
+for(i in 1:nrow(synop)) { 
+  if (i==1){
+      synop$total_area[i] <- sum(df_prediction_3$area[ df_prediction_3$dist < synop$midpoint[i]], na.rm = TRUE)
+  }else if (i==which(synop$dist==max(synop$dist))){
+       synop$total_area[i] <- sum(df_prediction_3$area[ df_prediction_3$dist > synop$midpoint[i-1]], na.rm = TRUE)
+      }
+  else{
+  synop$total_area[i] <- sum(df_prediction_3$area[df_prediction_3$dist > synop$midpoint[i-1] & df_prediction_3$dist < synop$midpoint[i]], na.rm = TRUE)
+  }
+}
+
+df_prediction_4 <- left_join(df_prediction,synop[,c("lon_fit","lat_fit","dist","Flux_ave","total_area")], by=c("lon_fit","lat_fit","dist","Flux_ave"))
+
+df_prediction_4$total_flux <- df_prediction_4$Flux_ave*df_prediction_4$total_area
+#synop <- synop[,-c(3,4,6:12)]
 
 ```
 

@@ -33,7 +33,7 @@ df <- unique(df)
 
 ## Plot data
 
-plot the data be wetland to see whats up.
+plot the data by wetland to see whats up.
 
 Most of the streams go from dist = 0 is downstream and then progress upstream. Too bad, because we actually want it to be the other way around. The only one that doesn't need to be fixed in ANTE
 
@@ -212,11 +212,11 @@ ggplot(df2%>%drop_na(adjusted_ppm) , aes(x=dist_new, y=Total_flux, group=Wetland
     low = "blue", high = "red")
   
 
-ggplot(df2 , aes(x=dist, y=ele_fit, group=Wetland)) +
-  geom_line(aes(linetype=Wetland))
+ggplot(df2 , aes(x=dist_new, y=Total_flux, group=Wetland)) +
+  geom_line(aes(color=Wetland))
 ```
 
-This is ok. But what I WANT is to incorporte width so that I can calc total flux
+
 
 ##add width.
 this is going to be hard. 
