@@ -321,7 +321,9 @@ We also need to snap the synoptic df
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-01-09.csv"))
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-01-27.csv"))
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-02-11.csv"))
-synop <- read.csv(here::here("Synoptic/ANTE_2022-02-13.csv"))
+#synop <- read.csv(here::here("Synoptic/ANTE_2022-02-13.csv"))
+synop <- read.csv(here::here("Synoptic/ANTE_2022-03-23.csv"))
+
 
 synop$X <- NULL
 synop$ID <- NULL
@@ -571,24 +573,25 @@ loop$ele_plus <- NULL
 
 df_prediction <- loop 
 
+
 ```
 
 ```{r calc ante slope, echo=FALSE}
 
 ###
 df_prediction <- df_prediction[order(df_prediction$dist),]
-df_prediction$ante_slope <- NA
+df_prediction$slope50m <- NA
 loop <- df_prediction%>%drop_na(ele_fit)
 for(i in 1:nrow(loop)) {       # for-loop over rows
-  x = loop$dist[i] - 10
+  x = loop$dist[i] - 50
   loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
   loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
   
-  y = loop$dist[i] + 0
+  y = loop$dist[i] + 3
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
-  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  loop$slope50m <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
   
 }
 loop$dist_minus <- NULL
@@ -624,22 +627,15 @@ ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_av
 #df_prediction$DOC <- NULL
 #df_prediction$TDN <- NULL
 
-#we have an issue with Antenas data where it goes from upstream to downstream instead of the other way around, so I'm going to swap the distance before wrting out'
 
-df_prediction <- df_prediction[order(df_prediction$dist),]
-predict_dist<- df_prediction[,c("dist")] 
-predict_dist <- sort(predict_dist, decreasing = TRUE)
-df_prediction$dist <- NULL
-df_prediction$dist <- predict_dist
-
-write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-02-18.csv"))
+write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-03-23.csv"))
 
 df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 
 WaterChem2 <- left_join(WaterChem,df_prediction_join,by=c("lon_fit","lat_fit"))
 WaterChem2 <- unique(WaterChem2)%>%drop_na(DOC)
 
-write.csv(WaterChem2, here::here("ProcessedData/ANTE_WaterChem_synop_2022-02-13.csv"))
+write.csv(WaterChem2, here::here("ProcessedData/ANTE_WaterChem_synop_2022-03-23.csv"))
 
 ```
 
@@ -678,14 +674,5 @@ df_prediction %>%
 #  geom_point()
 
 
-
-```
-
-=======
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(CO2_ppm_ave))) +
-  geom_point()
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
-  geom_point()
->>>>>>> c8f7feb713e4333a22e091a913c82fea2f933f46
 
 ```

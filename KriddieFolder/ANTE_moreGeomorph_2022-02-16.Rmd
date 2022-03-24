@@ -23,11 +23,18 @@ library(data.table)
 ```
 
 ##Geomorph Data
-make a different data frame with rest of the geomorphdata
+make a another  data frame with rest of the geomorphdata - width, depth, and some notes relating to wetland/waterfall stuff
+
+Start by reading in most recent synoptic data
 ```{r read in data}
-df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-02-18.csv"))
+#df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-02-18.csv"))
+df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-03-23.csv"))
 df_prediction$X <-NULL
+
+ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
 ```
+#read in x, w, d data frame
 
 ```{r x and w and d, echo=FALSE}
 XWD <- read.csv(here::here("/Geomorphology/Atenas/Antenas_Geomorph_2022-01-28.csv"))
@@ -97,9 +104,6 @@ Our tools are dist (modeled) and x (measured). Some x are already associated wit
 
 If we can identify the xs assiciated with distance, we can then calcualte the difference between each each one. Then calcualte the ratio of x inbetween and total difference
 
-do the same with the difference between the distance assciated with x
-
-then see wich ratio is the closest --> link them up
 
 ##do this:
 if pt1 and pt2 are known values of x, and pt-btw is known dist but unknown x, then:
@@ -127,7 +131,6 @@ for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
     df_prediction_1$x_pred[i] <- df_prediction_1$x[i]
 
   } else {
-    df_prediction_1$dist_pred[i] <- NA
     pt2btw <- df_prediction_1$dist[i]
     dist1 = Closest(pred_df$dist, pt2btw, which = FALSE, na.rm = FALSE)
     if (dist1 < pt2btw ) {#x[! x %in% 2:10]
@@ -160,44 +163,51 @@ setDT(XWD_fit)
 
 df_prediction_3 <- df_prediction_2[XWD_fit, roll = "nearest", on = "x_pred"]
 
-for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
- }
+# now we calculate surface area of each width measurment using trapazoid method
+
+df_prediction_3$midpoint <- NA
+df_prediction_3$length <- NA
+df_prediction_3$area <- NA
+
+for(i in 1:nrow(df_prediction_3)) {       # for-loop over rows
+  if (i==1) {
+    df_prediction_3$midpoint[i] <- 0
+    df_prediction_3$length[i] <- (df_prediction_3$dist[i+1] + (df_prediction_3$dist[i] - df_prediction_3$dist[i+1])/2) - 0
+    df_prediction_3$area[i] <- df_prediction_3$length[i] * df_prediction_3$w[i]/100
+    
+  } else {
+    df_prediction_3$midpoint[i] <- df_prediction_3$dist[i-1] + (df_prediction_3$dist[i] - df_prediction_3$dist[i-1])/2
+    df_prediction_3$length[i] <- (df_prediction_3$midpoint[i] - df_prediction_3$midpoint[i-1])
+    df_prediction_3$area[i] <- df_prediction_3$length[i] * df_prediction_3$w[i]/100
+  }
+}
+
 ```
 
 AHHHH i can't believe that wooooorrrrkkkkeedddddddddddd!!!!!!
 
-#SLOPE
 
-```{r loopy, echo=FALSE}
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-16.csv"))
-ANTE$X <- NULL
+So now we need to associate this data frame with actual measurments from the synoptic data
 
-##choose the length of distance to use for calculating slope
-#also consider how much before or after the sample point
-#remeber - gps accuracy is 3m at best
+we need to get synop data back in here. deep breath. here we go
 
-save = ANTE[1,]
-save$slope <- NA
-loop <- ANTE%>%drop_na(ele_fit)
-for(i in 1:nrow(loop)) {       # for-loop over rows
-  x = loop$dist[i] - 10
-  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
-  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
-  
-  y = loop$dist[i] + 3
-  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
-  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
-  
-  loop$slope <- -1*(loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
-  
-}
-loop$dist_minus <- NULL
-loop$dist_plus <- NULL
-loop$ele_minus <- NULL
-loop$ele_plus <- NULL
+```{r synop, echo=FALSE}
+synop <- left_join(df_prediction,df_prediction_3, by=c("lon_fit","lat_fit","dist"))
+synop <- synop[,-c(6:12)]
+synop <- synop[order(synop$dist),]
+test <- synop[,c("lon_fit","lat_fit","dist","Date","Flux_ave","x_pred","w","d")]
+##find midpoint distance between synop measurments.
 
-ANTE <- rbind(save, loop)
+
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+I guess what I want is a column associated with each CO2 measurment that gives me surface area associated with the measurment.
+
+I now have some cra
+
+
+```{r plot width, echo=FALSE}
+ggplot(data=df_prediction_3, aes(dist, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+```

@@ -1,6 +1,7 @@
 #this script is for synoptic data for atennas
 
 # Load libraries
+detach("package:data.table", unload = TRUE)
 library(ggmap)
 library(dplyr)
 library(ggplot2)
@@ -19,21 +20,22 @@ ContinuousData$DateTime <- as.POSIXct(ContinuousData$DateTime,  format="%Y-%m-%d
 #vaisala new
 CO2_eos1_July5 <-  read.csv(here::here("/Synoptic/July5_Edited/Vnew_EOS1_synoptic_2021-07-05.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2_eos1_July5) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample")
+colnames(CO2_eos1_July5) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Notes")
 CO2_eos1_July5$EOS_no <- "EOS_1"
 CO2_eos1_July5$VaisalaType <- "new"
-CO2_eos1_July5$Notes <- NA
-CO2_eos1_July5$Notes_2 <- NA
+CO2_eos1_July5$Notes <- NULL
+CO2_eos1_July5$Notes_2 <- NULL
 CO2_eos1_July5$Wetland <- "ANTE"
 
 ##vaisala old
 CO2_eos2_July5 <-  read.csv(here::here("/Synoptic/July5_Edited/Vold_EOS2_synoptic_2021-07-05.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 #CO2_eos2_July5$Voltage..ppm. <- NULL
-colnames(CO2_eos2_July5) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Notes")
+colnames(CO2_eos2_July5) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Notes","Notes_2")
 CO2_eos2_July5$EOS_no <- "EOS_2"
 CO2_eos2_July5$VaisalaType <- "old"
-CO2_eos2_July5$Notes_2 <- NA
+CO2_eos2_July5$Notes <- NULL
+CO2_eos2_July5$Notes_2 <- NULL
 CO2_eos2_July5$Wetland <- "ANTE"
 
 CO2_July5 <- rbind(CO2_eos1_July5,CO2_eos2_July5)
@@ -41,24 +43,25 @@ rm(CO2_eos1_July5,CO2_eos2_July5)
 
 #July 6th
 #Vaisala new
-CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/Vnew_EOS1_synoptic_2021-07-06.csv"), skip=1, header = TRUE, sep = ",",
+CO2_eos1_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/Vnew_EOS1_synoptic_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 colnames(CO2_eos1_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Notes","Wetland")
 
 CO2_eos1_July6$EOS_no <- "EOS_1"
 CO2_eos1_July6$VaisalaType <- "new"
-CO2_eos1_July6$Notes_2 <- NA
+CO2_eos1_July6$Notes <- NULL
+CO2_eos1_July6$Notes_2 <- NULL
 CO2_eos1_July6 <- CO2_eos1_July6 %>%
   filter(Wetland == "ANTE")
 #Vaisala old
 
 CO2_eos2_July6 <-  read.csv(here::here("/Synoptic/July6_Edited/Vold_EOS2_synoptic_2021-07-06.csv"), skip=6, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Wetland")
+colnames(CO2_eos2_July6) <- c("Date","Time","CO2_ppm","Tract","Description","Point","lon","lat","ele","WaterSample","Wetland","Notes")
 CO2_eos2_July6$EOS_no <- "EOS_2"
 CO2_eos2_July6$VaisalaType <- "old"
-CO2_eos2_July6$Notes <- NA
-CO2_eos2_July6$Notes_2 <- NA
+CO2_eos2_July6$Notes <- NULL
+CO2_eos2_July6$Notes_2 <- NULL
 CO2_eos2_July6 <- CO2_eos2_July6 %>%
   filter(Wetland == "ANTE")
 
@@ -165,6 +168,7 @@ rm(Flux_eos1_July6,Flux_eos2_July6)
 Flux_synop <- rbind(Flux_July5, Flux_July6)
 rm(Flux_July5, Flux_July6)
 
+
 y <- hms(Flux_synop$Time)
 Flux_synop$Time <- hour(y) + minute(y) / 60 + second(y) / 360
 
@@ -211,7 +215,7 @@ synop_merge$Time.x <- NULL
 synop_merge$SampleType <- NULL
 
 #Write OUt
-write.csv(synop_merge, here::here("Synoptic/ANTE_2022-02-13.csv"))
+#write.csv(synop_merge, here::here("Synoptic/ANTE_2022-03-23.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 synop_merge$Flux_ave
