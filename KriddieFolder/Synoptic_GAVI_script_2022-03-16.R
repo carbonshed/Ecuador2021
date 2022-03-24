@@ -61,6 +61,7 @@ rm(CO2_eos1_June22,CO2_eos2_June22)
 CO2_eos1_June23 <-  read.csv(here::here("/Synoptic/June23/Vold_EOS1_synoptic_2021-06-23.csv"), skip=6, header = TRUE, sep = ",",
                       quote = "\"",dec = ".", fill = TRUE, comment.char = "")
 CO2_eos1_June23$Voltage..ppm. <- NULL
+CO2_eos1_June23$DIFF <- NULL
 colnames(CO2_eos1_June23) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
 CO2_eos1_June23$EOS_no <- "EOS_1"
 CO2_eos1_June23$VaisalaType <- "old"
@@ -88,20 +89,23 @@ CO2_eos1_June29 <-  read.csv(here::here("/Synoptic/June29_Edited/Vnew_EOS1_synop
 colnames(CO2_eos1_June29) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes","Notes_2")
 CO2_eos1_June29$EOS_no <- "EOS_1"
 CO2_eos1_June29$VaisalaType <- "new"
+CO2_eos1_June29$Notes <- NA
+CO2_eos1_June29$Notes_2 <- NA
 
 #SynopticOld - Old Vaisala and switch to New
   #vaisala sleeve ripped so switch to stn 2 Vaisala wich is New, at 
 CO2_eos2_June29 <-  read.csv(here::here("/Synoptic/June29_Edited/Vold_EOS2_synoptic_2021-06-29.csv"), skip=6, header = TRUE, sep = ",",
                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-colnames(CO2_eos2_June29) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample")
+colnames(CO2_eos2_June29) <- c("Date","Time","CO2_ppm","Tract","Description","Point","Lon","Lat","WaterSample","Notes")
 CO2_eos2_June29$EOS_no <- "EOS_2"
 CO2_eos2_June29$DateTime <- as.POSIXct(paste(CO2_eos2_June29$Date, CO2_eos2_June29$Time),format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC" )
 CO2_eos2_June29_1 <- subset(CO2_eos2_June29, DateTime < as.POSIXct('2021-06-29 12:00:00', tz="UTC"))
 CO2_eos2_June29_1$VaisalaType <- "old"
 CO2_eos2_June29_2 <- subset(CO2_eos2_June29, DateTime > as.POSIXct('2021-06-29 12:00:00', tz="UTC"))
 CO2_eos2_June29_2$VaisalaType <- "new"
-
 CO2_eos2_June29 <- rbind(CO2_eos2_June29_1,CO2_eos2_June29_2)
+CO2_eos2_June29$DateTime <- NULL
+
 rm(CO2_eos2_June29_1,CO2_eos2_June29_2)
 CO2_eos2_June29$Notes <- NA
 CO2_eos2_June29$Notes_2 <- NA
@@ -289,7 +293,7 @@ CO2_map <- qmplot(Lat, Lon, data = CO2_synop_pivot, zoom = 13,  maptype = "toner
 
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("Lat","Lon","Date", "Tract", "Point","EOS_no"))
 
-write.csv(synop_merge, here::here("Synoptic/GAVI_2022-01-27.csv"))
+write.csv(synop_merge, here::here("Synoptic/GAVI_2022-03-24.csv"))
 
 
 

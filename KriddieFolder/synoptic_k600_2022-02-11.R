@@ -13,7 +13,7 @@ library(lubridate)
 
 #read in df
 
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-02-18.csv"))
+ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-03-24.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-18.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-18.csv"))
 GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))

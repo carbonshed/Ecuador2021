@@ -101,7 +101,7 @@ x,w,d,notes,notes2,SynopPoint,Waypoint,lat,lon,ele,time,notes1,notes2,notes3,not
 360,16,15,,Wetland,,,,,,,,,,,,
 365,40,22,,Wetland,,70,-0.316552967,-78.19215903,4316.330078,2021-07-12T17:33:51Z,,,,,,
 410,NA,NA,synop ?,Wetland,syn 9,71,-0.317031993,-78.19220698,4312.292969,2021-07-12T17:39:36Z,,,,,,
-416,NA,NA,"wetland inlet, little waterfalls",channel,,72,-0.317078009,-78.19220597,4313.82373,2021-07-12T17:40:36Z,Q,W1 = 13 cm,W2 = 13 cm,d = 3 cm,v= .11 cm,
+416,NA,NA,wetland inlet (kw note: I think this is where the water was underground untill 365),channel,,72,-0.317078009,-78.19220597,4313.82373,2021-07-12T17:40:36Z,Q,W1 = 13 cm,W2 = 13 cm,d = 3 cm,v= .11 cm,
 420,26,5,,channel,,,,,,,,,,,,
 425,17,8,,channel,,,,,,,,,,,,
 430,16,11,,channel,,,,,,,,,,,,
