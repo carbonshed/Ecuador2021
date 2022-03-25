@@ -197,4 +197,7 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 
 ##write out
 write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
+#df <- df%>%drop_na(Date)
+#write.csv(df, here::here("ProcessedData/ALL_synopticNoNA_2022-03-24.csv"))
 
