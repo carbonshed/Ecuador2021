@@ -24,7 +24,7 @@ fluxCO2_summary<- df%>%group_by(Wetland)%>%
             CO2_median = median(adjusted_ppm,na.rm = TRUE),
             CO2_sd = sd(adjusted_ppm,na.rm = TRUE))
 
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-02-18.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
 summary <- df%>%group_by(Wetland)%>%
   summarise(max_dist = mean(dist))
 #wetland: GAVI ANTE COLM
@@ -89,7 +89,7 @@ plot_grid(CO2_hist, flux_hist, nrow = 2
 
 
 ######point 3 CO2 does not decrease with distance ####
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-10.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
 
 #significance of co2 and distance
 #ANTE: pvalue = .06099, r2 = 0.1361
@@ -149,7 +149,7 @@ dat_text <- data.frame(
 
 
 
-#2. 
+#2. Synop_all_raster3
 model <- lm(Flux_ave ~ Elevation, 
             data = df#%>%filter(FlowAccu>6000)
 )
@@ -180,6 +180,10 @@ model <- lm(Flux_ave ~ ppm_stnd + FlowAccu_std,
 )
 summary(model)
 
+#####################
+####RASTER STUFFS####
+#####################
+
 #riparian to upland
 df <- read.csv(here::here("/Synoptic/Synop_all_raster3.csv"))
 
@@ -193,6 +197,8 @@ model <- lm(Flux_ave ~ adjusted_ppm+FlowAccu,
              data = df%>%filter(FlowAccu<1000)
 )
 summary(model)
+
+
 
 #significant for less than 1000 = adjusted_ppm, FlowAccu, Flowlen, Elevation
 model1 <- lm(Flux_ave ~ adjusted_ppm +Elevation, #r2 = .72

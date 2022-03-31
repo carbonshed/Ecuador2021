@@ -55,6 +55,7 @@ Geomorph_2 <- subset(Geomorph,
 
 
 Geomorph <- rbind(Geomorph_1,Geomorph_2)
+
 ```
 
 It's not a bad thing, per se, but I really made things complicated when I started taking measurmenets of streams in addition to the mainstem of GAVI. I blame Diego, frankly. But I also blame myself from listening to Diego. Have confidence in you're game plan, Kriddie, for goodness Sake.
@@ -63,7 +64,8 @@ So let's try to just select the mainstem samples, for starters.
 
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
-synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
+#synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
 
 synop$X <- NULL
 
@@ -81,6 +83,7 @@ rm(Synopjune18,Synopjune22,Synopjune29,Synopjune30)
 
 ```{r look at all synop data}
 df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
+
 
 TrackMap <- qmplot(lon, lat, data = synop, zoom = 13,
                    maptype = "toner-background", color=as.factor(Date), shape = EOS_no
@@ -116,8 +119,8 @@ fig
 
 ```{r 3d plot and synop, echo=FALSE}
 
-
 df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
+
 
 fig <- plot_ly(df, x = ~lat, y = ~lon, z = ~ele, size = 1,
                marker = list(color = ~CO2_ppm_ave, colorscale = c('#FFE1A1', '#683531'), showscale = TRUE))
@@ -147,10 +150,13 @@ We will do this in parts though, be cause the relationship between lat lon can n
 Colmillo is not too far off from a funtion if lat is the "x" and lon is the 'y'
 ```{r first spline, echo=FALSE}
 
+
+df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
+
 #Cut up lat long into peices, and then fit spline
 
 
-Geomorph_sub <-df %>% filter(lat <= -.327)
+Geomorph_sub <- df %>% filter(lat <= -.32681)
 model <- lm(lon~bs(lat,
               #     knots = c(-0.3164286,-0.3163748,-0.3162296,                          -0.3161252,-0.3161399,-.3156738, -0.3154703,-0.3152688,-0.3152838), 
                    degree = 10),
@@ -213,6 +219,7 @@ yeah, that looks ok I guess. I really need to just collect this again :( -- upda
 #now we need to make a dataframe that discribes this relationship between lat lon
 df_prediction <- rbind(df1,df2)
 
+
 plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
 
 plot(Geomorph$lat,Geomorph$lon)
@@ -270,6 +277,7 @@ Geomorph$lat_fit <- pred$lat
 
 
 df_prediction <- full_join(df_prediction,Geomorph,by=c("lon_fit","lat_fit"))
+
 ```
 first I need to make sure that what I have done really worked
 
@@ -293,8 +301,6 @@ ok sweet that looks really good
 
 We also need to snap the synoptic df (for later)
 ```{r snap synop pts}
-synop_mainstem <- synop_mainstem #%>% filter(lat <= -.327)
-
 
 x <- SpatialPoints(synop_mainstem[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
@@ -314,8 +320,13 @@ synop_mainstem <- synop_mainstem[,c("lon_fit","lat_fit","Date","EOS_no","Flux_av
 
 
 df_prediction <- full_join(df_prediction,synop_mainstem,by=c("lon_fit","lat_fit"))
+check <- df_prediction%>%drop_na(Date)
+## at this point there are 39 synoptic points. there should only be 37
+
 
 ```
+
+
 
 ##calculate distance between each coordinate.
 Here's the deal. We need to calcualte the distance between each coordinate 
@@ -362,6 +373,8 @@ df_prediction_1 %>%
 
 fig <- plot_ly(df_prediction_1, x = ~dist, y = ~ele_fit, size = 1)
 fig
+
+check <- df_prediction%>%drop_na(Date)
 
 
 ```
@@ -446,21 +459,20 @@ predict$slope <- (predict$ele_fit - predict$ele_down)/(predict$dist - predict$di
 predict$dist_down <- NULL
 predict$ele_down <- NULL
 
-df_predictionblah <- predict%>%filter(slope<0)
-
 df_prediction_1 <- predict
 
-fig <- plot_ly(predict, x = ~dist, y = ~ele_fit, size = 1)
+fig <- plot_ly(predict%>%drop_na(Date), x = ~dist, y = ~ele_fit, size = 1)
 fig
+
 
 ```
 
 ```{r diff 2 way}
 
 df_prediction_2 <- df_prediction %>% 
-  filter(dist < 600 & dist > 32)%>%
-  filter(ele > 4096.3 | dist < 476.4)
-  
+  filter(dist < 600 & dist > 24)#%>%
+#  filter(ele > 4096.3 | dist < 476.4)
+check <- df_prediction%>%drop_na(Date)
 
 distlims <- range(df_prediction_2$dist)
 fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_2)
@@ -474,11 +486,11 @@ df_prediction_2 %>%
   geom_point(size = 3, alpha = .5, color = "grey") +
   geom_line(aes(dist, smooth), color="red")
 
-fig <- plot_ly(df_prediction_2, x = ~dist, y = ~ele, size = 1)
+fig <- plot_ly(df_prediction_2%>%drop_na(Date), x = ~dist, y = ~ele_fit, size = 1)
 fig
 
 
-
+check <- df_prediction_2%>%drop_na(Date)
 
 ```
 
@@ -571,6 +583,8 @@ df_predictionblah <- predict%>%filter(slope<0)
 
 df_prediction_2 <- predict
 
+check <- predict%>%drop_na(Date)
+
 fig <- plot_ly(predict, x = ~dist, y = ~ele_fit, size = 1)
 fig
 
@@ -594,6 +608,8 @@ ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
 fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
 fig
 
+check <- df_prediction%>%drop_na(Date)
+
 ```
 
 #reverse order
@@ -607,7 +623,6 @@ you can't just reverse order the distance column because they are not collected 
 
 df_prediction <- df_prediction[order(df_prediction$dist),]
 df_prediction$dist_diff <- NA
-df_prediction$Total_flux <- NA
 
 for(i in 1:nrow(df_prediction)) {       # for-loop over rows
   if (i == 1) {
@@ -632,6 +647,9 @@ df_prediction$X <-NULL
 df_prediction$dist <- NULL
 names(df_prediction)[names(df_prediction)=="dist_new"] <- "dist"
 
+check <- df_prediction%>%drop_na(Date)
+
+#loosing a synop point in the next chunk
 ```
 
 #calcualte slope
@@ -648,7 +666,7 @@ for(i in 1:nrow(loop)) {       # for-loop over rows
   loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
   loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
   
-  y = loop$dist[i] + 3
+  y = loop$dist[i] + 0
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
@@ -661,19 +679,22 @@ loop$ele_minus <- NULL
 loop$ele_plus <- NULL
 
 df_prediction <- loop 
-
+check <- df_prediction%>%drop_na(Date)
 ```
 #plot
 
 ```{r write, echo=FALSE}
-fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
+fig <- plot_ly(df_prediction%>%drop_na(Date), x = ~dist, y = ~ele_fit, size = 1)
 fig
-fig <- plot_ly(df_prediction, x = ~dist, y = ~slope50m, size = 1)
+fig <- plot_ly(df_prediction%>%drop_na(Date), x = ~dist, y = ~slope50m, size = 1)
 fig
 ```
 
 ```{r write, echo=FALSE}
-
+check <- df_prediction%>%drop_na(Date)
+df_prediction <- df_prediction%>%filter(dist_diff!=0)
+check <- df_prediction%>%drop_na(Date)
+##check should have 37 points again
 write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2022-03-24.csv"))
 ```
 

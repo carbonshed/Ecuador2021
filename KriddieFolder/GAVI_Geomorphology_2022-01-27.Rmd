@@ -82,9 +82,16 @@ rm(Synopjune18,Synopjune22,Synopjune29,Synopjune30)
 ```{r look at all synop data}
 df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
 
-TrackMap <- qmplot(lon, lat, data = synop_mainstem, zoom = 13,
-                   maptype = "toner-background", color=as.factor(Date), shape = EOS_no
-                   )
+
+eos1_synop <- synop%>%filter(EOS_no=="EOS_1") 
+synop_gavi <- rbind(synop_mainstem,eos1_synop)
+
+TrackMap <- qmplot(lon, lat, data = synop_mainstem, zoom = 13,maptype = "toner-background", color=as.factor(Date), shape = EOS_no )
+
+TrackMap <- qmplot(lon, lat, data = synop_gavi, zoom = 13, maptype = "toner-background", color=log10(adjusted_ppm)) +
+  scale_color_gradient(name="CO2 (ppm)",
+  low = "Blue",
+  high = "Red")
 
 TrackMap_geo <- qmplot(lon, lat, data = Geomorph, zoom = 13,
                    maptype = "toner-background")

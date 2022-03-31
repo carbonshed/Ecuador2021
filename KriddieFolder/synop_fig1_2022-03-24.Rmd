@@ -8,9 +8,15 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+
+
+#add
 library(here)
+library(tidyr)
 library(dplyr)
+library(bigleaf)
 library(ggplot2)
+
 ```
 
 ## synop_fig1_2022-03-21
@@ -31,8 +37,31 @@ df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
 df$X <- NULL
 df <- unique(df)
 
+#remove -0.66500000 from colm because this 
+#and then add 	-12.95676280	to Totalflux for all colm
+#and subtract 51.026668 from x
+df <- df%>%filter(Flux_ave!=-0.6650)
+df$Totalflux_umolpers[which(df$Wetland=="COLM")] <- df$Totalflux_umolpers[which(df$Wetland=="COLM")] + 13
+df$dist[which(df$Wetland=="COLM")] <- df$dist[which(df$Wetland=="COLM")] - 51
+
+#convert umol of CO2 mgC as CO2 to  44/12
+df$Totalflux_gCO2pers <- df$Totalflux_umolpers / 100 * 44.0095
+df$Totalflux_gCO2perday <- df$Totalflux_umolpers / 100 * 44.0095 *60*60*24
+df$Totalflux_mgCO2pers <- df$Totalflux_umolpers * 1000
+
+
+#subtract 	3.043758e+00 from GAVI
+df$dist[which(df$Wetland=="GAVI")] <- df$dist[which(df$Wetland=="GAVI")] - 3.043758
+
 ##add raster data
 Synop_all_raster3 <- read.csv(here::here("Synoptic/Synop_all_raster3.csv"))
+```
+
+##summarize
+
+```{r summarize in}
+summary <- df%>% group_by(Wetland)%>%
+  summarize(mean = )
 ```
 
 ## Plot data
@@ -40,6 +69,18 @@ Synop_all_raster3 <- read.csv(here::here("Synoptic/Synop_all_raster3.csv"))
 plot the data by wetland to see whats up.
 
 Most of the streams go from dist = 0 is downstream and then progress upstream. Too bad, because we actually want it to be the other way around. The only one that doesn't need to be fixed in ANTE
+
+```{r theme}
+My_Theme = theme(
+  axis.title.x = element_text(size = 16),
+  axis.text.x = element_text(size = 14),
+  axis.title.y = element_text(size = 16),
+  axis.text.y = element_text(size = 14),
+  plot.title = element_text(size = 12, face = "bold"),
+  legend.title=element_text(size=14), 
+  legend.text=element_text(size=12))
+
+```
 
 ```{r visualize streamprofile, echo=FALSE}
 ggplot(data=df%>%filter(Wetland=="GAVItrib2"), aes(x=dist, y=ele_fit, group=1)) +
@@ -52,11 +93,17 @@ ggplot(data=df%>%filter(Wetland=="GAVItrib2"), aes(x=dist, y=ele_fit, group=1)) 
 and flux total data
 
 ```{r visualize profile again, echo=FALSE}
+
+
 ggplot(data=df%>%filter(Wetland=="GAVI"), aes(x=dist, y=ele_fit, group=1)) +
   geom_line()+
   geom_point()
 
 ggplot(data=df %>%filter(Wetland=="GAVI")%>%drop_na(adjusted_ppm), aes(x=dist, y=Totalflux_umolpers, group=1)) +
+  geom_line()+
+  geom_point()
+
+ggplot(data=df, aes(x=dist, y=ele_fit)) +
   geom_line()+
   geom_point()
 ```
@@ -67,19 +114,92 @@ ggplot(data=df %>%filter(Wetland=="GAVI")%>%drop_na(adjusted_ppm), aes(x=dist, y
 ```{r join and plot, echo=FALSE}
 
 
-ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist<250)#%>%filter(Wetland!="COLM")
-       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
-  geom_line(aes(#linetype=Wetland,
+
+ggplot(df#%>%drop_na(adjusted_ppm) #%>% filter(dist<250)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_gCO2pers, group=Wetland)) +
+  geom_line(aes(linetype=Wetland,
     color=Wetland),
-    size=2)
+    size=2) +
+  xlab("Distance") + ylab("Total CO2 evaded (g per sec) ") +labs(linetype="LEGEND", color="LEGEND") +
+  theme_bw()
+
+
+ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist<250)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_gCO2pers, group=Wetland)) +
+  geom_line(aes(linetype=Wetland,
+    color=Wetland),
+    size=2) +
+    xlab("Distance") + ylab("Total CO2 evaded (g) ") +
+  theme_bw()
 
 
 ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist>500)#%>%filter(Wetland!="COLM")
-       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
-  geom_line(aes(#linetype=Wetland,
+       , aes(x=dist, y=Totalflux_gCO2pers, group=Wetland)) +
+  geom_line(aes(linetype=Wetland,
     color=Wetland),
-    size=2)
+    size=2)+
+    xlab("Distance") + ylab("Total CO2 evaded (g) ") +
+  theme_bw()
   
 
 ```
+```{r join and plot 2, echo=FALSE}
+##Gonna split this up so that we have GAVI upstream and gavi downstream
 
+GAVI_up <- df%>%filter(Wetland == "GAVI" & dist<400)
+GAVI_up$Wetland <- "GAVI above wetland"
+
+GAVI_down <- df%>%filter(Wetland == "GAVI" & dist>400)
+GAVI_down$Wetland <- "GAVI below wetland"
+GAVI_down$dist <- GAVI_down$dist - 520
+GAVI_down$Totalflux_gCO2pers <- GAVI_down$Totalflux_gCO2pers - 36.27838
+
+
+no_GaVI <- df%>%filter(Wetland != "GAVI")
+
+df_2 <- rbind(GAVI_down,GAVI_up,no_GaVI)
+
+
+ggplot(df_2%>%filter(dist > 0 & dist < 500)
+       #%>%drop_na(adjusted_ppm) #%>% filter(dist<250)
+       , aes(x=dist, y=Totalflux_gCO2pers, group=Wetland)) +
+  geom_line(aes(linetype=Wetland,
+    color=Wetland),
+    size=2) +
+  xlab("Distance") + ylab("Total CO2 evaded (g per sec) ") +labs(linetype="LEGEND", color="LEGEND") +
+  theme_bw() 
+```
+
+```{r join and plot, echo=FALSE}
+df <- df[,c("ele_fit","dist","adjusted_ppm","Flux_ave","Wetland")]
+
+df_3 <- df
+
+
+df_3$dist_ANTE[df_3$Wetland=="ANTE"] <- df_3$dist[df_3$Wetland=="ANTE"]
+df_3$dist_GAVI[df_3$Wetland=="GAVI"] <- df_3$dist[df_3$Wetland=="GAVI"]
+df_3$dist_COLM[df_3$Wetland=="COLM"] <- df_3$dist[df_3$Wetland=="COLM"]
+###so anoying, but we are missing 5 points right below GAVI wetland. sucks try to add in if we can
+
+
+
+adjusted_ppm <- ggplot(data=df_3 ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2, alpha=.5) +
+  geom_point(data=df%>%drop_na(adjusted_ppm), aes(dist, ele_fit, color= log10(adjusted_ppm)),size=3)+
+  scale_color_gradient(
+    low = "blue", high = "red",
+    space = "Lab",
+    na.value = "grey50",
+    guide = "colourbar",
+    aesthetics = "colour",
+    name = "CO2 (ppm)",
+    breaks = c(2.5, 3.0, 3.5,4.0), labels = c("300", "1,000", "3,000","10,000")
+  ) +  
+
+  labs(y="elevation", x = "distance")  +
+  theme_classic() + My_Theme #+ theme(legend.position = c(0.9, 0.9))
+
+adjusted_ppm
+```

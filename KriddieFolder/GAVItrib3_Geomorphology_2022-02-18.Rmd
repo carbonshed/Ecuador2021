@@ -43,16 +43,17 @@ Geomorph$time <-Geomorph$time - 5*60*60
 #round to nearest half second
 Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
 
-#Geomorph_2 <- subset(Geomorph,
-#      time > as.POSIXct('2021-07-27 10:50:00', tz="UTC")&
-#        time < as.POSIXct('2021-07-27 11:12:00', tz="UTC"))
+Geomorph_2 <- Geomorph%>%filter(ele > 4100)
+##
 
-Geomorph <- subset(Geomorph,
-      time > as.POSIXct('2021-07-27 10:16:00', tz="UTC")&
-        time < as.POSIXct('2021-07-27 13:36:00', tz="UTC"))
+Geomorph_3 <- subset(Geomorph_2,
+      time > as.POSIXct('2021-07-27 14:38:30', tz="UTC")& time < as.POSIXct('2021-07-27 14:55:00', tz="UTC") )
 
 
-TrackMap_geo <- qmplot(lon, lat, data = Geomorph, zoom = 13, maptype = "toner-background")
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph_2, zoom = 13, maptype = "toner-background")
+TrackMap_geo
+
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph_3, zoom = 13, maptype = "toner-background")
 TrackMap_geo
 
 
@@ -72,26 +73,32 @@ colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","Va
 synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")]
 
 #stream that goes up to the refuge
-Synop_3 <- synop %>%
-  filter(Date == "2021-06-22" | Date == "2021-06-23")%>%
-  filter(EOS_no == "EOS_2")
+Synop_2 <- synop %>%
+  filter(Date == "2021-06-30" | Date == "2021-06-29")%>%
+  filter(Tract==2)%>%
+  filter(EOS_no == "EOS_1")
 
-TrackMap <- qmplot(lon, lat, data = synop, zoom = 13,
+
+TrackMap <- qmplot(lon, lat, data = Synop_2, zoom = 13,
                    maptype = "toner-background", color=EOS_no,shape = as.factor(Date))
 TrackMap
+
+TrackMap_2 <- qmplot(lon, lat, data = Synop_2, zoom = 13,
+                   maptype = "toner-background", color=EOS_no,shape = as.factor(Date))
+TrackMap_2
 
 
 ```
 
 ```{r look at all synop data}
 
-df <- full_join(Synop_2,Geomorph_2, by=c("lat","lon")) 
+df <- full_join(Synop_2,Geomorph_3, by=c("lat","lon")) 
 
 TrackMap <- qmplot(lon, lat, data = df, zoom = 13,
                    maptype = "toner-background", color=Point,shape = EOS_no)
 TrackMap
 
-TrackMap_geo <- qmplot(lon, lat, data = Geomorph_2, zoom = 13, maptype = "toner-background")
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph_3, zoom = 13, maptype = "toner-background")
 TrackMap_geo
 
 ```
@@ -102,7 +109,7 @@ TrackMap_geo
 
 #Cut up lat long into peices, and then fit spline
 
-Geomorph_sub <- Geomorph_2 
+Geomorph_sub <- Geomorph_3
 model <- lm(lon~bs(lat,
                    degree = 3),
             data=Geomorph_sub)
@@ -205,7 +212,7 @@ first I need to make sure that what I have done really worked
 ```{r testing snap to line, echo=FALSE}
 
 
-fig <- plot_ly(df_prediction_1, x = ~lat, y = ~lon, z = ~ele, size = 1)
+fig <- plot_ly(df_prediction_2, x = ~lat, y = ~lon, z = ~ele, size = 1)
 fig <- fig %>% add_markers()
 fig <- fig %>% add_trace(x = ~lat_fit, y = ~lon_fit, z = ~ele, colors = c('Yellow'),
                          mode = 'markers')
@@ -384,7 +391,7 @@ fig
 ```
 
 ```{r write, echo=FALSE}
-
+check <- df_prediction_2%>%drop_na(Date)
 write.csv(df_prediction_2, here::here("ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
 ```
 

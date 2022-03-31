@@ -52,7 +52,7 @@ Let's do the synoptic one trib at a time
 
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
-synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
 
 synop$X <- NULL
 
@@ -248,6 +248,46 @@ fig
 
 
 ```
+#reverse order
+unfortunatly gavi trib is going from downstream to up, and we want upstream to down. so reverse this order
+you can't just reverse order the distance column because they are not collected at even intervals.
+
+#loops below switch order of distance
+
+```{r reverse, echo=FALSE}
+
+
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$dist_diff <- NA
+
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  if (i == 1) {
+    df_prediction$dist_diff[i] <- 0
+  } else {
+    df_prediction[i,"dist_diff"] <-   df_prediction[i,"dist"] - df_prediction[i-1,"dist"]
+  }
+}
+
+df_prediction <- df_prediction[order(-df_prediction$dist),]
+df_prediction$dist_new <- NA
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  if (i == 1) {
+    df_prediction$dist_new[i] <- 0
+  } else {
+    df_prediction[i,"dist_new"] <-   df_prediction[i,"dist_diff"] + df_prediction[i-1,"dist_new"]
+  }
+}
+
+df_prediction <- df_prediction%>%filter(dist_new<350|dist_new>507.38)
+df_prediction$X <-NULL
+df_prediction$dist <- NULL
+names(df_prediction)[names(df_prediction)=="dist_new"] <- "dist"
+
+check <- df_prediction%>%drop_na(Date)
+
+#loosing a synop point in the next chunk
+```
+
 
 ```{r check slope, echo=FALSE}
 #save <- df_prediction
@@ -286,49 +326,22 @@ fig
 
 
 
-```{r calc slope, echo=FALSE}
 
+```{r calc slope 50m, echo=FALSE}
 
-###
 df_prediction <- df_prediction_1[order(df_prediction_1$dist),]
-df_prediction$slope <- NA
+df_prediction$slope50m <- NA
 loop <- df_prediction%>%drop_na(ele_fit)
 for(i in 1:nrow(loop)) {       # for-loop over rows
-  x = loop$dist[i] - 5
+  x = loop$dist[i] - 50
   loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
   loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
   
-  y = loop$dist[i] + 5
+  y = loop$dist[i] + 0
   loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
   loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
   
-  loop$slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
-  
-}
-loop$dist_minus <- NULL
-loop$dist_plus <- NULL
-loop$ele_minus <- NULL
-loop$ele_plus <- NULL
-
-df_prediction_1 <- loop 
-
-```
-
-```{r ante calc slope, echo=FALSE}
-
-df_prediction <- df_prediction_1[order(df_prediction_1$dist),]
-df_prediction$ante_slope <- NA
-loop <- df_prediction%>%drop_na(ele_fit)
-for(i in 1:nrow(loop)) {       # for-loop over rows
-  x = loop$dist[i] - 0
-  loop$ele_minus[i] <- loop[which.min(abs(loop$dist-x)),]$ele_fit
-  loop$dist_minus[i] <- loop[which.min(abs(loop$dist-x)),]$dist
-  
-  y = loop$dist[i] + 10
-  loop$ele_plus[i] <- loop[which.min(abs(loop$dist-y)),]$ele_fit
-  loop$dist_plus[i] <- loop[which.min(abs(loop$dist-y)),]$dist
-  
-  loop$ante_slope <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
+  loop$slope50m <- (loop$ele_minus-loop$ele_plus)/(loop$dist_minus-loop$dist_plus)
   
 }
 loop$dist_minus <- NULL

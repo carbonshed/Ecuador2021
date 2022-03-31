@@ -21,8 +21,22 @@ GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-02-16.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-02-14.csv"))
 
 ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
+ANTE$dist_ANTE <- ANTE$dist
+ANTE$dist_COLM <- NA
+ANTE$dist_GAVI <- NA
 COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
+COLM$dist_COLM <- COLM$dist
+COLM$dist_ANTE <- NA
+COLM$dist_GAVI <- NA
 GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
+GAVI$dist_GAVI <- GAVI$dist
+GAVI$dist_ANTE <- NA
+GAVI$dist_COLM <- NA
+GAVI <- GAVI%>%drop_na(Date)
+
+GAVI_sub <- GAVI%>%filter(dist > 462 & dist < 570)
+
+df <- rbind(ANTE,COLM,GAVI)
 
 
 #####or start here for k600######
