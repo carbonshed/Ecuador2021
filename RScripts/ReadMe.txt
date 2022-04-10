@@ -16,8 +16,10 @@ For synoptic data:
 		WriteOut: "ProcessedData/ANTE_WaterChem_synop_2022-03-23.csv"
 	GAVI_Geomorphology_2022-02-16.Rmd
 		WriteOut: "ProcessedData/GAVI_synoptic_2022-03-24.csv"
+	GAVItrib1_Geomorphology_2022-02-18.Rmd
+		WriteOut: "ProcessedData/GAVI_Trib1_synoptic_2022-03-24.csv"
 
-3. More Geomorphology: This script combines geomorphology with width and depth data. It calculates a column for surface area represented by each CO2 measurment based on distance between points and width 
+3. More Geomorphology: This script combines geomorphology with width and distance data. It calculates a column for surface area represented by each CO2 measurment based on distance between points and width 
 	ANTE_moreGeomorph_2022-02-16.Rmd
 		WriteOut: "ProcessedData/ANTE_synopticGeom_2022-03-23.csv"
 	GAVI_moreGeomorph_2022-02-16.Rmd

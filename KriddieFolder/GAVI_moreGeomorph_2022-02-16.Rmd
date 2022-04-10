@@ -64,10 +64,10 @@ arrange.vars <- function(data, vars){
 df_prediction <- read.csv(here::here("ProcessedData/GAVI_synoptic_2022-03-24.csv"))
 df_prediction$X <- NULL
 
-ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+ggplot(data=df_prediction%>%drop_na(Date), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 
-ggplot(data=df_prediction, aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
+ggplot(data=df_prediction%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 ```
 #read in x, w, d data frame
@@ -84,7 +84,7 @@ XWD <- XWD[order(XWD$x),]
 XWD$x_diff <- NA
 
 ##first above GAVI
-XWD_up <- XWD%>%filter(x>570)
+XWD_up <- XWD%>%filter(x>600)
 for(i in 1:nrow(XWD_up)) {       # for-loop over rows
   if (i == 1) {
     XWD_up$x_diff[i] <- 0
@@ -105,7 +105,7 @@ XWD_up$x_new <-XWD_up$x_new - 0.8
 XWD_up$x_new[which(XWD_up$x_new==-0.8)] <- 0
 
 ##below GAVI
-XWD_down <- XWD%>%filter(x<570)
+XWD_down <- XWD%>%filter(x<600)
 for(i in 1:nrow(XWD_down)) {       # for-loop over rows
   if (i == 1) {
     XWD_down$x_diff[i] <- 0
@@ -142,6 +142,7 @@ names(XWD)[names(XWD) == 'x_new'] <- 'x'
 now we snap XWD data to prediction
 
 ```{r snap XDW, echo=FALSE}
+
 df_prediction <- arrange.vars(df_prediction, c("lon_fit"=1))
 #seeing some problems around GAVI wetland. Distance don't match up. So we will restart distance 
 
@@ -226,6 +227,7 @@ Now we have a data frame with x predicted and associated with distance. Now we a
 
 
 ```{r width loop, echo=FALSE}
+
 df_prediction_2 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x_pred")]%>%drop_na(dist)
 
 XWD_fit <- XWD_1[,c("x","w","d","notes")]
@@ -244,12 +246,13 @@ df$midpoint <- NA
 df$length <- NA
 df$area <- NA
 
+#run this 2x for some reason (but no more than 2x!) make sure area column is filled in and reasonable
+
 for(i in 1:nrow(df)) {       # for-loop over rows
   if (i==1) {
     df$midpoint[i] <- 0
     df$length[i] <- (df$dist[i+1] + (df$dist[i] - df$dist[i+1])/2) - 0
     df$area[i] <- df$length[i] * df$w[i]/100
-    
   } else {
     df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
     df$length[i-1] <- df$midpoint[i] - df$midpoint[i-1]
@@ -260,12 +263,13 @@ for(i in 1:nrow(df)) {       # for-loop over rows
 ##something a little complicated about GAVi is that there isa wetland where we didn't take measurments from  ______,so that should not be included in the area
     # I think I'll just hard program that in if I can
 
-#where does gaviup empty into the wetland? who knows. lets just add 3 meters 343.420370
+#where does gavi up empty into the wetland? who knows. lets just add 3 meters 343.420370
 #df$midpoint[which(df$x_pred==245.0)] <- (507.645587 + 3)
 df$x_pred <- as.numeric(df$x_pred)
 df$x_pred <- round(df$x_pred, digits = 1)
 
 df$length[which(df$x_pred==245.0)] <- 179.195152 + 3 - df$midpoint[which(df$x_pred==245)]
+
 df$area[which(df$x_pred==245.0)] <- df$w[which(df$x_pred==245.0)]/100 * df$length[which(df$x_pred==245.0)]
 
 #according to collected geomorph data, wetland outlet is 5m upstream of stn1 @ 445, distance =507.645587
@@ -341,8 +345,8 @@ for(i in 1:nrow(synop)) {       # for-loop over rows
 
 df_prediction_4 <- left_join(df_prediction,synop[,c("lon_fit","lat_fit","dist","Flux_ave","midpoint","surface_area","flux_umolpers","Totalflux_umolpers")], by=c("lon_fit","lat_fit","dist","Flux_ave"))
 
-df_prediction_4 <- df_prediction_4[c(1:2,9:28)]
 
+df_prediction_4 <- df_prediction_4[, !(colnames(df_prediction_4) %in% c("lon_dist","lat_dist","lat","lon","ele","time"))]
 
 
 ```
@@ -355,6 +359,9 @@ I now have some cra
 ```{r plot and write, echo=FALSE}
 #df_prediction_4$flux_umolpers
 ggplot(data=df_prediction_4, aes(dist, Totalflux_umolpers),size=5) +
+  geom_point(size=5)
+#df_prediction_4$adjusted_ppm
+ggplot(data=df_prediction_4%>%drop_na(Date), aes(dist, ele_fit, color=log10(adjusted_ppm)),size=5) +
   geom_point(size=5)
 
 write.csv(df_prediction_4, here::here("ProcessedData/GAVI_synopticGeom_2022-03-24.csv"))

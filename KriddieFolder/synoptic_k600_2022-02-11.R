@@ -51,8 +51,8 @@ colnames(COLM)[which(names(COLM) == "COLM_waterTempAve")] <- "WaterTemp_c"
 ANTE <- unique(ANTE)
 GAVI <- unique(GAVI)
 COLM <- unique(COLM)
-GAVItrib1 <- unique(GAVItrib1)
-GAVItrib2 <- unique(GAVItrib2)
+#GAVItrib1 <- unique(GAVItrib1)
+#GAVItrib2 <- unique(GAVItrib2)
 
 #add weltand info
 GAVI$Wetland <- "GAVI"
@@ -65,20 +65,20 @@ COLM$Wetland <- "COLM"
 ANTE$dist_ANTE <- ANTE$dist
 ANTE$dist_GAVI <- NA
 ANTE$dist_COLM <- NA
-ANTE$dist_GAVItrib1 <- NA
-ANTE$dist_GAVItrib2 <- NA
+#ANTE$dist_GAVItrib1 <- NA
+#ANTE$dist_GAVItrib2 <- NA
 
 GAVI$dist_ANTE <- NA
 GAVI$dist_GAVI <- GAVI$dist
 GAVI$dist_COLM <- NA
-GAVI$dist_GAVItrib1 <- NA
-GAVI$dist_GAVItrib2 <- NA
+#GAVI$dist_GAVItrib1 <- NA
+#GAVI$dist_GAVItrib2 <- NA
 
 COLM$dist_COLM <- COLM$dist
 COLM$dist_ANTE <- NA
 COLM$dist_GAVI <- NA
-COLM$dist_GAVItrib1 <- NA
-COLM$dist_GAVItrib2 <- NA
+#COLM$dist_GAVItrib1 <- NA
+#COLM$dist_GAVItrib2 <- NA
 
 GAVItrib1$dist_GAVItrib1 <- GAVItrib1$dist
 GAVItrib1$dist_ANTE <- NA
