@@ -375,7 +375,7 @@ fig
 ```
 
 ```{r write, echo=FALSE}
-
+check <- df_prediction_2%>%drop_na(Date)
 write.csv(df_prediction_2, here::here("ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
 ```
 
