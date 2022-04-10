@@ -121,11 +121,12 @@ fig3 <- ggplot(data = df%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVIt
 #####
 
 
-flux <- ggplot(data=df ) +
+
+flux <- ggplot(data=df%>%filter(Wetland=="COLM") ) +
   geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
   geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
   geom_line(aes(dist_COLM, ele_fit), size = 2,alpha=.5) +
-  geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
+  geom_point(data=df%>%drop_na(Flux_ave)%>%filter(Wetland=="COLM") , aes(dist, ele_fit, color= Flux_ave),size=3)+
   scale_color_gradient(
     low = "blue", high = "red",
     space = "Lab",
@@ -136,7 +137,8 @@ flux <- ggplot(data=df ) +
   )+  
   labs(y="elevation", x = "distance")  +
   #  facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
-  theme_classic() + My_Theme + theme(legend.position = "Top")#+ theme(legend.position = c(0.9, 0.9))
+  theme_classic() + #My_Theme + 
+  theme(legend.position = "Top")#+ theme(legend.position = c(0.9, 0.9))
 
 flux
 
