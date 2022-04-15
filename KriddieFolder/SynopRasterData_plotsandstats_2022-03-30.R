@@ -51,8 +51,6 @@ df <- read.csv(here::here("/Synoptic/Synop_all_raster3.csv"))
 raster <- df[,c("Wetland","Wetland_1","Tract","Point","Date","EOS_no","VaisalaType","Flux_ave","AirTemp_c","WaterTemp_c","FlowAccu","Flowlen")]
 
 
-
-
 #df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
 ##plot
 fig1 <- plot_ly(data = df%>%filter(FlowAccu<1000)#%>%filter(Wetland=="GAVI")
@@ -112,7 +110,6 @@ ggplot(df, aes(x = Wetland, y = Flux_ave, fill = Wetland)) +
   scale_fill_discrete(name="LEGEND",labels=c("Antenas", "Colmillo","Gavilan mainstem","Gavilan Tributaries"))
 
 
-
 ggplot(df, aes(x = Wetland, y = log10(adjusted_ppm), fill = Wetland)) + 
   geom_boxplot() +
   stat_summary(fun = "mean", geom = "point", shape = 8,
@@ -139,6 +136,29 @@ ggplot(df#%>%filter(FlowAccu<4000)
   #  scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c(300,1000,3000,1000)) +
   #  scale_color_manual(name="LEGEND",labels=c("blah", "GAVItrib2","GAVItrib3_1","GAVItrib3_2")) +
   theme_bw() 
+
+###scatter of just gavi data
+
+ggplot(df%>%filter(Wetland!="GAVItrib3_1")%>%filter(Wetland!="GAVItrib3_2")
+       , aes(x = FlowAccu*12.5*12.5*.0001, y = Flux_ave, color=Wetland)) +
+  facet_wrap(~Wetland, scales = "free")+
+  geom_point(size=3) +
+  theme_bw() + 
+  ylab("CO2 flux (umol/m2/s)") + xlab("Catchment Size (Hectares)") +
+#  scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
+    geom_smooth(method='lm')+
+  theme(axis.text=element_text(size=16),
+  axis.title=element_text(size=18,face="bold"))
+
+ggplot(df%>%filter(Wetland_1=="COLM"), aes(x = FlowAccu*12.5*12.5*.0001, y = Flux_ave)) + 
+  geom_point(size=3) +
+  theme_bw() + 
+  ylab("Flux") + xlab("Catchment Size (Hectares)") +
+#  scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
+  geom_smooth(method='lm')+
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16,face="bold"))
+
 
 
 ###
