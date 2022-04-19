@@ -42,12 +42,14 @@ NewV <- NewV[,c(1:3,6)]
 colnames(NewV) <- c("Date","Time","ppm","point")
 NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+NewV$ppm <- NewV$ppm/5000*10000
 
 df_V <- rbind(NewV,OldV)
 df_V_0622 <- df_V
 df_V_0622$point[is.na(df_V_0622$point)] <- "air"
 
-fig1 <- plot_ly(df_V%>%drop_na(point),
+fig1 <- plot_ly(df_V#%>%drop_na(point)
+                ,
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
 fig1
 
@@ -70,12 +72,14 @@ NewV <- NewV[,c(1:3,6)]
 colnames(NewV) <- c("Date","Time","ppm","point")
 NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+#NewV$ppm <- NewV$ppm/5000*10000
 
 df_V <- rbind(NewV,OldV)
 df_V_0623 <- df_V
 df_V_0623$point[is.na(df_V_0623$point)] <- "air"
 
-fig1 <- plot_ly(df_V_0623%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800),
+fig1 <- plot_ly(df_V_0623#%>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
+                ,
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
 fig1
 
@@ -101,6 +105,7 @@ NewV <- NewV[,c(1:3,6)]
 colnames(NewV) <- c("Date","Time","ppm","point")
 NewV$vaisala_type <- "GMP252_1"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+NewV$ppm <- NewV$ppm/5000*10000
 
 df_V <- rbind(NewV,OldV_1,OldV_2)
 #df_V$point <- as.factor(df_V$point)
@@ -111,7 +116,9 @@ fig1 <- plot_ly(df_V%>%drop_na(point),
                 x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
 fig1
 
-fig2 <- plot_ly(df_V %>%filter(point=="air")%>%filter(ppm>50)%>%filter(ppm<800)
+
+fig2 <- plot_ly(df_V #%>%filter(point=="air")%>%filter(ppm>50)
+                %>%filter(ppm<800)
                ,
                x = ~DateTime, y = ~ppm, size = 1, color = ~vaisala_type)
 fig2
@@ -198,6 +205,7 @@ NewV <- NewV[,c(1:3,6)]
 colnames(NewV) <- c("Date","Time","ppm","point")
 NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+NewV$ppm <- NewV$ppm/5000*10000
 
 df_V <- rbind(NewV,OldV)
 df_V_0706 <- df_V %>% replace_na(list(point = 'air'))
@@ -225,6 +233,7 @@ NewV <- NewV[,c(1:3,6)]
 colnames(NewV) <- c("Date","Time","ppm","point")
 NewV$vaisala_type <- "new"
 NewV$DateTime <- as.POSIXct(paste(NewV$Date, NewV$Time), format = "%m/%d/%Y %I:%M:%S %p", tz = "UTC")
+NewV$ppm <- NewV$ppm/5000*10000
 
 df_V <- rbind(NewV,OldV)
 df_V_0707 <- df_V %>% replace_na(list(point = 'air'))
