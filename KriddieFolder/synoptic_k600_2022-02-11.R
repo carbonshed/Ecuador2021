@@ -16,15 +16,34 @@ library(lubridate)
 ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-04-19.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synopticGeom_2022-04-19.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLM_synopticGeom_2022-04-19.csv"))
-#GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))
-#GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
+GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-04-19.csv"))
+GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-04-19.csv"))
+GAVItrib3 <- read.csv(here::here("/ProcessedData/GAVI_Trib3_synoptic_2022-04-19.csv"))
 
 
 ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope50m", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
 COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
 GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
-#GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
-#GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+GAVItrib3 <- GAVItrib3[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+
+
+#add weltand info
+GAVI$Wetland <- "GAVI"
+ANTE$Wetland <- "ANTE"
+COLM$Wetland <- "COLM"
+GAVItrib1$Wetland <- "GAVItrib1"
+GAVItrib2$Wetland <- "GAVItrib2"
+GAVItrib3$Wetland <- "GAVItrib3"
+
+
+
+GAVItribs <- rbind(GAVItrib1,GAVItrib2,GAVItrib3)
+GAVItribs$surface_area <- NA
+GAVItribs$flux_umolpers <- NA
+GAVItribs$Totalflux_umolpers <- NA
+
 
 colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
 colnames(GAVI)[which(names(GAVI) == "GAVI_waterTempAve")] <- "WaterTemp_c"
@@ -51,22 +70,16 @@ colnames(COLM)[which(names(COLM) == "COLM_waterTempAve")] <- "WaterTemp_c"
 ANTE <- unique(ANTE)
 GAVI <- unique(GAVI)
 COLM <- unique(COLM)
-#GAVItrib1 <- unique(GAVItrib1)
-#GAVItrib2 <- unique(GAVItrib2)
+GAVItribs <- unique(GAVItribs)
 
-#add weltand info
-GAVI$Wetland <- "GAVI"
-ANTE$Wetland <- "ANTE"
-COLM$Wetland <- "COLM"
-#GAVItrib1$Wetland <- "GAVItrib1"
-#GAVItrib2$Wetland <- "GAVItrib2"
 
 #need seperate columns for each stream profile
 ANTE$dist_ANTE <- ANTE$dist
 ANTE$dist_GAVI <- NA
 ANTE$dist_COLM <- NA
-#ANTE$dist_GAVItrib1 <- NA
-#ANTE$dist_GAVItrib2 <- NA
+ANTE$dist_GAVItrib1 <- NA
+ANTE$dist_GAVItrib2 <- NA
+ANTE$dist_GAVItrib3 <- NA
 
 GAVI$dist_ANTE <- NA
 GAVI$dist_GAVI <- GAVI$dist
@@ -93,7 +106,7 @@ GAVItrib2$dist_COLM <- NA
 GAVItrib2$dist_GAVItrib1 <- NA
 
 #synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItrib1,GAVItrib2)
-synoptic.df <- rbind(ANTE,GAVI,COLM)
+synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItribs)
 
 ###calculate K600 using data collected from EOS and Viasala 
 #calculate using direct units
@@ -199,5 +212,8 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
 df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
 df <- df%>%drop_na(Date)
-write.csv(df, here::here("ProcessedData/ALL_synopticNoNA_2022-03-24.csv"))
+#write.csv(df, here::here("ProcessedData/ALL_synopticNoNA_2022-04-19.csv"))
 
+
+TrackMap_geo <- qmplot(lon_fit, lat_fit, data = df, zoom = 13, maptype = "toner-background")
+TrackMap_geo

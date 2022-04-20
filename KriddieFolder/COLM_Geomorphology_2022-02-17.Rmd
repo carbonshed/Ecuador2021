@@ -191,8 +191,7 @@ snap the points in our origional dama frame to bring in the elevation data
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2021-08-30.csv"))
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2022-01-27.csv"))
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2022-02-14.csv"))
-#synop <- read.csv(here::here("Synoptic/COLMILLO_2022-03-24.csv"))
-synop <- read.csv(here::here("Synoptic/COLMILLO_2022-04-19.csv"))
+synop <- read.csv(here::here("Synoptic/COLMILLO_2022-03-24.csv"))
 
 synop$X <- NULL
 
@@ -214,7 +213,6 @@ Geomorph$lat_fit <- pred$lat
 
 df_prediction <- full_join(df_prediction,Geomorph,by=c("lon_fit","lat_fit"))
 ```
-
 ```{r 3d plot and synop, echo=FALSE}
 
 df <- full_join(synop,Geomorph, by=c("lat","lon","ele")) 
@@ -450,7 +448,7 @@ grid.arrange(flux, CO2, ncol=1)
 
 ```{r write, echo=FALSE}
 
-write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-04-19.csv"))
+write.csv(df_prediction, here::here("ProcessedData/COLMILLO_synoptic_2022-03-24.csv"))
 ```
 
 

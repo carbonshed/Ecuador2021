@@ -72,8 +72,8 @@ Let's do the synoptic one trib at a time
 
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
-#synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
-synop <- read.csv(here::here("Synoptic/GAVI_2022-04-19.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
+
 synop$X <- NULL
 
 colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm")
@@ -422,6 +422,6 @@ ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
 
 ```{r write, echo=FALSE}
 check <- df_prediction%>%drop_na(Date)
-write.csv(df_prediction, here::here("ProcessedData/GAVI_Trib3_synoptic_2022-04-19.csv"))
+write.csv(df_prediction, here::here("ProcessedData/GAVI_Trib3_synoptic_2022-04-10.csv"))
 ```
 

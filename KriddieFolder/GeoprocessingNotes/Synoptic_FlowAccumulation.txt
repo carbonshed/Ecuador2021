@@ -14,7 +14,11 @@ Under environments change processing extent to “Union of Inputs”
 8. Snap: input feature is the xy synop point data
 	feature: is the raster to point 
 	type: vertex
-	distance: 10
-9. Spatial Join 
+	distance: 10 meters
+9b.   Spatial Join 
 	match option: intesect
+9b. Instead of 9a, Extract Value to Point: extracts pixels from the raster 
+	Input point features: xy synop data
+	Input raster: flow accumulation
+
 10. export attribute table, remeber to put it in a folder and add ".csv" for extension

@@ -19,6 +19,7 @@ ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-01-27.csv"))
 GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-01-27.csv"))
 COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
 
+
 #MIGHT WANT TIME LATER
 #ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","time","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
 #COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","time","Date","EOS_no","Flux_ave","CO2_ppm_ave","adjusted_ppm")]
@@ -46,7 +47,7 @@ df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
 
 flux <- ggplot(data=df ) +
   geom_line(aes(dist, ele_fit), size = 2, #color="brown",
-             alpha=.5) +
+            alpha=.5) +
   geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
   scale_color_gradient(
     low = "blue",
@@ -71,7 +72,7 @@ dat_text <- data.frame(
 
 flux_hist <- ggplot(df%>%drop_na(Flux_ave),
                     aes(x=Flux_ave, color=Wetland, fill=Wetland
-                        )) +
+                    )) +
   geom_histogram(bins = 30)+ 
   facet_grid(~factor(Wetland, levels=c("ANTE","GAVI","COLM"))) +
   geom_density(color="black",fill="black")+

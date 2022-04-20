@@ -28,7 +28,8 @@ We start with the most recently processes synoptic data. It includes calculates 
 
 #df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-21.csv"))
 #df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+
 df$X <- NULL
 df <- unique(df)
 df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"

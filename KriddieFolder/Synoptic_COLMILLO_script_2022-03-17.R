@@ -7,7 +7,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(here)
-library(lubridate)
+library(wesanderson)
 
 ContinuousData <-  read.csv(here::here("/Synoptic/ContinuousData_forSynop_2022-01-27.csv"), skip=0, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
@@ -111,15 +111,9 @@ old$adjusted_ppm <-
   old$CO2_ppm_ave * (1 + (1013 - old$Total_hPa) * 0.0015) *
   (1 - (25 - old$COLM_waterTempAve) * 0.003)
 
-new$CO2_ppm_ave_save <-  new$CO2_ppm_ave
-new$CO2_ppm_ave <-  new$CO2_ppm_ave_save*2
-new$CO2_ppm_ave[new$CO2_ppm_ave_save==10000] <- 10000
-
 new$adjusted_ppm <- 
-  new$CO2_ppm_ave * (1 + (1013 - new$Total_hPa) * 0.0015) * 
-  (1 - (25 - new$COLM_waterTempAve) * 0.005)
-new$CO2_ppm_ave_save <- NULL
-
+  new$CO2_ppm_ave * (1 + (700 - new$Total_hPa) * 0.0015) * 
+  (1 - (6.7 - new$COLM_waterTempAve) * 0.003)
 
 CO2_synop_pivot <- rbind(old,new)
 
@@ -230,8 +224,8 @@ CO2_synop_pivot$Tract <- NULL
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("lat","lon","ele","Date", "Point","EOS_no"))
 
 
-#i edites the wrong version of colmillo, so this has been edited since 3/17
-#write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-04-19.csv"))
+
+#write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-03-24.csv"))
 
 
 #plot
