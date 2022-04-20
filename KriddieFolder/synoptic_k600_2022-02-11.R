@@ -13,9 +13,9 @@ library(lubridate)
 
 #read in df
 
-ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-03-24.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synopticGeom_2022-03-24.csv"))
-COLM <- read.csv(here::here("/ProcessedData/COLM_synopticGeom_2022-03-24.csv"))
+ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-04-19.csv"))
+GAVI <- read.csv(here::here("/ProcessedData/GAVI_synopticGeom_2022-04-19.csv"))
+COLM <- read.csv(here::here("/ProcessedData/COLM_synopticGeom_2022-04-19.csv"))
 #GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-02-18.csv"))
 #GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-02-18.csv"))
 
@@ -196,8 +196,8 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 #synoptic.df <- synoptic.df%>%drop_na(lat)
 
 ##write out
-write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
-#df <- df%>%drop_na(Date)
-#write.csv(df, here::here("ProcessedData/ALL_synopticNoNA_2022-03-24.csv"))
+write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+df <- df%>%drop_na(Date)
+write.csv(df, here::here("ProcessedData/ALL_synopticNoNA_2022-03-24.csv"))
 

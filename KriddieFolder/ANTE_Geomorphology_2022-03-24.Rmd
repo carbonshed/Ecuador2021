@@ -322,7 +322,8 @@ We also need to snap the synoptic df
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-01-27.csv"))
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-02-11.csv"))
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-02-13.csv"))
-synop <- read.csv(here::here("Synoptic/ANTE_2022-03-23.csv"))
+#synop <- read.csv(here::here("Synoptic/ANTE_2022-03-23.csv"))
+synop <- read.csv(here::here("Synoptic/ANTE_2022-04-19.csv"))
 
 
 synop$X <- NULL
@@ -590,14 +591,14 @@ ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_av
 #df_prediction$TDN <- NULL
 
 
-write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-03-23.csv"))
+write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-04-19.csv"))
 
 df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 
 WaterChem2 <- left_join(WaterChem,df_prediction_join,by=c("lon_fit","lat_fit"))
 WaterChem2 <- unique(WaterChem2)%>%drop_na(DOC)
 
-write.csv(WaterChem2, here::here("ProcessedData/ANTE_WaterChem_synop_2022-03-23.csv"))
+write.csv(WaterChem2, here::here("ProcessedData/ANTE_WaterChem_synop_2022-04-19.csv"))
 
 ```
 

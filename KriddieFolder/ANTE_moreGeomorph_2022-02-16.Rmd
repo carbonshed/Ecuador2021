@@ -28,7 +28,8 @@ make a another  data frame with rest of the geomorphdata - width, depth, and som
 Start by reading in most recent synoptic data
 ```{r read in data}
 #df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-02-18.csv"))
-df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-03-23.csv"))
+#df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-03-23.csv"))
+df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-04-19.csv"))
 df_prediction$X <-NULL
 
 ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
@@ -172,6 +173,21 @@ df$midpoint <- NA
 df$length <- NA
 df$area <- NA
 
+#run this 2x for some reason (but no more than 2x!) make sure area column is filled in and reasonable
+
+for(i in 1:nrow(df)) {       # for-loop over rows
+  if (i==1) {
+    df$midpoint[i] <- 0
+    df$length[i] <- (df$dist[i+1] + (df$dist[i] - df$dist[i+1])/2) - 0
+    df$area[i] <- df$length[i] * df$w[i]/100
+  } else {
+    df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
+    df$length[i] <- df$midpoint[i+1] - df$midpoint[i]
+    df$area[i] <- df$length[i] * df$w[i]/100
+  }
+}
+
+
 for(i in 1:nrow(df)) {       # for-loop over rows
   if (i==1) {
     df$midpoint[i] <- 0
@@ -274,6 +290,6 @@ I now have some cra
 ggplot(data=df_prediction_4, aes(dist, Totalflux_umolpers),size=5) +
   geom_point(size=5)
 
-write.csv(df_prediction_4, here::here("ProcessedData/ANTE_synopticGeom_2022-03-24.csv"))
+write.csv(df_prediction_4, here::here("ProcessedData/ANTE_synopticGeom_2022-04-19.csv"))
 
 ```

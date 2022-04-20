@@ -231,7 +231,7 @@ synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("lat","lon","e
 
 
 #i edites the wrong version of colmillo, so this has been edited since 3/17
-#write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-04-19.csv"))
+write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-04-19.csv"))
 
 
 #plot

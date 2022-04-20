@@ -65,7 +65,8 @@ So let's try to just select the mainstem samples, for starters.
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
 #synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
-synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
+#synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_2022-04-19.csv"))
 
 synop$X <- NULL
 
@@ -695,6 +696,6 @@ check <- df_prediction%>%drop_na(Date)
 df_prediction <- df_prediction%>%filter(dist_diff!=0)
 check <- df_prediction%>%drop_na(Date)
 ##check should have 37 points again
-write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2022-03-24.csv"))
+write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2022-04-19.csv"))
 ```
 

@@ -52,7 +52,8 @@ Let's do the synoptic one trib at a time
 
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
-synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
+#synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
+synop <- read.csv(here::here("Synoptic/GAVI_2022-04-19.csv"))
 
 synop$X <- NULL
 
@@ -341,6 +342,6 @@ fig
 
 ```{r write, echo=FALSE}
 
-write.csv(df_prediction, here::here("ProcessedData/GAVI_Trib1_synoptic_2022-03-24.csv"))
+write.csv(df_prediction, here::here("ProcessedData/GAVI_Trib1_synoptic_2022-04-19.csv"))
 ```
 
