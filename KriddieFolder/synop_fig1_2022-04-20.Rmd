@@ -28,8 +28,7 @@ We start with the most recently processes synoptic data. It includes calculates 
 
 #df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-21.csv"))
 #df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
-df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
-
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
 df$X <- NULL
 df <- unique(df)
 df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
@@ -38,7 +37,9 @@ df$Date <- format(as.POSIXct(df$Date,format='%Y-%m-%d'))
 
 df$Flux_ave <- signif(df$Flux_ave, digits = 3)
 ##add raster data
-Synop_all_raster3 <- read.csv(here::here("Synoptic/Synop_all_raster3.csv"))
+#Synop_all_raster3 <- read.csv(here::here("Synoptic/Synop_all_raster3.csv"))
+Synop_all_raster3 <- read.csv(here::here("Synoptic/SynopFlowAccu_20220419.csv"))
+
 
 Synop_all_raster3 <- Synop_all_raster3[,c("Wetland","Date","EOS_no","Flux_ave","Wetland_1","Elevation","lon","lat","FlowAccu","Flowlen","Slope")]
 colnames(Synop_all_raster3) <- c("Wetland_tribs","Date","EOS_no","Flux_ave","Wetland","Elevation_raster","lon_raster","lat_raster","FlowAccu","Flowlen","Slope_raster")
@@ -52,8 +53,20 @@ df_2 <- full_join(df,Synop_all_raster3, by =  c("Date","EOS_no","Flux_ave","Wetl
 check <- df_2[,c("Date","EOS_no","Flux_ave","FlowAccu","Totalflux_umolpers","Wetland_tribs","Wetland")]%>%drop_na(Date)%>%filter(Wetland=="GAVI")
 check$Wetland_tribs[is.na(check$Wetland_tribs)]<-"GAVI-mainstem"
 check <- check%>%filter(Wetland_tribs=="GAVI-mainstem")
+
 ```
 
+I think I can just read in one file now...
+
+```{r read in}
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+
+df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
+df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
+df$Date <- format(as.POSIXct(df$Date,format='%Y-%m-%d'))
+df$Flux_ave <- signif(df$Flux_ave, digits = 3)
+
+```
 ## Plot data
 
 plot the data by wetland to see whats up.
