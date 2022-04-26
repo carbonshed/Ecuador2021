@@ -36,6 +36,7 @@ sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
 
 site_names = site_names[c(2:6)]
+#site_names = site_names[c(2,3,5,6)]
 
 #rm old files, if they exist
 rm(WLData)
@@ -70,8 +71,10 @@ for (site in site_names){
         WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
         }
       
-      WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
-    
+#      WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+    WLData$DateTime <- as.POSIXct(WLData$DateTime, tz="UTC",
+           tryFormats = c("%m/%d/%y %I:%M:%S %p",
+                          "%m/%d/%Y %H:%M"))
     }
     if (exists("WLData")){
       Temp_WLData <- read.csv(file, skip=1, header = FALSE, sep = ",",
@@ -96,7 +99,11 @@ for (site in site_names){
         Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
         }
       
-      Temp_WLData$DateTime <- as.POSIXct(Temp_WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+#      Temp_WLData$DateTime <- as.POSIXct(Temp_WLData$DateTime, format="%m/%d/%y %I:%M:%S %p", tz="UTC")
+          Temp_WLData$DateTime <- as.POSIXct(Temp_WLData$DateTime, tz="UTC",
+           tryFormats = c("%m/%d/%y %I:%M:%S %p",
+                          "%m/%d/%Y %H:%M"))
+      
       
       WLData <- rbind(WLData, Temp_WLData)
       rm(Temp_WLData)
@@ -204,7 +211,7 @@ plot the water level so that each station data can be cleaned
 ```{r plot, echo=FALSE}
 
 ##clean data
-plot_ly(WL_02, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+plot_ly(WL_06, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 
 ```
 
@@ -458,6 +465,8 @@ All_Well <- Baro_corrected %>% filter(Station == "WL_Well01"|Station == "WL_Well
 All_Well <- All_Well[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 All_Well$Q_m3s <- NA
 
+All_WL_wide <- 
+
 ```
 
 # plot discharge
@@ -475,5 +484,10 @@ ggplot(data = All_WL %>% filter(DateTime > "2021-06-10"),
   facet_wrap(~ Station)
 
 plot_ly(All_WL%>%filter(Station == "WL_01"), x = ~DateTime, y = ~Total_kpa, type = 'scatter', mode = 'markers') 
+
+```
+
+```{r write, echo=FALSE}
+
 
 ```

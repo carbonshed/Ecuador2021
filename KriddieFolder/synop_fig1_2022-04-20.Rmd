@@ -9,8 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(here)
-library(dplyr)
+library(dplyr) # for `rename`
+library(tidyr) # for `gather`
 library(ggplot2)
+library(cowplot)
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+library(plotly)
+library(rstatix)
 ```
 
 ## synop_fig1_2022-03-21

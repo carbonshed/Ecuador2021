@@ -110,6 +110,8 @@ for (site in site_names){
     }
     
   }
+  
+   CO2Data$DateTime <- round_date(CO2Data$DateTime, "15 mins")
 
   CO2Data=unique(CO2Data)
   CO2Data$Date <- NULL

@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(ggpubr)
 library(gridExtra)
+library(dplyr)
 ```
 
 
@@ -74,12 +75,13 @@ df_old$adjusted_ppm <- df_old$ppm * (1 + (1013 - df_old$Total_hPa) * 0.0015) * (
 #new
 
 #The new viasalas are set to 700hPa and 6.7c
+#this is nt true! the new vaisalas were NOT set to 700 and 6.7, they were left as the default ALSO the units were set wierd so they are half of what they should be
 
 #Station 2, 3 and Well 1 and 2 are new V
 df_new <- df %>% filter(Station != "stn_01" & Station != "stn_04")
 
-df_new$adjusted_ppm <- df_new$ppm * (1 + (700 - df_new$Total_hPa) * 0.0015) * (1 - (6.7 - df_new$WLTemp_c) * 0.003)
-
+#df_new$adjusted_ppm <- df_new$ppm * (1 + (700 - df_new$Total_hPa) * 0.0015) * (1 - (6.7 - df_new$WLTemp_c) * 0.003)
+df_new$adjusted_ppm <- (df_new$ppm * 2 )* (1 + (1013 - df_new$Total_hPa) * 0.0015) * (1 - (25 - df_new$WLTemp_c) * 0.003)
 
 ```
 
@@ -148,8 +150,44 @@ plot_ly(df_corrected%>%filter(Station=='stn_Well02')%>%
 
 ```{r write out, echo=FALSE}
 
-write.csv(df_corrected, here::here("ProcessedData/df_corrected_2022-07-01.csv",sep=""),
+#write.csv(df_corrected, here::here("ProcessedData/df_corrected_2022-04-23.csv"), row.names = FALSE)
+
+```
+
+```{r write out long format, echo=FALSE}
+
+df <- read.csv(here::here("ProcessedData/df_corrected_2022-04-23.csv"))
+colnames(df) <- c("DateTime","AirTemp_c","WaterTemp_c","Station","WaterLevel_m","Total_kpa","Q_m3s","delete_ppm","Total_hpa","pCO2_ppm")
+
+df$Total_kpa <- NULL
+df$delete_ppm <- NULL
+df$Total_hpa <- NULL
+
+stn01  <- df%>%filter(Station=="stn_01")
+stn01 <- stn01[,c("DateTime","AirTemp_c","WaterTemp_c","WaterLevel_m","Q_m3s","pCO2_ppm")]
+colnames(stn01) <- c("DateTime","AirTemp_c","Stn01_WaterTemp_c","Stn01_WaterLevel_m","Stn01_Q_m3s","Stn01_pCO2_ppm")
+
+stn02 <- df%>%filter(Station=="stn_02")
+stn02 <- stn02[,c("DateTime","AirTemp_c","WaterTemp_c","WaterLevel_m","Q_m3s","pCO2_ppm")]
+colnames(stn02) <- c("DateTime","AirTemp_c","Stn02_WaterTemp_c","Stn02_WaterLevel_m","Stn02_Q_m3s","Stn02_pCO2_ppm")
+
+stn03 <- df%>%filter(Station=="stn_03")
+stn03 <- stn03[,c("DateTime","AirTemp_c","WaterTemp_c","WaterLevel_m","Q_m3s","pCO2_ppm")]
+colnames(stn03) <- c("DateTime","AirTemp_c","Stn03_WaterTemp_c","Stn03_WaterLevel_m","Stn03_Q_m3s","Stn03_pCO2_ppm")
+
+stn04 <- df%>%filter(Station=="stn_04")
+stn04 <- stn04[,c("DateTime","AirTemp_c","WaterTemp_c","WaterLevel_m","Q_m3s","pCO2_ppm")]
+colnames(stn04) <- c("DateTime","AirTemp_c","Stn04_WaterTemp_c","Stn04_WaterLevel_m","Stn04_Q_m3s","Stn04_pCO2_ppm")
+
+df_all <- full_join(stn01,stn02, by=c("DateTime","AirTemp_c"))
+df_all <- full_join(df_all,stn03, by=c("DateTime","AirTemp_c"))
+df_all <- full_join(df_all,stn04, by=c("DateTime","AirTemp_c"))
+
+df_all <- df_all%>%drop_na(AirTemp_c)
+
+
+
+write.csv(df_all, here::here("ProcessedData/df_long_2022-04-23.csv"),
           row.names = FALSE)
-
-
+          
 ```
