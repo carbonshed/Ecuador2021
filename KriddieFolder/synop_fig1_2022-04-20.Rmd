@@ -14,10 +14,10 @@ library(tidyr) # for `gather`
 library(ggplot2)
 library(cowplot)
 library(tidyverse)
-library(rstatix)
+#library(rstatix)
 library(ggpubr)
 library(plotly)
-library(rstatix)
+#library(rstatix)
 ```
 
 ## synop_fig1_2022-03-21

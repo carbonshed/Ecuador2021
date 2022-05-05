@@ -31,13 +31,13 @@ ANTE$Total_flux <- NA
 ANTE$dist_new <- ANTE$dist
 
 for(i in 1:nrow(ANTE)) {       # for-loop over rows
-    if (i == 1) {
-      ANTE$dist_diff[i] <- 0
-      ANTE$Total_flux[i] <- ANTE$Flux_ave[1]
-    } else {
-      ANTE[i,"dist_diff"] <-   ANTE[i,"dist"] - ANTE[i-1,"dist"]
-      ANTE[i,"Total_flux"] <- ANTE[i-1,"Total_flux"] + ANTE[i,"Flux_ave"]
-    }
+  if (i == 1) {
+    ANTE$dist_diff[i] <- 0
+    ANTE$Total_flux[i] <- ANTE$Flux_ave[1]
+  } else {
+    ANTE[i,"dist_diff"] <-   ANTE[i,"dist"] - ANTE[i-1,"dist"]
+    ANTE[i,"Total_flux"] <- ANTE[i-1,"Total_flux"] + ANTE[i,"Flux_ave"]
+  }
   }
   
   
