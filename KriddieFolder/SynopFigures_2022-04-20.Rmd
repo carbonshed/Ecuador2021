@@ -196,8 +196,6 @@ figure <- ggarrange(rivernetwork, gaviplot, p2, legplot,
 
 figure
 
-#pdf("out.pdf",width=xx, height =xx)
-
 
 
 ```
@@ -370,6 +368,14 @@ bball <- ggplot(df%>%drop_na(adjusted_ppm)%>%filter(Wetland!="GAVItrib1")%>%filt
   scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan")) +
   MyTheme
 
+
+bball
+ggsave("testing123.png",plot = bball, dpi = 360, units = "cm")
+
+ggsave("testing123.png", plot = bball, device = NULL, path = NULL,
+       scale = 1, width = 25, height = 20, dpi = 360, limitsize = TRUE,
+       units = c("cm"))
+
 ```
 
 #the last one will be conceptual!!!! 
@@ -444,9 +450,6 @@ ggplot(df%>%filter(Wetland_2!="COLM")%>%filter(Wetland_2!="ANTE")
 
 
 ##fig 3
-
-
-
 
 
 ```{r test figs, echo=FALSE}
@@ -562,13 +565,72 @@ Just  little bit of data cleaning needed. I don't like the
 
 ```
 
+#stream profiles
 
+```{r profiles, echo=FALSE}
+GAVI <- df%>%filter(Wetland_2=="GAVI")
+ANTE <- df%>%filter(Wetland_2=="ANTE")
+COLM <- df%>%filter(Wetland_2=="COLM")
+
+ANTE$dist_ANTE <- ANTE$dist
+ANTE$dist_COLM <- NA
+ANTE$dist_GAVI <- NA
+
+COLM$dist_COLM <- COLM$dist
+COLM$dist_ANTE <- NA
+COLM$dist_GAVI <- NA
+
+GAVI$dist_GAVI <- GAVI$dist
+GAVI$dist_ANTE <- NA
+GAVI$dist_COLM <- NA
+GAVI <- GAVI%>%drop_na(Date)
+
+GAVI_sub <- GAVI%>%filter(dist > 462 & dist < 570)
+
+df <- rbind(ANTE,COLM,GAVI)
+
+###
+library(scales)
+hex <- hue_pal()
+
+Profile <- ggplot(data=df ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 3, color=hex[1]) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 3, color=hex[3]) +
+  geom_line(aes(dist_COLM, ele_fit), size = 3, color=hex[2]) +
+  labs(y="Elevation [m]", x = "Distance [m]")  +
+  theme_classic() + My_Theme 
+
+
+Profile
+ggsave("streamprofil_1.png", plot = Profile, device = NULL, path = NULL,
+       scale = 1, width = 10, height = 10, dpi = 360, limitsize = TRUE,
+       units = c("cm"))
+
+####
+
+Profile <- ggplot(data=df ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2,alpha=.5) +
+#  geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
+#  scale_color_gradient(
+#  low = "blue", high = "red",
+#    space = "Lab",
+#    na.value = "grey50",
+#    guide = "colourbar",
+#    aesthetics = "colour",
+#    name = "Flux umol m^2 s^-1"
+#  )+  
+  labs(y="elevation", x = "distance")  +
+
+  theme_classic() + My_Theme + theme(legend.position = c(0.8, 0.9))
+
+
+```
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
