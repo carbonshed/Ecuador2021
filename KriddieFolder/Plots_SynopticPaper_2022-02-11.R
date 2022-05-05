@@ -8,6 +8,7 @@
 library(here)
 library(dplyr) # for `rename`
 library(tidyr) # for `gather`
+
 library(ggplot2)
 library(cowplot)
 library(tidyverse)
@@ -54,7 +55,7 @@ fig2 <- plot_ly(data = df#%>%filter(Wetland=="COLM")
                , x = ~K600.effective, y = ~Flux_ave, 
                color=~Wetland, size=3)
 
-df$Wetland
+
 
 fig3 <- plot_ly(data = df%>%filter(Wetland=="GAVI-mainstem")
                , x = ~Slope*FlowAccu, y = ~K600_effective, 

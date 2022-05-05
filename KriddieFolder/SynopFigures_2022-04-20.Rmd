@@ -9,7 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(here)
-library(dplyr) # for `rename`
 library(tidyr) # for `gather`
 library(ggplot2)
 library(cowplot)
@@ -17,10 +16,12 @@ library(tidyverse)
 library(rstatix)
 library(ggpubr)
 library(plotly)
-library(rstatix)
 library(gridExtra)
 library(grid)
 library(ggmap)
+library(dplyr)
+library(scales)
+
 ```
 
 ## Description
@@ -50,16 +51,28 @@ df$WatershedSize_km2 <-  df$RASTERVALU * 12.5 *12.5 * 1e-6
 df$WatershedSize_ha <-  df$RASTERVALU * 12.5 * 12.5 / 10000
 #df$Date <- format(as.POSIXct(df$Date,format='%m/%d/%dY'))
 
+
+
 df$Wetland_2 <- df$Wetland
+df$Wetland_2 <- as.character(df$Wetland_2)
+
 df$Wetland_2[df$Wetland == "GAVItrib1"] <- "Gavilan Tributaries"
 df$Wetland_2[df$Wetland == "GAVItrib2"] <- "Gavilan Tributaries"
 df$Wetland_2[df$Wetland == "GAVItrib3"] <- "Gavilan Tributaries"
+df$Wetland_2 <- as.factor(df$Wetland_2)
 
 df$Wetland_3 <- df$Wetland
+
+df$Wetland_3 <- as.character(df$Wetland_3)
+
 df$Wetland_3[df$Wetland == "GAVItrib1"] <- "Gavilan River Network"
 df$Wetland_3[df$Wetland == "GAVItrib2"] <- "Gavilan River Network"
 df$Wetland_3[df$Wetland == "GAVItrib3"] <- "Gavilan River Network"
 df$Wetland_3[df$Wetland == "GAVI"] <- "Gavilan River Network"
+
+
+df$Wetland_3 <- as.factor(df$Wetland_3)
+
 ```
 
 
@@ -305,6 +318,8 @@ MyTheme <-  theme_bw() +
   theme(legend.title = element_text(size=18),
     legend.text=element_text(size=16))
 
+hex <- hue_pal()
+
 
 A <- ggplot(df%>%filter(WatershedSize_ha<12.5),
         aes(x=log10(adjusted_ppm), y=Flux_ave)) +
@@ -314,7 +329,7 @@ A <- ggplot(df%>%filter(WatershedSize_ha<12.5),
   xlab("CO2 ppm") + 
   ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
   labs(linetype="LEGEND", color="LEGEND") +
-  scale_fill_discrete(name="Stream Reach",labels=c("Antenas", "Gavilan Tributary 1","Gavilan Tributary 2")) +
+  scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Gavilan Tributary 1","Gavilan Tributary 2"), values = c(hex(1)[1], hex(5)[2], hex(5)[5])) +
    scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
   annotate("text", x=log10(9000), y= 2.5,label="p-value < .0001 \n r2 = 0.4953", size = 5) +
    theme_bw()  + MyTheme 
@@ -327,7 +342,7 @@ B <- ggplot(df_sats%>%filter(Flux_ave>.05)%>%filter(WatershedSize_ha>20),
   xlab("Watershed Size [ha]") + 
   ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) + 
   labs(linetype="LEGEND", color="LEGEND") +
-  scale_fill_discrete(name="Stream Reach",labels=c("Gavilan", "Colmillo")) +
+  scale_fill_manual(name="Stream Reach",labels=c( "Colmillo","Gavilan"),values = c(hex(3)[2], hex(3)[3])) +
   annotate("text", x=200, y= 3.5,label="p-value = 0.016 \n r2 = 0.07786", size = 5) +
    theme_bw()  + MyTheme
 
@@ -342,6 +357,9 @@ figure <- ggarrange(A , B,
                     font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
 
 figure
+ggsave("controls_2.png", plot = figure, device = NULL, path = NULL,
+       scale = 1, width = 20, height = 20, dpi = 360, limitsize = TRUE,
+       units = c("cm"))
 
 
 ```
@@ -590,26 +608,29 @@ GAVI_sub <- GAVI%>%filter(dist > 462 & dist < 570)
 df <- rbind(ANTE,COLM,GAVI)
 
 ###
-library(scales)
+
 hex <- hue_pal()
 
 Profile <- ggplot(data=df ) +
-  geom_line(aes(dist_ANTE, ele_fit), size = 3, color=hex[1]) +
-  geom_line(aes(dist_GAVI, ele_fit), size = 3, color=hex[3]) +
-  geom_line(aes(dist_COLM, ele_fit), size = 3, color=hex[2]) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 4, color="grey") +
+  geom_line(aes(dist_GAVI, ele_fit), size = 4, color="grey") +
+  geom_line(aes(dist_COLM, ele_fit), size = 4, color="grey") +
+  geom_point(aes(dist_ANTE, ele_fit), size = 4, shape=21, fill=hex(3)[1],color="black") +
+  geom_point(aes(dist_GAVI, ele_fit), size = 4, shape=21, fill=hex(3)[3],color="black") +
+  geom_point(aes(dist_COLM, ele_fit), size = 4, shape=21, fill=hex(3)[2],color="black") +
   labs(y="Elevation [m]", x = "Distance [m]")  +
   theme_classic() + My_Theme 
 
 
 Profile
-ggsave("streamprofil_1.png", plot = Profile, device = NULL, path = NULL,
+ggsave("streamprofil_2.png", plot = Profile, device = NULL, path = NULL,
        scale = 1, width = 10, height = 10, dpi = 360, limitsize = TRUE,
        units = c("cm"))
 
 ####
 
 Profile <- ggplot(data=df ) +
-  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.25) +
   geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
   geom_line(aes(dist_COLM, ele_fit), size = 2,alpha=.5) +
 #  geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
