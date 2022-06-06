@@ -1,14 +1,14 @@
 I am trying to keep straight what order I need to run r files in
-
+Last edit: 2022-06-04
 For synoptic data:
 
 1. Synoptic: these scripts combine synoptic measuremnts of CO2 concentration and flux collected in the field data by site
-	Synoptic_ANTE_script_2022-03-24.R
-		WriteOut: "Synoptic/ANTE_2022-03-23.csv"
-	Synoptic_GAVI_script_2022-03-16.R
-		WriteOut: "Synoptic/GAVI_2022-03-24.csv"
-	Synoptic_COLMILLO_script_2022-03-17
-		WriteOut: "Synoptic/COLMILLO_2022-03-24.csv"
+	Synoptic_ANTE_script_2022-06-04.R
+		WriteOut: "Synoptic/ANTE_2022-06-04.csv"
+	Synoptic_GAVI_script_2022-06-04.R
+		WriteOut: "Synoptic/GAVI_2022-06-04.csv"
+	Synoptic_COLMILLO_script_2022-06-04
+		WriteOut: "Synoptic/COLMILLO_2022-06-04.csv"
 
 2. Geomorphology: these script use the data collected with handheld GPS to map the stream lat, lon, and elevation. Script interpolates in between gaps calculates distance between points. Finally, it combines the synoptic data compiled in previous script. also calculates slope
 	ANTE_Geomorphology_2022-02-16.Rmd
