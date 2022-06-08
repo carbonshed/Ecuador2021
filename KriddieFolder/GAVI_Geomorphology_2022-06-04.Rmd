@@ -65,6 +65,8 @@ So let's try to just select the mainstem samples, for starters.
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
 #synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
+#synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
+#synop <- read.csv(here::here("Synoptic/GAVI_2022-04-19.csv"))
 synop <- read.csv(here::here("Synoptic/GAVI_2022-06-04.csv"))
 
 synop$X <- NULL

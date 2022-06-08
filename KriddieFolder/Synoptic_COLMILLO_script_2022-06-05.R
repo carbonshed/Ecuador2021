@@ -242,7 +242,7 @@ WaterChem$EOS_no <- gsub("_.*", "", WaterChem$sampleID)
 
 WaterChem <- WaterChem%>%
   filter(SampleType == "synoptic")%>%
-  filter(Date >= "2021-07-06")
+  filter(Date >= "2021-07-07")
 
 WaterChem$DateTime <- as.POSIXct(paste(WaterChem$Date, WaterChem$Time), format = "%Y-%m-%d %H:%M")
 
@@ -276,8 +276,6 @@ CO2_synop_pivot$Tract <- NULL
 synop_merge <- full_join(Flux_synop_pivot,CO2_synop_pivot, by = c("lat","lon","ele","Date", "Point","EOS_no"))
 
 
-#i edites the wrong version of colmillo, so this has been edited since 3/17
-write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-04-19.csv"))
 
 
 #plot

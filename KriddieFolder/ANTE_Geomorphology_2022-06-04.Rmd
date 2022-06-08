@@ -62,7 +62,7 @@ fig
 
 ```{r 3d plot and synop, echo=FALSE}
 
-df <- full_join(synop,Geomorph, by=c("lat","lon","ele")) 
+df <- Geomorph
 
 fig <- plot_ly(df, x = ~lat, y = ~lon, z = ~ele, size = 1,
                marker = list(color = ~log10(CO2_ppm_ave), colorscale = c('#FFE1A1', '#683531'), showscale = TRUE)
@@ -323,6 +323,7 @@ We also need to snap the synoptic df
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-02-11.csv"))
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-02-13.csv"))
 #synop <- read.csv(here::here("Synoptic/ANTE_2022-03-23.csv"))
+#synop <- read.csv(here::here("Synoptic/ANTE_2022-04-19.csv"))
 synop <- read.csv(here::here("Synoptic/ANTE_2022-06-04.csv"))
 
 
@@ -355,7 +356,7 @@ df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
 #Geomorph <- full_join(Geomorph,synop_2, by = c("lon_fit","lat_fit"))
 
 ```
-Water chem is already included in synop dara
+water chem is already included in synoo data 
 ```{r snap waterchem pts}
 
 WaterChem <- read.csv(here::here("/WaterChem/WaterChem_synoptic_2022-01-28.csv")) %>% filter (Wetland == "ANTE")%>%drop_na(lat)
@@ -576,9 +577,6 @@ ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=log10(ad
 ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_ave)) +
   geom_point(size=5)
 
-ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=DOC)) +
-  geom_point(size=5)
-
 #ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
  # geom_point(size = 3, alpha = .5, color = "blue")
 
@@ -594,14 +592,14 @@ ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=DOC)) +
 #df_prediction$TDN <- NULL
 
 
-write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-06-04.csv"))
+write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-04-19.csv"))
 
 df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 
 WaterChem2 <- left_join(WaterChem,df_prediction_join,by=c("lon_fit","lat_fit"))
 WaterChem2 <- unique(WaterChem2)%>%drop_na(DOC)
 
-write.csv(WaterChem2, here::here("ProcessedData/ANTE_WaterChem_synop_2022-03-23.csv"))
+write.csv(WaterChem2, here::here("ProcessedData/ANTE_WaterChem_synop_2022-04-19.csv"))
 
 ```
 
