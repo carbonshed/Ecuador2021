@@ -193,7 +193,7 @@ snap the points in our origional dama frame to bring in the elevation data
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2022-02-14.csv"))
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2022-03-24.csv"))
 #synop <- read.csv(here::here("Synoptic/COLMILLO_2022-04-19.csv"))
-synop <- read.csv(here::here("Synoptic/COLMILLO_2022-06-04.csv"))
+synop <- read.csv(here::here("Synoptic/COLMILLO_2022-06-05.csv"))
 
 synop$X <- NULL
 
@@ -271,7 +271,7 @@ coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
 synop$lon_fit <- pred$lon
 synop$lat_fit <- pred$lat
-synop <- synop[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","adjusted_ppm","lon_fit","lat_fit","AirTemp_c","VaisalaType","Total_hPa","COLM_waterTempAve")]
+synop <- synop[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","adjusted_ppm","lon_fit","lat_fit","AirTemp_c","VaisalaType","Total_hPa","COLM_waterTempAve","DOC","TDN")]
 
 df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
 
@@ -430,6 +430,8 @@ loop$ele_minus <- NULL
 loop$ele_plus <- NULL
 
 df_prediction <- loop 
+
+df_prediction <- df_prediction%>%filter(dist_diff!=0)
 
 ```
 

@@ -201,7 +201,7 @@ synop_merge$DateTime <- as.POSIXct(paste(synop_merge$Date, synop_merge$Time))
 
 WaterChem <-  read.csv(here::here("WaterChem/DOC_9-1-2021_UNC_EDIT.csv"), skip=0, header = TRUE, sep = ",",
                             quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-WaterChem$Date <- as.Date(WaterChem$Date, format = "%m/%d/%Y")
+WaterChem$Date <- as.Date(WaterChem$Date, format = "%m/%d/%y")
 WaterChem$EOS_no <- gsub("_.*", "", WaterChem$sampleID)     
 
 WaterChem <- WaterChem%>%
@@ -225,7 +225,7 @@ synop_merge$Time.x <- NULL
 synop_merge$SampleType <- NULL
 
 #Write OUt
-#write.csv(synop_merge, here::here("Synoptic/ANTE_2022-06-04.csv"))
+write.csv(synop_merge, here::here("Synoptic/ANTE_2022-06-04.csv"))
 
 synop_merge$Date.as.fact <- as.factor(synop_merge$Date)
 synop_merge$Flux_ave

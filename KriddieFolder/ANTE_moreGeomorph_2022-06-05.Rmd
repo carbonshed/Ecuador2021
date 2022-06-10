@@ -30,7 +30,7 @@ Start by reading in most recent synoptic data
 #df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-02-18.csv"))
 #df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-03-23.csv"))
 #df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-04-19.csv"))
-df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-06-04.csv"))
+df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-06-07.csv"))
 df_prediction$X <-NULL
 
 ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
@@ -291,6 +291,6 @@ I now have some cra
 ggplot(data=df_prediction_4, aes(dist, Totalflux_umolpers),size=5) +
   geom_point(size=5)
 
-write.csv(df_prediction_4, here::here("ProcessedData/ANTE_synopticGeom_2022-06-04.csv"))
+write.csv(df_prediction_4, here::here("ProcessedData/ANTE_synopticGeom_2022-06-07.csv"))
 
 ```

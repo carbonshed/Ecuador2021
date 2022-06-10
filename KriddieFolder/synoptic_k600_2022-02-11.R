@@ -13,20 +13,20 @@ library(lubridate)
 
 #read in df
 
-ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-04-19.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synopticGeom_2022-04-19.csv"))
-COLM <- read.csv(here::here("/ProcessedData/COLM_synopticGeom_2022-04-19.csv"))
-GAVItrib1 <- read.csv(here::here("/ProcessedData/GAVI_Trib1_synoptic_2022-04-19.csv"))
-GAVItrib2 <- read.csv(here::here("/ProcessedData/GAVI_Trib2_synoptic_2022-04-19.csv"))
-GAVItrib3 <- read.csv(here::here("/ProcessedData/GAVI_Trib3_synoptic_2022-04-19.csv"))
+ANTE <- read.csv(here::here("ProcessedData/ANTE_synopticGeom_2022-06-07.csv"))
+GAVI <- read.csv(here::here("ProcessedData/GAVI_synopticGeom_2022-06-04.csv"))
+COLM <- read.csv(here::here("ProcessedData/COLM_synopticGeom_2022-06-07.csv"))
+GAVItrib1 <- read.csv(here::here("ProcessedData/GAVI_Trib1_synoptic_2022-06-08.csv"))
+GAVItrib2 <- read.csv(here::here("ProcessedData/GAVI_Trib2_synoptic_2022-06-08.csv"))
+GAVItrib3 <- read.csv(here::here("ProcessedData/GAVI_Trib3_synoptic_2022-06-08.csv"))
 
 
-ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope50m", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
-COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
-GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers")]
-GAVItrib3 <- GAVItrib3[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
-GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
-GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa")]
+ANTE <- ANTE[,c("lon_fit","lat_fit","ele_fit","dist","slope50m", "Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","GAVI_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers","DOC","TDN")]
+COLM <- COLM[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","COLM_waterTempAve","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers","DOC","TDN")]
+GAVI <- GAVI[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","surface_area","flux_umolpers","Totalflux_umolpers","DOC","TDN")]
+GAVItrib3 <- GAVItrib3[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","DOC","TDN")]
+GAVItrib2 <- GAVItrib2[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","DOC","TDN")]
+GAVItrib1 <- GAVItrib1[,c("lon_fit","lat_fit","ele_fit","dist","slope50m","Date","EOS_no","VaisalaType","Flux_ave","CO2_ppm_ave","adjusted_ppm","AirTemp_c","WaterTemp_c","Total_hPa","DOC","TDN")]
 
 
 #add weltand info
@@ -37,12 +37,6 @@ GAVItrib1$Wetland <- "GAVItrib1"
 GAVItrib2$Wetland <- "GAVItrib2"
 GAVItrib3$Wetland <- "GAVItrib3"
 
-
-
-GAVItribs <- rbind(GAVItrib1,GAVItrib2,GAVItrib3)
-GAVItribs$surface_area <- NA
-GAVItribs$flux_umolpers <- NA
-GAVItribs$Totalflux_umolpers <- NA
 
 
 colnames(ANTE)[which(names(ANTE) == "GAVI_waterTempAve")] <- "WaterTemp_c"
@@ -70,7 +64,9 @@ colnames(COLM)[which(names(COLM) == "COLM_waterTempAve")] <- "WaterTemp_c"
 ANTE <- unique(ANTE)
 GAVI <- unique(GAVI)
 COLM <- unique(COLM)
-GAVItribs <- unique(GAVItribs)
+GAVItrib1 <- unique(GAVItrib1)
+GAVItrib2 <- unique(GAVItrib2)
+GAVItrib3 <- unique(GAVItrib3)
 
 
 #need seperate columns for each stream profile
@@ -84,26 +80,43 @@ ANTE$dist_GAVItrib3 <- NA
 GAVI$dist_ANTE <- NA
 GAVI$dist_GAVI <- GAVI$dist
 GAVI$dist_COLM <- NA
-#GAVI$dist_GAVItrib1 <- NA
-#GAVI$dist_GAVItrib2 <- NA
+GAVI$dist_GAVItrib1 <- NA
+GAVI$dist_GAVItrib2 <- NA
+GAVI$dist_GAVItrib3 <- NA
 
 COLM$dist_COLM <- COLM$dist
 COLM$dist_ANTE <- NA
 COLM$dist_GAVI <- NA
-#COLM$dist_GAVItrib1 <- NA
-#COLM$dist_GAVItrib2 <- NA
+COLM$dist_GAVItrib1 <- NA
+COLM$dist_GAVItrib2 <- NA
+COLM$dist_GAVItrib3 <- NA
 
 GAVItrib1$dist_GAVItrib1 <- GAVItrib1$dist
 GAVItrib1$dist_ANTE <- NA
 GAVItrib1$dist_GAVI <- NA
 GAVItrib1$dist_COLM <- NA
 GAVItrib1$dist_GAVItrib2 <- NA
+GAVItrib1$dist_GAVItrib3 <- NA
 
 GAVItrib2$dist_GAVItrib2 <- GAVItrib2$dist
 GAVItrib2$dist_ANTE <- NA
 GAVItrib2$dist_GAVI <- NA
 GAVItrib2$dist_COLM <- NA
 GAVItrib2$dist_GAVItrib1 <- NA
+GAVItrib2$dist_GAVItrib3 <- NA
+
+GAVItrib3$dist_GAVItrib3 <- GAVItrib3$dist
+GAVItrib3$dist_ANTE <- NA
+GAVItrib3$dist_GAVI <- NA
+GAVItrib3$dist_COLM <- NA
+GAVItrib3$dist_GAVItrib1 <- NA
+GAVItrib3$dist_GAVItrib2 <- NA
+
+
+GAVItribs <- rbind(GAVItrib1,GAVItrib2,GAVItrib3)
+GAVItribs$surface_area <- NA
+GAVItribs$flux_umolpers <- NA
+GAVItribs$Totalflux_umolpers <- NA
 
 #synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItrib1,GAVItrib2)
 synoptic.df <- rbind(ANTE,GAVI,COLM,GAVItribs)
@@ -209,8 +222,8 @@ synoptic.df$K600.effective <- synoptic.df$k_m.d * (600/synoptic.df$Sc)^(-0.5)
 #synoptic.df <- synoptic.df%>%drop_na(lat)
 
 ##write out
-write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
-df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+#write.csv(synoptic.df, here::here("ProcessedData/ALL_synoptic_2022-06-08.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-06-08.csv"))
 df <- df%>%drop_na(Date)
 #write.csv(df, here::here("ProcessedData/ALL_synopticNoNA_2022-04-19.csv"))
 

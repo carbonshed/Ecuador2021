@@ -3,6 +3,7 @@
 
 # Load libraries
 library(ggmap)
+
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
@@ -262,7 +263,7 @@ synop_merge$SampleType <- NULL
 
 
 #write out
-write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-06-05.csv"))
+#write.csv(synop_merge, here::here("Synoptic/COLMILLO_2022-06-05.csv"))
 
 
 Trouble <- qmplot(lon, lat, data = CO2_synop_pivot, zoom = 13,  maptype = "toner-background", color = Tract, shape = Date.as.fact)+
