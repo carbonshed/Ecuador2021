@@ -74,14 +74,14 @@ df_old$adjusted_ppm <- df_old$ppm * (1 + (1013 - df_old$Total_hPa) * 0.0015) * (
 
 #new
 
-#The new viasalas are set to 700hPa and 6.7c
-#this is nt true! the new vaisalas were NOT set to 700 and 6.7, they were left as the default ALSO the units were set wierd so they are half of what they should be
+#The new viasalas are set to 700hPa and have an internal temperature, so do not ned to be corrected for temp
+#the units for new vasialas are half of what they should be! 
 
 #Station 2, 3 and Well 1 and 2 are new V
 df_new <- df %>% filter(Station != "stn_01" & Station != "stn_04")
 
 #df_new$adjusted_ppm <- df_new$ppm * (1 + (700 - df_new$Total_hPa) * 0.0015) * (1 - (6.7 - df_new$WLTemp_c) * 0.003)
-df_new$adjusted_ppm <- (df_new$ppm * 2 )* (1 + (1013 - df_new$Total_hPa) * 0.0015) * (1 - (25 - df_new$WLTemp_c) * 0.003)
+df_new$adjusted_ppm <- (df_new$ppm * 2 )* (1 + (700 - df_new$Total_hPa) * 0.0015) 
 
 ```
 
