@@ -1,0 +1,51 @@
+---
+title: "stat_mining"
+author: "Kriddie"
+date: '2022-05-15'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+df <- df[,c("lon_fit","lat_fit","Flux_ave","adjusted_ppm","K600_effective","Wetland","dist","slope50m","RASTERVALU")]
+colnames(df)<-c("x","y","Flux_ave","adjusted_ppm","K600_effective","Wetland","dist","slope50m","RASTERVALU")
+
+GAVI <- df%>%filter(Wetland=="GAVI")
+COLM <- df%>%filter(Wetland=="COLM")
+ANTE <- df%>%filter(Wetland=="ANTE")
+GAVItrib1 <- df%>%filter(Wetland=="GAVItrib1")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+TheData <- df
+TheData$RASTERVALU_stats <- TheData$RASTERVALU / max(TheData$RASTERVALU)[1]
+TheData$K600_effective_stats <- TheData$K600_effective / max(TheData$K600_effective, na.rm = TRUE)[1]
+TheData$slope50m_stats <- -1*(TheData$slope50m / max(TheData$slope50m,na.rm = TRUE)[1])
+
+plot(TheData$RASTERVALU,TheData$K600_effective) 
+plot(TheData$slope50m,TheData$Flux_ave) 
+plot(TheData$slope50m*-1,TheData$adjusted_ppm) 
+
+a <- lm(TheData$K600_effective ~  TheData$RASTERVALU)
+summary(a)
+library(ggplot2)
+ggplot(TheData, aes(RASTERVALU, K600_effective, color=Wetland)) + geom_point()
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
