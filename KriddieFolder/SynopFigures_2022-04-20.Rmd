@@ -43,8 +43,9 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 ```{r read in data}
 synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
 df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+#df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220621.csv"))
 df$X <- NULL
-df <- unique(df)
+#df <- unique(df)
 df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
 df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
 df$WatershedSize_km2 <-  df$RASTERVALU * 12.5 *12.5 * 1e-6

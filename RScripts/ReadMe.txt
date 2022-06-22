@@ -33,3 +33,7 @@ For synoptic data:
 
 4. synoptic_k600_2022-06-08: this script calculates k600 for all sites (excluding gavi tribs)
 		WriteOut: "ProcessedData/ALL_synoptic_2022-06s-24.csv"
+		
+5. MergeRaster.R
+This script merges dataframe with the Raster Data
+  
