@@ -589,7 +589,7 @@ Just  little bit of data cleaning needed. I don't like the
 #stream profiles
 
 ```{r profiles, echo=FALSE}
-GAVI <- df%>%filter(Wetland_2=="GAVI")
+GAVI <- df%>%filter(Wetland_2=="Gavi-mainstem")
 ANTE <- df%>%filter(Wetland_2=="ANTE")
 COLM <- df%>%filter(Wetland_2=="COLM")
 
