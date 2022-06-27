@@ -35,5 +35,6 @@ For synoptic data:
 		WriteOut: "ProcessedData/ALL_synoptic_2022-06s-24.csv"
 		
 5. MergeRaster.R
-This script merges dataframe with the Raster Data
+This script merges dataframe with the Raster Data based on flux, wetland and ave flux column
+I also did some manual manipulations after merging raster data
   

@@ -18,9 +18,14 @@ df$Date <- as.Date(df$Date,format="%Y-%m-%d")
 levels(df$Wetland) <- c("ANTE","COLM","Gavi-mainstem","GAVItrib1","GAVItrib2","GAVItrib3")
 
 
-df_2 <- left_join(df,RasterData,by=c("Date","Wetland","EOS_no","Flux_ave"))
+df_2 <- full_join(df,RasterData,by=c("Date","Wetland","EOS_no","Flux_ave"))
 
-write.csv(df_2, here::here("ProcessedData/SynopFlowAccu_20220621.csv"))
+#this is not a perfect join, so after I read this out, I will do some manual edits
+
+
+write.csv(df_2, here::here("ProcessedData/SynopFlowAccu_20220626.csv"))
+
+
 
 
 #Amanda
