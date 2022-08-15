@@ -1,0 +1,674 @@
+---
+title: "SynopFigures_2022-04-20"
+author: "Kriddie"
+date: '2022-04-20'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(tidyr) # for `gather`
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+library(plotly)
+library(gridExtra)
+library(grid)
+library(ggmap)
+library(dplyr)
+library(scales)
+
+```
+
+## Description
+This file is to generate figures for my synoptic paper
+
+*Objective:*
+The objective of this study is to identify high resolution spatial patterns in pCO2, CO2 flux and geomorphology within a Paramo river network.
+
+Hypothesis 1: Off-gassing from upstream reaches and decreased connection with groundwater will result in decreasing pCO2 within a river reach from upstream to downstream and within a river network from smaller to larger streams. 
+
+Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than smaller streams
+
+
+
+
+#read in data
+
+
+```{r read in data}
+#synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-06-08.csv"))
+#df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220626.csv"))
+
+df$X <- NULL
+#df <- unique(df)
+#df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
+#df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
+df$WatershedSize_km2 <-  df$FlowAccu * 12.5 *12.5 * 1e-6
+df$WatershedSize_ha <-  df$FlowAccu * 12.5 * 12.5 / 10000
+#df$Date <- format(as.POSIXct(df$Date,format='%m/%d/%dY'))
+
+
+
+df$Wetland_2 <- df$Wetland
+df$Wetland_2 <- as.character(df$Wetland_2)
+
+df$Wetland_2[df$Wetland == "GAVItrib1"] <- "Gavilan Tributaries"
+df$Wetland_2[df$Wetland == "GAVItrib2"] <- "Gavilan Tributaries"
+df$Wetland_2[df$Wetland == "GAVItrib3"] <- "Gavilan Tributaries"
+df$Wetland_2[df$Wetland == "Gavi-mainstem"] <- "Gavilan Mainstem"
+df$Wetland_2[df$Wetland == "ANTE"] <- "Antenas"
+df$Wetland_2[df$Wetland == "COLM"] <- "Colmillo"
+df$Wetland_2 <- as.factor(df$Wetland_2)
+
+df$Wetland_3 <- df$Wetland
+
+df$Wetland_3 <- as.character(df$Wetland_3)
+
+df$Wetland_3[df$Wetland == "GAVItrib1"] <- "Gavilan River Network"
+df$Wetland_3[df$Wetland == "GAVItrib2"] <- "Gavilan River Network"
+df$Wetland_3[df$Wetland == "GAVItrib3"] <- "Gavilan River Network"
+df$Wetland_3[df$Wetland == "Gavi-mainstem"] <- "Gavilan River Network"
+
+
+df$Wetland_3 <- as.factor(df$Wetland_3)
+
+```
+
+
+#fig 1
+this is a site map generated using arcpro, not included here
+
+#fig 2
+Show general downward trend in co2
+river network and reach
+
+stats to report: 
+Gavi trib1 p-value= .0127, r2 = 0.3953
+Gavi trib2 p-value= 0.1099, r2 = 0.6885
+ANTE p-value = 0.03753, r2 = 0.1851
+
+
+```{r fig 2a, echo=FALSE}
+
+
+#wetland network vs catchment size p-value = 9.49e-05 
+#
+#model <- lm(log10(adjusted_ppm)~ WatershedSize_ha, 
+#             data = df%>%filter(Wetland_3=="Gavilan River Network")
+#)
+#summary(model)
+
+model1 <- lm(log10(adjusted_ppm)~ dist, 
+             data = df%>%filter(Wetland=="ANTE"))
+summary(model1)
+model2 <- lm(log10(adjusted_ppm)~ dist, 
+             data = df%>%filter(Wetland=="GAVItrib1"))
+summary(model2)
+model3 <- lm(log10(adjusted_ppm)~ dist, 
+           data = df%>%filter(Wetland=="GAVItrib2"))
+summary(model3)  
+
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.text=element_text(size=16))+
+  theme(aspect.ratio=1)
+
+rivernetwork <- ggplot(df %>%filter(Wetland_3=="Gavilan River Network")
+       , aes(x = WatershedSize_ha, y = log10(adjusted_ppm))) + 
+  geom_point(size=3) +
+  theme_bw() + 
+    ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]")))+  xlab("Watershed Size [Hectares]") +
+  scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
+  geom_smooth(method='lm') +
+  MyTheme + 
+  annotate("text", x = 100, y = log10(15000), label = "pvalue < 0.0001",size = 5)
+
+df <- df[order(df$adjusted_ppm),]
+
+gaviplot <- qmplot(lon_fit,lat_fit, data = df%>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(adjusted_ppm), zoom = 13, size= 10, maptype = "toner-background", color = log10(adjusted_ppm))+
+  guides(size = FALSE) +
+  scale_color_gradient(low="blue", high="red",
+                       breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
+  theme(legend.text=element_text(size=16)) + 
+  labs(color=expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  theme(legend.title=element_text(size=16), 
+    legend.text=element_text(size=14)) 
+
+### c.
+
+p1 <- ggplot(df %>%filter(Wetland!="Gavi-mainstem")%>%filter(Wetland!="COLM")
+             %>%filter(Wetland!="GAVItrib3")
+       , aes(x = dist, y = log(adjusted_ppm) , color=Wetland)) +
+  facet_grid(.~Wetland, scales = "free") +
+#  ylim(-100,15000)+
+  geom_point(size=3) +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  xlab("Distance downstream [m]") +
+      geom_smooth(method='lm')+
+  theme(axis.text=element_text(size=10),
+  axis.title=element_text(size=18,face="bold")) +
+  theme_classic() +
+  scale_color_discrete(name=NULL,labels=c("Antenas", "Gavilan Tributary 1","Gavilan Tributary 2"))+
+  theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))+ 
+  theme( strip.text.x = element_blank(),
+         axis.text = element_blank())+ 
+ theme(#axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+#  theme(legend.text=element_text(size=16))+
+  theme(aspect.ratio=1)+
+  theme(legend.title=element_text(size=18), 
+    legend.text=element_text(size=16),
+    legend.position = "right") 
+
+
+p2 <- ggplot(df %>%drop_na(Wetland)%>%filter(Wetland!="Gavi-mainstem")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
+       , aes(x = dist, y = log10(adjusted_ppm), color=Wetland)) +
+  facet_grid(.~Wetland, scales = "free") +
+  geom_point(size=3) +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  xlab("Distance downstream [m]") +
+      geom_smooth(method='lm')+
+  theme(axis.text=element_text(size=10),
+  axis.title=element_text(size=18,face="bold")) +
+  theme_classic() +
+  scale_color_discrete(name=NULL,labels=c("Antenas", "Gavilan Tributary 1","Gavilan Tributary 2"))+
+  theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))+ 
+  theme( strip.text.x = element_blank(),
+         axis.text = element_blank(),
+         axis.title=element_text(size=16))+ 
+  theme(aspect.ratio=1) +
+  theme(legend.position = "none") 
+
+
+# Extract the legend. Returns a gtable
+leg <- get_legend(p1)
+
+# Convert to a ggplot and print
+legplot <- as_ggplot(leg)
+
+
+bottomrow <- p1
+
+figure <- ggarrange(rivernetwork, gaviplot, p2, legplot,
+                    labels = c("A","B","C",""),
+                    ncol = 2, nrow = 2,
+                   align = "hv",
+                    widths = c(1, .8),
+                  heights = c(.6,.4),
+                  font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
+
+
+
+figure
+
+
+
+```
+
+# trends in flux 
+
+Box plots
+```{r fig 3, echo=FALSE}
+###box and wisker####
+anova.co2 <- aov(log10(adjusted_ppm) ~ Wetland_2, data = df)
+summary(anova.co2)
+
+anova.flux <- aov(Flux_ave ~ Wetland_2, data = df)
+summary(anova.flux)
+
+tukey.flux<-TukeyHSD(anova.flux)
+tukey.flux
+
+tukey.co2<-TukeyHSD(anova.co2)
+tukey.co2
+
+MyTheme <-  theme_bw() + 
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()) +
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.text=element_text(size=16))
+
+
+CO2 <- ggplot(df, aes(x = Wetland_2, y = log10(adjusted_ppm), fill = Wetland_2)) +
+  geom_boxplot() +
+  geom_jitter(shape=1,position=position_jitter(0.1)) +
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
+  MyTheme +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  scale_fill_discrete(name=NULL)+
+  scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))  +
+  annotate("text", x="Gavilan Tributaries", y= log10(18000),label="B", size = 8) +
+  annotate("text", x="Antenas", y= log10(18000),label="A", size = 8) +
+  annotate("text", x="Gavilan Mainstem", y= log10(18000),label="A", size = 8) +
+  annotate("text", x="Colmillo", y= log10(18000),label="A", size = 8)
+
+
+flux <- ggplot(df, aes(x = Wetland_2, y = Flux_ave, fill = Wetland_2)) + 
+  geom_boxplot() +
+  geom_jitter(shape=1,position=position_jitter(0.1)) +
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
+  MyTheme +
+    ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
+  scale_fill_discrete(name=NULL) +
+  annotate("text", x="Gavilan Tributaries", y= 5,label="BC", size = 8) +
+  annotate("text", x="Antenas", y= 5,label="A", size = 8) +
+  annotate("text", x="Gavilan Mainstem", y= 5,label="AC", size = 8) +
+  annotate("text", x="Colmillo", y= 5,label="B", size = 8)
+
+
+require(grid)  
+
+
+
+figure <- ggarrange(CO2 , flux,  
+                    labels = c("A","B"),
+                    ncol = 1, nrow = 2,
+                    common.legend = TRUE, legend = "right",
+                    align = "hv", 
+                    font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
+
+figure
+
+
+
+```
+
+
+#fig 3
+
+
+for < 12.5 hectars, watershed size is not significant, co2 is significant
+r2 = 0.4953, pvalue = 1.015e-06
+for > 12.5 hectars, co2 is pvalue 0.82, watershed size is .075
+for > 20 ha, co2 is not significant, but watershed size is. pvalue = 0.016
+
+```{r fig 3, echo=FALSE}
+
+df_sats <- df
+df_sats$co2_normal <-df$adjusted_ppm/14660.3594
+df_sats$WSsize_normal <- df$WatershedSize_ha/236.890625
+  
+model <- lm(Flux_ave ~ co2_normal, 
+             data = df_sats%>%filter(Flux_ave>.05)%>%filter(WatershedSize_ha<20)
+)
+summary(model)
+
+model <- lm(Flux_ave ~  WSsize_normal, 
+             data = df_sats%>%filter(Flux_ave>.05)%>%filter(WatershedSize_ha>20)
+)
+summary(model)
+
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.title = element_text(size=18),
+    legend.text=element_text(size=16))
+
+hex <- hue_pal()
+
+
+A <- ggplot(df%>%filter(WatershedSize_ha<12.5),
+        aes(x=log10(adjusted_ppm), y=Flux_ave)) +
+  geom_point(aes(fill=Wetland), 
+       color="black",pch=21, size=5) + 
+  geom_smooth(method='lm') +
+  xlab("CO2 ppm") + 
+  ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
+  labs(linetype="LEGEND", color="LEGEND") +
+  scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Gavilan Tributary 1","Gavilan Tributary 3"), values = c(hex(1)[1], "yellow1", hex(7)[6])) +
+   scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
+  annotate("text", x=log10(7000), y= 2.5,label="p-value < .0001 \n r2 = 0.51", size = 5) +
+   theme_bw()  + MyTheme 
+
+B <- ggplot(df_sats #%>%filter(Flux_ave>.05)
+            %>%filter(WatershedSize_ha>20)
+  #           %>%filter(Wetland!="GAVItrib2")
+  ,
+        aes(x=WatershedSize_ha, y=Flux_ave)) +
+  geom_point(aes(fill=Wetland), 
+       color="black",pch=21, size=5) + 
+  geom_smooth(method='lm') +
+  xlab("Watershed Size [ha]") + 
+  ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) + 
+  labs(linetype="LEGEND", color="LEGEND") +
+  scale_fill_manual(name="Stream Reach",labels=c( "Colmillo","Gavilan","Gavilan Tributary 2"),values = c(hex(3)[2], hex(3)[3],"darkorange")) +
+  annotate("text", x=200, y= 3.5,label="p-value = 0.018 \n r2 = 0.073", size = 5) +
+   theme_bw()  + MyTheme
+
+
+
+figure <- ggarrange(A , B,  
+                    labels = c("A","B"),
+                    ncol = 1, nrow = 2,
+                    #common.legend = TRUE, 
+                    legend = "right",
+                    align = "hv", 
+                    font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
+
+figure
+ggsave("controls_2.png", plot = figure, device = NULL, path = NULL,
+       scale = 1, width = 20, height = 20, dpi = 360, limitsize = TRUE,
+       units = c("cm"))
+
+
+```
+
+```{r fig 4, echo=FALSE}
+
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=18),
+        axis.title=element_text(size=24)) +
+  theme(legend.title = element_text(size=24),
+    legend.text=element_text(size=18))+
+  theme(aspect.ratio=1)
+
+df$shape <- "shape"
+bball <- ggplot(df%>%drop_na(adjusted_ppm)%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")# %>% filter(dist>500)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
+  geom_line(aes(#linetype=Wetland,
+    color=Wetland),
+    size=3) +
+  geom_point(aes(shape = shape),color="black",
+    size=2)+
+    ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) + 
+  xlab("Distance [m]") +
+  scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan")) +
+  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan")) +
+  scale_shape_discrete(name="Sample Point",labels="", values = 17) +
+  MyTheme
+
+
+bball
+
+# Extract the legend. Returns a gtable
+leg <- get_legend(bball)
+
+# Convert to a ggplot and print
+as_ggplot(leg)
+
+
+ggsave("testing123.png",plot = bball, dpi = 360, units = "cm")
+
+ggsave("testing123.png", plot = bball, device = NULL, path = NULL,
+       scale = 1, width = 25, height = 20, dpi = 360, limitsize = TRUE,
+       units = c("cm"))
+
+```
+
+#the last one will be conceptual!!!! 
+include k600, co2, flux rate AND conceptual for total flux bom baby
+
+
+```{r stats, echo=FALSE}
+
+
+model <- lm(Flux_ave ~ log10(adjusted_ppm) + WatershedSize_ha, 
+             data = df%>%filter(WatershedSize_ha<12.5)
+)
+summary(model)
+
+model <- lm(Flux_ave ~ log10(adjusted_ppm) + WatershedSize_ha, 
+             data = df%>%filter(WatershedSize_ha>20)
+)
+summary(model)
+
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.title = element_text(size=18),
+    legend.text=element_text(size=16))
+
+
+ggplot(df%>%filter(WatershedSize_ha>12.5),
+       #%>%drop_na(adjusted_ppm) #%>% filter(dist<250)
+        aes(x=WatershedSize_ha, y=Flux_ave)) +
+  geom_point(aes(fill=Wetland), 
+       color="black",pch=21, size=5) + 
+  geom_smooth(method='lm') +
+  xlab("CO2 ppm") + ylab("CO2 Flux (umol per m2 per s)") +labs(linetype="LEGEND", color="LEGEND") +
+ # scale_fill_discrete(name="Stream Reach",labels=c("Antenas", "Gavilan Tributary 1","Gavilan Tributary 2")) +
+   scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c(300,"1,000","3,000","10,000")) +
+   theme_bw()  + MyTheme
+
+
+```
+
+```{r fig 2, echo=FALSE}
+
+
+ggplot(df
+       , aes(x = dist, y = Flux_ave, color=Wetland)) +
+  facet_wrap(~Wetland, scales = "free")+
+  geom_point(size=3) +
+  theme_bw() + 
+  ylab("CO2 flux (umol/m2/s)") + 
+  xlab("Catchment Size (Hectares)") +
+    geom_smooth(method='lm')+
+  theme(axis.text=element_text(size=10),
+  axis.title=element_text(size=18,face="bold"))
+
+
+ggplot(df%>%filter(Wetland_2!="COLM")%>%filter(Wetland_2!="ANTE")
+       , aes(x = WatershedSize_ha * slope50m, y = K600_effective)) + 
+  geom_point(size=3) +
+  theme_bw() + 
+  geom_smooth(method='lm')+
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16,face="bold"))
+
+
+```
+
+
+
+
+
+
+
+##fig 3
+
+
+```{r test figs, echo=FALSE}
+####
+
+ggplot(df%>% filter(RASTERVALU>2000),
+       #%>%drop_na(adjusted_ppm) #%>% filter(dist<250)
+       aes(x=log10(adjusted_ppm), y=Flux_ave)) +
+  geom_point(aes(color=Wetland)) + 
+#  geom_smooth(method='lm') +
+  xlab("CO2 ppm") + ylab("CO2 Flux (umol per m2 per s)") +labs(linetype="LEGEND", color="LEGEND") +
+  scale_color_discrete(name="LEGEND",labels=c("Colmillo", "Gavilan Mainstem","Gavilan Tributary")) +
+  scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c(300,1000,3000,10000)) +
+  #  scale_color_manual(name="LEGEND",labels=c("blah", "GAVItrib2","GAVItrib3_1","GAVItrib3_2")) +
+  theme_bw() 
+
+
+ggplot(df #%>% filter(adjusted_ppm>2000)
+       ,
+       #%>%drop_na(adjusted_ppm) #%>% filter(dist<250)
+       aes(x=log10(adjusted_ppm), y=Flux_ave)) +
+  geom_point(aes(color=Wetland)) + 
+#  geom_smooth(method='lm') +
+  xlab("CO2 ppm") + ylab("CO2 Flux (umol per m2 per s)") +labs(linetype="LEGEND", color="LEGEND") +
+ # scale_color_discrete(name="LEGEND",labels=c("Colmillo", "Gavilan Mainstem","Gavilan Tributary")) +
+  scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c(300,1000,3000,10000)) +
+  #  scale_color_manual(name="LEGEND",labels=c("blah", "GAVItrib2","GAVItrib3_1","GAVItrib3_2")) +
+  theme_bw() 
+
+ggplot(df #%>% filter(adjusted_ppm>2000)
+       %>%filter(Wetland=="ANTE")%>%filter(dist>0)
+       ,
+       aes(x=dist, y=log10(adjusted_ppm))) +
+  geom_point(aes(color=Wetland)) + 
+  theme_bw() 
+
+# Extract the legend. Returns a gtable
+leg <- get_legend(p1)
+
+# Convert to a ggplot and print
+as_ggplot(leg)
+
+
+p2 <- ggplot(df %>%filter(Wetland=="ANTE")
+       , aes(x = dist, y = adjusted_ppm))+
+  geom_point(size=3,color="#F8766D") +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
+      geom_smooth(method='lm', color="#F8766D")+
+  theme(axis.text=element_text(size=10), axis.title=element_text(size=18,face="bold")) +
+  theme_classic() +
+  theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))+ 
+  theme( strip.text.x = element_blank() )+ 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.text=element_text(size=16))+
+  theme(aspect.ratio=1)+
+  theme(legend.position = "none") 
+
+
+p3 <- ggplot(df %>%filter(Wetland=="GAVItrib1")
+       , aes(x = dist, y = adjusted_ppm))+
+#  facet_grid(.~Wetland, scales = "free") +
+#  ylim(-1000,15000)+
+  geom_point(size=3,color="#00BA38") +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  xlab("Distance downstream [m]") +
+      geom_smooth(method='lm',color="#00BA38")+
+  theme(axis.text=element_text(size=10),
+  axis.title=element_text(size=18,face="bold")) +
+  theme_classic() +
+  theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))+ 
+  theme( strip.text.x = element_blank() )+ 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.text=element_text(size=16))+
+  theme(aspect.ratio=1)+
+  theme(legend.position = "none") 
+
+p4 <- ggplot(df %>%filter(Wetland=="GAVItrib2")
+       , aes(x = dist, y = adjusted_ppm))+
+#  facet_grid(.~Wetland, scales = "free") +
+#  ylim(-1000,15000)+
+  geom_point(size=3,color="#619CFF") +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  xlab("Distance downstream [m]") +
+      geom_smooth(method='lm',color="#619CFF")+
+  theme(axis.text=element_text(size=10),
+  axis.title=element_text(size=18,face="bold")) +
+  theme_classic() +
+  theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))+ 
+  theme( strip.text.x = element_blank() )+ 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.text=element_text(size=16))+
+  theme(aspect.ratio=1)+
+  theme(legend.position = "none") 
+
+p1 <- as_ggplot(leg)
+p2
+p3
+p4
+```
+
+
+Just  little bit of data cleaning needed. I don't like the 
+```{r clean  data}
+
+```
+
+#stream profiles
+
+```{r profiles, echo=FALSE}
+GAVI <- df%>%filter(Wetland_2=="Gavi-mainstem")
+ANTE <- df%>%filter(Wetland_2=="ANTE")
+COLM <- df%>%filter(Wetland_2=="COLM")
+
+ANTE$dist_ANTE <- ANTE$dist
+ANTE$dist_COLM <- NA
+ANTE$dist_GAVI <- NA
+
+COLM$dist_COLM <- COLM$dist
+COLM$dist_ANTE <- NA
+COLM$dist_GAVI <- NA
+
+GAVI$dist_GAVI <- GAVI$dist
+GAVI$dist_ANTE <- NA
+GAVI$dist_COLM <- NA
+GAVI <- GAVI%>%drop_na(Date)
+
+GAVI_sub <- GAVI%>%filter(dist > 462 & dist < 570)
+
+df <- rbind(ANTE,COLM,GAVI)
+
+###
+
+hex <- hue_pal()
+
+Profile <- ggplot(data=df ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 4, color="grey") +
+  geom_line(aes(dist_GAVI, ele_fit), size = 4, color="grey") +
+  geom_line(aes(dist_COLM, ele_fit), size = 4, color="grey") +
+  geom_point(aes(dist_ANTE, ele_fit), size = 4, shape=21, fill=hex(3)[1],color="black") +
+  geom_point(aes(dist_GAVI, ele_fit), size = 4, shape=21, fill=hex(3)[3],color="black") +
+  geom_point(aes(dist_COLM, ele_fit), size = 4, shape=21, fill=hex(3)[2],color="black") +
+  labs(y="Elevation [m]", x = "Distance [m]")  +
+  theme_classic() + My_Theme 
+
+
+Profile
+ggsave("streamprofil_2.png", plot = Profile, device = NULL, path = NULL,
+       scale = 1, width = 10, height = 10, dpi = 360, limitsize = TRUE,
+       units = c("cm"))
+
+####
+
+Profile <- ggplot(data=df ) +
+  geom_line(aes(dist_ANTE, ele_fit), size = 2, alpha=.25) +
+  geom_line(aes(dist_GAVI, ele_fit), size = 2, alpha=.5) +
+  geom_line(aes(dist_COLM, ele_fit), size = 2,alpha=.5) +
+#  geom_point(data=df%>%drop_na(Flux_ave), aes(dist, ele_fit, color= Flux_ave),size=3)+
+#  scale_color_gradient(
+#  low = "blue", high = "red",
+#    space = "Lab",
+#    na.value = "grey50",
+#    guide = "colourbar",
+#    aesthetics = "colour",
+#    name = "Flux umol m^2 s^-1"
+#  )+  
+  labs(y="elevation", x = "distance")  +
+
+  theme_classic() + My_Theme + theme(legend.position = c(0.8, 0.9))
+
+
+```
+## Including Plots
+
+You can also embed plots, for example:
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

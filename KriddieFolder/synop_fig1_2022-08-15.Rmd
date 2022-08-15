@@ -1,0 +1,128 @@
+---
+title: "synop_fig1_2022-03-21"
+author: "Kriddie"
+date: "3/21/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(dplyr) # for `rename`
+library(tidyr) # for `gather`
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
+#library(rstatix)
+library(ggpubr)
+library(plotly)
+#library(rstatix)
+```
+
+## synop_fig1_2022-03-21
+This file is meant to keep better track of my progress towards figure 1 for my synop paper
+The goal of this figure is to show how much CO2 is coming off these rivers on a grams of carbon per sec bases
+
+or something like that
+
+
+We start with the most recently processes synoptic data. It includes calculates k600 values.
+
+
+```{r read in}
+#read in the most recent synoptic data
+
+#df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-21.csv"))
+#df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-03-24.csv"))
+#df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-06-08.csv"))
+df$X <- NULL
+df <- unique(df)
+#df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
+#df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
+df$Date <- format(as.POSIXct(df$Date,format='%Y-%m-%d'))
+
+df$Flux_ave <- signif(df$Flux_ave, digits = 3)
+##add raster data
+#Synop_all_raster3 <- read.csv(here::here("Synoptic/Synop_all_raster3.csv"))
+#Synop_all_raster3 <- read.csv(here::here("Synoptic/SynopFlowAccu_20220419.csv"))
+Synop_all_raster3 <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220626.csv"))
+
+#Synop_all_raster3 <- Synop_all_raster3[,c("Wetland","Date","EOS_no","Flux_ave","Wetland_1","Elevation","lon","lat","FlowAccu","Flowlen","Slope")]
+#Synop_all_raster3 <- Synop_all_raster3[,c("Wetland","Date","EOS_no","Flux_ave","ele_fit","lon_fit","lat_fit","FlowAccu","Flowlen","Slope")]
+Synop_all_raster3 <- Synop_all_raster3[,c("Wetland","Date","EOS_no","Flux_ave","ele_fit","lon_fit","lat_fit","FlowAccu","CatchmentSize_km2")]
+
+colnames(Synop_all_raster3) <- c("Wetland","Date","EOS_no","Flux_ave","Elevation_raster","lon_raster","lat_raster","FlowAccu","CatchmentSize_km2")
+Synop_all_raster3$Date <- format(as.POSIXct(Synop_all_raster3$Date,format='%m/%d/%Y'),format='%Y-%m-%d')
+#Synop_all_raster3$EOS_no[Synop_all_raster3$EOS_no == "EOS1"] <- "EOS_1"
+#Synop_all_raster3$EOS_no[Synop_all_raster3$EOS_no == "EOS2"] <- "EOS_2"
+Synop_all_raster3$Flux_ave <- signif(Synop_all_raster3$Flux_ave, digits = 3)
+
+
+df_2 <- full_join(df,Synop_all_raster3, by =  c("Date","EOS_no","Flux_ave","Wetland"))
+#check <- df_2[,c("Date","EOS_no","Flux_ave","FlowAccu","Totalflux_umolpers","Wetland_tribs","Wetland")]%>%drop_na(Date)%>%filter(Wetland=="GAVI")
+#check$Wetland_tribs[is.na(check$Wetland_tribs)]<-"GAVI-mainstem"
+#check <- check%>%filter(Wetland_tribs=="GAVI-mainstem")
+
+```
+
+I think I can just read in one file now...
+
+```{r read in}
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220626.csv"))
+
+df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
+df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
+df$Date <- format(as.POSIXct(df$Date,format='%Y-%m-%d'))
+df$Flux_ave <- signif(df$Flux_ave, digits = 3)
+
+```
+## Plot data
+
+plot the data by wetland to see whats up.
+
+Most of the streams go from dist = 0 is downstream and then progress upstream. Too bad, because we actually want it to be the other way around. The only one that doesn't need to be fixed in ANTE
+
+```{r visualize streamprofile, echo=FALSE}
+ggplot(data=df%>%filter(Wetland=="GAVItrib2"), aes(x=dist, y=ele_fit, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+
+#use plot below to visualize new stream profile
+and flux total data
+
+```{r visualize profile again, echo=FALSE}
+ggplot(data=df%>%filter(Wetland=="Gavi-mainstem"), aes(x=dist, y=ele_fit, group=1)) +
+  geom_line()+
+  geom_point()
+
+ggplot(data=df %>%filter(Wetland=="Gavi-mainstem")%>%drop_na(adjusted_ppm), aes(x=dist, y=Totalflux_umolpers, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+
+#join
+
+```{r join and plot, echo=FALSE}
+
+
+ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist<250)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
+  geom_line(aes(#linetype=Wetland,
+    color=Wetland),
+    size=2)
+
+
+ggplot(df%>%drop_na(adjusted_ppm) %>% filter(dist>500)#%>%filter(Wetland!="COLM")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
+  geom_line(aes(#linetype=Wetland,
+    color=Wetland),
+    size=2)
+  
+
+```
+
