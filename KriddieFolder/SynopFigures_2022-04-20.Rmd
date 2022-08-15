@@ -42,13 +42,15 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 
 ```{r read in data}
 synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
-df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+#df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220626.csv"))
+
 df$X <- NULL
-df <- unique(df)
-df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
-df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
-df$WatershedSize_km2 <-  df$RASTERVALU * 12.5 *12.5 * 1e-6
-df$WatershedSize_ha <-  df$RASTERVALU * 12.5 * 12.5 / 10000
+#df <- unique(df)
+#df$EOS_no[df$EOS_no == "EOS1"] <- "EOS_1"
+#df$EOS_no[df$EOS_no == "EOS2"] <- "EOS_2"
+df$WatershedSize_km2 <-  df$FlowAccu * 12.5 *12.5 * 1e-6
+df$WatershedSize_ha <-  df$FlowAccu * 12.5 * 12.5 / 10000
 #df$Date <- format(as.POSIXct(df$Date,format='%m/%d/%dY'))
 
 
@@ -59,6 +61,9 @@ df$Wetland_2 <- as.character(df$Wetland_2)
 df$Wetland_2[df$Wetland == "GAVItrib1"] <- "Gavilan Tributaries"
 df$Wetland_2[df$Wetland == "GAVItrib2"] <- "Gavilan Tributaries"
 df$Wetland_2[df$Wetland == "GAVItrib3"] <- "Gavilan Tributaries"
+df$Wetland_2[df$Wetland == "Gavi-mainstem"] <- "Gavilan Mainstem"
+df$Wetland_2[df$Wetland == "ANTE"] <- "Antenas"
+df$Wetland_2[df$Wetland == "COLM"] <- "Colmillo"
 df$Wetland_2 <- as.factor(df$Wetland_2)
 
 df$Wetland_3 <- df$Wetland
@@ -68,7 +73,7 @@ df$Wetland_3 <- as.character(df$Wetland_3)
 df$Wetland_3[df$Wetland == "GAVItrib1"] <- "Gavilan River Network"
 df$Wetland_3[df$Wetland == "GAVItrib2"] <- "Gavilan River Network"
 df$Wetland_3[df$Wetland == "GAVItrib3"] <- "Gavilan River Network"
-df$Wetland_3[df$Wetland == "GAVI"] <- "Gavilan River Network"
+df$Wetland_3[df$Wetland == "Gavi-mainstem"] <- "Gavilan River Network"
 
 
 df$Wetland_3 <- as.factor(df$Wetland_3)
@@ -84,15 +89,15 @@ Show general downward trend in co2
 river network and reach
 
 stats to report: 
-Gavi trib1 pvalue= .0127, r2 = 0.3953
-Gavi trib2 pvalue= 0.1099, r2 = 0.6885
-ANTE pvalue = 0.03753, r2 = 0.1851
+Gavi trib1 p-value= .0127, r2 = 0.3953
+Gavi trib2 p-value= 0.1099, r2 = 0.6885
+ANTE p-value = 0.03753, r2 = 0.1851
 
 
 ```{r fig 2a, echo=FALSE}
 
 
-#wetland nerwoark vs catchment size pvalue = 9.49e-05 
+#wetland network vs catchment size p-value = 9.49e-05 
 #
 #model <- lm(log10(adjusted_ppm)~ WatershedSize_ha, 
 #             data = df%>%filter(Wetland_3=="Gavilan River Network")
@@ -139,7 +144,7 @@ gaviplot <- qmplot(lon_fit,lat_fit, data = df%>%filter(Wetland_3=="Gavilan River
 
 ### c.
 
-p1 <- ggplot(df %>%filter(Wetland!="GAVI")%>%filter(Wetland!="COLM")
+p1 <- ggplot(df %>%filter(Wetland!="Gavi-mainstem")%>%filter(Wetland!="COLM")
              %>%filter(Wetland!="GAVItrib3")
        , aes(x = dist, y = log(adjusted_ppm) , color=Wetland)) +
   facet_grid(.~Wetland, scales = "free") +
@@ -166,10 +171,9 @@ p1 <- ggplot(df %>%filter(Wetland!="GAVI")%>%filter(Wetland!="COLM")
     legend.position = "right") 
 
 
-p2 <- ggplot(df %>%filter(Wetland!="GAVI")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
+p2 <- ggplot(df %>%drop_na(Wetland)%>%filter(Wetland!="Gavi-mainstem")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
        , aes(x = dist, y = log10(adjusted_ppm), color=Wetland)) +
   facet_grid(.~Wetland, scales = "free") +
-#  ylim(-100,15000)+
   geom_point(size=3) +
   ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
   xlab("Distance downstream [m]") +
@@ -240,20 +244,18 @@ MyTheme <-  theme_bw() +
   theme(legend.text=element_text(size=16))
 
 
-df$Wetland_2 <- factor(df$Wetland_2 , levels=c("Gavilan Tributaries", "ANTE", "GAVI", "COLM"))
-
 CO2 <- ggplot(df, aes(x = Wetland_2, y = log10(adjusted_ppm), fill = Wetland_2)) +
   geom_boxplot() +
   geom_jitter(shape=1,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
   MyTheme +
   ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
-  scale_fill_discrete(name=NULL,labels=c("Gavilan Tributaries","Antenas", "Gavilan mainstem","Colmillo"))+
+  scale_fill_discrete(name=NULL)+
   scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))  +
-  annotate("text", x="Gavilan Tributaries", y= log10(18000),label="A", size = 8) +
-  annotate("text", x="ANTE", y= log10(18000),label="B", size = 8) +
-  annotate("text", x="GAVI", y= log10(18000),label="B", size = 8) +
-  annotate("text", x="COLM", y= log10(18000),label="B", size = 8)
+  annotate("text", x="Gavilan Tributaries", y= log10(18000),label="B", size = 8) +
+  annotate("text", x="Antenas", y= log10(18000),label="A", size = 8) +
+  annotate("text", x="Gavilan Mainstem", y= log10(18000),label="A", size = 8) +
+  annotate("text", x="Colmillo", y= log10(18000),label="A", size = 8)
 
 
 flux <- ggplot(df, aes(x = Wetland_2, y = Flux_ave, fill = Wetland_2)) + 
@@ -262,11 +264,11 @@ flux <- ggplot(df, aes(x = Wetland_2, y = Flux_ave, fill = Wetland_2)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
   MyTheme +
     ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
-  scale_fill_discrete(name=NULL,labels=c("Gavilan Tributaries","Antenas", "Gavilan mainstem","Colmillo")) +
-  annotate("text", x="Gavilan Tributaries", y= 5,label="AB", size = 8) +
-  annotate("text", x="ANTE", y= 5,label="C", size = 8) +
-  annotate("text", x="GAVI", y= 5,label="BC", size = 8) +
-  annotate("text", x="COLM", y= 5,label="A", size = 8)
+  scale_fill_discrete(name=NULL) +
+  annotate("text", x="Gavilan Tributaries", y= 5,label="BC", size = 8) +
+  annotate("text", x="Antenas", y= 5,label="A", size = 8) +
+  annotate("text", x="Gavilan Mainstem", y= 5,label="AC", size = 8) +
+  annotate("text", x="Colmillo", y= 5,label="B", size = 8)
 
 
 require(grid)  
@@ -334,7 +336,8 @@ A <- ggplot(df%>%filter(WatershedSize_ha<12.5),
   annotate("text", x=log10(9000), y= 2.5,label="p-value < .0001 \n r2 = 0.4953", size = 5) +
    theme_bw()  + MyTheme 
 
-B <- ggplot(df_sats%>%filter(Flux_ave>.05)%>%filter(WatershedSize_ha>20),
+B <- ggplot(df_sats#%>%filter(Flux_ave>.05)
+            %>%filter(WatershedSize_ha>20),
         aes(x=WatershedSize_ha, y=Flux_ave)) +
   geom_point(aes(fill=Wetland), 
        color="black",pch=21, size=5) + 
@@ -342,7 +345,7 @@ B <- ggplot(df_sats%>%filter(Flux_ave>.05)%>%filter(WatershedSize_ha>20),
   xlab("Watershed Size [ha]") + 
   ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) + 
   labs(linetype="LEGEND", color="LEGEND") +
-  scale_fill_manual(name="Stream Reach",labels=c( "Colmillo","Gavilan"),values = c(hex(3)[2], hex(3)[3])) +
+#  scale_fill_manual(name="Stream Reach",labels=c( "Colmillo","Gavilan"),values = c(hex(3)[2], hex(3)[3])) +
   annotate("text", x=200, y= 3.5,label="p-value = 0.016 \n r2 = 0.07786", size = 5) +
    theme_bw()  + MyTheme
 
@@ -586,7 +589,7 @@ Just  little bit of data cleaning needed. I don't like the
 #stream profiles
 
 ```{r profiles, echo=FALSE}
-GAVI <- df%>%filter(Wetland_2=="GAVI")
+GAVI <- df%>%filter(Wetland_2=="Gavi-mainstem")
 ANTE <- df%>%filter(Wetland_2=="ANTE")
 COLM <- df%>%filter(Wetland_2=="COLM")
 
