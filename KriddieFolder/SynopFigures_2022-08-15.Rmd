@@ -392,7 +392,7 @@ bball <- ggplot(df%>%drop_na(adjusted_ppm)%>%filter(Wetland!="GAVItrib1")%>%filt
   xlab("Distance [m]") +
   scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan")) +
   scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan")) +
-  scale_shape_discrete(name="Sample Point",labels="", values = 17) +
+  scale_shape_manual(name="Sample Point", labels="", values = 17) +
   MyTheme
 
 
