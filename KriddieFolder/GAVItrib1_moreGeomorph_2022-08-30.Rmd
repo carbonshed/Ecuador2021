@@ -1,0 +1,354 @@
+---
+title: "GAVItrib1_moreGeomorph"
+author: "Kriddie"
+date: "2022-08-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(plotly)
+library(dplyr)
+library(tidyr)
+library(zoo)
+library(plot3D)
+library(splines)
+library(Ecdat)
+library(dplyr)
+library(sp)
+library(geosphere)
+library(DescTools)
+library(data.table)
+```
+
+##Geomorph Data
+make a another  data frame with rest of the geomorphdata - width, depth, and some notes relating to wetland/waterfall stuff
+
+Start by reading in most recent synoptic data
+
+```{r add function}
+##arrange df vars by position
+##'vars' must be a named vector, e.g. c("var.name"=1)
+arrange.vars <- function(data, vars){
+    ##stop if not a data.frame (but should work for matrices as well)
+    stopifnot(is.data.frame(data))
+
+    ##sort out inputs
+    data.nms <- names(data)
+    var.nr <- length(data.nms)
+    var.nms <- names(vars)
+    var.pos <- vars
+    ##sanity checks
+    stopifnot( !any(duplicated(var.nms)), 
+               !any(duplicated(var.pos)) )
+    stopifnot( is.character(var.nms), 
+               is.numeric(var.pos) )
+    stopifnot( all(var.nms %in% data.nms) )
+    stopifnot( all(var.pos > 0), 
+               all(var.pos <= var.nr) )
+
+    ##prepare output
+    out.vec <- character(var.nr)
+    out.vec[var.pos] <- var.nms
+    out.vec[-var.pos] <- data.nms[ !(data.nms %in% var.nms) ]
+    stopifnot( length(out.vec)==var.nr )
+
+    ##re-arrange vars by position
+    data <- data[ , out.vec]
+    return(data)
+}
+```
+
+```{r read in data}
+
+df_prediction <- read.csv(here::here("ProcessedData/GAVI_Trib1_synoptic_2022-06-08.csv"))
+df_prediction$X <- NULL
+df_prediction$lat <- NULL
+df_prediction$lon_dist <- NULL
+df_prediction$lat_dist <- NULL
+df_prediction$lon <- NULL
+df_prediction$ele <- NULL
+df_prediction$time <- NULL
+
+df_prediction <- unique(df_prediction)
+df_prediction <- df_prediction%>%filter(dist_diff>0)
+
+ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+
+ggplot(data=df_prediction, aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+```
+
+#read in x, w, d data frame
+
+```{r x and w and d, echo=FALSE}
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVItrib1_2022-08-30.csv"))
+
+XWD <- XWD[,c("lon","lat","x","d","w","ele","notes")]
+
+#I actually think it's already in the corret order - downstream to upstream. So don't run code below
+
+XWD <- XWD[order(XWD$x),]
+XWD$x <- XWD$x + 40
+#XWD$x_diff <- NA
+
+#for(i in 1:nrow(XWD)) {       # for-loop over rows
+#  if (i == 1) {
+#    XWD$x_diff[i] <- 0
+#  } else {
+#    XWD[i,"x_diff"] <-   XWD[i,"x"] - XWD[i-1,"x"]
+#  }
+#}
+#XWD <- XWD[order(-XWD$x),]
+#XWD$x_new <- NA
+#for(i in 1:nrow(XWD)) {       # for-loop over rows
+#  if (i == 1) {
+#    XWD$x_new[i] <- 0
+#  } else {
+#    XWD[i,"x_new"] <-   XWD[i-1,"x_diff"] + XWD[i-1,"x_new"]
+#  }
+#}
+
+#great. now get rid of the stuff you don't want
+#XWD <- XWD[,c("lon","lat","x_new","d","w","ele","notes")]
+#names(XWD)[names(XWD) == 'x_new'] <- 'x'
+
+
+```
+
+
+now we snap XWD data to prediction
+
+```{r snap XDW, echo=FALSE}
+df_prediction <- arrange.vars(df_prediction, c("lon_fit"=1))
+#seeing some problems around GAVI wetland. Distance don't match up. So we will restart distance 
+
+XWD_1 <- XWD %>%drop_na(lon)
+#XWD_2 <- XWD
+#XWD_2$x[which(XWD_2$x>1043)] <- XWD_2$x[which(XWD_2$x>1043)] - (1045 - 507.6455874)
+
+x <- SpatialPoints(XWD_1[,c(1:2)])
+y <- SpatialPoints(df_prediction[,c(1:2)]) 
+plot(x, col = "red")
+points(y, col = "green")
+snap = apply(spDists(x, y), 1, which.min)
+points(y[snap,], pch = 3)
+
+
+snap_df <- y[snap,]
+coords_df <- snap_df@coords
+pred <- as.data.frame(coords_df)
+XWD_1$lon_fit <- pred$lon
+XWD_1$lat_fit <- pred$lat
+XWD_1 <- full_join(XWD[,c("x","d","w","notes")],XWD_1[,c("lon_fit","lat_fit","x","d","w","notes")],by=c("x","d","w","notes"))
+
+df_prediction_1 <- full_join(df_prediction,XWD_1,by=c("lon_fit","lat_fit"))
+#df_prediction_1 <- df_prediction_1%>%drop_na(x) 
+df_prediction_1 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x","d","w","notes")]
+df_prediction_1 <- unique(df_prediction_1)
+
+```
+
+We've snapped in the waypoints collected while sampling x/width/depth, but there are many points in between don't have corresponding lat/lon/ele. So how to fix these gaps?
+
+
+Our tools are dist (modeled) and x (measured). Some x are already associated with dist we need to associate all xs with distance. 
+
+If we can identify the xs assiciated with distance, we can then calcualte the difference between each each one. Then calcualte the ratio of x inbetween and total difference
+
+
+##do this:
+if pt1 and pt2 are known values of x, and pt-btw is known dist but unknown x, then:
+
+(Dist[pt-btw] - Dist[pt1])/(Dist[pt2] - Dist[pt1]) = (unknown - x[pt1])/(x[pt2] - x[pt1])
+
+unknown = (Dist[pt-btw] - Dist[pt1])/(Dist[pt2] - Dist[pt1])*(x[pt2] - x[pt1]) + x[pt1]
+
+##but how do that in a loop?
+key to this is being able idntify the next known x in between NAs.
+
+the code below realtes x as measured in the field to distance as calculated with way points. The ancors are waypoints collected every 50 meters in the field 
+
+```{r dist and x, echo=FALSE}
+df_prediction_1$notes <- NULL
+df_prediction_1$dist_pred <- NULL
+df_prediction_1$x_pred <- NULL
+
+df_prediction_1 <- df_prediction_1[order(df_prediction_1$dist),]
+pred_df <- na.omit(df_prediction_1[,c("x","dist")])
+
+
+for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
+  if (is.na(df_prediction_1[i,"x"]) == FALSE) {
+    df_prediction_1$x_pred[i] <- df_prediction_1$x[i]
+
+  } else {
+    pt2btw <- df_prediction_1$dist[i]
+    dist1 = Closest(pred_df$dist, pt2btw, which = FALSE, na.rm = FALSE)
+    if (dist1 < pt2btw ) {#x[! x %in% 2:10]
+    dist2 = Closest(pred_df$dist[pred_df$dist > dist1], pt2btw, which = FALSE, na.rm = FALSE)}
+    else{
+      dist2 = Closest(pred_df$dist[pred_df$dist < dist1], pt2btw, which = FALSE, na.rm = FALSE)
+    }
+    pt1dist = min(dist1,dist2)
+    pt2dist = max(dist1,dist2)
+    
+    pt1x = pred_df$x[which(pred_df$dist == pt1dist)]
+    pt2x = pred_df$x[which(pred_df$dist == pt2dist)]
+    df_prediction_1$x_pred[i] <- pt2x - (pt2dist-df_prediction_1$dist[i])/(pt2dist-pt1dist)*(pt2x-pt1x)
+  }
+}
+```
+
+
+Now we have a data frame with x predicted and associated with distance. Now we associate the closest actual x measurments, depth and width with the predicted x  
+
+
+
+```{r width loop, echo=FALSE}
+df_prediction_2 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x_pred")]%>%drop_na(dist)
+
+XWD_fit <- XWD_1[,c("x","w","d","notes")]
+colnames(XWD_fit) <- c("x_pred","w","d","notes")
+
+setDT(df_prediction_2)
+setDT(XWD_fit)
+
+df_prediction_3 <- df_prediction_2[XWD_fit, roll = "nearest", on = "x_pred"]
+
+# now we calculate surface area of each width measurment using trapazoid method
+
+
+df <- df_prediction_3%>%drop_na(w)
+df$midpoint <- NA
+df$length <- NA
+df$area <- NA
+
+#run this 2x for some reason (but no more than 2x!) make sure area column is filled in and reasonable
+
+for(i in 1:nrow(df)) {       # for-loop over rows
+  if (i==1) {
+    df$midpoint[i] <- df$dist[i]
+    df$length[i] <- (df$dist[i+1] + (df$dist[i] - df$dist[i+1])/2) #- 39.53566
+
+    df$area[i] <- df$length[i] * df$w[i]/100
+    
+  } else {
+    df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
+    df$length[i-1] <- df$midpoint[i] - df$midpoint[i-1]
+    df$area[i] <- df$length[i] * df$w[i]/100
+  }
+}
+
+##
+for(i in 1:nrow(df)) {       # for-loop over rows
+  if (i==1) {
+    df$midpoint[i] <- df$dist[i]
+    df$length[i] <- df$length[i] 
+    df$area[i] <- df$length[i] * df$w[i]/100
+    
+  } else {
+    df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
+    df$length[i-1] <- df$midpoint[i] - df$midpoint[i-1]
+    df$area[i] <- df$length[i] * df$w[i]/100
+  }
+}
+
+##
+
+df_prediction_3 <- df
+
+```
+
+
+AHHHH i can't believe that wooooorrrrkkkkeedddddddddddd!!!!!!
+
+
+So now we need to associate this data frame with actual measurments from the synoptic data
+
+we need to get synop data back in here. deep breath. here we go
+
+```{r synop, echo=FALSE}
+
+##find midpoint distance between synop measurments. Then add up all areas that fall between way points
+synop <- df_prediction[,c("lon_fit","lat_fit","dist","Flux_ave")]%>%drop_na(Flux_ave)
+synop <- synop[order(synop$dist),]
+
+for(i in 1:nrow(synop)) {       # for-loop over rows
+  if (i==50) {
+        synop$midpoint[i] <- 0
+  } else {
+synop$midpoint[i] <- (synop$dist[i+1] - synop$dist[i])/2 + synop$dist[i]
+  }
+}
+
+## now we add up all of 
+
+#
+synop <- synop[order(synop$dist),]
+
+synop$surface_area <- NULL
+
+for(i in 1:nrow(synop)) { 
+  if (i==1){
+      synop$surface_area[i] <- sum(df_prediction_3$area[ df_prediction_3$dist < synop$midpoint[i]], na.rm = TRUE)
+  }else if (i==which(synop$dist==max(synop$dist))){
+       synop$surface_area[i] <- sum(df_prediction_3$area[ df_prediction_3$dist > synop$midpoint[i-1]], na.rm = TRUE)
+      }
+  else{
+  synop$surface_area[i] <- sum(df_prediction_3$area[df_prediction_3$dist > synop$midpoint[i-1] & df_prediction_3$dist < synop$midpoint[i]], na.rm = TRUE)
+  }
+}
+
+#there's an issue with the first two flux measurments not having a na associated area, so I'm going to manully put that in
+width_ave <- XWD%>%
+  drop_na(w)%>%
+  summarise(mean = mean(w))
+synop$surface_area[1] <- as.numeric(width_ave/100 * 25.57650/2)
+synop$surface_area[2] <- as.numeric(width_ave/100 * (42.33415-25.57650)/2)
+
+
+synop$flux_umolpers <- synop$Flux_ave*synop$surface_area
+#synop <- synop[,-c(3,4,6:12)]
+
+
+
+synop <- synop%>%drop_na(flux_umolpers)
+synop <- synop[order(synop$dist),]
+
+for(i in 1:nrow(synop)) {       # for-loop over rows
+    if (i == 1) {
+      synop$Totalflux_umolpers[i] <- synop$flux_umolpers[1]
+    } else {
+      synop[i,"Totalflux_umolpers"] <- synop[i-1,"Totalflux_umolpers"] + synop[i,"flux_umolpers"]
+    }
+  }
+  
+
+df_prediction_4 <- left_join(df_prediction,synop[,c("lon_fit","lat_fit","dist","Flux_ave","midpoint","surface_area","flux_umolpers","Totalflux_umolpers")], by=c("lon_fit","lat_fit","dist","Flux_ave"))
+
+
+
+```
+
+there's an issue with the first two flux measurments not having a na associated area, so I'm going to manully put that in
+
+```{r manual add, echo=FALSE}
+
+
+
+```
+
+```{r plot and write, echo=FALSE}
+#df_prediction_4$flux_umolpers
+ggplot(data=df_prediction_4, aes(dist, Totalflux_umolpers),size=5) +
+  geom_point(size=5)
+
+ggplot(data=df_prediction_4, aes(dist, ele_fit),size=5) +
+  geom_point(size=5)
+
+write.csv(df_prediction_4, here::here("ProcessedData/GAVItrib1_synopticGeom_2022-08-30.csv"))
+
+```

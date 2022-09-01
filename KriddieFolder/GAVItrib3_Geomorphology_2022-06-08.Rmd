@@ -337,7 +337,7 @@ rm(predict_a,predict_b)
 
 
 #reverse order
-unfortunatly gavi trib is going from downstream to up, and we want upstream to down. so reverse this order
+unfortunatly gavi trib 3 is going from downstream to up, and we want upstream to down. so reverse this order
 you can't just reverse order the distance column because they are not collected at even intervals.
 
 #loops below switch order of distance
@@ -413,7 +413,7 @@ check <- df_prediction%>%drop_na(Date)
 ```{r bind df , echo=FALSE}
 #save <- df_prediction
 
-ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Date)) +
+ggplot(data=df_prediction%>%drop_na(Flux_ave)%>%filter(dist<40), aes(dist, ele_fit, color=CO2_ppm_ave)) +
   geom_point()
 
 ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
