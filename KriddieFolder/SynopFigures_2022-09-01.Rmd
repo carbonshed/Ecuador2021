@@ -102,6 +102,7 @@ k600_df$Wetland_2 <- as.factor(k600_df$Wetland_2)
 #tribstuff
 Trib1$Wetland <- "Tributary 1"
 Trib2$Wetland <- "Tributary 2"
+Tribs <- rbind(Trib1,Trib2)
 
 ```
 
@@ -419,8 +420,15 @@ bring in gavi tribs 1 and 2 data
 
  calculated mid row for plotting of sample points
 
-```{r add mid row, echo=FALSE}
+```{r add mid row ANTE, echo=FALSE}
+#add wetlands_4 column for future plotting
+df$Wetland_4 <- df$Wetland
+Tribs$Wetland_4 <- Tribs$Wetland
+df$Remove <- NA
+Tribs$Remove <- NA
+
 #ANTE
+
 ANTE <- df%>%filter(Wetland=="ANTE")
 ANTE <- ANTE[order(ANTE$dist),] 
 for (row in 1:nrow(ANTE)) {
@@ -441,6 +449,10 @@ for (row in 1:nrow(ANTE)) {
   ANTE$TotalFlux_mid[row] <- (ANTE$Totalflux_umolpers[row] - ANTE$Totalflux_umolpers[row-1])/2 + ANTE$Totalflux_umolpers[row-1]
   }
 }
+
+```
+
+```{r add mid row GAVI, echo=FALSE}
 #GAVI-mainstem
 df_trash <- df%>%filter(Wetland=="Gavi-mainstem")
 df_trash <- df_trash[order(df_trash$dist),] 
@@ -452,7 +464,6 @@ for (row in 1:nrow(df_trash)) {
 df_trash$dist_mid <- NA
 df_trash$TotalFlux_mid <- NA
 
-
 for (row in 1:nrow(df_trash)) { 
   if(row==1){
     df_trash$dist_mid[row] <-  0
@@ -463,11 +474,40 @@ for (row in 1:nrow(df_trash)) {
   }
 }
 GAVI <- df_trash
+
 GAVI <- GAVI%>%filter(dist_mid < 300 | dist_mid > 400)
 
+#GAVI$dist_mid<-replace(GAVI$dist_mid, GAVI$dist_mid>300&GAVI$dist_mid<400, NA)
+  
+#GAVI%>%filter(dist_mid < 300 | dist_mid > 400)
+
+GAVI_up <- df_trash%>%filter(dist_mid < 300)
+GAVI_up$Wetland_4 <- "Gavilan Inlet"
+GAVI_down <- df_trash%>%filter(dist_mid > 400)
+
+GAVI_down$Wetland_4 <- "Gavilan Outlet"
+GAVI_down$dist_mid <- GAVI_down$dist_mid - GAVI_down$dist[1]
+GAVI_down$TotalFlux_mid <- GAVI_down$TotalFlux_mid - GAVI_down$Totalflux_umolpers[1]
+GAVI_down$dist <- GAVI_down$dist - GAVI_down$dist[1]
+GAVI_down$Totalflux_umolpers <- GAVI_down$Totalflux_umolpers - GAVI_down$Totalflux_umolpers[1]
+GAVI_down$Remove <- "Remove"
+
+GAVI <- rbind(GAVI,GAVI_down,GAVI_up)
+
+```
+
+```{r add mid row COLM, echo=FALSE}
 #	COLMILLO
 df_trash <- df%>%filter(Wetland=="COLM")
 df_trash <- df_trash[order(df_trash$dist),] 
+
+df_trash$Totalflux_umolpers <- df_trash$Totalflux_umolpers - df_trash$Totalflux_umolpers[1]
+df_trash$dist <- df_trash$dist - df_trash$dist[1]
+df_trash <- df_trash[-1,]
+
+
+df_trash <- df_trash[order(df_trash$dist),] 
+
 for (row in 1:nrow(df_trash)) {
   df_trash$dist_mid[row] <- (df_trash$dist[row+1] - df_trash$dist[row])/2 + df_trash$dist[row]
   df_trash$TotalFlux_mid[row] <- (df_trash$Totalflux_umolpers[row+1] - df_trash$Totalflux_umolpers[row])/2 + df_trash$Totalflux_umolpers[row]
@@ -475,7 +515,6 @@ for (row in 1:nrow(df_trash)) {
 
 df_trash$dist_mid <- NA
 df_trash$TotalFlux_mid <- NA
-
 
 for (row in 1:nrow(df_trash)) { 
   if(row==1){
@@ -487,10 +526,13 @@ for (row in 1:nrow(df_trash)) {
   }
 }
 COLM <- df_trash
-COLM
+
+```
+
+```{r add mid row tribs, echo=FALSE}
 
 #	GAVI Trib 1
-df_trash <- Trib1
+df_trash <- Tribs%>%filter(Wetland=="Tributary 1")%>%drop_na(Flux_ave)
 df_trash <- df_trash[order(df_trash$dist),] 
 for (row in 1:nrow(df_trash)) {
   df_trash$dist_mid[row] <- (df_trash$dist[row+1] - df_trash$dist[row])/2 + df_trash$dist[row]
@@ -513,7 +555,7 @@ for (row in 1:nrow(df_trash)) {
 Trib1 <- df_trash
 
 #	GAVI Trib 2
-df_trash <- Trib2
+df_trash <- Tribs%>%filter(Wetland=="Tributary 2")%>%drop_na(Flux_ave)
 df_trash <- df_trash[order(df_trash$dist),] 
 for (row in 1:nrow(df_trash)) {
   df_trash$dist_mid[row] <- (df_trash$dist[row+1] - df_trash$dist[row])/2 + df_trash$dist[row]
@@ -522,7 +564,6 @@ for (row in 1:nrow(df_trash)) {
 
 df_trash$dist_mid <- NA
 df_trash$TotalFlux_mid <- NA
-
 
 for (row in 1:nrow(df_trash)) { 
   if(row==1){
@@ -533,40 +574,49 @@ for (row in 1:nrow(df_trash)) {
   df_trash$TotalFlux_mid[row] <- (df_trash$Totalflux_umolpers[row] - df_trash$Totalflux_umolpers[row-1])/2 + df_trash$Totalflux_umolpers[row-1]
   }
 }
+
 Trib2 <- df_trash
 
+```
+
+##bind together
+
+```{r bind df, echo=FALSE}
+df1_1 <- df%>%filter(Wetland=="COLM")
+df1_1 <- df1_1[order(df1_1$dist),] 
+df1_1$Totalflux_umolpers <- df1_1$Totalflux_umolpers - df1_1$Totalflux_umolpers[1]
+df1_1$dist <- df1_1$dist - df1_1$dist[1]
+df1_1 <- df1_1[-1,]
+
+df1_2 <- df%>%filter(Wetland != "COLM")
+
+df1 <- rbind(df1_1,df1_2)
+
+df1$shape <- NA
+df1$dist_mid <- NA
+df1$TotalFlux_mid <- NA
+
+df1 <- df1[,c("dist","adjusted_ppm","Totalflux_umolpers","Wetland","Wetland_4","shape","Remove")]
 
 df2 <- rbind(ANTE,COLM,GAVI)
 df2$Totalflux_umolpers <- df2$TotalFlux_mid
 df2$dist <- df2$dist_mid
 df2$shape <- "shape"
 
-df$shape <- NA
-df$dist_mid <- NA
-df$TotalFlux_mid <- NA
-
-df <- rbind(df,df2)
-
-
 df3 <- rbind(Trib1,Trib2)
 df3$Totalflux_umolpers <- df3$TotalFlux_mid
 df3$dist <- df3$dist_mid
 df3$shape <- "shape"
 
-df1 <- df[,c("dist","adjusted_ppm","Totalflux_umolpers","Wetland","shape")]
-df3 <- df3[,c("dist","adjusted_ppm","Totalflux_umolpers","Wetland","shape")]
-df1 <- rbind(df1,df3)
+df2 <- df2[,c("dist","adjusted_ppm","Totalflux_umolpers","Wetland","Wetland_4","shape","Remove")]
+df3 <- df3[,c("dist","adjusted_ppm","Totalflux_umolpers","Wetland","Wetland_4","shape","Remove")]
 
+df1 <- rbind(df1,df2,df3)
+
+df_test<- df1%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")
 ```
 
-bind together tribs with the big data frame
-
-```{r bball fig, echo=FALSE}
-
-df_test<- df1%>%drop_na(adjusted_ppm)%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")# %>% filter(dist>500)#%>%filter(Wetland!="COLM")
-
-
-```
+#plot
 
 
 ```{r bball fig, echo=FALSE}
@@ -579,58 +629,43 @@ MyTheme <-  theme_bw() +
   theme(aspect.ratio=1)
 
 
-bball <- ggplot(df_test%>%drop_na(adjusted_ppm)#%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")# %>% filter(dist>500)#%>%filter(Wetland!="COLM")
-       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
+bball <- ggplot(df_test%>%filter(Wetland_4 != "Gavilan Outlet")%>%filter(Wetland_4 != "Gavilan Inlet")
+                , 
+                aes(x=dist, y=Totalflux_umolpers, group=Wetland_4)) +
   geom_line(aes(#linetype=Wetland,
     color=Wetland),
     size=3) +
   geom_point(aes(shape = shape,fill=Wetland), size=2)+
     ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) + 
   xlab("Distance [m]") +
-  scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan","Tributary 1","Tributary 2")) +
-  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan","Tributary 1","Tributary 2")) +
+ scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan-mainstem","Tributary 1","Tributary 2")) +
+  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan-mainstem","Tributary 1","Tributary 2")) +
   scale_shape_manual(name="Sample Point", labels=c("",""), values = 21) +
+  guides(fill=FALSE) +
   MyTheme
 
 
 bball
 
 #zoom in
-bball_zoom <- ggplot(df_test%>%drop_na(adjusted_ppm)%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")# %>% filter(dist>500)#%>%filter(Wetland!="COLM")
-       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
-  geom_line(aes(#linetype=Wetland,
-    color=Wetland),
+bball_zoom <- ggplot(df_test%>%filter(Wetland_4 != "Gavi-mainstem")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland_4)) +
+  geom_line(aes(#linetype=Wetland_4,
+    color=Wetland_4),
     size=3) +
-  geom_point(aes(shape = shape,fill=Wetland), size=2)+
+  geom_point(aes(shape = shape,fill=Wetland_4), size=2)+
     ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) + 
   xlab("Distance [m]") +
-  scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan","Tributary 1","Tributary 2")) +
-  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan","Tributary 1","Tributary 2")) +
+  scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan Inlet","Gavilan Outlet","Tributary 1","Tributary 2")) +
+  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan Inlet","Gavilan Outlet","Tributary 1","Tributary 2")) +
   scale_shape_manual(name="Sample Point", labels=c("",""), values = 21) +
-  xlim(-10, 400) +
-  ylim(-20, 200) +
-  MyTheme
+  guides(fill=FALSE) +
+  xlim(-10, 350) +
+  ylim(-20, 300) +
+  MyTheme 
 
 
-
-bball_zoom_nolegend <- ggplot(df_test%>%drop_na(adjusted_ppm)%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")# %>% filter(dist>500)#%>%filter(Wetland!="COLM")
-       , aes(x=dist, y=Totalflux_umolpers, group=Wetland)) +
-  geom_line(aes(#linetype=Wetland,
-    color=Wetland),
-    size=3) +
-  geom_point(aes(shape = shape,fill=Wetland), size=2)+
-    ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) + 
-  xlab("Distance [m]") +
-  scale_color_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan","Tributary 1","Tributary 2")) +
-  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan","Tributary 1","Tributary 2")) +
-  scale_shape_manual(name="Sample Point", labels=c("",""), values = 21) +
-  xlim(-10, 400) +
-  ylim(-20, 200) +
-  MyTheme +
-  theme(legend.position = "none") 
-
-p <- bball + annotation_custom(ggplotGrob(bball_zoom), xmin = 1, xmax = 400, 
-                       ymin = 1000, ymax = 1500)
+bball_zoom
 
 # Extract the legend. Returns a gtable
 leg <- get_legend(bball)
