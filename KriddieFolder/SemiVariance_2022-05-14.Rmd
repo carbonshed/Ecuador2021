@@ -1,0 +1,164 @@
+---
+title: "SemiVariance_2022-05-14"
+author: "Kriddie"
+date: '2022-05-14'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#install.packages("gstat")
+library(gstat)  
+library(sp)
+library(dplyr)
+library(here)
+#library(spatial)  
+```
+
+## R Markdown
+
+SILL: The value at which the model first flattens out.
+
+RANGE: The distance at which the model first flattens out.
+
+NUGGET: The value at which the semi-variogram (almost) intercepts the y-value. 
+
+```{r read in}
+synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
+df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
+
+
+```
+
+# clean data
+we want a data frame with x y data and the variables to look at
+
+
+```{r clean, echo=FALSE}
+df <- df[,c("lon_fit","lat_fit","dist","Flux_ave","adjusted_ppm","K600_effective","Wetland","slope50m")]
+colnames(df)<-c("x","y","dist","Flux_ave","adjusted_ppm","K600_effective","Wetland","slope50m")
+
+GAVI <- df%>%filter(Wetland=="GAVI")
+COLM <- df%>%filter(Wetland=="COLM")
+ANTE <- df%>%filter(Wetland=="ANTE")
+GAVItrib1 <- df%>%filter(Wetland=="GAVItrib1")
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r bubble plots, echo=FALSE}
+
+TheData <- df%>%filter(Wetland!="COLM")%>%filter(Wetland!="ANTE")
+plot(TheData$x,TheData$y) 
+plot(TheData$dist,TheData$adjusted_ppm) 
+plot(TheData$slope50m,TheData$K600_effective) 
+
+# remove any null data rows
+TheData=na.omit(TheData)
+
+
+# convert simple data frame into a spatial data frame object
+coordinates(TheData)= ~ x+y
+
+bubble(TheData, zcol='K600_effective', fill=TRUE, do.sqrt=FALSE, maxsize=3)
+bubble(TheData, zcol='Flux_ave', fill=TRUE, do.sqrt=FALSE, maxsize=3)
+bubble(TheData, zcol='adjusted_ppm', fill=TRUE, do.sqrt=FALSE, maxsize=3)
+bubble(TheData, zcol='slope50m', fill=TRUE, do.sqrt=FALSE, maxsize=3)
+
+
+
+```
+Enter the name of the variogram in R and you'll see a table with the following values:
+
+    np - number of points in the lag (bin)
+    dist - average distance between points in the lag
+    gamma - mean for the lag
+
+Next, we want to fit a variogram model to the binned data and add it to our graph. For this, you'll need to select the sill ("psill"), nugget, and range values appropriately or the curve may not appear on the graph. For now, we are just picking values and then we will fit the variogram to the data.
+
+The "model" can be one of the following:
+
+    "Exp" (for exponential)
+    "Sph" (for spherical)
+    "Gau" (for Gaussian)
+    "Mat" (for Matern)
+
+```{r gavi plots, echo=FALSE}
+
+TheData <- GAVI
+# remove any null data rows
+TheData=na.omit(TheData)
+
+
+## If the coordinates are not projected (ex : if they are in degrees), there is a need to reproject the observations first.
+## Here it is unnecessary because observations are located on a regular grid
+
+
+
+# convert simple data frame into a spatial data frame object
+coordinates(TheData)= ~ x+y
+#K600_effective
+
+TheVariogram=gstat::variogram(Flux_ave~1, data=TheData)
+plot(TheVariogram)
+TheVariogramModel <- vgm(model="Gau")
+FittedModel <- fit.variogram(TheVariogram, model=TheVariogramModel)
+plot(TheVariogram, model=FittedModel)
+
+TheVariogram=gstat::variogram(adjusted_ppm~1, data=TheData)
+plot(TheVariogram)
+TheVariogramModel <- vgm(model="Gau")
+FittedModel <- fit.variogram(TheVariogram, model=TheVariogramModel)
+plot(TheVariogram, model=FittedModel)
+
+
+TheVariogram=gstat::variogram(K600_effective~1, data=TheData)
+plot(TheVariogram)
+TheVariogramModel <- vgm(model="Gau")
+FittedModel <- fit.variogram(TheVariogram, model=TheVariogramModel)
+plot(TheVariogram, model=FittedModel)
+
+
+```
+```{r gavi plots, echo=FALSE}
+
+
+TheData <- GAVI
+# remove any null data rows
+
+#TheData <- TheData[,c("x","y","adjusted_ppm")]
+                   
+TheData=na.omit(TheData)
+
+var(TheData$adjusted_ppm) 
+var(TheData$Flux_ave) 
+var(TheData$K600_effective) 
+
+# convert simple data frame into a spatial data frame object
+coordinates(TheData)= ~ x+y
+
+TheVariogram=gstat::variogram(K600_effective~1, data=TheData)
+plot(TheVariogram)
+TheVariogramModel <- vgm(psill=45000, model="Gau", nugget=0.1, range=.005)
+#TheVariogramModel <- vgm(psill=50000, model="Gau", nugget=0.001, range=500)
+FittedModel <- fit.variogram(TheVariogram, model=TheVariogramModel)
+plot(TheVariogram, model=FittedModel)
+
+TheVariogram=gstat::variogram(adjusted_ppm~1, data=TheData)
+plot(TheVariogram)
+TheVariogramModel <- vgm(psill=80000, model="Exp", nugget=0.1, range=.0025)
+#TheVariogramModel <- vgm( model="Gau")
+FittedModel <- fit.variogram(TheVariogram, model=TheVariogramModel)
+plot(TheVariogram, model=FittedModel)
+
+TheVariogram=gstat::variogram(Flux_ave~1, data=TheData)
+plot(TheVariogram)
+TheVariogramModel <- vgm(psill=1.125, model="Gau", nugget=0.1, range=.005)
+#TheVariogramModel <- vgm(psill=50000, model="Gau", nugget=0.001, range=500)
+FittedModel <- fit.variogram(TheVariogram, model=TheVariogramModel)
+plot(TheVariogram, model=FittedModel)
+
+
+```
