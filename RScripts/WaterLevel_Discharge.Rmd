@@ -211,7 +211,7 @@ plot the water level so that each station data can be cleaned
 ```{r plot, echo=FALSE}
 
 ##clean data
-plot_ly(WL_06, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 
 ```
 
@@ -361,6 +361,7 @@ Baro <- Baro%>%filter(DateTime < as.POSIXct("2021-07-27 15:00:00", tz = "UTC")|
 ### correct for barometric pressure
 ```{r baro correct, echo=FALSE}
 
+#plot_ly(Baro, x = ~DateTime, y = ~Baro_kpa, type = 'scatter', mode = 'markers') 
 #correct for baro 
 
 Baro_corrected <- left_join(Baro,All_WL,by="DateTime")
@@ -488,6 +489,11 @@ plot_ly(All_WL%>%filter(Station == "WL_01"), x = ~DateTime, y = ~Total_kpa, type
 ```
 
 ```{r write, echo=FALSE}
+
+#just water level and baro, no discharge
+Baro_corrected2<-Baro_corrected %>% filter(Station != "WL_Well02")  %>% filter(Station != "WL_Well01")%>%filter(DateTime>as.POSIXct("2021-06-11 10:45:00", tz = "UTC"))
+write.csv(Baro_corrected2, here::here("WaterLevel/WaterLevel_merge_2021-06-11_2021-10-01.csv"),
+          row.names = FALSE)
 
 
 ```
