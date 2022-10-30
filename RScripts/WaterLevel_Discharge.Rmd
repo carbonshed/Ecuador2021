@@ -466,7 +466,37 @@ All_Well <- Baro_corrected %>% filter(Station == "WL_Well01"|Station == "WL_Well
 All_Well <- All_Well[,c("DateTime","BaroTemp_c","WLTemp_c","Station","WL_m","Total_kpa")]
 All_Well$Q_m3s <- NA
 
-All_WL_wide <- 
+#WL_01$WLPres_kpa <- WL_01$WLPres_kpa *0.10197442889221
+#WL_02$WLPres_kpa <- WL_02$WLPres_kpa *0.10197442889221
+#WL_03$WLPres_kpa <- WL_03$WLPres_kpa *0.10197442889221
+#WL_04$WLPres_kpa <- WL_04$WLPres_kpa *0.10197442889221
+#WL_05$WLPres_kpa <- WL_05$WLPres_kpa *0.10197442889221
+#WL_06$WLPres_kpa <- WL_06$WLPres_kpa *0.10197442889221
+
+Baro <- Baro%>%filter(DateTime > as.POSIXct("2021-06-11 00:00:00"))
+
+WL_01 <- WL_01[,c("DateTime","WL_m","WLTemp_c")]
+WL_02 <- WL_02[,c("DateTime","WL_m","WLTemp_c")]
+WL_03 <- WL_03[,c("DateTime","WL_m","WLTemp_c")]
+WL_04 <- WL_04[,c("DateTime","WL_m","WLTemp_c")]
+WL_05 <- WL_05[,c("DateTime","WL_m","WLTemp_c")]
+WL_06 <- WL_06[,c("DateTime","WL_m","WLTemp_c")]
+
+colnames(WL_01) <- c("DateTime","Stn01_WL_m","Stn01_WLTemp_C")
+colnames(WL_02) <- c("DateTime","Stn02_WL_m","Stn02_WLTemp_C")
+colnames(WL_03) <-  c("DateTime","Stn03_WL_m","Stn03_WLTemp_C")
+colnames(WL_04) <- c("DateTime","Stn04_WL_m","Stn04_WLTemp_C")
+colnames(WL_05) <- c("DateTime","Stn05_WL_m","Stn05_WLTemp_C")
+colnames(WL_06) <- c("DateTime","Stn06_WL_m","Stn06_WLTemp_C")
+colnames(Baro) <- c("DateTime","AirPress_kpa","AirTemp_C")
+
+
+All_WL_wide <- full_join(Baro,WL_01,by="DateTime")
+All_WL_wide <- full_join(All_WL_wide,WL_02,by="DateTime")
+All_WL_wide <- full_join(All_WL_wide,WL_03,by="DateTime")
+All_WL_wide <- full_join(All_WL_wide,WL_04,by="DateTime")
+All_WL_wide <- full_join(All_WL_wide,WL_05,by="DateTime")
+All_WL_wide <- full_join(All_WL_wide,WL_06,by="DateTime")
 
 ```
 
@@ -493,6 +523,9 @@ plot_ly(All_WL%>%filter(Station == "WL_01"), x = ~DateTime, y = ~Total_kpa, type
 #just water level and baro, no discharge
 Baro_corrected2<-Baro_corrected %>% filter(Station != "WL_Well02")  %>% filter(Station != "WL_Well01")%>%filter(DateTime>as.POSIXct("2021-06-11 10:45:00", tz = "UTC"))
 write.csv(Baro_corrected2, here::here("WaterLevel/WaterLevel_merge_2021-06-11_2021-10-01.csv"),
+          row.names = FALSE)
+
+write.csv(All_WL_wide, here::here("WaterLevel/WaterLevel_merge_2021-06-11_2021-10-01.csv"),
           row.names = FALSE)
 
 
