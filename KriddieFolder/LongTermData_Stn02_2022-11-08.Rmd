@@ -138,7 +138,9 @@ plot_ly(WL_02, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers
 #Looks like there was a shift during the last download of 2022 field seaseon. entonces:
 #64.347 - 62.987
 
-WL_02$test <- WL_02$WLPres_kpa
+#this is hard - it looks like the sensor moved 2x, once on the first dl of the field season, again in 
+
+#WL_02$test <- WL_02$WLPres_kpa
 
 #below is the best I got o far
 WL_02[which(WL_02$DateTime > as.POSIXct("2022-07-27 10:15:00", tz="UTC")&WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$test <- 

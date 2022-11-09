@@ -1,0 +1,24 @@
+
+1.	Extract by mask to extract part of the dem that is 
+2.	Rater calculator to convert flow path to value 1
+Con("FlowPath_all">0,1,"FlowPath_all")
+3.	Extract by mask clip so that flow path is the same spatial extent is the same as fill DEM –
+Under environments change processing extent to “Union of Inputs”
+4.	Reclassify no data to 0
+5.	Raster calculator
+	a.	Use the raw DEM. DO NOT use the fill DEM rather than the raw DEM
+	b.	Subtract reclass flow path from DEM
+	c. it seems like the flow path*10 works well
+6. Use the resulting DEM to get to flow accumulation as usual
+7. Raster to point
+8. Snap: input feature is the xy synop point data
+	feature: is the raster to point 
+	type: vertex
+	distance: 10 meters
+9b.   Spatial Join 
+	match option: intesect
+9b. Instead of 9a, Extract Value to Point: extracts pixels from the raster 
+	Input point features: xy synop data
+	Input raster: flow accumulation
+
+10. export attribute table, remeber to put it in a folder and add ".csv" for extension
