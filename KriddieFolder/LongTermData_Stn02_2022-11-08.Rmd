@@ -1,5 +1,5 @@
 ---
-title: 'Long Term Data: Station01'
+title: 'Long Term Data: Station02'
 author: "Kriddie"
 date: "2022-11-09"
 output: html_document
@@ -26,94 +26,8 @@ library(purrr)
 library(sjmisc)
 ```
 
-#water level
-
-```{r Solinst, echo=FALSE}
-
-setwd(here::here("WaterLevel"))
-all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
-sites_rp = sub('_[^_]+$', '', all_files)
-site_names=unique(sites_rp) #creates list of site names for following loop
-
-site_names = "WL_01"
-
-#rm old files, if they exist
-rm(WLData)
-rm(Temp_WLData)
-
-for (site in site_names){
-  
-  list1=list.files(pattern=site) #finds all files for the site
-  sitelist_csv=grep(".csv",list1) #creates list of all files for site
-  file_list=list1[sitelist_csv]
-  
-  #reads in files in list and appends
-  for (file in file_list){
-    if (!exists("WLData")){
-      Trash_WLData <- read.csv(file, skip=0, header = TRUE, sep = ",",
-                         quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-      
-      if(str_contains(Trash_WLData[6,1],"m")){
-        print("m")
-        WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
-                    quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-        colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
-        WLData$WLPres_kpa <- as.numeric(as.character(WLData$WLPres_kpa), digits=6)
-        WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
-        WLData$WLPres_kpa <- WLData$WLPres_kpa*9.8064
-#        WLData$WLTemp_c <- (WLData$WLTemp_c - 32)/1.8000
-        } else { 
-        print("kPa")
-        WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
-            quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-        colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
-        WLData$WLPres_kpa <- as.numeric(as.character(WLData$WLPres_kpa), digits=6)
-        WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
-      }
-    }
-    if (exists("WLData")){
-      Trash_WLData <- read.csv(file, skip=0, header = FALSE, sep = ",",
-                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
-      if(str_contains(Trash_WLData[6,1],"m")){
-        print("m")
-        Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
-                           quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-        Temp_WLData <- Temp_WLData[c(-1),]
-        colnames(Temp_WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
-        Temp_WLData$WLPres_kpa <- as.numeric(as.character(Temp_WLData$WLPres_kpa), digits=6)
-        Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
-        Temp_WLData$WLPres_kpa <- Temp_WLData$WLPres_kpa*9.8064
-#        Temp_WLData$WLTemp_c <- (Temp_WLData$WLTemp_c - 32)/1.8000
-        } else { 
-        print("kpa")
-        Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
-                                quote = "\"",dec = ".", fill = TRUE, comment.char = "")
-        Temp_WLData <- Temp_WLData[c(-1),]
-        colnames(Temp_WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
-        Temp_WLData$WLPres_kpa <- as.numeric(as.character(Temp_WLData$WLPres_kpa), digits=6)
-        Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
-      }
-      
-      WLData <- rbind(WLData, Temp_WLData)
-      rm(Temp_WLData)
-    }
-    
-  }
-  WLData=unique(WLData)
-  WLData$DateTime <- paste(WLData$Date, WLData$Time)
-  WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%Y %I:%M:%S %p", tz="UTC")
-  WLData$DateTime <- round_date(WLData$DateTime, "5 mins")
-  WLData <- WLData[,c("DateTime","WLPres_kpa","WLTemp_c")]
-  WLData$Station <- "Stn01"
-  assign((paste(site,sep="_")),WLData) #creates object with new appended data
-  rm(WLData) #removes WLdata so that multiple sites aren't appended together
-}
-
-rm(Trash_WLData)
-
-```
 ##read in wl02
-we also need to read in wl02 data because we will use it to fill in a gap in station 01 data
+
 ```{r Hobo WL}
 #First the Hobos
 
@@ -198,7 +112,7 @@ for (site in site_names){
     
   }
   WLData$DateTime <- round_date(WLData$DateTime, "15 mins")
-  WLData$Station <- site
+  WLData$Station <- "Stn02"
   WLData=unique(WLData)
   assign((paste(site,sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
@@ -213,7 +127,7 @@ plot the water level so that each station data can be cleaned
 
 ##clean data
 
-plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+plot_ly(WL_02, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 
 ```
 
@@ -221,68 +135,28 @@ plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers
 
 
 ```{r clean, echo=FALSE}
+#Looks like there was a shift during the last download of 2022 field seaseon. entonces:
+#64.347 - 62.987
 
-WL_01 <- WL_01%>%filter(WLPres_kpa > 63 & WLPres_kpa < 70)
-#looks like WL changed in febuary
-#Actually no - wierd
-#WL_01$WLPres_kpa[which(WL_01$DateTime < as.POSIXct("2022-02-12 13:00", tz="UTC"))] <- WL_01$WLPres_kpa[which(WL_01$DateTime < as.POSIXct("2022-02-12 13:00", tz="UTC"))] - (64.3919-63.8785)
-WL_01$DateTime <- round_date(WL_01$DateTime,unit="15 minutes")
+WL_02$test <- WL_02$WLPres_kpa
+
+#below is the best I got o far
+WL_02[which(WL_02$DateTime > as.POSIXct("2022-07-27 10:15:00", tz="UTC")&WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$test <- 
+  WL_02[which(WL_02$DateTime > as.POSIXct("2022-07-27 10:15:00", tz="UTC")&WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$test + (64.347-63.041)
+
+WL_02[which(WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$test <- 
+  WL_02[which(WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$test - (62.981-62.541)
+#WL_02 <- WL_02%>%filter(WLPres_kpa != 62.566)
 ```
 
 ##Unresolved issues
-there i a discontinuity on February 12 2022. My best guess is that a damn built up, raising water level, and then broke through dropping it down again
-
- I'm not sure what I should doooo
- 
-### Use WL_02 to predict WL_01
-we are missing some data from WL_01. I'm hoping there is a strong enough relationship between WL_01 and WL_02 to fill in missing data
-
-July 13th 10:15 to July 28 14:15
-
-
-```{r fill in wl_01, echo=FALSE}
-WL_01_02 <- full_join(WL_01,WL_02, by= "DateTime")
-WL_01_02 <- WL_01_02[,c("DateTime","WLPres_kpa.x","WLPres_kpa.y")]
-colnames(WL_01_02) <- c("DateTime","WL_01","WL_02")
-WL_01_02 <- WL_01_02%>%filter(DateTime > as.POSIXct("2021-07-01 10:15:00", tz = "UTC")& DateTime < as.POSIXct("2021-07-13 14:15:00", tz = "UTC"))
-
-mdl1_1 <- lm(WL_01_02$WL_01 ~ WL_01_02$WL_02)
-mdl2_1 <- lm(WL_01_02$WL_01 ~ WL_01_02$WL_02 + I(WL_01_02$WL_02^2))
-mdl3_1 <- lm(WL_01_02$WL_01 ~ WL_01_02$WL_02 + I(WL_01_02$WL_02^2) + I(WL_01_02$WL_02^3))
-mdl4_1 <- lm(WL_01_02$WL_01 ~ I(WL_01_02$WL_02^2))
-
-set.seed(20)
-q <- seq(from=0, to=66, by=0.5)
-y_mdl1 <- mdl1_1$coefficients[1] + mdl1_1$coefficients[2]*q
-y_mdl2 <- mdl2_1$coefficients[1] + mdl2_1$coefficients[2]*q + mdl2_1$coefficients[3]*q^2
-y_mdl3 <- mdl3_1$coefficients[1] + mdl3_1$coefficients[2]*q + mdl3_1$coefficients[3]*q^2 + mdl3_1$coefficients[4]*q^3
-y_mdl4 <- mdl4_1$coefficients[1] + mdl4_1$coefficients[2]*q^2
-
-
-plot(WL_01 ~ WL_02, data = WL_01_02 )
-#lines(q,y_mdl1,col='firebrick1',lwd=1)
-lines(q,y_mdl2,col='blue',lwd=1)
-#lines(q,y_mdl3,col='yellow',lwd=1)
-#lines(q,y_mdl4,col='green',lwd=1)
-mtext("y=  - 72380  + 3420 *x - 53.81 *x^2 + 0.2823*x^3", side=3)
-
-rm(mdl1_1,mdl2_1,mdl3_1,mdl4_1)
-rm(WL_01_02)
-```
 
 
 
-```{r wl_01 gap, echo=FALSE}
-WL_01_fill <- WL_02
-WL_01_fill$WLPres_kpa <-   1351.0808 - 40.9546  *WL_01_fill$WLPres_kpa + 0.3257 *(WL_01_fill$WLPres_kpa)^2 
-WL_01_fill <- WL_01_fill%>%filter(DateTime > as.POSIXct("2021-07-14 10:15:00", tz = "UTC")&
-                          DateTime < as.POSIXct("2021-07-27 14:15:00", tz = "UTC"))
-WL_01_fill$Station <- "WL_01"
 
-WL_01 <- rbind(WL_01,WL_01_fill)
-rm(WL_01_fill,WL_02)
+```{r plot, echo=FALSE}
 
-ggplot(WL_01, aes(x=DateTime, y=WLPres_kpa)) + geom_point()
+ggplot(WL_02, aes(x=DateTime, y=WLPres_kpa)) + geom_point()
 ```
 
 ## barometric data
