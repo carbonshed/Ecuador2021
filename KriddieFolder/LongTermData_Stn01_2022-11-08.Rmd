@@ -1,0 +1,136 @@
+---
+title: 'Long Term Data: Station01'
+author: "Kriddie"
+date: "2022-11-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+long term data for station 1
+
+```{r library}
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(tidyverse)
+library(plotly)
+library(here)
+library(dplyr)
+library(reshape2)
+library(purrr)
+library(sjmisc)
+```
+
+#water level
+
+```{r Solinst, echo=FALSE}
+
+setwd(here::here("WaterLevel"))
+all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
+sites_rp = sub('_[^_]+$', '', all_files)
+site_names=unique(sites_rp) #creates list of site names for following loop
+
+site_names = "WL_01"
+
+#rm old files, if they exist
+rm(WLData)
+rm(Temp_WLData)
+
+for (site in site_names){
+  
+  list1=list.files(pattern=site) #finds all files for the site
+  sitelist_csv=grep(".csv",list1) #creates list of all files for site
+  file_list=list1[sitelist_csv]
+  
+  #reads in files in list and appends
+  for (file in file_list){
+    if (!exists("WLData")){
+      Trash_WLData <- read.csv(file, skip=0, header = TRUE, sep = ",",
+                         quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+      
+      if(str_contains(Trash_WLData[6,1],"m")){
+        print("m")
+        WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                    quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        WLData$WLPres_kpa <- as.numeric(as.character(WLData$WLPres_kpa), digits=6)
+        WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
+        WLData$WLPres_kpa <- WLData$WLPres_kpa*9.8064
+#        WLData$WLTemp_c <- (WLData$WLTemp_c - 32)/1.8000
+        } else { 
+        print("kPa")
+        WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+            quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        colnames(WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        WLData$WLPres_kpa <- as.numeric(as.character(WLData$WLPres_kpa), digits=6)
+        WLData$WLTemp_c <- as.numeric(as.character(WLData$WLTemp_c), digits=5)
+      }
+    }
+    if (exists("WLData")){
+      Trash_WLData <- read.csv(file, skip=0, header = FALSE, sep = ",",
+                              quote = "\"",dec = ".", fill = TRUE, comment.char = "")  
+      if(str_contains(Trash_WLData[6,1],"m")){
+        print("m")
+        Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                           quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        Temp_WLData <- Temp_WLData[c(-1),]
+        colnames(Temp_WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        Temp_WLData$WLPres_kpa <- as.numeric(as.character(Temp_WLData$WLPres_kpa), digits=6)
+        Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
+        Temp_WLData$WLPres_kpa <- Temp_WLData$WLPres_kpa*9.8064
+#        Temp_WLData$WLTemp_c <- (Temp_WLData$WLTemp_c - 32)/1.8000
+        } else { 
+        print("kpa")
+        Temp_WLData <- read.csv(file, skip=11, header = TRUE, sep = ",",
+                                quote = "\"",dec = ".", fill = TRUE, comment.char = "")
+        Temp_WLData <- Temp_WLData[c(-1),]
+        colnames(Temp_WLData)=c("Date","Time","ms","WLPres_kpa","WLTemp_c")
+        Temp_WLData$WLPres_kpa <- as.numeric(as.character(Temp_WLData$WLPres_kpa), digits=6)
+        Temp_WLData$WLTemp_c <- as.numeric(as.character(Temp_WLData$WLTemp_c), digits=5)
+      }
+      
+      WLData <- rbind(WLData, Temp_WLData)
+      rm(Temp_WLData)
+    }
+    
+  }
+  WLData=unique(WLData)
+  WLData$DateTime <- paste(WLData$Date, WLData$Time)
+  WLData$DateTime <- as.POSIXct(WLData$DateTime, format="%m/%d/%Y %I:%M:%S %p", tz="UTC")
+  WLData$DateTime <- round_date(WLData$DateTime, "5 mins")
+  WLData <- WLData[,c("DateTime","WLPres_kpa","WLTemp_c")]
+  WLData$Station <- site
+  assign((paste(site,sep="_")),WLData) #creates object with new appended data
+  rm(WLData) #removes WLdata so that multiple sites aren't appended together
+}
+
+
+```
+
+## plot 
+plot the water level so that each station data can be cleaned
+
+```{r plot, echo=FALSE}
+
+##clean data
+
+plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+
+```
+
+
+
+
+```{r clean, echo=FALSE}
+
+WL_01 <- WL_01%>%filter(WLPres_kpa > 63 & WLPres_kpa < 70)
+#looks like WL changed in febuary
+#Actually no - wierd
+#WL_01$WLPres_kpa[which(WL_01$DateTime < as.POSIXct("2022-02-12 13:00", tz="UTC"))] <- WL_01$WLPres_kpa[which(WL_01$DateTime < as.POSIXct("2022-02-12 13:00", tz="UTC"))] - (64.3919-63.8785)
+WL_01$DateTime <- round_date(WL_01$DateTime,unit="15 minutes")
+```

@@ -126,8 +126,9 @@ for (site in site_names){
 station 1 is good, do not open
 ```{r check CO2 data plot, echo=FALSE}
 
+
 ##check data
-plot_ly(CO2_01, x = ~DateTime, y = ~ppm, type = 'scatter', mode = 'markers') 
+plot_ly(CO2_02, x = ~DateTime, y = ~ppm, type = 'scatter', mode = 'markers') 
 
 plot_ly(CO2_01%>%
   filter(DateTime < as.POSIXct("2021-07-30 07:27:00", tz = "UTC")), x = ~DateTime, y = ~ppm, type = 'scatter', mode = 'markers') 
@@ -137,6 +138,8 @@ clean data
 
 ```{r clean, echo=FALSE}
 #CO2_01
+#old from 2019 to 2022
+CO2_01$ppm <- as.numeric(CO2_01$ppm)
 CO2_01  <- CO2_01%>%
   filter(DateTime < as.POSIXct("2021-06-09 11:30:00", tz = "UTC") | DateTime >= as.POSIXct("2021-06-09 12:15:00", tz = "UTC")) %>%
   filter(DateTime < as.POSIXct("2021-07-13 10:30:00", tz = "UTC") | DateTime > as.POSIXct("2021-07-16 11:30:00", tz = "UTC")) %>%
@@ -145,7 +148,8 @@ CO2_01  <- CO2_01%>%
   filter(DateTime < as.POSIXct("2021-06-19 04:15:00", tz = "UTC") | DateTime > as.POSIXct("2021-06-25 10:30:00", tz = "UTC"))
 
 library(lubridate)
-#CO2_02
+#CO2_02 new from 
+
 #the gap from July to Oct is real :(
 CO2_02$DateTime <- round_date(CO2_02$DateTime, "1 mins")
 timeint_15 <- seq(ymd_hm("2021-06-10 00:00:00"),ymd_hm("2022-03-15 11:30:00"), by = '15 mins')
