@@ -222,11 +222,13 @@ plot_ly(WL_01, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers
 
 ```{r clean, echo=FALSE}
 
+WL_01$DateTime <- round_date(WL_01$DateTime,unit="15 minutes")
+
 WL_01 <- WL_01%>%filter(WLPres_kpa > 63 & WLPres_kpa < 70)
 #looks like WL changed in febuary
 #Actually no - wierd
 #WL_01$WLPres_kpa[which(WL_01$DateTime < as.POSIXct("2022-02-12 13:00", tz="UTC"))] <- WL_01$WLPres_kpa[which(WL_01$DateTime < as.POSIXct("2022-02-12 13:00", tz="UTC"))] - (64.3919-63.8785)
-WL_01$DateTime <- round_date(WL_01$DateTime,unit="15 minutes")
+WL_01 <- WL_01%>%filter(DateTime != as.POSIXct("2022-06-07 10:45", tz="UTC"))%>%filter(DateTime != as.POSIXct("2022-06-07 11:00", tz="UTC"))
 ```
 
 ##Unresolved issues
@@ -339,7 +341,7 @@ for (site in site_names){
 ```{r clean baro, echo=FALSE}
 
 ##clean BaroData
-plot_ly(Baro%>%filter(DateTime > as.POSIXct("2021-06-11 00:00:00", tz = "UTC")), x = ~DateTime, y = ~AirPres_kpa, type = 'scatter', mode = 'markers') 
+#plot_ly(Baro%>%filter(DateTime > as.POSIXct("2021-06-11 00:00:00", tz = "UTC")), x = ~DateTime, y = ~AirPres_kpa, type = 'scatter', mode = 'markers') 
 
 Baro <- Baro%>%filter(DateTime > as.POSIXct("2021-06-01 00:00:00", tz = "UTC"))
 
@@ -374,6 +376,77 @@ WL_01$Corrected_kpa <- NULL
 
 ##Now we can graph 
     ## will need to change the right limit accordingly
+
+ggplot(data = WL_01 %>% filter(DateTime > "2021-06-10"), 
+       aes(DateTime, WL_m)) +
+  geom_point(color = "steelblue") +
+  labs(title = "Station 01 Water level",
+    y = "water level [m]", x = "") 
+
+```
+
+#Time for discharge!
+this will take awhile so buckle up, baby
+
+```{r Find WL data for rating curve, echo=FALSE}
+
+#enter date of collection
+date <- "2022-07-27"
+#enter start and end time that wetland was sampled
+time <- "09:15:00"
+
+
+WL_m <- WL_01%>%filter(DateTime == as.POSIXct(paste(date, time), format="%Y-%m-%d %H:%M:%S", tz = "UTC"))
+
+print(WL_m)
+
+```
+
+#dischage rating curve
+see excel file for station 01
+field season 2022 looks compatible with field season 2021
+
+This is before adding dummy data to improve x axis intercet
+y = -0.0647x2 + 0.4162x - 0.0554
+R² = 0.9567
+
+This is after dummey data
+y = .1789x2 + 0.2095x - 0.0246
+R² = 0.9478
+
+This is breaking up low and high flows
+>low 
+y = 2.0906x2 - 0.5608x + 0.0439
+R² = 0.8983
+
+>high with dummy values
+y = 0.126*x2 + 0.255x - 0.0314
+R² = 0.9473
+
+intersect: 0.3019385
+
+```{r discharge, echo=FALSE}
+intercept <- 0.276817
+
+#low
+WL_01[which(WL_01$WL_m < intercept),]$Q_m3s <- 2.0906*(WL_01[which(WL_01$WL_m < intercept),]$WL_m)^2 - 0.5608*WL_01[which(WL_01$WL_m < intercept),]$WL_m + 0.0439
+#high
+WL_01[which(WL_01$WL_m > intercept),]$Q_m3s <- 0.126*(WL_01[which(WL_01$WL_m > intercept),]$WL_m)^2 + 0.255*WL_01[which(WL_01$WL_m > intercept),]$WL_m - 0.0314
+
+#WL_01$Q_m3s <- 0.126*(WL_01$WL_m)^2 + 0.255*WL_01$WL_m - 0.0314
+```
+
+#plot discharge
+```{r plot final, echo=FALSE}
+
+##Now we can graph 
+    ## will need to change the right limit accordingly
+
+ggplot(data = WL_01 %>% filter(DateTime > "2021-06-10"), 
+       aes(DateTime, Q_m3s)) +
+  geom_point(color = "steelblue") +
+  labs(title = "Station 01 Discharge",
+    y = "Q [m3 s-1]", x = "") 
 
 ggplot(data = WL_01 %>% filter(DateTime > "2021-06-10"), 
        aes(DateTime, WL_m)) +

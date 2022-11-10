@@ -1,5 +1,5 @@
 ---
-title: 'Long Term Data: Station02'
+title: 'Long Term Data: Station04'
 author: "Kriddie"
 date: "2022-11-09"
 output: html_document
@@ -26,7 +26,7 @@ library(purrr)
 library(sjmisc)
 ```
 
-##read in wl02
+##read in wl05
 
 ```{r Hobo WL}
 #First the Hobos
@@ -36,7 +36,7 @@ all_files=list.files(pattern=".csv") #pulls out the csv files from CO2 folder
 sites_rp = sub('_[^_]+$', '', all_files)
 site_names=unique(sites_rp) #creates list of site names for following loop
 
-site_names = "WL_02"
+site_names = "WL_05"
 #site_names = site_names[c(2,3,5,6)]
 
 #rm old files, if they exist
@@ -112,22 +112,21 @@ for (site in site_names){
     
   }
   WLData$DateTime <- round_date(WLData$DateTime, "15 mins")
-  WLData$Station <- "Stn02"
+  WLData$Station <- "Stn05"
   WLData=unique(WLData)
   assign((paste(site,sep="_")),WLData) #creates object with new appended data
   rm(WLData) #removes WLdata so that multiple sites aren't appended together
 }
 
-WL_02 <- WL_02%>%filter(WLPres_kpa != 62.566)
 ```
 ## plot 
 plot the water level so that each station data can be cleaned
-
+xs
 ```{r plot, echo=FALSE}
 
 ##clean data
 
-plot_ly(WL_02, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
+plot_ly(WL_05, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 
 ```
 
@@ -136,35 +135,21 @@ plot_ly(WL_02, x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers
 
 ```{r clean, echo=FALSE}
 
-WL_02 <- WL_02%>%filter(DateTime != as.POSIXct("2022-06-30 13:30", tz="UTC"))%>%filter(DateTime != as.POSIXct("2022-07-12 10:30", tz="UTC"))
 
-#Looks like there was a shift during the last download of 2022 field seaseon. entonces:
-#64.347 - 62.987
+WL_05 <- WL_05%>%filter(DateTime != as.POSIXct("2021-07-28 14:00:00", tz = "UTC"))
+WL_05 <- WL_05%>%filter(WLPres_kpa > 64)
 
-#this is hard - it looks like the sensor moved 2x, once on the first dl of the field season, again in October during dl, not only that, it seems like the baseline has moved or something--- could logger be out of the water??
-
-#WL_02$test <- WL_02$WLPres_kpa
-
-#below is the best I got o far
-WL_02[which(WL_02$DateTime > as.POSIXct("2022-07-27 10:15:00", tz="UTC")&WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$WLPres_kpa <- 
-  WL_02[which(WL_02$DateTime > as.POSIXct("2022-07-27 10:15:00", tz="UTC")&WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$WLPres_kpa + (64.347-63.041)
-
-WL_02[which(WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$WLPres_kpa <- 
-  WL_02[which(WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$WLPres_kpa - (62.981-62.541)
-#WL_02 <- WL_02%>%filter(WLPres_kpa != 62.566)
-
-
+#march 16 2022, 15:30
+#june 26 2022, 11:30
+WL_05 <- WL_05%>%filter(DateTime != as.POSIXct("2022-03-16 15:30", tz="UTC"))%>%filter(DateTime != as.POSIXct("2022-07-26 11:30", tz="UTC"))
 ```
 
 ##Unresolved issues
 
-Something is up with the data post field season 2022 >:(
-I guess we should look at discharge collected in these location to try to figure this shit out
-
 
 ```{r plot, echo=FALSE}
 
-ggplot(WL_02, aes(x=DateTime, y=WLPres_kpa)) + geom_point()
+ggplot(WL_05, aes(x=DateTime, y=WLPres_kpa)) + geom_point()
 ```
 
 ## barometric data
@@ -237,18 +222,18 @@ ggplot(Baro,aes(x=DateTime,y=AirPres_kpa))+ geom_point()
 
 #correct for baro 
 
-WL_02 <- left_join(Baro,WL_02,by="DateTime")
+WL_05 <- left_join(Baro,WL_05,by="DateTime")
 
-WL_02$Corrected_kpa <- WL_02$WLPres_kpa - WL_02$AirPres_kpa
+WL_05$Corrected_kpa <- WL_05$WLPres_kpa - WL_05$AirPres_kpa
 
 #calculate total pressure to correct viasala readings
-WL_02$Total_kpa <- 
-  WL_02$WLPres_kpa
+WL_05$Total_kpa <- 
+  WL_05$WLPres_kpa
 
 #convert kpa to meters of water
 # constant, 1 kpa = 0.101972 m water
-WL_02$WL_m <- WL_02$Corrected_kpa * 0.101972
-WL_02$Corrected_kpa <- NULL
+WL_05$WL_m <- WL_05$Corrected_kpa * 0.101972
+WL_05$Corrected_kpa <- NULL
 
 ```
 #plot data
@@ -257,27 +242,28 @@ WL_02$Corrected_kpa <- NULL
 ##Now we can graph 
     ## will need to change the right limit accordingly
 
-ggplot(data = WL_02 %>% filter(DateTime > "2021-06-10"), 
+ggplot(data = WL_05 %>% filter(DateTime > "2021-06-10"), 
        aes(DateTime, WL_m)) +
   geom_point(color = "steelblue") +
-  labs(title = "Station 02 Water level",
+  labs(title = "Station 05 Water level",
     y = "water level [m]", x = "") 
 
 ```
 
 
+
 #Time for discharge!
-this will take awhile so buckle up, baby
+
 
 ```{r Find WL data for rating curve, echo=FALSE}
 
 #enter date of collection
-date <- "2022-07-27"
+date <- "2022-06-28"
 #enter start and end time that wetland was sampled
-time <- "09:45:00"
+time <- "13:15:00"
 
 
-WL_m <- WL_02%>%filter(DateTime == as.POSIXct(paste(date, time), format="%Y-%m-%d %H:%M:%S", tz = "UTC"))
+WL_m <- WL_05%>%filter(DateTime == as.POSIXct(paste(date, time), format="%Y-%m-%d %H:%M:%S", tz = "UTC"))
 
 print(WL_m)
 
@@ -287,13 +273,13 @@ print(WL_m)
 see excel file for station 01
 field season 2022 looks compatible with field season 2021
 
-y = 1.4892x2 - 0.1365x + 0.0059
-R² = 0.9711
+y = 0.5715x2 + 0.5144x - 0.337
+R² = 0.9577
 
 
 ```{r discharge, echo=FALSE}
 
-WL_02$Q_m3s <- 1.4892*(WL_02$WL_m)^2 - 0.1365*WL_02$WL_m + 0.0059
+WL_05$Q_m3s <- 0.5715*(WL_05$WL_m)^2 + 0.5144*WL_05$WL_m - 0.337
 
 ```
 
@@ -303,16 +289,16 @@ WL_02$Q_m3s <- 1.4892*(WL_02$WL_m)^2 - 0.1365*WL_02$WL_m + 0.0059
 ##Now we can graph 
     ## will need to change the right limit accordingly
 
-ggplot(data = WL_02 %>% filter(DateTime > "2021-06-10"), 
+ggplot(data = WL_05 %>% filter(DateTime > "2021-06-10"), 
        aes(DateTime, Q_m3s)) +
   geom_point(color = "steelblue") +
-  labs(title = "Station 02 Discharge",
+  labs(title = "Station 04 Discharge",
     y = "Q [m3 s-1]", x = "") 
 
-ggplot(data = WL_02 %>% filter(DateTime > "2021-06-10"), 
+ggplot(data = WL_05 %>% filter(DateTime > "2021-06-10"), 
        aes(DateTime, WL_m)) +
   geom_point(color = "steelblue") +
-  labs(title = "Station 02 WATER LEVEL",
+  labs(title = "Station 04 WATER LEVEL",
     y = "water level [m]", x = "") 
 
 ```
