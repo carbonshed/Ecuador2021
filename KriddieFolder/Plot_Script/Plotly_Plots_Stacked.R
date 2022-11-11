@@ -18,6 +18,21 @@ WL_02[which(WL_02$DateTime < as.POSIXct("2022-10-12 13:45:00", tz="UTC")),]$test
 fig4 <- plot_ly(WL_02, x = ~DateTime, y = ~test, type = 'scatter', mode = 'markers') 
 fig4
 
+##
+fig1 <- plot_ly(WL_01%>%
+          filter(DateTime>as.POSIXct("2022-01-30 00:00:00",tz="UTC")&DateTime<as.POSIXct("2022-03-30 00:00:00",tz="UTC")), 
+          x = ~DateTime, y = ~WL_m, type = 'scatter', mode = 'markers') 
+fig2 <- plot_ly(WL_02%>%
+                  filter(DateTime>as.POSIXct("2022-01-30 00:00:00",tz="UTC")&DateTime<as.POSIXct("2022-03-30 00:00:00",tz="UTC")), 
+                x = ~DateTime, y = ~WL_m, type = 'scatter', mode = 'markers') 
+fig3 <- plot_ly(WL_03%>%
+                  filter(DateTime>as.POSIXct("2022-01-30 00:00:00",tz="UTC")&DateTime<as.POSIXct("2022-03-30 00:00:00",tz="UTC")), 
+                x = ~DateTime, y = ~WL_m, type = 'scatter', mode = 'markers') 
+fig4 <- plot_ly(WL_04%>%
+                  filter(DateTime>as.POSIXct("2022-01-30 00:00:00",tz="UTC")&DateTime<as.POSIXct("2022-03-30 00:00:00",tz="UTC")), 
+                x = ~DateTime, y = ~WL_m, type = 'scatter', mode = 'markers') 
+
+
 fig1 <- plot_ly(WL_01%>%filter(DateTime>as.POSIXct("2022-01-25 00:00:00", tz="UTC")), x = ~DateTime, y = ~WLPres_kpa, type = 'scatter', mode = 'markers') 
 fig2 <- plot_ly(WL_02%>%filter(DateTime>as.POSIXct("2022-01-25 00:00:00", tz="UTC")), x = ~DateTime, y = ~test, type = 'scatter', mode = 'markers') 
 
@@ -27,7 +42,7 @@ fig2 <- plot_ly(WL_02%>%filter(DateTime>as.POSIXct("2022-01-25 00:00:00", tz="UT
 
 #fig3 <- plot_ly(x = c(0, 1, 2), y = c(10, 11, 12), type = 'scatter', mode = 'lines+markers') 
 
-fig <- subplot(fig1, fig2, nrows = 2) %>% 
+fig <- subplot(fig1, fig2,fig3, fig4, nrows = 4) %>% 
   
   layout(title = list(text = "Stacked Subplots"),
          
