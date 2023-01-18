@@ -444,7 +444,7 @@ for (site in site_names){
 }
 
 LUXabajo_06_Lux_data$Station <- "Stn06"
-LUXarriba_06_Lux_data <- "Stn06"
+LUXarriba_06_Lux_data$Station <- "Stn06"
 
 ```
 
@@ -454,10 +454,10 @@ LUXarriba_06_Lux_data <- "Stn06"
 
 
 ##check data
-plot_ly(LUXabajo_06_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'markers') 
+plot_ly(LUXabajo_06_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'lines') 
 
 
-plot_ly(LUXarriba_06_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'markers') 
+plot_ly(LUXarriba_06_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'lines') 
 
 #clean 
 #DO_06 <- DO_06%>%filter(DO_mgL > -100)

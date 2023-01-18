@@ -625,8 +625,9 @@ for (site in site_names){
   rm(LuxData) #removes WLdata so that multiple sites aren't appended together
 }
 
-LUXabajo_05_Lux_data$Station <- "Stn04"
-LUXarriba_05_Lux_data <- "Stn04"
+LUXabajo_04_Lux_data$Station <- "Stn04"
+LUXarriba_04_Lux_data$Lux <- as.numeric(LUXarriba_04_Lux_data$Lux)
+LUXarriba_04_Lux_data$Station  <- "Stn04"
 
 ```
 
@@ -636,10 +637,10 @@ LUXarriba_05_Lux_data <- "Stn04"
 
 
 ##check data
-plot_ly(LUXabajo_04_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'markers') 
+plot_ly(LUXabajo_04_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'lines') 
 
 
-plot_ly(LUXarriba_04_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'markers') 
+plot_ly(LUXarriba_04_Lux_data, x = ~DateTime, y = ~Lux, type = 'scatter', mode = 'lines') 
 
 #clean 
 #DO_06 <- DO_06%>%filter(DO_mgL > -100)
