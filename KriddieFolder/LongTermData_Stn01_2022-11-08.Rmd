@@ -2,7 +2,9 @@
 title: 'Long Term Data: Station01'
 author: "Kriddie"
 date: "2022-11-09"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -455,6 +457,8 @@ ggplot(data = WL_01 %>% filter(DateTime > "2021-06-10"),
   labs(title = "Station 01 Water level",
     y = "water level [m]", x = "") 
 
+#write.csv(WL_01, here::here("Prelims_SensativityAnalysis/Stn01_Q.csv"), row.names = FALSE)
+
 ```
 
 #CO2 time
@@ -801,7 +805,7 @@ Stn01 <- full_join(Stn01,WL_01, by=c('DateTime','Station'))
 Stn01 <- full_join(Stn01,LUXabajo_01_Lux_data, by=c('DateTime','Station'))
 Stn01 <- full_join(Stn01,LUXarriba_01_Lux_data, by=c('DateTime','Station'))
 
-Stn01_filter <- Stn01%>%filter(DateTime > as.POSIXct("2021-08-10 00:00:00", tz = "UTC") & DateTime <= as.POSIXct("2021-08-17 12:00:00", tz = "UTC"))
+Stn01_filter <- Stn01%>%filter(DateTime > as.POSIXct("2021-0-01 00:00:00", tz = "UTC") & DateTime <= as.POSIXct("2022-06-01 12:00:00", tz = "UTC"))
 
 
 ```
