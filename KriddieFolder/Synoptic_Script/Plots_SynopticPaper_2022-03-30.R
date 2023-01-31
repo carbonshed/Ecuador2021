@@ -15,9 +15,9 @@ library(rstatix)
 library(ggpubr)
 
 #read in df
-ANTE <- read.csv(here::here("/ProcessedData/ANTE_synoptic_2022-01-27.csv"))
-GAVI <- read.csv(here::here("/ProcessedData/GAVI_synoptic_2022-01-27.csv"))
-COLM <- read.csv(here::here("/ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
+ANTE <- read.csv(here::here("ProcessedData/ANTE_synoptic_2022-01-27.csv"))
+GAVI <- read.csv(here::here("ProcessedData/GAVI_synoptic_2022-01-27.csv"))
+COLM <- read.csv(here::here("ProcessedData/COLMILLO_synoptic_2022-01-27.csv"))
 
 
 #MIGHT WANT TIME LATER

@@ -607,6 +607,10 @@ df3 <- df3[,c("dist","adjusted_ppm","Totalflux_umolpers","Wetland","Wetland_4","
 df1 <- rbind(df1,df2,df3)
 
 df_test<- df1%>%filter(Wetland!="GAVItrib1")%>%filter(Wetland!="GAVItrib2")%>%filter(Wetland!="GAVItrib3")
+df_test$Totalfux_gpers <- df_test$Totalflux_umolpers /1000000 *44
+write.csv(df_test%>%filter(Wetland_4 != "Gavilan Outlet")%>%filter(Wetland_4 != "Gavilan Inlet")%>%filter(Wetland_4 != "	
+Tributary 1")%>%filter(Wetland_4 != "	
+Tributary 2"), file=here::here('new_file.csv'), row.names=FALSE)
 ```
 
 #plot

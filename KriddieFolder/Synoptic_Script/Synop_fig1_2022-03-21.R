@@ -190,7 +190,7 @@ ggplot(data=GAVItrib2%>%filter(Wetland=="GAVItrib2")%>%drop_na(adjusted_ppm), ae
 df2 <- rbind(ANTE,GAVI,COLM,GAVItrib2,GAVItrib1)
 
 ggplot(df2%>%drop_na(adjusted_ppm) , aes(x=dist_new, y=Total_flux, group=Wetland)) +
-  geom_line(aes(linetype=Wetland,
+  geom_line(aes(linetype=Wetland#,
     #color=Wetland
     ),size=2)+
   geom_point(aes(color=K600.effective)) +
