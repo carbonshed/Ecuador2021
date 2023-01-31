@@ -807,6 +807,8 @@ Stn01 <- full_join(Stn01,LUXarriba_01_Lux_data, by=c('DateTime','Station'))
 
 Stn01_filter <- Stn01%>%filter(DateTime > as.POSIXct("2021-0-01 00:00:00", tz = "UTC") & DateTime <= as.POSIXct("2022-06-01 12:00:00", tz = "UTC"))
 
+DO_filter <- DO_01%>%filter(DateTime > as.POSIXct("2021-08-10 00:00:00", tz = "UTC") & DateTime <= as.POSIXct("2021-08-25 00:00:00", tz = "UTC"))%>%filter(DO_mgL < 2)
+
 
 ```
 
