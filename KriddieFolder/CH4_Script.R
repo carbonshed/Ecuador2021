@@ -86,6 +86,9 @@ for (file in file_list){
 }
 
 EOSData <-  rbind(EOSData_01, EOSData_02)
+EOSData <- EOSData%>%drop_na(Site)
+EOSData <- EOSData%>%drop_na(Trans_no)
+EOSData <- unique(EOSData)
 
 EOSData$Date <- as.Date(with(EOSData, paste(Year, Month, Day,sep="-")), "%y-%m-%d")
 
@@ -96,6 +99,7 @@ drop_na(Site)    %>%
 EOSData$Site = toupper(EOSData$Site)
 EOSData$Flux <- as.numeric(EOSData$Flux)
 EOSData$Site[EOSData$Site=="ANT"]<-"ANTE"
+EOSData$Site[EOSData$Site=="ANTI"]<-"ANTE"
 
 EOS_pivot <- EOSData  %>%
 group_by(Date, Site, Trans_no) %>%
@@ -123,18 +127,13 @@ ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) +
   geom_bar(position="dodge", stat="identity") 
 
 
-EOS_pivot$Date[EOS_pivot$Date=="2021-06-16"]  <- as.Date("2021-06-14")
-EOS_pivot$Date[EOS_pivot$Date=="2021-06-22"]  <- as.Date("2021-06-21")
+#EOS_pivot$Date[EOS_pivot$Date=="2021-06-16"]  <- as.Date("2021-06-14")
+#EOS_pivot$Date[EOS_pivot$Date=="2021-06-22"]  <- as.Date("2021-06-21")
 
 
-ggplot(EOS_pivot, aes(fill=Site,y=percent, x=Trans_no)) + 
+
+ggplot(EOS_pivot , aes(y=mean_Flux, x=Trans_no, color=Site)) + 
   geom_bar(position="dodge", stat="identity") + 
-  facet_wrap(~ Date) 
-
-
-ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) + 
-  geom_bar(position="dodge", stat="identity") + 
-  facet_wrap(Date
-    ~ Site) 
+  facet_wrap(Site ~ Date, ncol = 5) 
 
 
