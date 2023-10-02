@@ -100,21 +100,85 @@ EOSData$Site = toupper(EOSData$Site)
 EOSData$Flux <- as.numeric(EOSData$Flux)
 EOSData$Site[EOSData$Site=="ANT"]<-"ANTE"
 EOSData$Site[EOSData$Site=="ANTI"]<-"ANTE"
+EOSData$Temperature_c <- as.numeric(as.character(EOSData$Temperature_c))
+
+EOSData <- EOSData[c("Date","Time","Site","Trans_no","Flux","Temperature_c")]
+#a little bit of data cleaning is necessary for some measurments that are very high standard deviation
+#use pivot table
+
+EOSData[EOSData$Date=="2021-06-14" & 
+               EOSData$Site=="GUAR" & 
+               EOSData$Trans_no==1 & 
+          EOSData$Flux==0.01,]$Flux <- NA
+EOSData[EOSData$Date=="2021-06-14" & 
+          EOSData$Site=="GAVI" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux < 1.0,]$Flux <- NA
+EOSData[EOSData$Date=="2021-06-14" & 
+          EOSData$Site=="GAVI" & 
+          EOSData$Trans_no==5 & 
+          EOSData$Flux== 0,]$Flux <- NA
+EOSData[EOSData$Date=="2021-06-14" & 
+          EOSData$Site=="GAVI" & 
+          EOSData$Trans_no==2 & 
+          EOSData$Flux== .35,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-20" & 
+          EOSData$Site=="GAVI" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux== 0.01,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-13" & 
+          EOSData$Site=="GAVI" & 
+          EOSData$Trans_no==1 & 
+          EOSData$Flux== 0.47,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-13" & 
+          EOSData$Site=="GAVI" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux== 0.37,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-26" & 
+          EOSData$Site=="ANTE" & 
+          EOSData$Trans_no==2 & 
+          EOSData$Flux== 0.01,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-16" & 
+          EOSData$Site=="PARQ" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux== 0.03,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-26" & 
+          EOSData$Site=="PARQ" & 
+          EOSData$Trans_no==5 & 
+          EOSData$Flux== 0.11,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-14" & 
+          EOSData$Site=="GUAR" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux== 0.11,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-12" & 
+          EOSData$Site=="ANTE" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux== 0.04,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-26" & 
+          EOSData$Site=="ANTE" & 
+          EOSData$Trans_no==3 & 
+          EOSData$Flux== 0.19,]$Flux <- NA
+EOSData[EOSData$Date=="2021-07-12" & 
+          EOSData$Site=="ANTE" & 
+          EOSData$Trans_no==5 & 
+          EOSData$Flux== 0.29,]$Flux <- NA
+
 
 EOS_pivot <- EOSData  %>%
 group_by(Date, Site, Trans_no) %>%
   #filter(Flux > 0)  %>%
-  summarize(mean_Flux = mean(Flux, na.rm = TRUE),
+  summarize(mean_soil_tempC = mean(Temperature_c,na.rm=TRUE),
+    mean_Flux = mean(Flux, na.rm = TRUE),
             std_Flux = sd(Flux, na.rm = TRUE))  
+
+EOS_pivot$percent <- EOS_pivot$std_Flux / EOS_pivot$mean_Flux *100
+
 
 ###QA/QC
 EOS_pivot %>%
   group_by(Site) %>%
   summarize(n())
 
-#####
-
-EOS_pivot$percent <- EOS_pivot$std_Flux / EOS_pivot$mean_Flux *100
 #Graph it up bitches
 
 
@@ -135,5 +199,9 @@ ggplot(EOS_pivot, aes(y=mean_Flux, x=Trans_no)) +
 ggplot(EOS_pivot , aes(y=mean_Flux, x=Trans_no, color=Site)) + 
   geom_bar(position="dodge", stat="identity") + 
   facet_wrap(Site ~ Date, ncol = 5) 
+
+
+#write out 
+write.csv(EOS_pivot, here::here("KriddieFolder/WetlandSoils_CO2Flux.csv"))
 
 
