@@ -202,6 +202,6 @@ ggplot(EOS_pivot , aes(y=mean_Flux, x=Trans_no, color=Site)) +
 
 
 #write out 
-write.csv(EOS_pivot, here::here("KriddieFolder/WetlandSoils_CO2Flux.csv"))
+#write.csv(EOS_pivot, here::here("KriddieFolder/WetlandSoils_CO2Flux.csv"))
 
 

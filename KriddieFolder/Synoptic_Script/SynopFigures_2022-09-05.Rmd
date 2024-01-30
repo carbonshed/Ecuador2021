@@ -22,6 +22,9 @@ library(ggmap)
 library(dplyr)
 library(scales)
 
+register_stadiamaps(key = "4c9564bd-71e6-4396-8cef-e76e893129ce", write = TRUE)
+
+
 ```
 
 ## Description
@@ -167,9 +170,9 @@ rivernetwork <- ggplot(df %>%filter(Wetland_3=="Gavilan River Network")
   annotate("text", x = 100, y = log10(15000), label = "pvalue < 0.0001",size = 5)
 
 df <- df[order(df$adjusted_ppm),]
-
-gaviplot <- qmplot(lon_fit,lat_fit, data = df%>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(adjusted_ppm), zoom = 13, size= 10, maptype = "toner-background", color = log10(adjusted_ppm))+
-  guides(size = FALSE) +
+#?get_stadiamap()
+gaviplot <- qmplot(lon_fit,lat_fit, data = df%>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(adjusted_ppm), zoom = 13, size= 10, maptype = "stamen_terrain", color = log10(adjusted_ppm))+
+  guides(size = "none") +
   scale_color_gradient(low="blue", high="red",
                        breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
   theme(legend.text=element_text(size=16)) + 
