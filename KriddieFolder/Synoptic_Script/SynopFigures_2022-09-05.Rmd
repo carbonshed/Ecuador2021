@@ -22,7 +22,10 @@ library(ggmap)
 library(dplyr)
 library(scales)
 
-register_stadiamaps(key = "4c9564bd-71e6-4396-8cef-e76e893129ce", write = TRUE)
+#register_stadiamaps(key = "4c9564bd-71e6-4396-8cef-e76e893129ce", write = TRUE)
+
+#new api
+register_stadiamaps("e723ef39-9560-41be-969c-36870f7b7f84", write = TRUE)
 
 
 ```
@@ -44,11 +47,10 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 
 
 ```{r read in data}
-#synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-04-19.csv"))
 synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-06-08.csv"))
-#df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220419.csv"))
 df <- read.csv(here::here("ProcessedData/SynopFlowAccu_20220626.csv"))
 k600_df <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-08-26.csv"))
+
 #total flux for gavi tribs to add to bball plota
 Trib1 <- read.csv(here::here("ProcessedData/GAVItrib1_synopticGeom_2022-08-30.csv"))
 Trib2 <- read.csv(here::here("ProcessedData/GAVItrib2_synopticGeom_2022-08-30.csv"))
@@ -171,7 +173,8 @@ rivernetwork <- ggplot(df %>%filter(Wetland_3=="Gavilan River Network")
 
 df <- df[order(df$adjusted_ppm),]
 #?get_stadiamap()
-gaviplot <- qmplot(lon_fit,lat_fit, data = df%>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(adjusted_ppm), zoom = 13, size= 10, maptype = "stamen_terrain", color = log10(adjusted_ppm))+
+gaviplot <- get_stadiamap(lon_fit,lat_fit, data = df%>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(adjusted_ppm), zoom = 13, size= 10, maptype = "terrain", 
+                   color = log10(adjusted_ppm))+
   guides(size = "none") +
   scale_color_gradient(low="blue", high="red",
                        breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
