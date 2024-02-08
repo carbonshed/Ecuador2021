@@ -257,8 +257,6 @@ for(i in 1:nrow(synop)) {
 }
 
 synop$flux_umolpers <- synop$Flux_ave*synop$surface_area
-#synop <- synop[,-c(3,4,6:12)]
-
 
 
 synop <- synop%>%drop_na(flux_umolpers)
@@ -278,7 +276,8 @@ df_prediction_4 <- left_join(df_prediction,synop[,c("lon_fit","lat_fit","dist","
 df_prediction_4 <- df_prediction_4[c(1:2,5,13:31)]
 
 
-
+#can i bind in width and depth to this from prediction_3 data frame
+df_prediction_5 <- full_join(df_prediction_4, df_prediction_3%>%select(lon_fit,lat_fit,w,d), by=(c("lon_fit","lat_fit")))
 ```
 
 I guess what I want is a column associated with each CO2 measurment that gives me surface area associated with the measurment.

@@ -592,7 +592,7 @@ ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=Flux_av
 #df_prediction$TDN <- NULL
 
 
-write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-04-19.csv"))
+#write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-04-19.csv"))
 
 df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 
