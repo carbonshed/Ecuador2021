@@ -12,7 +12,7 @@ library(plotly)
 library(dplyr)
 library(tidyr)
 library(zoo)
-library(plot3D)
+#library(plot3D)
 library(splines)
 library(Ecdat)
 library(dplyr)
@@ -571,6 +571,7 @@ ggplot(data=df_prediction %>%drop_na(Flux_ave), aes(dist, ele_fit, color=DOC)) +
 
 
 write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2022-06-07.csv"))
+
 
 #df_prediction_join <- df_prediction[,c("lon_fit","lat_fit","dist","ele_fit","Date")]
 
