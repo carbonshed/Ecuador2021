@@ -255,6 +255,7 @@ for(i in 1:nrow(df)) {       # for-loop over rows
 ##
 
 df_prediction_3 <- df
+#write.csv(df_prediction_3, here::here("ProcessedData/Colm_XWD.csv"))
 
 ```
 

@@ -37,7 +37,7 @@ ggplot(data=df_prediction, aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) 
 #read in x, w, d data frame
 
 ```{r x and w and d, echo=FALSE}
-XWD <- read.csv(here::here("/Geomorphology/Atenas/Antenas_Geomorph_2022-01-28.csv"))
+XWD <- read.csv(here::here("Geomorphology/Atenas/Antenas_Geomorph_2022-01-28.csv"))
 
 XWD <- XWD[,c("lon","lat","x","d","w","ele","notes")]
 
@@ -195,6 +195,8 @@ df$length[which(df$x_pred==95)] <- 3
 df$area[which(df$x_pred==95)] <- df$w[which(df$x_pred==95)]/100 * df$length[which(df$x_pred==95)]
 
 df_prediction_3 <- df
+
+#write.csv(df_prediction_3, here::here("ProcessedData/Ante_XWD.csv"))
 
 ```
 

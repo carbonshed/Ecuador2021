@@ -301,6 +301,7 @@ df$area[which(df$x_pred==1009.0)] <- df$length[which(df$x_pred==1009.0)] *df$w[w
 
 df_prediction_3 <- df
 
+#write.csv(df_prediction_3, here::here("ProcessedData/Gavi_XWD.csv"))
 
 ```
 
