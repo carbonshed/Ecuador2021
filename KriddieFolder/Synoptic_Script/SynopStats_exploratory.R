@@ -14,7 +14,11 @@ Trib1$Wetland <- "Tributary 1"
 Trib2$Wetland <- "Tributary 2"
 Tribs <- rbind(Trib1,Trib2)
 
-
+#test all
+m2 <- lm(Flux_ave ~ scale(adjusted_ppm) + 
+           scale(CatchmentSize_ha), 
+         data = df %>%filter(flux_umolpers>-.1))
+summary(m2)
 #summary
 df_summaryCO2 <- df%>%
   group_by(Wetland_4)%>%
@@ -66,7 +70,7 @@ anova.co2 <- aov(log(adjusted_ppm) ~ Wetland_5, data = df)
 tukey.co2<-TukeyHSD(anova.co2)
 tukey.co2
 
-anova.flux <- aov(Flux_ave ~ Wetland_5, data = df)
+anova.flux <- aov(Flux_ave ~ Wetland_5, data = df%>%filter(Flux_ave>-.1))
 summary(anova.flux)
 tukey.flux<-TukeyHSD(anova.flux)
 tukey.flux
