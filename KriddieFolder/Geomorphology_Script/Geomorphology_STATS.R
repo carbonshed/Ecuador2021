@@ -1,5 +1,6 @@
 #descriptive stats
 library(dplyr)
+library(readr)
 
 #synop <- read.csv(here::here("ProcessedData/ALL_synoptic_2022-06-08.csv"))
 synop_1 <- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-02-10.csv"))
