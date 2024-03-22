@@ -1,0 +1,9 @@
+OBJECTID,lat,lon,Sample_ID,SampleType,Z
+1,None,None,1,upstream_pourpoints,4067.019353
+2,None,None,2,upstream_pourpoints,4066.626399
+3,None,None,3,upstream_pourpoints,4063.776301
+4,None,None,4,upstream_pourpoints,4061.73003
+5,0,-78,4,SamplePoints,4060.897909
+6,0,-78,2,SamplePoints,4066.158303
+7,0,-78,3,SamplePoints,4062.73524
+8,0,-78,1,SamplePoints,4066.919129
