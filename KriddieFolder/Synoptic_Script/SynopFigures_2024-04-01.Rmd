@@ -110,10 +110,7 @@ summary(model1)
 model1 <- lm(log(adjusted_ppm)~ dist, 
              data = df %>%filter(Wetland_2=="Antenas"))
 summary(model1)
-#gavi inlet cos v dist
-model1 <- lm(log10(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland_4=="Gavilan Inlet"))
-summary(model1)
+
 #gavi outlet cos v dist
 model1 <- lm(log10(adjusted_ppm)~ dist, 
              data = df %>%filter(Wetland_4=="Gavilan Outlet"))
@@ -133,6 +130,16 @@ model4 <- lm(log10(adjusted_ppm)~ dist,
              data = df %>%filter(Wetland=="GAVItrib3"))
 summary(model4)
 
+#colm  co2 v dist
+model1 <- lm(log(adjusted_ppm)~ dist, 
+             data = df %>%filter(Wetland_4=="COLM"))
+summary(model1)
+
+#gavi inlet cos v dist
+model1 <- lm(log10(adjusted_ppm)~ dist, 
+             data = df %>%filter(Wetland_4=="Gavilan Inlet"))
+summary(model1)
+
 
 ```
 
@@ -147,6 +154,8 @@ Gavi trib1 p-value= 0.02733, r2 = 0.313 *
 Gavi trib2 p-value= 0.1107, r2 = 0.6862 
 Gavi trib3 p-value= 0.097253, r2 = 0.5394 .
 ANTE p-value = 0.0109, r2 = 0.2847 *
+
+pannel 2c got really complicated. Below is code for all the different componenets, and then I brought it into a power point to finish it up
 
 ```{r fig 2a, echo=FALSE}
 
@@ -193,42 +202,64 @@ dat_text <- data.frame(
 #subtract 523m from outlet
 df[df$Wetland_4 == 'Gavilan Outlet',]$dist <- df[df$Wetland_4 == 'Gavilan Outlet',]$dist - 523
 
-p2 <- ggplot(df%>%drop_na(Wetland)
-             %>%filter(Wetland_4!="Gavilan Inlet")
-             %>%filter(Wetland!="COLM")
-            %>%filter(Wetland!="GAVItrib3")
-       , aes(x = dist, y = log10(adjusted_ppm), color=Wetland)) +
-  facet_grid(rows = vars(Wetland_4)) +
-  geom_point(size=3) +
-  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
-  xlab("Distance downstream [m]") +
-  geom_smooth(method='lm')+
-  theme(axis.text=element_text(size=10),
-  axis.title=element_text(size=18,face="bold")) +
- theme_bw() +
-  scale_color_manual(
-    name=NULL,
-    values = c(antens,gavi_out, gavitrib1,gavitrib2),
-    labels=c("Antenas", "Gavil\u00e1n Outlet","Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 2"))+
-  scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
+
+p2 <- ggplot(df%>%drop_na(Wetland)%>%filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
+             , aes(x = dist, y = adjusted_ppm, color=Wetland_4)) +
+  geom_point(size=3) + facet_grid(rows = vars(Wetland_4)) + geom_smooth(method='lm')+
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
+  theme_bw() +
+  scale_color_manual(name=NULL,
+      values = c(antens,gavi_out, gavitrib1,gavitrib2),
+      labels=c("Antenas","Gavil\u00e1n Outlet","Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 2"))+
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
   theme(panel.spacing = unit(.05, "lines"),
         panel.border = element_rect(color = "black", fill = NA, linewidth = 1), 
-  strip.background = element_rect(color = "black", linewidth = 1))+
-  theme(legend.text=element_text(size=14),
-        legend.key.size = unit(1, 'cm')) +
-  theme(axis.title=element_text(size=16),
-         axis.text=element_text(size=14))+ 
-  theme(
-  strip.background = element_blank(),
-  strip.text.x = element_blank(),
-  strip.text.y = element_blank())
+        strip.background = element_rect(color = "black", linewidth = 1))+
+  theme(text = element_text(size = 16)) +
+  theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank()) 
 
 p3 <- p2 + geom_text(
   data    = dat_text,
-  mapping = aes(x = 400, y = log10(9000), label = label),
-#  hjust   = -0.1,
-#  vjust   = -11
+  mapping = aes(x = 400, y = 9000, label = label),
+  #  hjust   = -0.1,
+  #  vjust   = -11
 )
+p3
+
+df1 <- df%>%drop_na(Wetland)%>%filter(Wetland_4=="ANTE"|Wetland_4=="Gavilan Outlet"|Wetland_4=="Gavilan Inlet"|Wetland_4=="COLM")
+df1$Wetland_4<- factor(df1$Wetland_4, levels = c("ANTE", "Gavilan Outlet", "Gavilan Inlet", "COLM"))
+df1$adjusted_ppm[df1$Wetland_4 == "ANTE"] <- NA
+df1$adjusted_ppm[df1$Wetland_4 == "Gavilan Outlet"] <- NA
+
+
+dat_text2 <- data.frame(
+  label = c("scrap", "scrap2", "p-value = 0.35","p-value = 0.82"),
+  Wetland_4   = c("ANTE","Gavilan Outlet","COLM","Gavilan Inlet"),
+  Wetland = c("ANTE","Gavi-mainstem","COLM","Gavi-mainstem"))
+
+
+p4 <- ggplot(df1%>%drop_na(Wetland), aes(x = dist, y = adjusted_ppm, color=Wetland_4)) +
+  geom_point(size=3) + 
+  facet_grid(rows = vars(Wetland_4)) +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
+  theme_bw() +
+  scale_color_manual(name=NULL,
+    values = c(antens,gavi_out,gavi_in,colmillo),
+    labels=c("scrap it","scrap it","Gavil\u00e1n Inlet", "Colmillo"))+
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000), labels=c("300","1,000","3,000")) +
+  expand_limits(y = c(200, 4000)) + 
+  theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, linewidth = 1), 
+        strip.background = element_rect(color = "black", linewidth = 1))+
+  theme(text = element_text(size = 16)) +
+  theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank()) 
+p4
+
+p5 <- p4 + geom_text(
+  data    = dat_text2,
+  mapping = aes(x = 900, y = 3000, label = label),
+)
+p5
 
 
 figure1 <- ggarrange(rivernetwork, gaviplot,
@@ -250,12 +281,43 @@ figure2 <- ggarrange(figure1, p3,
 
 ```
 
+#slope fig
+
+```{r fig 4 boxplots, echo=FALSE}
+df_wide_all <- read.csv(here::here("ProcessedData/Synop_slope.csv"))
+
+df_wide_all[df_wide_all < 0] <- 0
+
+model1.2 <- lm(log(adjusted_ppm) ~ scale(slope_m.m) + scale(CatchmentSize_ha) , data = df_wide_all %>%filter(Wetland_4 != "GAVItrib1"&Wetland_4 != "GAVItrib2"))
+summary(model1.2)
+
+theme_set(theme_bw(base_size = 16))
+
+p <- ggplot(df_wide_all %>%filter(Wetland_4 != "GAVItrib1"&Wetland_4 != "GAVItrib2"), 
+       aes(x=slope_m.m,y=adjusted_ppm, color=CatchmentSize_ha)) +
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
+  geom_point(size=2) +
+  geom_smooth(method = "lm",color="black") +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Slope [m/m]") +
+  scale_colour_gradient(
+  name = "Catchment Size [ha]",
+  low = "yellow3",
+  high = "green4",
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "colour"
+)
+
+
+```
+
 # trends in flux 
 
-#fig 3
+#fig 4
 
 Box plots
-```{r fig 3, echo=FALSE}
+```{r fig 4 boxplots, echo=FALSE}
 ###box and wisker####
 anova.co2 <- aov(log(adjusted_ppm) ~ Wetland_5, data = df)
 summary(anova.co2)
@@ -284,11 +346,12 @@ MyTheme <-  theme_bw() +
         axis.title=element_text(size=14)) +
   theme(legend.text=element_text(size=16))
 
-
+air_ppm <- 416.45
 CO2 <- ggplot(df, aes(x = Wetland_5, y = log10(adjusted_ppm), fill = Wetland_5)) +
   geom_boxplot() +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
+  geom_hline(yintercept= log10(air_ppm),color="red",linetype="twodash", linewidth=1) +
   MyTheme +
   scale_fill_manual(
     name=NULL,
@@ -357,13 +420,13 @@ figure
 ```
 
 
-#fig 4
+#fig 6
 
 for < 12.5 hectars, watershed size is not significant, co2 is significant
 r2 = 0.5247, pvalue =2.43e-07
 for > 20 ha, co2 is not significant, but watershed size is. pvalue = 0.00395 r2 = 0.1057
 
-```{r fig 4, echo=FALSE}
+```{r fig 6, echo=FALSE}
 
 df_sats <- df
 df_sats$co2_scale <-scale(df_sats$adjusted_ppm)
@@ -404,6 +467,7 @@ A <- ggplot(df%>%filter(CatchmentSize_ha<12.5),
         aes(x=log10(adjusted_ppm), y=Flux_ave)) +
   geom_point(aes(fill=Wetland), 
        color="black",pch=21, size=4) + 
+  geom_vline(xintercept= log10(air_ppm),color="red",linetype="twodash", linewidth=1) +
   geom_smooth(method='lm') +
   xlab("CO2 ppm") + 
   ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
@@ -415,7 +479,7 @@ A <- ggplot(df%>%filter(CatchmentSize_ha<12.5),
 
 
 
-B <- ggplot(df_sats #%>%filter(Flux_ave>.05)
+B <- ggplot(df_sats %>%filter(Flux_ave>-.6)
             %>%filter(CatchmentSize_ha>20)
   #           %>%filter(Wetland!="GAVItrib2")
   ,
@@ -451,7 +515,7 @@ ggsave("fig5.png", plot = figure, device = NULL, path = NULL,
 ```
 
 
-```{r fig 5, echo=TRUE}
+```{r fig 5 k600, echo=TRUE}
 
 ### bins
 df_bins <- df
