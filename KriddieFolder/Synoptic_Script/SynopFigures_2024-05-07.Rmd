@@ -77,7 +77,7 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 
 
 ```{r read in data}
-df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))
+df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)
 
 #total flux for gavi tribs to add to bball plota
 Trib1 <- read.csv(here::here("ProcessedData/GAVItrib1_synopticGeom_2022-08-30.csv"))
@@ -102,19 +102,28 @@ river network and reach
 ```{r Stats for fig 2a, echo=FALSE}
 
 #gavi rivernetwork vs catchment size
-model1 <- lm(log(adjusted_ppm)~ CatchmentSize_ha, 
+model1 <- lm(log(adjusted_ppm)~ log(CatchmentSize_ha), 
              data = df %>%filter(Wetland_3=="Gavilan River Network"))
 summary(model1)
+
+
+
 
 #antenas  cos v dist
 model1 <- lm(log(adjusted_ppm)~ dist, 
              data = df %>%filter(Wetland_2=="Antenas"))
 summary(model1)
 
+ols_plot_resid_qq(model1)
+ols_test_normality(model1)
+
 #gavi outlet cos v dist
 model1 <- lm(log10(adjusted_ppm)~ dist, 
              data = df %>%filter(Wetland_4=="Gavilan Outlet"))
 summary(model1)
+
+ols_plot_resid_qq(model1)
+ols_test_normality(model1)
 
 #gavi trib 1  cos v dist
 model2 <- lm(log10(adjusted_ppm)~ dist, 
@@ -202,28 +211,24 @@ dat_text <- data.frame(
 #subtract 523m from outlet
 df[df$Wetland_4 == 'Gavilan Outlet',]$dist <- df[df$Wetland_4 == 'Gavilan Outlet',]$dist - 523
 
+Wetland_4_names <- c(
+                    "ANTE" = "Antenas",
+                    "Gavilan Outlet" = "Gavil\u00e1n Outlet",
+                    "GAVItrib1" = "Gavil\u00e1n Tributary 1",
+                    "GAVItrib2" = "Gavil\u00e1n Tributary 2"
+                    )
 
-p2 <- ggplot(df%>%drop_na(Wetland)%>%filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
-             , aes(x = dist, y = adjusted_ppm, color=Wetland_4)) +
-  geom_point(size=3) + facet_grid(rows = vars(Wetland_4)) + geom_smooth(method='lm')+
+p2 <- ggplot(df %>%drop_na(Wetland)%>%filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
+             , aes(x = dist, y = adjusted_ppm)) +
+  geom_point(size=3) +  
+  facet_grid(Wetland_4~.,labeller = as_labeller(Wetland_4_names)) + geom_smooth(method='lm')+
   ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
   theme_bw() +
-  scale_color_manual(name=NULL,
-      values = c(antens,gavi_out, gavitrib1,gavitrib2),
-      labels=c("Antenas","Gavil\u00e1n Outlet","Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 2"))+
-  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
-  theme(panel.spacing = unit(.05, "lines"),
-        panel.border = element_rect(color = "black", fill = NA, linewidth = 1), 
-        strip.background = element_rect(color = "black", linewidth = 1))+
-  theme(text = element_text(size = 16)) +
-  theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank()) 
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +  theme(text = element_text(size = 14))
 
 p3 <- p2 + geom_text(
   data    = dat_text,
-  mapping = aes(x = 400, y = 9000, label = label),
-  #  hjust   = -0.1,
-  #  vjust   = -11
-)
+  mapping = aes(x = 400, y = 9000, label = label))
 p3
 
 df1 <- df%>%drop_na(Wetland)%>%filter(Wetland_4=="ANTE"|Wetland_4=="Gavilan Outlet"|Wetland_4=="Gavilan Inlet"|Wetland_4=="COLM")
@@ -232,27 +237,24 @@ df1$adjusted_ppm[df1$Wetland_4 == "ANTE"] <- NA
 df1$adjusted_ppm[df1$Wetland_4 == "Gavilan Outlet"] <- NA
 
 
-dat_text2 <- data.frame(
-  label = c("scrap", "scrap2", "p-value = 0.35","p-value = 0.82"),
-  Wetland_4   = c("ANTE","Gavilan Outlet","COLM","Gavilan Inlet"),
-  Wetland = c("ANTE","Gavi-mainstem","COLM","Gavi-mainstem"))
+Wetland_4_names2 <- c(
+                    "ANTE" = "Antenas",
+                    "Gavilan Outlet" = "Gavil\u00e1n Outlet",
+                    "Gavilan Inlet" = "Gavil\u00e1n Intlet",
+                    "COLM" = "Colmillo"
+                    
+                    )
 
 
-p4 <- ggplot(df1%>%drop_na(Wetland), aes(x = dist, y = adjusted_ppm, color=Wetland_4)) +
+p4 <- ggplot(df1%>%drop_na(Wetland), aes(x = dist, y = adjusted_ppm)) +
   geom_point(size=3) + 
-  facet_grid(rows = vars(Wetland_4)) +
+  facet_grid(Wetland_4~.,labeller = as_labeller(Wetland_4_names2)
+             ) +
   ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
   theme_bw() +
-  scale_color_manual(name=NULL,
-    values = c(antens,gavi_out,gavi_in,colmillo),
-    labels=c("scrap it","scrap it","Gavil\u00e1n Inlet", "Colmillo"))+
   scale_y_continuous(trans = "log10", breaks=c(300,1000,3000), labels=c("300","1,000","3,000")) +
   expand_limits(y = c(200, 4000)) + 
-  theme(panel.spacing = unit(.05, "lines"),
-        panel.border = element_rect(color = "black", fill = NA, linewidth = 1), 
-        strip.background = element_rect(color = "black", linewidth = 1))+
-  theme(text = element_text(size = 16)) +
-  theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank()) 
+  theme(text = element_text(size = 14))
 p4
 
 p5 <- p4 + geom_text(
@@ -284,17 +286,24 @@ figure2 <- ggarrange(figure1, p3,
 #slope fig
 
 ```{r fig 4 boxplots, echo=FALSE}
-df_wide_all <- read.csv(here::here("ProcessedData/Synop_slope.csv"))
+df_wide_all <- read.csv(here::here("ProcessedData/Synop_slope_2024-05-07.csv"))
 
 df_wide_all[df_wide_all < 0] <- 0
 
-model1.2 <- lm(log(adjusted_ppm) ~ scale(slope_m.m) + scale(CatchmentSize_ha) , data = df_wide_all %>%filter(Wetland_4 != "GAVItrib1"&Wetland_4 != "GAVItrib2"))
+model1.2 <- lm(log(pCO2_ppm) ~ log1p(slope_m.m) #+
+#                 scale(CatchmentSize_ha)
+, data = df_wide_all %>%filter(CatchmentSize_ha > 12.5)
+               )
 summary(model1.2)
+
+ols_plot_resid_qq(model1.2)
+ols_test_normality(model1.2)
+
 
 theme_set(theme_bw(base_size = 16))
 
-p <- ggplot(df_wide_all %>%filter(Wetland_4 != "GAVItrib1"&Wetland_4 != "GAVItrib2"), 
-       aes(x=slope_m.m,y=adjusted_ppm, color=CatchmentSize_ha)) +
+p <- ggplot(df_wide_all  %>%filter(CatchmentSize_ha > 12.5), 
+       aes(x=slope_m.m,y=pCO2_ppm, color=CatchmentSize_ha)) +
   scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
   geom_point(size=2) +
   geom_smooth(method = "lm",color="black") +
@@ -322,10 +331,10 @@ Box plots
 anova.co2 <- aov(log(adjusted_ppm) ~ Wetland_5, data = df)
 summary(anova.co2)
 
-anova.flux <- aov(Flux_ave ~ Wetland_5, data = df)
+anova.flux <- aov(F_CO2_umol_m2_s ~ Wetland_5, data = df)
 summary(anova.flux)
 
-anova.k600 <- aov(K600.effective ~ Wetland_5, data = df%>%filter(K600.effective>-30) )
+anova.k600 <- aov(K600 ~ Wetland_5, data = df%>%filter(K600>-30) )
 summary(anova.k600)
 
 tukey.co2<-TukeyHSD(anova.co2)
@@ -367,7 +376,7 @@ CO2 <- ggplot(df, aes(x = Wetland_5, y = log10(adjusted_ppm), fill = Wetland_5))
 
 
 
-flux <- ggplot(df, aes(x = Wetland_5, y = Flux_ave, fill = Wetland_5)) + 
+flux <- ggplot(df, aes(x = Wetland_5, y = F_CO2_umol_m2_s, fill = Wetland_5)) + 
   geom_boxplot() +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
@@ -384,8 +393,8 @@ flux <- ggplot(df, aes(x = Wetland_5, y = Flux_ave, fill = Wetland_5)) +
     annotate("text", x="GavilanTribs", y= 5,label="BC", size = 4) 
 
 
-k600 <- ggplot(df%>%filter(K600.effective>-30)
-               , aes(x = Wetland_5, y = K600.effective, fill = Wetland_5)) + 
+k600 <- ggplot(df%>%filter(K600>-30)
+               , aes(x = Wetland_5, y = K600, fill = Wetland_5)) + 
   geom_boxplot() +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white") +
@@ -432,27 +441,33 @@ df_sats <- df
 df_sats$co2_scale <-scale(df_sats$adjusted_ppm)
 df_sats$WS_scale <- scale(df_sats$CatchmentSize_ha)
 
-model1_1 <- lm(Flux_ave ~ co2_scale, 
-             data = df_sats%>%filter(Flux_ave>-1)%>%filter(CatchmentSize_ha<12.5))
+model1_1 <- lm(log(F_CO2_umol_m2_s) ~ log(adjusted_ppm), 
+             data = df_sats %>%filter(F_CO2_umol_m2_s>-1)%>%filter(CatchmentSize_ha<12.5))
 summary(model1_1)
+
+ols_plot_resid_qq(model1_1)
+ols_test_normality(model1_1)
+
 #
-model2_2 <- lm(Flux_ave ~  WS_scale, 
-             data = df_sats%>%filter(CatchmentSize_ha>20))
+model2_2 <- lm(log1p(F_CO2_umol_m2_s) ~  log(CatchmentSize_ha), 
+             data = df_sats%>%filter(CatchmentSize_ha>20)%>%filter(F_CO2_umol_m2_s>-1))
 summary(model2_2)
+ols_plot_resid_qq(model2_2)
+ols_test_normality(model2_2)
 #
-model1_3 <- lm(Flux_ave ~ co2_scale + WS_scale, 
-             data = df_sats%>%filter(Flux_ave>-1))
+model1_3 <- lm(log1p(F_CO2_umol_m2_s) ~  log(CatchmentSize_ha) + log(adjusted_ppm), 
+             data = df_sats%>%filter(F_CO2_umol_m2_s>-1))
 summary(model1_3)
+
+model1_3 <- lm(log1p(F_CO2_umol_m2_s) ~  scale(log(CatchmentSize_ha)) + scale(log(adjusted_ppm)), 
+             data = df_sats%>%filter(F_CO2_umol_m2_s>-1))
+summary(model1_3)
+
+ols_plot_resid_qq(model1_3)
+ols_test_normality(model1_3)
+
 #
-p <- ggplot(df_sats%>%filter(Flux_ave>-.3)
-       , aes(x=co2_scale + WS_scale, y=Flux_ave)) + geom_point() + 
-  geom_smooth(method='lm') 
-p1 <- ggplot(df_sats%>%filter(Flux_ave>-1)#%>%filter(CatchmentSize_ha<20)
-       , aes(x=co2_scale + WS_scale, y=scale(Flux_ave))) + geom_point() + 
-  geom_smooth(method='lm') 
-p2 <- ggplot(df_sats%>%filter(Flux_ave>0)#%>%filter(CatchmentSize_ha<20)
-       , aes(x=co2_scale + WS_scale, y=Flux_ave)) + geom_point() + 
-  geom_smooth(method='lm') 
+
 #####################
 MyTheme <-  theme_bw() + 
   theme(axis.text=element_text(size=14),
@@ -464,9 +479,10 @@ hex <- hue_pal()
 
 
 A <- ggplot(df%>%filter(CatchmentSize_ha<12.5),
-        aes(x=log10(adjusted_ppm), y=Flux_ave)) +
+        aes(x=log10(adjusted_ppm), y=F_CO2_umol_m2_s)) +
   geom_point(aes(fill=Wetland), 
-       color="black",pch=21, size=4) + 
+       color="black",pch=21, size=3) + 
+  scale_y_log10() +
   geom_vline(xintercept= log10(air_ppm),color="red",linetype="twodash", linewidth=1) +
   geom_smooth(method='lm') +
   xlab("CO2 ppm") + 
@@ -474,18 +490,18 @@ A <- ggplot(df%>%filter(CatchmentSize_ha<12.5),
   labs(linetype="LEGEND", color="LEGEND") +
   scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 3"), values = c(antens, gavitrib1, gavitrib3)) +
    scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) + 
-  annotate("text", x = log10(6000), y = 2.2, label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .52), size = 4) +
+  annotate("text", x = log10(6000), y = 2.2, label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .48), size = 4) +
    theme_bw()  + MyTheme 
 
 
 
-B <- ggplot(df_sats %>%filter(Flux_ave>-.6)
-            %>%filter(CatchmentSize_ha>20)
-  #           %>%filter(Wetland!="GAVItrib2")
-  ,
-        aes(x=CatchmentSize_ha, y=Flux_ave)) +
+B <- ggplot(df_sats %>%filter(F_CO2_umol_m2_s>-.6)
+            %>%filter(CatchmentSize_ha>20),
+        aes(x=CatchmentSize_ha, y=F_CO2_umol_m2_s)) +
   geom_point(aes(fill=Wetland), 
-       color="black",pch=21, size=4) + 
+       color="black",pch=21, size=3) + 
+  scale_y_log10() +
+    scale_x_log10() +
   geom_smooth(method='lm') +
   xlab("Catchment Size [ha]") + 
   ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) + 
@@ -493,7 +509,7 @@ B <- ggplot(df_sats %>%filter(Flux_ave>-.6)
   scale_fill_manual(
     name="Stream Reach",
     labels=c( "Colmillo","Gavil\u00e1n","Gavil\u00e1n Tributary 2"),values = c(colmillo, gavi,gavitrib2))+
-  annotate("text", x = 180, y = 3.4, label  = expression("p-value = .0004\n", r^2 ~ "=" ~ .11), size = 4) +
+  annotate("text", x = 180, y = 3.4, label  = expression("p-value = .0004\n", r^2 ~ "=" ~ .17), size = 4) +
    theme_bw()  + MyTheme
 
 
@@ -517,12 +533,23 @@ ggsave("fig5.png", plot = figure, device = NULL, path = NULL,
 
 ```{r fig 5 k600, echo=TRUE}
 
+
+p <- ggplot(df_wide_all, 
+            aes(x=CatchmentSize_ha,y=K600)) +
+  scale_y_log10() + scale_x_log10() +
+  geom_point(size=2) +
+  geom_smooth(method = "lm",color="black") +
+  ylab(expression(paste(italic('k'),"600 [m d" ^1,"]"))) + xlab("Catchment Size [ha]")
+p
+
 ### bins
 df_bins <- df
 df_bins$CatchmentSize_ha_log <- log(df_bins$CatchmentSize_ha)
 df_bins <- df_bins%>%select(CatchmentSize_ha_log,K600) %>%
   filter(K600 > -30) %>%
-  mutate(Catchment_bin = cut(CatchmentSize_ha_log, breaks=5)) %>% 
+  mutate(Catchment_bin = cut(CatchmentSize_ha_log, breaks=5)) #%>% 
+
+df_bins_summary <-df_bins%>%
   group_by(Catchment_bin) %>%
   summarise(
     k600_mean = mean(K600, na.rm = TRUE),
@@ -530,8 +557,7 @@ df_bins <- df_bins%>%select(CatchmentSize_ha_log,K600) %>%
     k600_median = median(K600, na.rm = TRUE),
     k600_max = max(K600, na.rm = TRUE),
     k600_min = min(K600, na.rm = TRUE),
-    n()
-  )
+    n())
 
 df_bins$Catchment_bin2 <- as.character(df_bins$Catchment_bin)
 df_bins$Catchment_bin3 <- gsub("]", "", df_bins$Catchment_bin2) 
@@ -544,6 +570,20 @@ df_bins$min <- signif(exp(df_bins$min_log),digits =2)
 df_bins$max <- signif(exp(df_bins$max_log),digits =2)
 
 df_bins$bins_true  <- paste(df_bins$min, "-", df_bins$max)
+
+df_bins$bins_true = factor(df_bins$bins_true, levels=c("0.11 - 0.5","0.5 - 2.3","2.3 - 10","10 - 47","47 - 210"))
+
+k600_boxplot <- ggplot(df_bins, aes(x=bins_true, y=K600)) + 
+  geom_boxplot(fill="grey", notch=FALSE)+
+  geom_jitter(width = 0.2)+ 
+    stat_summary(fun.y=mean, geom="point", shape=23,size=3,color="black",fill="red") +
+  scale_y_log10() +
+    ylab(expression(paste("mean ",italic('k')[600]," [m ", d^-1,"]"))) + 
+  xlab("Catchment size [ha]") +
+  theme_bw(base_size = 16) 
+
+
+###bar plots
 
 df_bins$bins_true <- factor(df_bins$bins_true, levels = df_bins$bins_true[order(df_bins$min)])
 
@@ -1164,3 +1204,139 @@ DOC <- ggplot(df, aes(x = Wetland_2, y = DOC, fill = Wetland_2)) +
 #  annotate("text", x="Colmillo", y= 5,label="B", size = 5)
 
 ```
+
+
+# not a figure but something amanda commented on
+If you assumed CO2 were conservative (like SF6) how would the K along a reach compare to what you measured?  If the K along the whole reach is higher, then can you make conclusions about additional CO2 produced/contributed over the reach?
+
+Concentrations exceeded 10,000 ppm and decreased to below 2,000 ppm within 200 meters.
+
+```{r amanda, echo=FALSE}
+
+df_amanda <- df %>%drop_na(Wetland)%>%#filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")%>%
+  filter(dist<200)%>%select(Wetland_4,dist,width,CatchmentSize_ha,adjusted_ppm,F_CO2_umol_m2_s,KH_mol.l.atm,k_m_d,K600)
+
+df_a_summary <- df_amanda%>%
+  group_by(Wetland_4)%>%
+  summarise(
+    dist_min = min(dist,na.rm = TRUE),
+    dist_max = max(dist,na.rm = TRUE),
+    width_ave = mean(width,na.rm = TRUE),
+    pCO2_max = max(adjusted_ppm,na.rm = TRUE),
+    pCO2_min = min(adjusted_ppm,na.rm = TRUE),
+    F_CO2_umol_m2_s_ave = mean(F_CO2_umol_m2_s,na.rm = TRUE),
+    k_m_d_ave = mean(k_m_d,na.rm = TRUE),
+    Kh_ave = mean(KH_mol.l.atm,na.rm = TRUE)
+  )
+
+df_a_summary$total_dist <- df_a_summary$dist_max - df_a_summary$dist_min 
+df_a_summary$area_m2 <- df_a_summary$width_ave/100 * df_a_summary$total_dist
+
+Wetland_4 <- c("ANTE","GAVItrib1","GAVItrib2","Gavilan Inlet","Gavilan Outlet","COLM")
+Q_L_s <- c(1.6,.25,.305,1.01,15.17,74.22)
+Q_df <- data.frame(Wetland_4, Q_L_s)
+
+df_a_summary <- left_join(df_a_summary,Q_df,by="Wetland_4")
+
+df_a_summary$fluxCALC_umol_m2_s <- (df_a_summary$pCO2_max*df_a_summary$Kh_ave - df_a_summary$pCO2_min*df_a_summary$Kh_ave) * df_a_summary$Q_L_s / (df_a_summary$area_m2)
+
+###
+#k = F/(Kh * ((pCO2max + pCO2min)/2 - pCO2air))
+df_a_summary$kCALC_m_d <- df_a_summary$fluxCALC_umol_m2_s * 86400 /  ((df_a_summary$Kh_ave*df_a_summary$pCO2_max + df_a_summary$Kh_ave*df_a_summary$pCO2_min)/2 - df_a_summary$Kh_ave * 416.45)
+
+view(df_a_summary) 
+
+####more than 
+
+
+# F = (C1 - C2)*Q/(A)
+# C1 - F*A/Q  = C2
+
+
+df_amanda <- df %>%drop_na(Wetland)%>%#filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")%>%
+  filter(dist<200)%>%select(Wetland_4,dist,width,CatchmentSize_ha,adjusted_ppm,F_CO2_umol_m2_s,KH_mol.l.atm,k_m_d,K600)
+
+
+df_a_summary <- df_amanda%>%
+  group_by(Wetland_4)%>%
+  summarise(
+    dist_min = min(dist,na.rm = TRUE),
+    dist_max = max(dist,na.rm = TRUE),
+    width_ave = mean(width,na.rm = TRUE),
+    pCO2_max = max(adjusted_ppm,na.rm = TRUE),
+    pCO2_min = min(adjusted_ppm,na.rm = TRUE),
+    F_CO2_umol_m2_s_ave = mean(F_CO2_umol_m2_s,na.rm = TRUE),
+    k_m_d_ave = mean(k_m_d,na.rm = TRUE),
+    Kh_ave = mean(KH_mol.l.atm,na.rm = TRUE)
+  )
+
+df_a_summary$total_dist <- df_a_summary$dist_max - df_a_summary$dist_min 
+df_a_summary$area_m2 <- df_a_summary$width_ave/100 * df_a_summary$total_dist
+
+Wetland_4 <- c("ANTE","GAVItrib1","GAVItrib2","Gavilan Inlet","Gavilan Outlet","COLM")
+Q_L_s <- c(1.6,.25,.305,1.01,15.17,74.22)
+Q_df <- data.frame(Wetland_4, Q_L_s)
+
+
+df_a_summary <- left_join(df_a_summary,Q_df,by="Wetland_4")
+
+# F = (C1 - C2)*Q/(A*86400)
+# C1 - F*A/Q  = C2
+#pCO2 = (C1 - F*A/Q) / kh
+
+
+df_a_summary$CALC_pCO2_min <- (df_a_summary$pCO2_max*df_a_summary$Kh_ave - df_a_summary$F_CO2_umol_m2_s_ave* df_a_summary$area_m2 / df_a_summary$Q_L_s )/df_a_summary$Kh_ave
+
+df_a_summary$pCO2_dif <- (df_a_summary$CALC_pCO2_min - df_a_summary$pCO2_min)/(df_a_summary$CALC_pCO2_min + df_a_summary$pCO2_min)*100
+
+view(df_a_summary)
+
+
+
+####more than 
+
+
+# F = (C1 - C2)*Q/(A)
+# C1 - F*A/Q  = C2
+
+
+df_amanda <- df %>%drop_na(Wetland)%>%filter(CatchmentSize_ha > 12.5)%>%select(Wetland_4,dist,width,CatchmentSize_ha,adjusted_ppm,F_CO2_umol_m2_s,KH_mol.l.atm,k_m_d,K600)
+
+
+df_a_summary <- df_amanda%>%
+  group_by(Wetland_4)%>%
+  summarise(
+    dist_min = min(dist,na.rm = TRUE),
+    dist_max = max(dist,na.rm = TRUE),
+    width_ave = mean(width,na.rm = TRUE),
+    pCO2_max = max(adjusted_ppm,na.rm = TRUE),
+    pCO2_min = min(adjusted_ppm,na.rm = TRUE),
+    F_CO2_umol_m2_s_ave = mean(F_CO2_umol_m2_s,na.rm = TRUE),
+    k_m_d_ave = mean(k_m_d,na.rm = TRUE),
+    Kh_ave = mean(KH_mol.l.atm,na.rm = TRUE)
+  )
+
+df_a_summary$total_dist <- df_a_summary$dist_max - df_a_summary$dist_min 
+df_a_summary$area_m2 <- df_a_summary$width_ave/100 * df_a_summary$total_dist
+
+Wetland_4 <- c("ANTE","GAVItrib1","GAVItrib2","Gavilan Inlet","Gavilan Outlet","COLM")
+Q_L_s <- c(1.6,.25,.305,1.01,15.17,74.22)
+Q_df <- data.frame(Wetland_4, Q_L_s)
+
+df_a_summary <- left_join(df_a_summary,Q_df,by="Wetland_4")
+
+# F = (C1 - C2)*Q/(A*86400)
+# C1 - F*A/Q  = C2
+#pCO2 = (C1 - F*A/Q) / kh
+
+
+df_a_summary$CALC_pCO2_min <- (df_a_summary$pCO2_max*df_a_summary$Kh_ave - df_a_summary$F_CO2_umol_m2_s_ave* df_a_summary$area_m2 / df_a_summary$Q_L_s )/df_a_summary$Kh_ave
+
+df_a_summary$pCO2_dif <- (df_a_summary$CALC_pCO2_min - df_a_summary$pCO2_min)/(df_a_summary$CALC_pCO2_min + df_a_summary$pCO2_min)*100
+
+view(df_a_summary)
+
+
+```
+
+
