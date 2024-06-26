@@ -1,0 +1,396 @@
+---
+title: "SynopFigures_2022-04-20"
+author: "Kriddie"
+date: '2024-02-10'
+output: html_document
+---
+
+#About
+this R markdown contains scripts to create figure in manuscript: 
+"Carbon Evasion Dynamics in a Tropical, High-Elevation, Peatland Catchment are Mediated by A Threshold in Watershed Area"
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(readr)
+library(tidyr) # for `gather`
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+library(plotly)
+library(gridExtra)
+library(grid)
+library(ggmap)
+library(dplyr)
+library(scales)
+library(olsrr)
+library(scales)
+
+```
+
+
+*Objective:*
+The objective of this study is to identify high resolution spatial patterns in pCO2, CO2 flux and geomorphology within a Paramo river network.
+
+Hypothesis 1: Off-gassing from upstream reaches and decreased connection with groundwater will result in decreasing pCO2 within a river reach from upstream to downstream and within a river network from smaller to larger streams. 
+
+Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than smaller streams
+
+#read in data
+
+
+```{r set colors for sites}
+
+#set colors for sites
+
+#new api
+register_stadiamaps("e723ef39-9560-41be-969c-36870f7b7f84", write = TRUE)
+
+#extract hex color codes for a plot with three elements in ggplot2 
+hex1 <- hue_pal()(1)
+hex3 <- hue_pal()(3)
+hex6 <- hue_pal()(6)
+hex8 <- hue_pal()(8)
+
+antens <- hex1[1] #antenas
+gavi <- hex3[3] #gavilan
+gavi_in <- hex6[4] #gavilan inlet
+gavi_out <- hex6[5] #gavilan outlet
+gavitrib1 <- hex8[2] #gavilan trib1
+gavitrib2 <- hex8[3] #gavilan trib2
+gavitrib3 <- hex8[4] #gavilan trib3
+gavitribs <- hex3[2] #gavi tribs
+colmillo <- hex8[8] #colmillo
+```
+
+#fig 1
+Site map generated using arcpro, not included here
+
+#fig 2
+Show general trend in co2
+river network and reach
+
+figure panels plotted separately 
+
+```{r figure 2, echo=FALSE}
+df<- read_csv(here::here("Whitmore_et_al_2024/Data.csv"))
+
+air_ppm <- 416.45
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.text=element_text(size=16))+
+  theme(aspect.ratio=1)
+
+#figure 2 a
+Fig2a <- ggplot(df %>%filter(Wetland_3=="Gavilan River Network"), aes(x = CatchmentSize_ha, y = pCO2_ppm)) +  geom_point(size=3) +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]")))+xlab("Catchment Size [Hectares]") +
+  scale_y_log10() + geom_smooth(method='lm') + MyTheme + 
+  annotate("text", x = 95, y = 10000, label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .314), size = 4)
+
+
+#figure 2 b
+df <- df[order(df$pCO2_ppm),]
+
+Fig2b <- qmplot(lon_fit, lat_fit, data = df %>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(pCO2_ppm),size= 6, maptype = "stamen_terrain", color = log10(pCO2_ppm)) +
+  scale_color_gradient(low="blue", high="red", breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
+  guides(size = "none") +
+  theme(legend.text=element_text(size=14)) + 
+  labs(color=expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
+  theme(legend.title=element_text(size=16), legend.text=element_text(size=14)) 
+
+
+### #figure 2 c.
+
+#annotate text 
+dat_text <- data.frame(
+  label = c("p-value = 0.011", "p-value < .0001", 
+            "p-value = 0.027","p-value = 0.11"),
+  Wetland_4   = c("ANTE", "Gavilan Outlet", "GAVItrib1", "GAVItrib2"),
+  Wetland = c("ANTE","Gavi-mainstem","GAVItrib1","GAVItrib2"))
+
+#subtract 523m from outlet
+df[df$Wetland_4 == 'Gavilan Outlet',]$dist <- df[df$Wetland_4 == 'Gavilan Outlet',]$dist - 523
+Wetland_4_names <- c("ANTE" = "Antenas",
+                    "Gavilan Outlet" = "Gavil\u00e1n Outlet",
+                    "GAVItrib1" = "Gavil\u00e1n Tributary 1",
+                    "GAVItrib2" = "Gavil\u00e1n Tributary 2")
+
+#plot stream reaches where significant relationship found
+Fig2c_significant <- ggplot(df %>%drop_na(Wetland)%>%filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3"), aes(x = dist, y = pCO2_ppm)) +
+  geom_point(size=3) +  
+  scale_y_log10() +
+  facet_grid(Wetland_4~.,labeller = as_labeller(Wetland_4_names)) + geom_smooth(method='lm')+
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
+  theme_bw() + theme(text = element_text(size = 14)) +
+  geom_text(data = dat_text, mapping = aes(x = 400, y = 9000, label = label))
+
+
+#plot stream reaches where no significant relationship was found
+
+Wetland_4_names2 <- c("Gavilan Inlet" = "Gavil\u00e1n Intlet",
+                    "COLM" = "Colmillo")
+
+#annotate text 
+dat_text2 <- data.frame(
+  label = c("p-value = 0.35", "p-value = 0.82"),
+  Wetland_4   = c("Gavilan Inlet", "COLM"),
+  Wetland = c("Gavi-mainstem","COLM"))
+
+Fig2c_notsignificant <- ggplot(df%>%drop_na(Wetland)%>%filter(Wetland_4=="Gavilan Inlet"|Wetland_4=="COLM"), aes(x = dist, y = pCO2_ppm)) + geom_point(size=3) + 
+  scale_y_log10() + expand_limits(y = c(200, 4000)) +
+  facet_grid(Wetland_4~.,labeller = as_labeller(Wetland_4_names2)) +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
+  theme_bw() +
+  theme(text = element_text(size = 14)) +
+  geom_text(data    = dat_text2, mapping = aes(x = 900, y = 3000, label = label))
+
+```
+
+
+#figure 3
+
+Box plot comparisons between stream reaches
+
+
+```{r fig 4 boxplots, echo=FALSE}
+df<- read_csv(here::here("Whitmore_et_al_2024/Data.csv"))
+
+air_ppm <- 416.45
+###box and wisker####
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()) +
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=14)) +
+  theme(legend.text=element_text(size=16))
+
+
+Fig3a <- ggplot(df, aes(x = Wetland_5, y = pCO2_ppm, fill = Wetland_5)) + geom_boxplot() + geom_jitter(shape=18,position=position_jitter(0.1)) + 
+  stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
+  geom_hline(yintercept= air_ppm,color="red",linetype="twodash", linewidth=1) +
+  scale_fill_manual(name=NULL,
+    values = c(antens,colmillo, gavi_in,gavi_out,gavitribs),
+   labels=c("Antenas", "Colmillo","Gavil\u00e1n Inlet", "Gavil\u00e1n Outlet","Gavil\u00e1n Tributaries"))+
+  ylab(expression(paste(italic('p'),"CO"[2]," [ppm]"))) +
+  scale_y_log10() + MyTheme +
+  annotate("text", x="ANTE", y= 18000,label="A", size = 4) +
+  annotate("text", x="COLM", y= 18000,label="A", size = 4) +
+  annotate("text", x="Gavilan Inlet", y= 18000,label="A", size = 4) +
+  annotate("text", x="Gavilan Outlet", y= 18000,label="AB", size = 4) +
+  annotate("text", x="GavilanTribs", y= 18000,label="B", size = 4)
+
+
+Fig3b <- ggplot(df%>%drop_na(F_CO2_umol_m2_s), aes(x = Wetland_5, y = log1p(F_CO2_umol_m2_s), fill = Wetland_5)) + 
+  geom_boxplot() + geom_jitter(shape=18,position=position_jitter(0.1)) +
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
+#  scale_y_log10() + 
+  MyTheme +
+  scale_fill_manual(name=NULL,
+    values = c(antens,colmillo, gavi_in,gavi_out,gavitribs),
+    labels=c("Antenas", "Colmillo","Gavil\u00e1n Inlet", "Gavil\u00e1n Outlet","Gavil\u00e1n Tributaries")) +
+    ylab(expression(paste(" Evasion [",mu,"mol ", m^-2, s^-1,"]"))) +
+    annotate("text", x="ANTE", y= log1p(5),label="A", size = 4) +
+    annotate("text", x="COLM", y= log1p(5),label="B", size = 4) +
+  annotate("text", x="Gavilan Inlet", y= log1p(5),label="AB", size = 4) +
+  annotate("text", x="Gavilan Outlet", y= log1p(5),label="AB", size = 4) +
+    annotate("text", x="GavilanTribs", y= log1p(5),label="B", size = 4) 
+
+
+Fig3c <- ggplot(df%>%drop_na(K600), aes(x = Wetland_5, y = K600, fill = Wetland_5)) + 
+  geom_boxplot() + geom_jitter(shape=18,position=position_jitter(0.1)) +
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white") +
+  scale_y_log10() +
+  scale_fill_manual(name=NULL,
+    values = c(antens,colmillo, gavi_in,gavi_out,gavitribs),
+    labels=c("Antenas", "Colmillo","Gavil\u00e1n Inlet", "Gavil\u00e1n Outlet","Gavil\u00e1n Tributaries"))+
+  ylab(expression(paste(italic('k')[600]," [m ", d^-1,"]"))) +
+  MyTheme + 
+  annotate("text", x="ANTE", y= 155,label="A", size = 4) +
+  annotate("text", x="COLM", y= 155,label="B", size = 4) +
+  annotate("text", x="Gavilan Inlet", y= 155,label="AB", size = 4) +
+  annotate("text", x="Gavilan Outlet", y= 155,label="B", size = 4) +
+  annotate("text", x="GavilanTribs", y= 155,label="A", size = 4)
+
+require(grid)  
+
+
+
+Fig3 <- ggarrange(Fig3a , Fig3b,  Fig3c,
+                    ncol = 1, nrow = 3,
+                    common.legend = TRUE, legend = "right",
+                    align = "hv", 
+                    font.label = list(size = 20, color = "black", face = "bold", family = NULL, position = "top"))
+
+Fig3
+
+
+
+```
+
+#Figure 4
+figure 4 show the relationship between slope and pCO2
+
+```{r fig 4 boxplots, echo=FALSE}
+
+
+df_slope <- read.csv(here::here("Whitmore_et_al_2024/Slope_Data.csv"))
+
+theme_set(theme_bw(base_size = 16))
+
+fig4 <- ggplot(df_slope  %>%filter(CatchmentSize_ha > 12.5), 
+       aes(x=slope_m.m,y=pCO2_ppm, color=CatchmentSize_ha)) + 
+  geom_point(size=2) +
+  geom_smooth(method = "lm",color="black") +
+  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Slope [m/m]") +
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
+  scale_colour_gradient( name = "Catchment Size [ha]",
+  low = "yellow3", high = "green4",
+  space = "Lab", na.value = "grey50",
+  guide = "colourbar",aesthetics = "colour")
+
+
+```
+
+#figure 5
+figure 5 shows the relationship between catchment size and k600
+
+```{r fig 5 , echo=TRUE}
+
+df_slope <- read.csv(here::here("Whitmore_et_al_2024/Slope_Data.csv"))
+
+fig5 <- ggplot(df_slope, 
+            aes(x=CatchmentSize_ha,y=K600)) +
+  scale_y_log10() + scale_x_log10() +
+  geom_point(size=2) +
+  geom_smooth(method = "lm",color="black") +
+  ylab(expression(paste(italic('k'),"600 [m d" ^1,"]"))) + xlab("Catchment Size [ha]")
+fig5
+
+```
+#figure 6
+
+figure 6 show drivers of evasion in small large
+for < 12.5 hectars, watershed size is not significant, co2 is significant
+r2 = 0.5247, pvalue =2.43e-07
+for > 20 ha, co2 is not significant, but watershed size is. pvalue = 0.00395 r2 = 0.1057
+
+```{r fig 6, echo=FALSE}
+df<- read_csv(here::here("Whitmore_et_al_2024/Data.csv"))
+
+air_ppm <- 416.45
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16)) +
+  theme(legend.title = element_text(size=18),
+    legend.text=element_text(size=16))
+
+hex <- hue_pal()
+
+
+Fig6a <- ggplot(df%>%filter(CatchmentSize_ha<12.5), aes(x=pCO2_ppm, y=F_CO2_umol_m2_s)) +
+  geom_point(aes(fill=Wetland),  color="black",pch=21, size=3) + 
+  geom_smooth(method='lm') +
+  geom_vline(xintercept= air_ppm,color="red",linetype="twodash", linewidth=1) +
+  scale_y_log10() + scale_x_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
+  xlab("CO2 ppm") +  ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
+  labs(linetype="LEGEND", color="LEGEND") +
+  scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 3"), values = c(antens, gavitrib1, gavitrib3)) +
+  annotate("text", x = 1000, y = 2.1, label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .48), size = 4) +
+   theme_bw()  + MyTheme 
+
+
+Fig6b <- ggplot(df %>% filter(CatchmentSize_ha>20), aes(x=CatchmentSize_ha, y=F_CO2_umol_m2_s)) +
+  geom_point(aes(fill=Wetland), color="black",pch=21, size=3) + 
+  scale_y_log10() + scale_x_log10() +
+  geom_smooth(method='lm') +
+  xlab("Catchment Size [ha]") +  ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) + 
+  labs(linetype="LEGEND", color="LEGEND") +
+  scale_fill_manual(name="Stream Reach",
+    labels=c( "Colmillo","Gavil\u00e1n","Gavil\u00e1n Tributary 2"),
+    values = c(colmillo, gavi,gavitrib2))+
+  annotate("text", x = 60, y = 2.3, label  = expression("p-value = .0004\n", r^2 ~ "=" ~ .17), size = 4) +
+   theme_bw()  + MyTheme
+
+
+
+Fig6 <- ggarrange(Fig6a, Fig6b,  
+                    ncol = 1, nrow = 2,
+                    legend = "right",
+                    align = "hv", 
+                    font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
+
+
+
+```
+
+
+#Fig 7 
+This figure show cumulative co2 evasion
+
+
+```{r Figure 7 fig, echo=FALSE}
+
+fig7_data <- read.csv(here::here("Whitmore_et_al_2024/fig7_dataframe.csv"))
+
+MyTheme <-  theme_bw() + 
+  theme(axis.text=element_text(size=18),
+        axis.title=element_text(size=24)) +
+  theme(legend.title = element_text(size=24),
+    legend.text=element_text(size=18))+
+  theme(aspect.ratio=1)
+
+Fig7a <- ggplot(fig7_data%>%filter(Wetland_4 != "Gavilan Outlet")%>%filter(Wetland_4 != "Gavilan Inlet"), aes(x=dist, y=Totalflux_umolpers, group=Wetland_4)) +
+  geom_line(aes(color=Wetland), size=3) +
+  geom_point(aes(shape = shape,fill=Wetland), size=2) +
+  ylab(expression(paste(""))) + xlab("") +
+  scale_color_manual(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan-mainstem","Tributary 1","Tributary 2"), values=c(antens, colmillo, gavi,gavitrib1, gavitrib2)) +
+  scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan-mainstem","Tributary 1","Tributary 2"), values=c(antens, colmillo, gavi,gavitrib1, gavitrib2)) +
+  scale_linetype_discrete(name="Stream Reach",labels=c("Antenas", "Colmillo","Gavilan-mainstem","Tributary 1","Tributary 2")) +
+  scale_shape_manual(name="Sample Point", labels=c("",""), values = 21) +
+  guides(fill=FALSE,color=FALSE,shape=FALSE) +
+  MyTheme
+
+#zoom in
+Fig7b <- ggplot(fig7_data%>%filter(Wetland_4 != "Gavi-mainstem")
+       , aes(x=dist, y=Totalflux_umolpers, group=Wetland_4)) +
+  geom_line(aes(color=Wetland_4), size=3) +
+  geom_point(aes(shape = shape,fill=Wetland_4), size=2) +
+  ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) + 
+  xlab("Distance [m]") +
+  scale_color_manual(name="Stream Reach",
+    labels=c("Antenas", "Colmillo","Gavilan Inlet","Gavilan Outlet","Tributary 1","Tributary 2"),
+    values=c(antens, colmillo, gavi_in,gavi_out,gavitrib1, gavitrib2)) +
+  scale_linetype_discrete(
+    name="Stream Reach",
+    labels=c("Antenas", "Colmillo","Gavilan Inlet","Gavilan Outlet","Tributary 1","Tributary 2")) +
+  scale_shape_manual(name="Sample Point", 
+    labels=c("",""), values = 21) +
+  scale_fill_manual(
+values=c(antens, colmillo, gavi_in,gavi_out,gavitrib1, gavitrib2)) +
+    guides(fill=FALSE) +
+  xlim(-10, 350) +
+  ylim(-20, 300) +
+  MyTheme +
+  theme(legend.position = "none") 
+
+
+# Extract the legend. Returns a gtable
+leg <- get_legend(Fig7a)
+leg2 <- get_legend(Fig7b)
+
+# Convert to a ggplot and print
+as_ggplot(leg)
+as_ggplot(leg2)
+
+
+```
+
+
