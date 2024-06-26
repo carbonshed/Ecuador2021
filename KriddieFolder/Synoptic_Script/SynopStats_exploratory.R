@@ -3,7 +3,7 @@
 
 
 #read in data
-df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-02-10.csv"))
+df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)
 
 #total flux for gavi tribs to add to bball plota
 Trib1 <- read.csv(here::here("ProcessedData/GAVItrib1_synopticGeom_2022-08-30.csv"))
@@ -42,14 +42,14 @@ df_summaryFlux <- df%>%filter(Flux_ave>-.2)%>%
     n()
   )
 
-df_summaryk600 <- df%>%filter(Flux_ave>-.2)%>%
+df_summaryk600 <- df%>%filter(F_CO2_umol_m2_s>-0.6)%>%
   group_by(Wetland_4)%>%
   summarise(
-    k600_mean = mean(K600.effective, na.rm = TRUE),
-    k600_stdev = sd(K600.effective, na.rm = TRUE),
-    k600_median = median(K600.effective, na.rm = TRUE),
-    k600_max = max(K600.effective, na.rm = TRUE),
-    k600_min = min(K600.effective, na.rm = TRUE),
+    k600_mean = mean(K600, na.rm = TRUE),
+    k600_stdev = sd(K600, na.rm = TRUE),
+    k600_median = median(K600, na.rm = TRUE),
+    k600_max = max(K600, na.rm = TRUE),
+    k600_min = min(K600, na.rm = TRUE),
     n()
   )
 

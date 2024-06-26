@@ -22,6 +22,7 @@ library(grid)
 library(ggmap)
 library(dplyr)
 library(scales)
+library(olsrr)
 
 #register_stadiamaps(key = "4c9564bd-71e6-4396-8cef-e76e893129ce", write = TRUE)
 
@@ -290,8 +291,8 @@ df_wide_all <- read.csv(here::here("ProcessedData/Synop_slope_2024-05-07.csv"))
 
 df_wide_all[df_wide_all < 0] <- 0
 
-model1.2 <- lm(log(pCO2_ppm) ~ log1p(slope_m.m) #+
-#                 scale(CatchmentSize_ha)
+model1.2 <- lm(log(pCO2_ppm) ~ scale(log1p(slope_m.m)) +
+                 scale(log(CatchmentSize_ha))
 , data = df_wide_all %>%filter(CatchmentSize_ha > 12.5)
                )
 summary(model1.2)
@@ -331,10 +332,10 @@ Box plots
 anova.co2 <- aov(log(adjusted_ppm) ~ Wetland_5, data = df)
 summary(anova.co2)
 
-anova.flux <- aov(F_CO2_umol_m2_s ~ Wetland_5, data = df)
+anova.flux <- aov(log1p(F_CO2_umol_m2_s) ~ Wetland_5, data = df)
 summary(anova.flux)
 
-anova.k600 <- aov(K600 ~ Wetland_5, data = df%>%filter(K600>-30) )
+anova.k600 <- aov(log1p(K600) ~ Wetland_5, data = df%>%filter(K600>-30) )
 summary(anova.k600)
 
 tukey.co2<-TukeyHSD(anova.co2)
@@ -380,6 +381,7 @@ flux <- ggplot(df, aes(x = Wetland_5, y = F_CO2_umol_m2_s, fill = Wetland_5)) +
   geom_boxplot() +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
+  scale_y_log10() +
   MyTheme +
   scale_fill_manual(
     name=NULL,
@@ -389,8 +391,8 @@ flux <- ggplot(df, aes(x = Wetland_5, y = F_CO2_umol_m2_s, fill = Wetland_5)) +
     annotate("text", x="ANTE", y= 5,label="A", size = 4) +
     annotate("text", x="COLM", y= 5,label="B", size = 4) +
   annotate("text", x="Gavilan Inlet", y= 5,label="AB", size = 4) +
-  annotate("text", x="Gavilan Outlet", y= 5,label="AC", size = 4) +
-    annotate("text", x="GavilanTribs", y= 5,label="BC", size = 4) 
+  annotate("text", x="Gavilan Outlet", y= 5,label="AB", size = 4) +
+    annotate("text", x="GavilanTribs", y= 5,label="B", size = 4) 
 
 
 k600 <- ggplot(df%>%filter(K600>-30)
@@ -398,6 +400,7 @@ k600 <- ggplot(df%>%filter(K600>-30)
   geom_boxplot() +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white") +
+  scale_y_log10() +
   scale_fill_manual(
     name=NULL,
     values = c(antens,colmillo, gavi_in,gavi_out,gavitribs),
@@ -406,8 +409,8 @@ k600 <- ggplot(df%>%filter(K600>-30)
     ylab(expression(paste(italic('k')[600]," [m ", d^-1,"]"))) +
   annotate("text", x="ANTE", y= 155,label="A", size = 4) +
   annotate("text", x="COLM", y= 155,label="B", size = 4) +
-  annotate("text", x="Gavilan Inlet", y= 155,label="A", size = 4) +
-  annotate("text", x="Gavilan Outlet", y= 155,label="A", size = 4) +
+  annotate("text", x="Gavilan Inlet", y= 155,label="AB", size = 4) +
+  annotate("text", x="Gavilan Outlet", y= 155,label="B", size = 4) +
   annotate("text", x="GavilanTribs", y= 155,label="A", size = 4)
 
 require(grid)  
@@ -438,10 +441,10 @@ for > 20 ha, co2 is not significant, but watershed size is. pvalue = 0.00395 r2 
 ```{r fig 6, echo=FALSE}
 
 df_sats <- df
-df_sats$co2_scale <-scale(df_sats$adjusted_ppm)
+df_sats$co2_scale <-scale(df_sats$pCO2_ppm)
 df_sats$WS_scale <- scale(df_sats$CatchmentSize_ha)
 
-model1_1 <- lm(log(F_CO2_umol_m2_s) ~ log(adjusted_ppm), 
+model1_1 <- lm(log1p(F_CO2_umol_m2_s) ~ log1p(pCO2_ppm), 
              data = df_sats %>%filter(F_CO2_umol_m2_s>-1)%>%filter(CatchmentSize_ha<12.5))
 summary(model1_1)
 
@@ -490,7 +493,7 @@ A <- ggplot(df%>%filter(CatchmentSize_ha<12.5),
   labs(linetype="LEGEND", color="LEGEND") +
   scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 3"), values = c(antens, gavitrib1, gavitrib3)) +
    scale_x_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) + 
-  annotate("text", x = log10(6000), y = 2.2, label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .48), size = 4) +
+  annotate("text", x = log10(1000), y = 2.1, label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .48), size = 4) +
    theme_bw()  + MyTheme 
 
 
@@ -509,7 +512,7 @@ B <- ggplot(df_sats %>%filter(F_CO2_umol_m2_s>-.6)
   scale_fill_manual(
     name="Stream Reach",
     labels=c( "Colmillo","Gavil\u00e1n","Gavil\u00e1n Tributary 2"),values = c(colmillo, gavi,gavitrib2))+
-  annotate("text", x = 180, y = 3.4, label  = expression("p-value = .0004\n", r^2 ~ "=" ~ .17), size = 4) +
+  annotate("text", x = 60, y = 2.3, label  = expression("p-value = .0004\n", r^2 ~ "=" ~ .17), size = 4) +
    theme_bw()  + MyTheme
 
 
@@ -523,6 +526,7 @@ figure <- ggarrange(A , B,
                     font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
 
 figure
+
 ggsave("fig5.png", plot = figure, device = NULL, path = NULL,
        scale = 1, width = 20, height = 20, dpi = 360, limitsize = TRUE,
        units = c("cm"))
@@ -777,6 +781,8 @@ Trib2 <- df_trash
 ##bind together
 
 ```{r bind df, echo=FALSE}
+df_all <- rbind(ANTE%>%select(Wetland_4,surface_area),GAVI%>%select(Wetland_4,surface_area),COLM%>%select(Wetland_4,surface_area),Trib1%>%select(Wetland_4,surface_area),Trib2%>%select(Wetland_4,surface_area))
+
 df1_1 <- df%>%filter(Wetland=="COLM")
 df1_1 <- df1_1[order(df1_1$dist),] 
 df1_1$Totalflux_umolpers <- df1_1$Totalflux_umolpers - df1_1$Totalflux_umolpers[1]
@@ -868,6 +874,8 @@ bball_zoom <- ggplot(df_test%>%filter(Wetland_4 != "Gavi-mainstem"),
 
 
 bball_zoom
+
+#write.csv(df_test,here::here("ProcessedData/bball_dataframe.csv"))
 
 ```
 
