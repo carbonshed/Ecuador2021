@@ -62,80 +62,22 @@ arrange.vars <- function(data, vars){
 
 ```{r read in data}
 #df_prediction <- read.csv(here::here("ProcessedData/GAVI_synoptic_2022-04-19.csv"))
-df_prediction <- read.csv(here::here("ProcessedData/GAVI_synoptic_2022-06-04.csv"))
-df_prediction$X <- NULL
+df_prediction_save <- read.csv(here::here("ProcessedData/GAVI_synoptic_2022-06-04.csv"))
+df_prediction_save$X <- NULL
 
-ggplot(data=df_prediction%>%drop_na(Date), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+ggplot(data=df_prediction_save%>%drop_na(Date), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 
-ggplot(data=df_prediction%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
+ggplot(data=df_prediction_save%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 ```
 #read in x, w, d data frame
 
 ```{r x and w and d, echo=FALSE}
-XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVImainstem_Geomorph_2022-01-28.csv"))
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVI-DOWNmainstem_Geomorph_2024-08-30.csv"))
+XWD <- XWD%>%select(lon,lat,x_new,d,w,ele,notes)%>%rename(x=x_new)
 
-XWD <- XWD[,c("lon","lat","x","d","w","ele","notes")]
-
-#oh what rotten luck. XWD data was collected downstream to upstream and df_prediction is opposite. Let use right this wrong
-#also the distances are all messed up because of the gavi wetland, so we will reverse order one at a time
-
-XWD <- XWD[order(XWD$x),]
-XWD$x_diff <- NA
-
-##first above GAVI
-XWD_up <- XWD%>%filter(x>600)
-for(i in 1:nrow(XWD_up)) {       # for-loop over rows
-  if (i == 1) {
-    XWD_up$x_diff[i] <- 0
-  } else {
-    XWD_up[i,"x_diff"] <-   XWD_up[i,"x"] - XWD_up[i-1,"x"]
-  }
-}
-XWD_up <- XWD_up[order(-XWD_up$x),]
-XWD_up$x_new <- NA
-for(i in 1:nrow(XWD_up)) {       # for-loop over rows
-  if (i == 1) {
-    XWD_up$x_new[i] <- 0
-  } else {
-    XWD_up[i,"x_new"] <-   XWD_up[i-1,"x_diff"] + XWD_up[i-1,"x_new"]
-  }
-}
-XWD_up$x_new <-XWD_up$x_new - 0.8
-XWD_up$x_new[which(XWD_up$x_new==-0.8)] <- 0
-
-##below GAVI
-XWD_down <- XWD%>%filter(x<600)
-for(i in 1:nrow(XWD_down)) {       # for-loop over rows
-  if (i == 1) {
-    XWD_down$x_diff[i] <- 0
-  } else {
-    XWD_down[i,"x_diff"] <-   XWD_down[i,"x"] - XWD_down[i-1,"x"]
-  }
-}
-XWD_down <- XWD_down[order(-XWD_down$x),]
-XWD_down$x_new <- NA
-for(i in 1:nrow(XWD_down)) {       # for-loop over rows
-  if (i == 1) {
-    XWD_down$x_new[i] <- 0
-  } else {
-    XWD_down[i,"x_new"] <-   XWD_down[i-1,"x_diff"] + XWD_down[i-1,"x_new"]
-  }
-}
-
-#now add on some distance to account for Gavi_up and the wetland in between
-
-#wetland is dist: 313.0514 to 507.6456
-#most downstream measurment of gavi_up is 245.0
-
-XWD_down$x_new <- XWD_down$x_new + (507.6456-313.0514+0.4058) + 245.0
-
-XWD <- rbind(XWD_up,XWD_down)
-
-#great. now get rid of the stuff you don't want
-XWD <- XWD[,c("lon","lat","x_new","d","w","ele","notes")]
-names(XWD)[names(XWD) == 'x_new'] <- 'x'
+XWD_save <- XWD[order(XWD$x),]
 
 
 ```
@@ -144,11 +86,11 @@ now we snap XWD data to prediction
 
 ```{r snap XDW, echo=FALSE}
 
-df_prediction <- arrange.vars(df_prediction, c("lon_fit"=1))
+df_prediction <- arrange.vars(df_prediction_save, c("lon_fit"=1))
 #seeing some problems around GAVI wetland. Distance don't match up. So we will restart distance 
 
-XWD_1 <- XWD %>%drop_na(lon)
-XWD_2 <- XWD
+XWD_1 <- XWD_save %>%drop_na(lon)
+XWD_2 <- XWD_save
 XWD_2$x[which(XWD_2$x>1043)] <- XWD_2$x[which(XWD_2$x>1043)] - (1045 - 507.6455874)
 
 x <- SpatialPoints(XWD_1[,c(1:2)])
@@ -301,7 +243,7 @@ df$area[which(df$x_pred==1009.0)] <- df$length[which(df$x_pred==1009.0)] *df$w[w
 
 df_prediction_3 <- df
 
-#write.csv(df_prediction_3, here::here("ProcessedData/Gavi_XWD_2.csv"))
+write.csv(df_prediction_3, here::here("ProcessedData/Gavi_XWD_2.csv"))
 
 ```
 

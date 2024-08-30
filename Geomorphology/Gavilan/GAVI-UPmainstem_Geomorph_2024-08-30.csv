@@ -1,0 +1,37 @@
+Wetland,x,w,d,notes,Waypoint,lat,lon,ele,Time_collected,x_new
+GAVI,1367,72,12,,201,-0.325778006,-78.19969503,4116.010254,2021-07-28T19:04:28Z,1612.8
+GAVI,1374.5,NA,NA,underground,,,,,,1605.3
+GAVI,1376.9,NA,NA,underground,,,,,,1602.9
+GAVI,1377,38,13,,,,,,,1602.8
+GAVI,1387,81,7,,,,,,,1592.8
+GAVI,1394,NA,NA,underground,,,,,,1585.8
+GAVI,1396,NA,NA,underground,,,,,,1583.8
+GAVI,1397,81,7,,,,,,,1582.8
+GAVI,1399.5,NA,NA,underground,,,,,,1580.3
+GAVI,1404,NA,NA,underground,,,,,,1575.8
+GAVI,1407,60,25,,,,,,,1572.8
+GAVI,1417,62,17,,202,-0.325379027,-78.19965497,4127.04834,2021-07-28T19:20:51Z,1562.8
+GAVI,1427,47,4,,,,,,,1552.8
+GAVI,1432,NA,NA,underground,,,,,,1547.8
+GAVI,1435,NA,NA,underground,,,,,,1544.8
+GAVI,1437,64,25,,,,,,,1542.8
+GAVI,1446,NA,NA,comes out from underground (waterfall),203,-0.325153973,-78.19960099,4140.230957,2021-07-28T19:34:46Z,1533.8
+GAVI,1447,81,18,above waterfall,,,,,,1532.8
+GAVI,1448,31,5,top of waterfall,,,,,,1531.8
+GAVI,1449,NA,NA,underground,,,,,,1530.8
+GAVI,1450,NA,NA,underground,,,,,,1529.8
+GAVI,1453.8,130,7,"wetland outlet - ""weird and braided and confucsing, followed visibly flowing water""",204,-0.32507401,-78.19959504,4138.649414,2021-07-28T19:38:22Z,1526
+GAVI,1465,NA,NA,just a hole where you can see the stream,205,-0.324967979,-78.19959998,4135.843262,2021-07-28T19:39:07Z,1514.8
+GAVI,1467,55,12,,207,-0.32494803,-78.19963502,4136.36084,2021-07-28T19:40:12Z,1512.8
+GAVI,1467.1,NA,NA,lose track of stream that was flowing mostly underground,,,,,,1512.7
+GAVI,,NA,NA,starting at large stream upsteam of last measurement (I think?),,,,,,2979.8
+GAVI,1527,22,11,,,,,,,1452.8
+GAVI,1537,30,7,,,,,,,1442.8
+GAVI,1547,28,4,middle of braid 3,,,,,,1432.8
+GAVI,1557,54,5,,,,,,,1422.8
+GAVI,1567,48,10.5,,208,-0.324555002,-78.19958598,4149.788086,2021-07-28T20:11:02Z,1412.8
+GAVI,1577,16,3.5,,,,,,,1402.8
+GAVI,1587,27,7,,,,,,,1392.8
+GAVI,1597,78,8,,,,,,,1382.8
+GAVI,1607,43,15.5,,,,,,,1372.8
+GAVI,1612.8,22,7,comes out from ground and can't find until big waterfall,209,-0.324193994,-78.19959696,4146.853027,2021-07-28T20:21:02Z,1367
