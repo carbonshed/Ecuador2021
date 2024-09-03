@@ -1,7 +1,7 @@
 ---
-title: "Geomorphology_GAVI"
+title: "Geomorphology_GAVI-UP"
 author: "KWhitmore"
-date: "12/09/2021"
+date: "09/03/2024"
 output: html_document
 ---
 
@@ -55,14 +55,11 @@ arrange.vars <- function(data, vars){
     return(data)
 }
 ```
-## BUild the geomorphology data frame for Ante mainstem
+## BUild the geomorphology data frame for GAVI upstream of peatland
 
 2021-07-26 9:50
 ```{r build df 2021-12-18}
 
-add_coordinates <- data.frame(lat=c(-0.3281818,-0.3281891,-0.3282081,-0.3282233),
-                              lon=c(-78.2004517,-78.2004572,-78.2004747,-78.2004911),
-                              ele=c(NA,NA,NA,NA),time=c(NA,NA,NA,NA))
 
 Geomorph <- read.csv(here::here("Geomorphology/Gavilan/GAVI_Dec2021.csv"), skip = 70)
 Geomorph <- Geomorph[,3:6]
@@ -88,9 +85,8 @@ Geomorph_2 <- subset(Geomorph,
 Geomorph <- rbind(Geomorph_1,Geomorph_2)
 
 #just downstream of gavi
-Geomorph <- Geomorph %>% filter(lat <= -.328)
-#add coordinates from arcpro
-Geomorph <- rbind(add_coordinates,Geomorph)
+Geomorph <- Geomorph %>% filter(lat > -.328)
+
 
 ```
 
@@ -115,7 +111,8 @@ Synopjune22 <- synop %>% filter(Date == "2021-06-22" & EOS_no == "EOS1" & Tract 
 Synopjune29 <- synop %>% filter(Date == "2021-06-29" & EOS_no == "EOS2" & Tract == 7)
 Synopjune30 <- synop %>% filter(Date == "2021-06-30" & EOS_no == "EOS2")
 
-synop_mainstem <- rbind(Synopjune18,Synopjune22#,Synopjune29,Synopjune30
+synop_mainstem <- rbind(#Synopjune18,Synopjune22,
+                        Synopjune29,Synopjune30
                         )
 rm(Synopjune18,Synopjune22,Synopjune29,Synopjune30)
 ```
@@ -172,18 +169,12 @@ In this code chunk, we start by smooting a line to the lat lon data, which appea
 
 We will do this in parts though, be cause the relationship between lat lon can not be described as a function
 
-Colmillo is not too far off from a function if lat is the "x" and lon is the 'y'
 
-```{r first spline, echo=FALSE}
+```{r upstream of gavi spline, echo=FALSE}
 
+#Cut up lat long into peices, and then fit spline
 
-
-df <- full_join(synop_mainstem,Geomorph, by=c("lat","lon")) 
-
-
-model <- lm(lon~bs(lat,
-                   degree = 10),
-            data=Geomorph)
+model <- lm(lon~bs(lat, degree = 10), data=Geomorph)
 
 latlims <- range(Geomorph$lat)
 lat.grid <- seq(from=latlims[1],to=latlims[2], by=.000001)
@@ -198,16 +189,16 @@ fig<-plot_ly(data = Geomorph, x = ~lat, y = ~lon)
 
 lat <- lat.grid
 lon <- pred$fit
-df1<-as.data.frame(lat)
-df1$lon <- lon
-df1$num <- '1'
+df2<-as.data.frame(lat)
+df2$lon <- lon
+df2$num <- '2'
 ```
 
 
 ```{r bind dataframes, echo=FALSE}
 
 #now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- df1
+df_prediction <- df2
 
 
 plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
@@ -220,7 +211,7 @@ now we have a smooth data frame of lat/lon data, we calculate the distance betwe
 ```{r calc dist}
 
 ###create a loop and calculate distance along the river from the predict_df. Then we can bind in the GEOMORPH!
-df_prediction <- df1 %>% drop_na(lat)
+df_prediction <- df2 %>% drop_na(lat)
 df_prediction$num <- NULL
 #df_prediction <- df_prediction[,c("lon","lat")]
 colnames(df_prediction) <- c("lat_fit","lon_fit")
@@ -231,8 +222,6 @@ for(i in 1:nrow(df_prediction)) {
   if (i == 1) {
 
       df_prediction$dist <- 0
-#      df_prediction[i,"lon_dist"] <- 0
-#      df_prediction[i,"lat_dist"] <- 0
       
     } else {
       df_prediction[i,"lon_dist"] <- df_prediction[i-1,"lon_fit"]
@@ -341,9 +330,6 @@ But maybe just because data is not great. please revisit
 
 ok i did revisit, and I think this is better now
 
-but we do need to split up downstream and upstream data
-
-I've decided to split up my script so that I treat upstream and downstream seperatly
 
 ```{r diff 1 way}
 
@@ -392,7 +378,6 @@ for(i in 1:nrow(df_prediction)) {       # for-loop over rows
 }
 
 
-#loosing a synop point in the next chunk
 ```
 
 #read out
@@ -404,18 +389,17 @@ df_prediction <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist_diff,Date,P
 df_prediction <- unique(df_prediction)
 
 ##check should have 23 synop points 
-check <- df_prediction%>%drop_na(Flux_ave)
+check <- df_prediction%>%drop_na(Date)
 
-#write.csv(df_prediction, here::here("ProcessedData/GAVI_synoptic_2024-09-03.csv"))
-#write.csv(check, here::here("ProcessedData/GAVI_synopticpoints_arcpro_2024-09-03.csv"))
-
-
+#write.csv(df_prediction, here::here("ProcessedData/GAVI_UP_synoptic_2024-09-03.csv"))
+#write.csv(check, here::here("ProcessedData/GAVI_UP_synopticpoints_arcpro_2024-09-03.csv"))
 
 ggplot(data=df_prediction%>%drop_na(Date), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 
 ggplot(data=df_prediction%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
+
 ```
 
 ##now we add in width and depth data
@@ -425,10 +409,10 @@ and also df_prediction for trouble shooting purposes
 
 ```{r x and w and d, echo=FALSE}
 
-df_prediction <- read.csv(here::here("ProcessedData/GAVI_synoptic_2024-09-03.csv"))
+df_prediction <- read.csv(here::here("ProcessedData/GAVI_UP_synoptic_2024-09-03.csv"))
 df_prediction$X <- NULL
 
-XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVI-DOWNmainstem_Geomorph_2024-08-30.csv"))
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVI-UPmainstem_Geomorph_2024-08-30.csv"))
 XWD <- XWD%>%select(lon,lat,x_new,d,w,ele,notes)%>%rename(x=x_new)
 
 XWD_save <- XWD[order(XWD$x),]
@@ -464,10 +448,9 @@ df_prediction_1 <- full_join(df_prediction_arrange,XWD_1,by=c("lon_fit","lat_fit
 df_prediction_1 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x","d","w","notes")]
 df_prediction_1 <- unique(df_prediction_1)
 
-# 2 waypoints snapped to corrdinates that are the same distance. 
-#i think that we should delete one of these way points I'll choose the one that is under a culvert, becasue it would make sense that the gps is off when under a culvert
+# there is a point with no associated x, and it causes probelms later
 
-df_prediction_1 <- df_prediction_1%>%filter(notes!="culvert under rd")
+df_prediction_1 <- df_prediction_1%>%filter(notes!="starting at large stream upsteam of last measurement (I think?)")
 ```
 
 We've snapped in the waypoints collected while sampling x/width/depth, but there are many points in between don't have corresponding lat/lon/ele. So how to fix these gaps?
@@ -537,7 +520,7 @@ setDT(XWD_fit)
 
 df_prediction_3 <- df_prediction_2[XWD_fit, roll = "nearest", on = "x_pred"]
 
-#write.csv(df_prediction_3, here::here("ProcessedData/GaviDOWN_XWD.csv"))
+write.csv(df_prediction_3, here::here("ProcessedData/GaviUP_XWD.csv"))
 
 ```
 
