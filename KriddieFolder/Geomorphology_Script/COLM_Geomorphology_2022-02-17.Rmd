@@ -214,6 +214,8 @@ Geomorph$lat_fit <- pred$lat
 
 df_prediction <- full_join(df_prediction,Geomorph,by=c("lon_fit","lat_fit"))
 ```
+
+
 ```{r 3d plot and synop, echo=FALSE}
 
 df <- full_join(synop,Geomorph, by=c("lat","lon","ele")) 
