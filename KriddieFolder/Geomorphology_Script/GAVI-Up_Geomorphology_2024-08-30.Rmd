@@ -19,6 +19,7 @@ library(dplyr)
 library(sp)
 library(geosphere)
 library(ggmap)
+library(data.table)
 
 
 #funtion
@@ -213,7 +214,7 @@ now we have a smooth data frame of lat/lon data, we calculate the distance betwe
 ###create a loop and calculate distance along the river from the predict_df. Then we can bind in the GEOMORPH!
 df_prediction <- df2 %>% drop_na(lat)
 df_prediction$num <- NULL
-#df_prediction <- df_prediction[,c("lon","lat")]
+
 colnames(df_prediction) <- c("lat_fit","lon_fit")
 df_prediction$lon_dist <- NA
 df_prediction$lat_dist <- NA
@@ -314,8 +315,6 @@ First, lets find the most western lat point
 now we have created a distance column that we can plot the elevation data against. lets see how that looks
 
 ```{r plot dist v ele, echo = FALSE}
-
-
 fig <- plot_ly(df_prediction, x = ~dist, y = ~ele, size = 1)
 fig
 ```
@@ -362,12 +361,11 @@ you can't just reverse order the distance column because they are not collected 
 
 #loops below switch order of distance
 
-```{r reverse, echo=FALSE}
 
+```{r reverse, echo=FALSE}
 
 df_prediction <- df_prediction[order(df_prediction$dist),]
 df_prediction$dist_diff <- NA
-#df_prediction$dist_diff[1] <- max(df_prediction$dist)
 
 for(i in 1:nrow(df_prediction)) {       # for-loop over rows
   if (i == 1) {
@@ -376,6 +374,12 @@ for(i in 1:nrow(df_prediction)) {       # for-loop over rows
     df_prediction$dist_diff[i] <-   max(df_prediction$dist) - df_prediction[i,"dist"]
   }
 }
+
+ggplot(data=df_prediction%>%drop_na(Date), aes(dist_diff, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+
+ggplot(data=df_prediction%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
 
 
 ```
@@ -394,12 +398,6 @@ check <- df_prediction%>%drop_na(Date)
 #write.csv(df_prediction, here::here("ProcessedData/GAVI_UP_synoptic_2024-09-03.csv"))
 #write.csv(check, here::here("ProcessedData/GAVI_UP_synopticpoints_arcpro_2024-09-03.csv"))
 
-ggplot(data=df_prediction%>%drop_na(Date), aes(dist, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
-  geom_point(size=5)
-
-ggplot(data=df_prediction%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
-  geom_point(size=5)
-
 ```
 
 ##now we add in width and depth data
@@ -412,7 +410,7 @@ and also df_prediction for trouble shooting purposes
 df_prediction <- read.csv(here::here("ProcessedData/GAVI_UP_synoptic_2024-09-03.csv"))
 df_prediction$X <- NULL
 
-XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVI-UPmainstem_Geomorph_2024-08-30.csv"))
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVI-UPmainstem_Geomorph_2024-09-04.csv"))
 XWD <- XWD%>%select(lon,lat,x_new,d,w,ele,notes)%>%rename(x=x_new)
 
 XWD_save <- XWD[order(XWD$x),]
@@ -451,6 +449,8 @@ df_prediction_1 <- unique(df_prediction_1)
 # there is a point with no associated x, and it causes probelms later
 
 df_prediction_1 <- df_prediction_1%>%filter(notes!="starting at large stream upsteam of last measurement (I think?)")
+
+saveit <- df_prediction_1
 ```
 
 We've snapped in the waypoints collected while sampling x/width/depth, but there are many points in between don't have corresponding lat/lon/ele. So how to fix these gaps?
@@ -474,32 +474,44 @@ key to this is being able idntify the next known x in between NAs.
 the code below realtes x as measured in the field to distance as calculated with way points. The ancors are waypoints collected every 50 meters in the field 
 
 ```{r dist and x, echo=FALSE}
+df_prediction_1 <- saveit
 
-df_prediction_1$dist_pred <- NULL
-df_prediction_1$x_pred <- NULL
-
-df_prediction_1 <- df_prediction_1[order(df_prediction_1$dist),]
+df_prediction_1 <- df_prediction_1[order(df_prediction_1$x),]
 pred_df <- na.omit(df_prediction_1[,c("x","dist")])
 
 
 for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
-  if (is.na(df_prediction_1[i,"x"]) == FALSE) {
-    df_prediction_1$x_pred[i] <- df_prediction_1$x[i]
+  pred_df <- na.omit(df_prediction_1[,c("x","dist")])
+  
+  if (is.na(df_prediction_1[i,"dist"]) == FALSE) {
+    df_prediction_1$x_pred[i] <- df_prediction_1$dist[i]
 
-  } else {
-    pt2btw <- df_prediction_1$dist[i]
-    dist1 = Closest(pred_df$dist, pt2btw, which = FALSE, na.rm = FALSE)
-    if (dist1 < pt2btw ) {#x[! x %in% 2:10]
-    dist2 = Closest(pred_df$dist[pred_df$dist > dist1], pt2btw, which = FALSE, na.rm = FALSE)}
-    else{
-      dist2 = Closest(pred_df$dist[pred_df$dist < dist1], pt2btw, which = FALSE, na.rm = FALSE)
+  } else if (is.na(df_prediction_1[i,"dist"]) == TRUE) { 
+    #i want to select the two "x" values that are the closest to the x[i] and have associated distance measurements
+    #first select closest x and associated dist
+    index <- match.closest(df_prediction_1$x[i], pred_df$x,tolerance='Inf')
+    dist1 <- pred_df$dist[index]
+    x1 <- pred_df$x[index]
+    #now find the second closest number - well no. I don't want the second closest. I want the number on the other side. so I don't want to just remove the first x value, I want to remove that value and everythign above or everythign below that value -- depending on weather it is higher or lower
+    if (x1 < df_prediction_1$x[i]) {
+    pred_df_closestremoved <- pred_df%>%filter(x > df_prediction_1$x[i])
+    index <- match.closest(df_prediction_1$x[i], pred_df_closestremoved$x,tolerance='Inf')
+    dist2 <- pred_df_closestremoved$dist[index]
+    x2 <- pred_df_closestremoved$x[index]
+    } else {
+    pred_df_closestremoved <- pred_df%>%filter(x < df_prediction_1$x[i])
+    index <- match.closest(df_prediction_1$x[i], pred_df_closestremoved$x,tolerance='Inf')
+    dist2 <- pred_df_closestremoved$dist[index]
+    x2 <- pred_df_closestremoved$x[index]
     }
-    pt1dist = min(dist1,dist2)
-    pt2dist = max(dist1,dist2)
+        #sort out max and mins 
+    dist_min = min(dist1,dist2)
+    dist_max = max(dist1,dist2)
+    x_min = min(x1,x2)
+    x_max = max(x1,x2)
     
-    pt1x = pred_df$x[which(pred_df$dist == pt1dist)]
-    pt2x = pred_df$x[which(pred_df$dist == pt2dist)]
-    df_prediction_1$x_pred[i] <- pt2x - (pt2dist-df_prediction_1$dist[i])/(pt2dist-pt1dist)*(pt2x-pt1x)
+    df_prediction_1$x_pred[i] <- (df_prediction_1$x[i]-x_min)/(x_max-x_min) * (dist_max-dist_min) + dist_min
+    
   }
 }
 ```
@@ -507,24 +519,31 @@ for(i in 1:nrow(df_prediction_1)) {       # for-loop over rows
 Now we have a data frame with x predicted and associated with distance. Now we associate the closest actual x measurments, depth and width with the predicted x  
 
 
-
 ```{r width loop, echo=FALSE}
 
-df_prediction_2 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x_pred")]%>%drop_na(dist)
+latlon_df <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist,Flux_ave,adjusted_ppm,DOC,TDN)%>%rename(x_pred=dist)
+XWD_df <- df_prediction_1
 
-XWD_fit <- XWD_1[,c("x","w","d","notes")]
-colnames(XWD_fit) <- c("x_pred","w","d","notes")
+setDT(latlon_df)
+setDT(XWD_df)
 
-setDT(df_prediction_2)
-setDT(XWD_fit)
+#XWD_fit <- XWD_1[,c("x","w","d","notes")]
+#colnames(XWD_fit) <- c("x_pred","w","d","notes")
 
-df_prediction_3 <- df_prediction_2[XWD_fit, roll = "nearest", on = "x_pred"]
+#setDT(df_prediction_2)
+#setDT(XWD_fit)
 
-write.csv(df_prediction_3, here::here("ProcessedData/GaviUP_XWD.csv"))
+df_prediction_4 <- latlon_df[XWD_df, roll = "nearest", on = "x_pred"]
+
+df_prediction_5 <- df_prediction_4%>%select(lat_fit,lon_fit,ele_fit,x_pred,x,d,w,Flux_ave,adjusted_ppm,DOC,TDN,notes)
+
+#write.csv(df_prediction_5, here::here("ProcessedData/GaviUP_XWD.csv"))
 
 ```
 
 #trapazoid method 
+
+
 ```{r trap method, echo=FALSE}
 # now we calculate surface area of each width measurment using trapazoid method
 
