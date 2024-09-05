@@ -104,11 +104,9 @@ So let's try to just select the mainstem samples, for starters.
 #synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
 #synop <- read.csv(here::here("Synoptic/GAVI_2022-04-19.csv"))
 synop <- read.csv(here::here("Synoptic/GAVI_2022-06-04.csv"))
-
 synop$X <- NULL
 
-colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DateTime","SampleID", "DOC","TDN","ID","Notes")
-synop <- synop[,c("lat","lon","Date","DateTime","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
+synop <- synop%>%select(Lon,Lat,Date,DateTime,EOS_no,Flux_ave,Tract,Point,VaisalaType,CO2_ppm_ave,GAVI_waterTempAve,BaroPress_kpa,AirTemp_c,Total_hPa,adjusted_ppm,DOC,TDN)%>%rename(lon=Lat)%>%rename(lat=Lon)%>%rename(WaterTemp_c=GAVI_waterTempAve)
 
 Synopjune18 <- synop %>% filter(Date == "2021-06-18")
 Synopjune22 <- synop %>% filter(Date == "2021-06-22" & EOS_no == "EOS1" & Tract == 1)
@@ -159,10 +157,6 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),yaxis = list(titl
 
 fig
 
-TrackMap <- qmplot(lon, lat, data = df, zoom = 13,
-                   maptype = "toner-background", color=ele)
-
-TrackMap
 ```
 #are you seeing the problem? 
 This is worse then both Colmillo and Antenas. below the main wetland its not so bad, but above is kinda a mess. I think I should re-do this when I am back at the site, but for now, let us proceed.
@@ -298,7 +292,7 @@ pred <- as.data.frame(coords_df)
 synop_mainstem$lon_fit <- pred$lon
 synop_mainstem$lat_fit <- pred$lat
 
-synop_mainstem <- synop_mainstem[,c("lon_fit","lat_fit","Date","EOS_no","Flux_ave","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
+synop_mainstem <- synop_mainstem%>%select(lon_fit,lat_fit,Date,EOS_no,Flux_ave,Point,VaisalaType,CO2_ppm_ave,WaterTemp_c,BaroPress_kpa,AirTemp_c,Total_hPa,adjusted_ppm,DOC,TDN)
 
 
 df_prediction <- full_join(df_prediction,synop_mainstem,by=c("lon_fit","lat_fit"))
