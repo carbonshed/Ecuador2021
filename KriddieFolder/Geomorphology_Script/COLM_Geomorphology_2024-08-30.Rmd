@@ -261,7 +261,7 @@ ok sweet that looks really good
 
 We also need to snap the synoptic df (for later)
 ```{r snap synop pts}
-
+synop
 x <- SpatialPoints(synop[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
 plot(x, col = "red")

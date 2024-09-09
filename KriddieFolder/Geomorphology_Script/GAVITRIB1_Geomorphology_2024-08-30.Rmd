@@ -90,8 +90,9 @@ Let's do the synoptic one trib at a time
 synop <- read.csv(here::here("Synoptic/GAVI_2022-06-04.csv"))
 
 synop$X <- NULL
+synop$Date <- as.Date(synop$Date,format = "%m/%d/%y")
 
-colnames(synop) <- c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","SampleID","DateTime","DOC","TDN","ID","Notes")
+colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","SampleID","DateTime","DOC","TDN","ID","Notes")
 synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
 
 #long trib that tessa measured
@@ -105,11 +106,6 @@ Synop_2 <- synop %>% filter(Date == "2021-06-23" & Tract == 1)
 ```
 
 
-#working with 3-D is hard.
-In this code chunk, we start by smooting a line to the lat lon data, which appears to be more accurate than the elevation
-
-We will do this in parts though, be cause the relationship between lat lon can not be described as a function
-
 
 ```{r first spline, echo=FALSE}
 
@@ -121,7 +117,7 @@ model <- lm(lon~bs(lat,
             data=Geomorph_sub)
 
 latlims <- range(Geomorph_sub$lat)
-lat.grid <- seq(from=latlims[1],to=latlims[2], by=.000001)
+lat.grid <- seq(from=latlims[1],to=latlims[2], by=.0000001)
 pred <-predict(model,newdata=list(lat=lat.grid),se=T)
 
 plot(Geomorph_sub$lat,Geomorph_sub$lon,main="regressionSplinePLot")
@@ -137,42 +133,16 @@ df1<-as.data.frame(lat)
 df1$lon <- lon
 df1$num <- '1'
 ```
-
-
-
-
-```{r bind dataframes, echo=FALSE}
-
-#now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- df1
-
-plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
-
-plot(Geomorph$lat,Geomorph$lon)
-
-```
-
-ok, lets bind in that last dataframe
-
-```{r bind dataframes, echo=FALSE}
-
-#now we need to make a dataframe that discribes this relationship between lat lon
-df_prediction <- df1
-
-plot(df_prediction$lon~df_prediction$lat,col=df_prediction$num)
-
-plot(Geomorph_sub$lat,Geomorph_sub$lon)
-
-```
+now we have a smooth data frame of lat/lon data, we calculate the distance between each point
 
 ```{r calc dist}
 
 ###create a loop and calculate distance along the river from the predict_df. THen we can bind in the GEOMORPH!
-df_prediction <- df1 %>% drop_na(lat)
+df_prediction <- df1
 
 df_prediction$num <- NULL
-df_prediction <- df_prediction[,c("lon","lat")]
-colnames(df_prediction) <- c("lon_fit","lat_fit")
+#df_prediction <- df_prediction[,c("lon","lat")]
+colnames(df_prediction) <- c("lat_fit","lon_fit")
 df_prediction$lon_dist <- NA
 df_prediction$lat_dist <- NA
 i <- 2
@@ -180,6 +150,7 @@ for(i in 1:nrow(df_prediction)) {
   if (i == 1) {
 
       df_prediction$dist <- 0
+      
     } else {
       df_prediction[i,"lon_dist"] <- df_prediction[i-1,"lon_fit"]
       df_prediction[i,"lat_dist"] <- df_prediction[i-1,"lat_fit"]
@@ -189,14 +160,12 @@ for(i in 1:nrow(df_prediction)) {
       }
 }
 ```
-snap the points in our origional dama frame to bring in the elevation data
-
 
 ```{r snap points to lat lon}
 
-x <- SpatialPoints(Geomorph_sub[,c(1:2)])
+x <- SpatialPoints(Geomorph_1[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
-plot(x, col = "red")
+plot(y, col = "red")
 points(y, col = "green")
 snap = apply(spDists(x, y), 1, which.min)
 points(y[snap,], pch = 3)
@@ -205,28 +174,21 @@ points(y[snap,], pch = 3)
 snap_df <- y[snap,]
 coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
-Geomorph_sub$lon_fit <- pred$lon
-Geomorph_sub$lat_fit <- pred$lat
+Geomorph_1$lon_fit <- pred$lon
+Geomorph_1$lat_fit <- pred$lat
 
 
-df_prediction <- full_join(df_prediction,Geomorph_sub,by=c("lon_fit","lat_fit"))
+df_prediction_1 <- full_join(df_prediction,Geomorph_1,by=c("lon_fit","lat_fit"))
 ```
 
 ok sweet that looks really good
 
 We also need to snap the synoptic df (for later)
+
 ```{r snap synop pts}
 
-#read in synop data
-
-synop <- read.csv(here::here("Synoptic/ANTE_2022-06-04.csv"))
-
-synop$X <- NULL
-synop$ID <- NULL
-
-
-x <- SpatialPoints(synop[,c(1:2)])
-y <- SpatialPoints(df_prediction[,c(1:2)]) 
+x <- SpatialPoints(Synop_1[,c(1:2)])
+y <- SpatialPoints(df_prediction_1[,c(1:2)]) 
 plot(x, col = "red")
 points(y, col = "green")
 snap = apply(spDists(x, y), 1, which.min)
@@ -236,12 +198,34 @@ points(y[snap,], pch = 3)
 snap_df <- y[snap,]
 coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
-synop$lon_fit <- pred$lon
-synop$lat_fit <- pred$lat
-synop <- synop[,c("Date","EOS_no","Flux_ave","Tract","Point","CO2_ppm_ave","adjusted_ppm", "DOC","TDN","lon_fit","lat_fit","AirTemp_c","VaisalaType","Total_hPa","GAVI_waterTempAve")]
+Synop_1$lon_fit <- pred$lon
+Synop_1$lat_fit <- pred$lat
+Synop_1 <- Synop_1[,c("lon_fit","lat_fit","Date","EOS_no","Flux_ave","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
 
 
-df_prediction <- full_join(df_prediction,synop,by=c("lon_fit","lat_fit"))
+df_prediction_1 <- full_join(df_prediction_1,Synop_1,by=c("lon_fit","lat_fit"))
+
+```
+
+
+snap the points in our origional dama frame to bring in the elevation data
+
+
+first I need to make sure that what I have done really worked
+
+```{r testing snap to line, echo=FALSE}
+
+
+fig <- plot_ly(df_prediction_1, x = ~lat, y = ~lon, z = ~ele, size = 1)
+fig <- fig %>% add_markers()
+fig <- fig %>% add_trace(x = ~lat_fit, y = ~lon_fit, z = ~ele, colors = c('Yellow'),
+                         mode = 'markers')
+fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),
+                                   yaxis = list(title = 'lon'),
+                                   zaxis = list(title = 'elevation')))
+
+fig
+
 
 ```
 
@@ -270,12 +254,12 @@ Okay, now lets fit another spline to this puppy
 
 ```{r diff way}
 
-distlims <- range(df_prediction$dist)
-fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction)
+distlims <- range(df_prediction_1$dist)
+fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_1)
 pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
 df_prediction$ele_fit <- pred1$fit
 
-df_prediction %>% 
+df_prediction_1 %>% 
   drop_na(ele) %>%
   mutate(smooth = fit$fitted) %>%
   ggplot(aes(dist, ele)) +
@@ -285,7 +269,7 @@ df_prediction %>%
 fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
 fig
 
-check <- df_prediction%>%drop_na(Date)
+check <- df_prediction_1%>%drop_na(Date)
 
 ```
 
@@ -299,10 +283,10 @@ There really no point in adding slope this way. so let's skip
 df_prediction <- df_prediction[order(df_prediction$dist),]
 
 
-ggplot(data=df_prediction%>%drop_na(lat_wypt), aes(dist, ele, color=log10(CO2_ppm_ave)),size=5) +
+ggplot(data=df_prediction_1%>%drop_na(lat_wypt), aes(dist, ele, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 
-ggplot(data=df_prediction%>%drop_na(lat_wypt), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
+ggplot(data=df_prediction_1%>%drop_na(lat_wypt), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
   geom_point(size=5)
 
 
@@ -313,14 +297,14 @@ I'm really hoping this finaly product looks good
 
 
 ```{r write, echo=FALSE}
-df_prediction <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist,Date,Point,Flux_ave,CO2_ppm_ave,adjusted_ppm,DOC,TDN,AirTemp_c,Total_hPa,VaisalaType,EOS_no)#%>%rename(dist=dist_diff)
+df_prediction_1 <- df_prediction_1%>%select(lat_fit,lon_fit,ele,dist,Date,Point,Flux_ave,CO2_ppm_ave,adjusted_ppm,DOC,TDN,AirTemp_c,Total_hPa,VaisalaType,EOS_no)#%>%rename(dist=dist_diff)
 df_prediction <- unique(df_prediction)
 
 ##check should have 23 synop points 
-check <- df_prediction%>%drop_na(Point)
+check <- df_prediction_1%>%drop_na(Point)
 
-#write.csv(df_prediction, here::here("ProcessedData/ANTE_synoptic_2024-09-04.csv"))
-#write.csv(check, here::here("ProcessedData/ANTE_synopticpoints_arcpro_2024-09-04.csv"))
+#write.csv(df_prediction, here::here("ProcessedData/GaviTrib1_synoptic_2024-09-04.csv"))
+#write.csv(check, here::here("ProcessedData/GaviTrib1_synopticpoints_arcpro_2024-09-04.csv"))
 
 ```
 
@@ -331,11 +315,11 @@ and also df_prediction for trouble shooting purposes
 
 ```{r x and w and d, echo=FALSE}
 
-df_prediction <- read.csv(here::here("ProcessedData/ANTE_synoptic_2024-09-04.csv"))
+df_prediction <- read.csv(here::here("ProcessedData/GaviTrib1_synoptic_2024-09-04.csv"))
 df_prediction$X <- NULL
 
-XWD <- read.csv(here::here("Geomorphology/Atenas/Antenas_Geomorph_2024-09-04.csv"))
-XWD <- XWD%>%select(lon,lat,x_new,d,w,ele,notes)%>%rename(x=x_new)
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVItrib1_2022-08-30.csv"))
+XWD <- XWD%>%select(lon,lat,x,d,w,ele,notes)
 
 XWD_save <- XWD[order(XWD$x),]
 
@@ -445,7 +429,7 @@ Now we have a data frame with x predicted and associated with distance. Now we a
 
 ```{r width loop, echo=FALSE}
 
-latlon_df <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist,Flux_ave,adjusted_ppm)%>%rename(x_pred=dist)
+latlon_df <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist)%>%rename(x_pred=dist)
 XWD_df <- df_prediction_1
 
 setDT(latlon_df)
@@ -459,9 +443,9 @@ setDT(XWD_df)
 
 df_prediction_4 <- latlon_df[XWD_df, roll = "nearest", on = "x_pred"]
 
-df_prediction_5 <- df_prediction_4%>%select(lat_fit,lon_fit,ele_fit,x_pred,x,d,w,Flux_ave,adjusted_ppm,notes)
+df_prediction_5 <- df_prediction_4%>%select(lat_fit,lon_fit,ele_fit,x_pred,x,d,w,notes)
 
-#write.csv(df_prediction_5, here::here("ProcessedData/ANTE_XWD.csv"))
+#write.csv(df_prediction_5, here::here("ProcessedData/GaviTRIB1_XWD.csv"))
 
 ```
 

@@ -13,7 +13,7 @@ library(plotly)
 library(dplyr)
 library(tidyr)
 library(zoo)
-library(plot3D)
+#library(plot3D)
 library(splines)
 library(Ecdat)
 library(dplyr)
@@ -57,6 +57,7 @@ Let's do the synoptic one trib at a time
 synop <- read.csv(here::here("Synoptic/GAVI_2022-06-04.csv"))
 
 synop$X <- NULL
+synop$Date <- as.Date(synop$Date,format = "%m/%d/%y")
 
 colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","SampleID","DateTime","DOC","TDN","ID","Notes")
 synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
