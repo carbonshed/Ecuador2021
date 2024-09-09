@@ -20,6 +20,7 @@ library(sp)
 library(geosphere)
 library(ggmap)
 library(data.table)
+library(MALDIquant)
 
 
 #funtion
@@ -157,10 +158,6 @@ fig <- fig %>% layout(scene = list(xaxis = list(title = 'lat'),yaxis = list(titl
 
 fig
 
-TrackMap <- qmplot(lon, lat, data = df, zoom = 13,
-                   maptype = "toner-background", color=ele)
-
-TrackMap
 ```
 #are you seeing the problem? 
 This is worse then both Colmillo and Antenas. below the main wetland its not so bad, but above is kinda a mess. I think I should re-do this when I am back at the site, but for now, let us proceed.
