@@ -356,8 +356,8 @@ and also df_prediction for trouble shooting purposes
 df_prediction <- read.csv(here::here("ProcessedData/gaviTrib2_synoptic_2024-09-04.csv"))
 df_prediction$X <- NULL
 
-XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVItrib2_2022-08-30.csv"))
-XWD <- XWD%>%select(lon,lat,x,d,w,ele,notes)#%>%rename(x=x_new)
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVItrib2_2024-09-09.csv"))
+XWD <- XWD%>%select(lon,lat,x_new,d,w,ele,notes)%>%rename(x=x_new)
 
 XWD_save <- XWD[order(XWD$x),]
 
