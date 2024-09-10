@@ -481,7 +481,7 @@ df_prediction_4 <- latlon_df[XWD_df, roll = "nearest", on = "x_pred"]
 
 df_prediction_5 <- df_prediction_4%>%select(lat_fit,lon_fit,ele_fit,x_pred,x,d,w,Flux_ave,adjusted_ppm,notes)
 
-#write.csv(df_prediction_5, here::here("ProcessedData/GaviTrib2_XWD.csv"))
+write.csv(df_prediction_5, here::here("ProcessedData/ArcPro_inport/GaviTrib3_XWD.csv"))
 
 ```
 
