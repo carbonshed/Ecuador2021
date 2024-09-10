@@ -1,7 +1,7 @@
 ---
-title: "Geomorphology_ANTE"
+title: "Geomorphology_GAVI"
 author: "KWhitmore"
-date: "09/03/2024"
+date: "12/09/2021"
 output: html_document
 ---
 
@@ -13,13 +13,14 @@ library(plotly)
 library(dplyr)
 library(tidyr)
 library(zoo)
+library(plot3D)
 library(splines)
 library(Ecdat)
 library(dplyr)
 library(sp)
 library(geosphere)
 library(ggmap)
-library(data.table)
+library(MALDIquant)
 
 
 #funtion
@@ -61,13 +62,7 @@ arrange.vars <- function(data, vars){
 this was collected near the end of the field season
 
 ```{r build df 2021-12-18}
-
-add_coordinates <- data.frame(lat=c(-.3285995,-.3286585,-.3287203,-.3287995,-.3289405),
-                              lon=c(-78.2014457,-78.2014937,-78.2014883,-78.2015483,-78.2015549),
-                              ele=c(NA,NA,NA,NA,NA),time=c(NA,NA,NA,NA,NA))
-
-
-Geomorph <- read.csv(here::here("Geomorphology/Gavilan/GAVI_Dec2021.csv"), skip = 70)
+Geomorph <- read.csv(here::here("Geomorphology/Gavilan/GAVI_2021-07-27 10_13_40 Day.csv"), skip = 42)
 
 Geomorph <- Geomorph[,3:6]
 
@@ -80,11 +75,15 @@ Geomorph$time <-Geomorph$time - 5*60*60
 #round to nearest half second
 Geomorph$time <- round_date(Geomorph$time, unit = "30 second")
 
-Geomorph_1 <- subset(Geomorph,
-      time > as.POSIXct('2021-12-18 13:19:30', tz="UTC"))
+#Geomorph_2 <- subset(Geomorph,
+#      time > as.POSIXct('2021-07-27 10:50:00', tz="UTC")&
+#        time < as.POSIXct('2021-07-27 11:12:00', tz="UTC"))
 
-#add coordinates from arcpro
-Geomorph_1 <- rbind(add_coordinates,Geomorph_1)
+Geomorph_2 <- subset(Geomorph,
+      time > as.POSIXct('2021-07-27 11:16:00', tz="UTC")&
+        time < as.POSIXct('2021-07-27 11:36:00', tz="UTC"))
+
+
 
 ```
 
@@ -94,23 +93,29 @@ Let's do the synoptic one trib at a time
 
 ```{r add synop to df}
 #synop <- read.csv(here::here("Synoptic/GAVI.csv"))
-#synop <- read.csv(here::here("Synoptic/GAVI_2022-03-24.csv"))
+#synop <- read.csv(here::here("Synoptic/GAVI_2022-01-27.csv"))
 #synop <- read.csv(here::here("Synoptic/GAVI_2022-04-19.csv"))
 synop <- read.csv(here::here("Synoptic/GAVI_2022-06-04.csv"))
 
 synop$X <- NULL
-synop$Date <- as.Date(synop$Date,format = "%m/%d/%y")
 
-colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","SampleID","DateTime","DOC","TDN","ID","Notes")
+colnames(synop) <- c("lon","lat","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DateTime","SampleID","DOC","TDN","ID","Notes")
 synop <- synop[,c("lat","lon","Date","EOS_no","Flux_ave", "Tract","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
 
-#long trib that tessa measured
-Synop_1 <- synop %>% filter(EOS_no=="EOS1") %>%
-  filter(Date == "2021-06-23" | Date == "2021-06-29") %>%
-  filter(Tract == 1 | Tract == 3)%>%
-  filter(lat	> -0.3305667)
+
 #stream that goes up to the refuge
-Synop_2 <- synop %>% filter(Date == "2021-06-23" & Tract == 1)
+Synop_2 <- synop %>% filter(Date == "6/23/21" & Tract == 1)
+
+```
+
+```{r look at all synop data}
+
+df <- full_join(Synop_2,Geomorph_2, by=c("lat","lon")) 
+
+
+
+TrackMap_geo <- qmplot(lon, lat, data = Geomorph_2, zoom = 13, maptype = "toner-background")
+TrackMap_geo
 
 ```
 
@@ -120,9 +125,9 @@ Synop_2 <- synop %>% filter(Date == "2021-06-23" & Tract == 1)
 
 #Cut up lat long into peices, and then fit spline
 
-Geomorph_sub <- Geomorph_1 
+Geomorph_sub <- Geomorph_2 
 model <- lm(lon~bs(lat,
-                   degree = 9),
+                   degree = 3),
             data=Geomorph_sub)
 
 latlims <- range(Geomorph_sub$lat)
@@ -150,7 +155,6 @@ now we have a smooth data frame of lat/lon data, we calculate the distance betwe
 df_prediction <- df1
 
 df_prediction$num <- NULL
-#df_prediction <- df_prediction[,c("lon","lat")]
 colnames(df_prediction) <- c("lat_fit","lon_fit")
 df_prediction$lon_dist <- NA
 df_prediction$lat_dist <- NA
@@ -172,7 +176,7 @@ for(i in 1:nrow(df_prediction)) {
 
 ```{r snap points to lat lon}
 
-x <- SpatialPoints(Geomorph_1[,c(1:2)])
+x <- SpatialPoints(Geomorph_2[,c(1:2)])
 y <- SpatialPoints(df_prediction[,c(1:2)]) 
 plot(y, col = "red")
 points(y, col = "green")
@@ -183,21 +187,18 @@ points(y[snap,], pch = 3)
 snap_df <- y[snap,]
 coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
-Geomorph_1$lon_fit <- pred$lon
-Geomorph_1$lat_fit <- pred$lat
+Geomorph_2$lon_fit <- pred$lon
+Geomorph_2$lat_fit <- pred$lat
 
 
-df_prediction_1 <- full_join(df_prediction,Geomorph_1,by=c("lon_fit","lat_fit"))
+df_prediction_2 <- full_join(df_prediction,Geomorph_2,by=c("lon_fit","lat_fit"))
 ```
 
-ok sweet that looks really good
-
 We also need to snap the synoptic df (for later)
-
 ```{r snap synop pts}
 
-x <- SpatialPoints(Synop_1[,c(1:2)])
-y <- SpatialPoints(df_prediction_1[,c(1:2)]) 
+x <- SpatialPoints(Synop_2[,c(1:2)])
+y <- SpatialPoints(df_prediction_2[,c(1:2)]) 
 plot(x, col = "red")
 points(y, col = "green")
 snap = apply(spDists(x, y), 1, which.min)
@@ -207,12 +208,14 @@ points(y[snap,], pch = 3)
 snap_df <- y[snap,]
 coords_df <- snap_df@coords
 pred <- as.data.frame(coords_df)
-Synop_1$lon_fit <- pred$lon
-Synop_1$lat_fit <- pred$lat
-Synop_1 <- Synop_1[,c("lon_fit","lat_fit","Date","EOS_no","Flux_ave","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
+Synop_2$lon_fit <- pred$lon
+Synop_2$lat_fit <- pred$lat
+#synop_mainstem<-synop_mainstem[,c("Date","EOS_no","Flux_ave","Point","CO2_ppm_ave","lon_fit","lat_fit")]
+Synop_2 <- Synop_2[,c("lon_fit","lat_fit","Date","EOS_no","Flux_ave","Point","VaisalaType","CO2_ppm_ave","WaterTemp_c","BaroPress_kpa","AirTemp_c","Total_hPa","adjusted_ppm","DOC","TDN")]
 
 
-df_prediction_1 <- full_join(df_prediction_1,Synop_1,by=c("lon_fit","lat_fit"))
+
+df_prediction_2 <- full_join(df_prediction_2,Synop_2,by=c("lon_fit","lat_fit"))
 
 ```
 
@@ -222,10 +225,10 @@ snap the points in our origional dama frame to bring in the elevation data
 
 first I need to make sure that what I have done really worked
 
-```{r testing snap to line, echo=FALSE}
+```{r test it, echo=FALSE}
 
 
-fig <- plot_ly(df_prediction_1, x = ~lat, y = ~lon, z = ~ele, size = 1)
+fig <- plot_ly(df_prediction_2, x = ~lat, y = ~lon, z = ~ele, size = 1)
 fig <- fig %>% add_markers()
 fig <- fig %>% add_trace(x = ~lat_fit, y = ~lon_fit, z = ~ele, colors = c('Yellow'),
                          mode = 'markers')
@@ -237,6 +240,10 @@ fig
 
 
 ```
+
+ok sweet that looks really good
+
+We also need to snap the synoptic df (for later)
 
 
 ##calculate distance between each coordinate.
@@ -250,54 +257,76 @@ now we have created a distance column that we can plot the elevation data agains
 
 ```{r plot dist v ele, echo = FALSE}
 
-fig <- plot_ly(df_prediction, x = ~dist, y = ~ele, size = 1)
+
+fig <- plot_ly(df_prediction_2, x = ~dist, y = ~ele, size = 1)
 fig
 ```
 
-kriddie, you are doing so good!
-Okay, now lets fit another spline to this puppy
-
 
 ##loess spline
- loess is good for this
 
-```{r diff way}
+```{r diff 1 way}
 
-distlims <- range(df_prediction_1$dist)
-fit <- loess(ele ~ dist, degree=2, span = 0.20, data=df_prediction_1)
-pred1 <- predict(fit, data.frame(dist = df_prediction$dist), se = TRUE)
-df_prediction$ele_fit <- pred1$fit
+df_prediction_2 <- df_prediction_2 #%>% filter(dist > 3)
+distlims <- range(df_prediction_2$dist)
+fit <- loess(ele ~ dist, degree=2, span = 0.90, data=df_prediction_2)
+pred1 <- predict(fit, data.frame(dist = df_prediction_2$dist), se = TRUE)
+df_prediction_2$ele_fit <- pred1$fit
 
-df_prediction_1 %>% 
+df_prediction_2 %>% 
   drop_na(ele) %>%
   mutate(smooth = fit$fitted) %>%
   ggplot(aes(dist, ele)) +
   geom_point(size = 3, alpha = .5, color = "grey") +
   geom_line(aes(dist, smooth), color="red")
 
-fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
-fig
+fig <- plot_ly(df_prediction_2, x = ~dist, y = ~ele_fit, size = 1)
+#fig
 
-check <- df_prediction_1%>%drop_na(Date)
+
+```
+#reverse order
+unfortunatly gavi trib is going from downstream to up, and we want upstream to down. so reverse this order
+you can't just reverse order the distance column because they are not collected at even intervals.
+
+#loops below switch order of distance
+
+
+```{r reverse, echo=FALSE}
+df_prediction <- df_prediction_2
+df_prediction <- df_prediction[order(df_prediction$dist),]
+df_prediction$dist_diff <- NA
+
+for(i in 1:nrow(df_prediction)) {       # for-loop over rows
+  if (i == 1) {
+    df_prediction$dist_diff[i] <- max(df_prediction$dist)
+  } else {
+    df_prediction$dist_diff[i] <-   max(df_prediction$dist) - df_prediction[i,"dist"]
+  }
+}
+
+ggplot(data=df_prediction%>%drop_na(Date), aes(dist_diff, ele_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+
+ggplot(data=df_prediction%>%drop_na(Date), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
+  geom_point(size=5)
+
 
 ```
 
 
-There really no point in adding slope this way. so let's skip
+```{r bind df , echo=FALSE}
+#save <- df_prediction
+
+ggplot(data=df_prediction%>%drop_na(Flux_ave), aes(dist, ele_fit, color=Date)) +
+  geom_point()
+
+ggplot(data=df_prediction, aes(dist, ele_fit, col="CO2_ppm_ave")) +
+  geom_point(size = 3, alpha = .5, color = "blue")
 
 
-
-```{r reverse, echo=FALSE}
-
-df_prediction <- df_prediction[order(df_prediction$dist),]
-
-
-ggplot(data=df_prediction_1%>%drop_na(lat_wypt), aes(dist, ele, color=log10(CO2_ppm_ave)),size=5) +
-  geom_point(size=5)
-
-ggplot(data=df_prediction_1%>%drop_na(lat_wypt), aes(lon_fit, lat_fit, color=log10(CO2_ppm_ave)),size=5) +
-  geom_point(size=5)
-
+fig <- plot_ly(df_prediction, x = ~dist, y = ~ele_fit, size = 1)
+fig
 
 ```
 
@@ -306,14 +335,14 @@ I'm really hoping this finaly product looks good
 
 
 ```{r write, echo=FALSE}
-df_prediction_1 <- df_prediction_1%>%select(lat_fit,lon_fit,ele,dist,Date,Point,Flux_ave,CO2_ppm_ave,adjusted_ppm,DOC,TDN,AirTemp_c,Total_hPa,VaisalaType,EOS_no)#%>%rename(dist=dist_diff)
+df_prediction <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist_diff,Date,Point,Flux_ave,CO2_ppm_ave,adjusted_ppm,AirTemp_c,Total_hPa,VaisalaType,EOS_no)%>%rename(dist=dist_diff)
 df_prediction <- unique(df_prediction)
 
-##check should have 23 synop points 
-check <- df_prediction_1%>%drop_na(Point)
+##check should have 32 synop points 
+check <- df_prediction%>%drop_na(Date)
 
-#write.csv(df_prediction, here::here("ProcessedData/GaviTrib1_synoptic_2024-09-04.csv"))
-#write.csv(check, here::here("ProcessedData/GaviTrib1_synopticpoints_arcpro_2024-09-04.csv"))
+#write.csv(df_prediction, here::here("ProcessedData/gaviTrib2_synoptic_2024-09-04.csv"))
+#write.csv(check, here::here("ProcessedData/gaviTrib2_synopticpoints_arcpro_2024-09-04.csv"))
 
 ```
 
@@ -324,11 +353,11 @@ and also df_prediction for trouble shooting purposes
 
 ```{r x and w and d, echo=FALSE}
 
-df_prediction <- read.csv(here::here("ProcessedData/GaviTrib1_synoptic_2024-09-04.csv"))
+df_prediction <- read.csv(here::here("ProcessedData/gaviTrib2_synoptic_2024-09-04.csv"))
 df_prediction$X <- NULL
 
-XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVItrib1_2024-09-09.csv"))
-XWD <-  XWD%>%select(lon,lat,x_new,d,w,ele,notes)%>%rename(x=x_new)
+XWD <- read.csv(here::here("Geomorphology/Gavilan/GAVItrib2_2022-08-30.csv"))
+XWD <- XWD%>%select(lon,lat,x,d,w,ele,notes)#%>%rename(x=x_new)
 
 XWD_save <- XWD[order(XWD$x),]
 
@@ -359,13 +388,11 @@ XWD_1$lat_fit <- pred$lat
 XWD_1 <- full_join(XWD[,c("x","d","w","notes")],XWD_1[,c("lon_fit","lat_fit","x","d","w","notes")],by=c("x","d","w","notes"))
 
 df_prediction_1 <- full_join(df_prediction_arrange,XWD_1,by=c("lon_fit","lat_fit"))
-#df_prediction_1 <- df_prediction_1%>%drop_na(x) 
 df_prediction_1 <- df_prediction_1[,c("lon_fit","lat_fit","dist","x","d","w","notes")]
 df_prediction_1 <- unique(df_prediction_1)
 
-# there is a point with no associated x, and it causes probelms later
 
-df_prediction_1 <- df_prediction_1%>%filter(notes!="starting at large stream upsteam of last measurement (I think?)")
+#df_prediction_1 <- df_prediction_1%>%filter(notes!="starting at large stream upsteam of last measurement (I think?)")
 
 saveit <- df_prediction_1
 ```
@@ -438,7 +465,7 @@ Now we have a data frame with x predicted and associated with distance. Now we a
 
 ```{r width loop, echo=FALSE}
 
-latlon_df <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist)%>%rename(x_pred=dist)
+latlon_df <- df_prediction%>%select(lat_fit,lon_fit,ele_fit,dist,Flux_ave,adjusted_ppm)%>%rename(x_pred=dist)
 XWD_df <- df_prediction_1
 
 setDT(latlon_df)
@@ -452,134 +479,9 @@ setDT(XWD_df)
 
 df_prediction_4 <- latlon_df[XWD_df, roll = "nearest", on = "x_pred"]
 
-df_prediction_5 <- df_prediction_4%>%select(lat_fit,lon_fit,ele_fit,x_pred,x,d,w,notes)
+df_prediction_5 <- df_prediction_4%>%select(lat_fit,lon_fit,ele_fit,x_pred,x,d,w,Flux_ave,adjusted_ppm,notes)
 
-#write.csv(df_prediction_5, here::here("ProcessedData/ArcPro_inport/GaviTRIB1_XWD.csv"))
-
-```
-
-#trapazoid method 
-
-
-```{r trap method, echo=FALSE}
-# now we calculate surface area of each width measurment using trapazoid method
-
-
-df <- df_prediction_3%>%drop_na(w)
-df$midpoint <- NA
-df$length <- NA
-df$area <- NA
-
-#run this 2x for some reason (but no more than 2x!) make sure area column is filled in and reasonable
-
-for(i in 1:nrow(df)) {       # for-loop over rows
-  if (i==1) {
-    df$midpoint[i] <- 0
-    df$length[i] <- (df$dist[i+1] + (df$dist[i] - df$dist[i+1])/2) - 0
-    df$area[i] <- df$length[i] * df$w[i]/100
-  } else {
-    df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
-    df$length[i-1] <- df$midpoint[i] - df$midpoint[i-1]
-    df$area[i] <- df$length[i] * df$w[i]/100
-  }
-}
-
-for(i in 1:nrow(df)) {       # for-loop over rows
-  if (i==1) {
-    df$midpoint[i] <- 0
-    df$length[i] <- (df$dist[i+1] + (df$dist[i] - df$dist[i+1])/2) - 0
-    df$area[i] <- df$length[i] * df$w[i]/100
-  } else {
-    df$midpoint[i] <- df$dist[i-1] + (df$dist[i] - df$dist[i-1])/2
-    df$length[i-1] <- df$midpoint[i] - df$midpoint[i-1]
-    df$area[i] <- df$length[i] * df$w[i]/100
-  }
-}
-
-df_prediction_3 <- df
-
-#write.csv(df_prediction_3, here::here("ProcessedData/Gavi_XWD_2.csv"))
-
-```
-
-AHHHH i can't believe that wooooorrrrkkkkeedddddddddddd!!!!!!
-
-
-So now we need to associate this data frame with actual measurments from the synoptic data
-
-we need to get synop data back in here. deep breath. here we go
-
-```{r synop, echo=FALSE}
-
-##find midpoint distance between synop measurments. Then add up all areas that fall between way points
-synop <- df_prediction[,c("lon_fit","lat_fit","dist","Flux_ave")]%>%drop_na(Flux_ave)
-synop <- synop[order(synop$dist),]
-
-for(i in 1:nrow(synop)) {       # for-loop over rows
-  if (i==50) {
-        synop$midpoint[i] <- 0
-  } else {
-synop$midpoint[i] <- (synop$dist[i+1] - synop$dist[i])/2 + synop$dist[i]
-  }
-}
-
-## now we add up all of 
-
-#
-synop <- synop[order(synop$dist),]
-
-synop$surface_area <- NULL
-
-for(i in 1:nrow(synop)) { 
-  if (i==1){
-      synop$surface_area[i] <- sum(df_prediction_3$area[ df_prediction_3$dist < synop$midpoint[i]], na.rm = TRUE)
-  }else if (i==which(synop$dist==max(synop$dist))){
-       synop$surface_area[i] <- sum(df_prediction_3$area[ df_prediction_3$dist > synop$midpoint[i-1]], na.rm = TRUE)
-      }
-  else{
-  synop$surface_area[i] <- sum(df_prediction_3$area[df_prediction_3$dist > synop$midpoint[i-1] & df_prediction_3$dist < synop$midpoint[i]], na.rm = TRUE)
-  }
-}
-
-synop$flux_umolpers <- synop$Flux_ave*synop$surface_area
-#synop <- synop[,-c(3,4,6:12)]
-
-
-
-synop <- synop%>%drop_na(flux_umolpers)
-synop <- synop[order(synop$dist),]
-
-for(i in 1:nrow(synop)) {       # for-loop over rows
-    if (i == 1) {
-      synop$Totalflux_umolpers[i] <- synop$flux_umolpers[1]
-    } else {
-      synop[i,"Totalflux_umolpers"] <- synop[i-1,"Totalflux_umolpers"] + synop[i,"flux_umolpers"]
-    }
-  }
-  
-
-df_prediction_4 <- left_join(df_prediction,synop[,c("lon_fit","lat_fit","dist","Flux_ave","midpoint","surface_area","flux_umolpers","Totalflux_umolpers")], by=c("lon_fit","lat_fit","dist","Flux_ave"))
-
-
-df_prediction_4 <- df_prediction_4[, !(colnames(df_prediction_4) %in% c("lon_dist","lat_dist","lat","lon","ele","time"))]
-
-
-```
-
-I guess what I want is a column associated with each CO2 measurment that gives me surface area associated with the measurment.
-
-I now have some cra
-
-
-```{r plot and write, echo=FALSE}
-#df_prediction_4$flux_umolpers
-ggplot(data=df_prediction_4, aes(dist, Totalflux_umolpers),size=5) +
-  geom_point(size=5)
-#df_prediction_4$adjusted_ppm
-ggplot(data=df_prediction_4%>%drop_na(Date), aes(dist, ele_fit, color=log10(adjusted_ppm)),size=5) +
-  geom_point(size=5)
-
-#write.csv(df_prediction_4, here::here("ProcessedData/GAVI_synopticGeom_2022-06-04.csv"))
+#write.csv(df_prediction_5, here::here("ProcessedData/GaviTrib2_XWD.csv"))
 
 ```
 
