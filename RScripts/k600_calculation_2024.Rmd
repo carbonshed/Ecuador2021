@@ -102,7 +102,6 @@ i so hope this works. so nervous right now
 ```{r the kriddie's brain way, echo=FALSE}
 
 #PV=nRt -> n/V=P/Rt
-
 R = 8.31446261815324*9.86923e-6*1000 # L·atm·K-1·mol-1
 
 #adjust henry to temp: KH = KH(STP) x exp(D(1/T-1/T(STP)))
@@ -135,9 +134,9 @@ synoptic.df$KH_mol.m3.atm <- synoptic.df$KH_mol.l.atm * 0.001
 synoptic.df$Flux_mol_m2_d <- synoptic.df$Flux_ave * 10^-6 * 86400
 
 #now calculate k in m/d
-synoptic.df$k_m_d_kriddie <- synoptic.df$Flux_mol_m2_d / (synoptic.df$KH_mol.l.atm * (synoptic.df$pCO2_w_mol.L - synoptic.df$pCO2_air_mol.L )) #*1000
+#synoptic.df$k_m_d_kriddie <- synoptic.df$Flux_mol_m2_d / (synoptic.df$KH_mol.l.atm * (synoptic.df$pCO2_w_mol.L - synoptic.df$pCO2_air_mol.L )) #*1000
 
-#synoptic.df$k_m_d_kriddie <- synoptic.df$Flux_mol_m2_d / (.05 * (synoptic.df$pCO2_w_atm - synoptic.df$pCO2_air_atm )) #*1000
+synoptic.df$k_m_d_kriddie <- synoptic.df$Flux_mol_m2_d / (.05 * (synoptic.df$pCO2_w_atm - synoptic.df$pCO2_air_atm )) #*1000
 
 
 
