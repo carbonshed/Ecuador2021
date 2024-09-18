@@ -7,9 +7,8 @@ ggplot(df1%>%filter(Wetland=="GAVItrib1"),aes(x=dist,y=adjusted_ppm,color=Wetlan
   geom_point() + scale_y_log10()
 ggplot(df1%>%filter(Wetland=="GAVItrib1"|Wetland=="GAVItrib3"|Wetland=="ANTE"),aes(x=CatchmentSize_ha,y=adjusted_ppm,color=Wetland)) + 
   geom_point() + scale_y_log10() +scale_x_log10()
-ggplot(df1#%>%filter(Wetland=="GAVItrib1"|Wetland=="GAVItrib3"|Wetland=="ANTE")
-       ,aes(x=CatchmentSize_ha,y=adjusted_ppm,color=Wetland)) + 
-  geom_point() + scale_y_log10() +scale_x_log10()
+ggplot(df1,aes(x=CatchmentSize_ha,y=adjusted_ppm,color=Wetland)) + 
+  geom_point() + scale_y_log10() #+scale_x_log10()
 
 df <-read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"),na.strings=c("","NA"))
 df$name_2 <- df$name
@@ -33,6 +32,9 @@ ggplot(df%>%filter(adjusted_ppm <= 320.1599),aes(x=adjusted_ppm,y=slope_up,color
 
 ggplot(df%>%filter(catchment_ha>2.5),aes(x=slope_up,y=adjusted_ppm,color=log(catchment_ha))) + geom_point() + scale_y_log10()
 
+ggplot(df,aes(x=catchment_ha,y=Q_m3s,color=name)) + geom_point()
+ggplot(df,aes(x=catchment_ha,y=w,color=name)) + geom_point() + scale_y_log10()
+ggplot(df,aes(x=catchment_ha,y=d,color=name)) + geom_point() + scale_y_log10()
 
 
 CO2 <- ggplot(df, aes(x = name_2, y = adjusted_ppm, fill = name_2)) +
@@ -81,18 +83,6 @@ ggplot(df_bins#%>%filter(catchment_ha > 2.5)
 
 #the first ___ of a stream is worth ___ flux
 
-
-
-df_bins_summary <-df_bins%>%
-  group_by(Catchment_bin) %>%
-  summarise(
-    k600_mean = mean(K600, na.rm = TRUE),
-    k600_stdev = sd(K600, na.rm = TRUE),
-    k600_median = median(K600, na.rm = TRUE),
-    k600_max = max(K600, na.rm = TRUE),
-    k600_min = min(K600, na.rm = TRUE),
-    n())
-
 df_bins$Catchment_bin2 <- as.character(df_bins$Catchment_bin)
 df_bins$Catchment_bin3 <- gsub("]", "", df_bins$Catchment_bin2) 
 df_bins$Catchment_bin4 <- sub('.', '', df_bins$Catchment_bin3)
@@ -133,8 +123,10 @@ ggplot(df1#%>%filter(Wetland=="GAVItrib1"|Wetland=="GAVItrib3"|Wetland=="ANTE")
 ggplot(df %>%filter(name=="Colm")
        , aes(x=slope_mid,F_mol_m2_d_eq1,color=adjusted_ppm)) + 
   geom_point() + scale_y_log10() + scale_x_log10()
-
 ggplot(df %>%filter(name=="Colm")
        , aes(x=slope_mid,F_CO2_molpers_eq1,color=adjusted_ppm)) + 
+  geom_point() + scale_y_log10() + scale_x_log10()
+ggplot(df %>%filter(name=="Colm")
+       , aes(x=slope_mid,k600_eq1,color=adjusted_ppm)) + 
   geom_point() + scale_y_log10() + scale_x_log10()
 
