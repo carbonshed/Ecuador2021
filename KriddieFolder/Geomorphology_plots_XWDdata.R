@@ -32,7 +32,7 @@ GaviTrib3_XWD$site <- "GaviTrib3"
 Ante_XWD <- Ante_XWD%>%filter(x!=445)%>%filter(x!=450)
 
 XWD_allsites <- rbind(Ante_XWD,Colm_XWD,GaviDown_XWD,GaviUp_XWD,GaviTrib1_XWD,GaviTrib2_XWD,GaviTrib3_XWD)
-XWD_nowetland <- rbind(Ante_XWD,Colm_XWD,GaviDown_XWD_nowetland,GaviUp_XWD,GaviTrib1_XWD,GaviTrib2_XWD,GaviTrib3_XWD)
+
 
 Ante_synop <- read.csv(here::here("ProcessedData/export_to_r/ante_XWD_export_eledata_synop.csv"))%>%select(x_pred,x,ele_arcpro,date,Flux_ave,adjusted_ppm,slope_mid,slope_up,catchment_ha)
 Colm_synop <- read.csv(here::here("ProcessedData/export_to_r/colm_XWD_export_eledata_synop.csv"))%>%select(x_pred,x,ele_arcpro,date,Flux_ave,adjusted_ppm,slope_mid,slope_up,catchment_ha)
@@ -54,7 +54,7 @@ GaviTrib3_synop$site <- "GaviTrib3"
 #delete co2 just below the wetland. start after waterfall
 GaviDown_synop_nowetland <- GaviDown_synop%>%filter(x > 114)
 #delete co2 just below the wetland. start after waterfall
-GaviUp_test <- GaviUp_synop%>%filter(date != "6/30/2021")
+GaviUp_test <- GaviUp_synop%>%filter(date != "6/29/2021")
 
 synop_allsites <- rbind(Ante_synop,Colm_synop,GaviDown_synop,GaviUp_synop,GaviTrib1_synop,GaviTrib2_synop,GaviTrib3_synop)
 synop_allsites_nowetland <- rbind(Ante_synop,Colm_synop,GaviDown_synop_nowetland,GaviUp_synop,GaviTrib1_synop,GaviTrib2_synop,GaviTrib3_synop)
@@ -98,7 +98,8 @@ p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=cat
   ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
   theme_bw(base_size = 16)
 
-synop_test
+
+
 p_co2_ntest <- ggplot(synop_test%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
   geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
   geom_smooth(method='lm', formula= y~x)+
@@ -122,6 +123,7 @@ model_Q <- lm(log(Q_m3s) ~ log(catchment_ha), data = Q_df)
 
 summary(model_co2)
 summary(model_co2_nowetland)
+summary(model_co2_test)
 summary(model_w)
 summary(model_d)
 summary(model_Q)
