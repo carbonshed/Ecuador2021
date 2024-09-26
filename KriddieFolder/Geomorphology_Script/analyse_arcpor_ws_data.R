@@ -17,16 +17,20 @@ for (i in split_data) {
 }
 
 
-
+df <- 1
 for (df in split_data) {
   #for each stream_seg_code, do these things:
   seg_df <- split_data[[df]]
   #order by accumulation
   seg_df <- seg_df[order(seg_df$flo_accu),]
   for(i in seg_df) {
+    seg_df$lat_MidAbove <- NA
+    seg_df$lon_MidBelow <- NA
+    seg_df$ele_Mid_Above <- NA
     #find 3 "above", 3 "below" 
     if(i>3) {
-      
+      seg_df$lat_MidAbove <- seg_df[i-4]$lat
+      seg_df$lon_MidBelow <- seg_df[i-4]$lon
     }
   }
 
