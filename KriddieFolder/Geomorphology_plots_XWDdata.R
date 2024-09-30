@@ -61,6 +61,7 @@ synop_allsites_nowetland <- rbind(Ante_synop,Colm_synop,GaviDown_synop_nowetland
 synop_test <- rbind(Ante_synop,Colm_synop,GaviDown_synop_nowetland,GaviUp_test,GaviTrib1_synop,GaviTrib2_synop,GaviTrib3_synop)
 
 
+
 #first plot w v catchment
 p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
   geom_smooth(method='lm', formula= y~x) +
@@ -79,7 +80,7 @@ p_depth <- ggplot(XWD_allsites,aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + 
   ylab("Depth (cm)") + xlab("Catchment size (ha)") + 
   annotate("text", x=10, y=100, label= "r2 = 0.5016 \npvalue = <.001",size=6,color="red") + 
   scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 18)
 
 
 p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
@@ -114,7 +115,7 @@ model_co2 <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = 
 
 model_co2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites_nowetland%>%drop_na(slope_up))
 
-model_co2_test <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_test%>%drop_na(slope_up))
+#model_co2_test <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_test%>%drop_na(slope_up))
 
 model_w <- lm(log(w) ~ log(catchment_ha)  , data = XWD_allsites)
 model_d <- lm(log(d) ~ log(catchment_ha) + log1p(slope_mid), data = XWD_allsites)
@@ -123,7 +124,7 @@ model_Q <- lm(log(Q_m3s) ~ log(catchment_ha), data = Q_df)
 
 summary(model_co2)
 summary(model_co2_nowetland)
-summary(model_co2_test)
+#summary(model_co2_test)
 summary(model_w)
 summary(model_d)
 summary(model_Q)
