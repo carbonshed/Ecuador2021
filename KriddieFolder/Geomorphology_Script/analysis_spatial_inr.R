@@ -153,8 +153,8 @@ all_data_up <-  all_data
 all_data_final <- full_join(all_data_mid,all_data_up,by=c("pointid","ele","flo_accu","lat_center","lon_center"))   
 
 #write out big ol dataframe
-write.csv(all_data_final,here::here("ProcessedData/slope_calculated_sept27.csv"))
-
+#write.csv(all_data_final,here::here("ProcessedData/slope_calculated_sept27.csv"))
+#all_data_final <- read.csv(here::here("ProcessedData/slope_calculated_sept27.csv"))
 
 ggplot() +
 #  geom_sf(data = my_sf_proj_1, aes(color = max_dist)) +
