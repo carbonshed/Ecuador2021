@@ -60,6 +60,11 @@ synop_allsites <- rbind(Ante_synop,Colm_synop,GaviDown_synop,GaviUp_synop,GaviTr
 synop_allsites_nowetland <- rbind(Ante_synop,Colm_synop,GaviDown_synop_nowetland,GaviUp_synop,GaviTrib1_synop,GaviTrib2_synop,GaviTrib3_synop)
 synop_test <- rbind(Ante_synop,Colm_synop,GaviDown_synop_nowetland,GaviUp_test,GaviTrib1_synop,GaviTrib2_synop,GaviTrib3_synop)
 
+#write out df
+#write.csv(synop_allsites,here::here("ProcessedData/synop_allsites_slope.csv"))
+#write.csv(synop_allsites_nowetland,here::here("ProcessedData/synop_allsites_nowetland_slope.csv"))
+#write.csv(XWD_allsites,here::here("ProcessedData/xwd_allsites_slope.csv"))
+#write.csv(Q_df,here::here("ProcessedData/Q_synop.csv"))
 
 
 #first plot w v catchment
