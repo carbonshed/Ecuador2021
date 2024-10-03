@@ -31,34 +31,7 @@ register_stadiamaps("e723ef39-9560-41be-969c-36870f7b7f84", write = TRUE)
 
 library(scales)
 
-#extract hex color codes for a plot with three elements in ggplot2 
-hex1 <- hue_pal()(1)
-hex3 <- hue_pal()(3)
-hex6 <- hue_pal()(6)
-hex8 <- hue_pal()(8)
 
-#display hex color codes
-
-
-#antenas - 
-antens <- hex1[1]
-#gavilan
-gavi <- hex3[3]
-#gavilan inlet
-gavi_in <- hex6[4]
-#gavilan outlet
-gavi_out <- hex6[5]
-#gavilan trib1
-gavitrib1 <- hex8[2]
-#gavilan trib2
-gavitrib2 <- hex8[3]
-#gavilan trib3
-gavitrib3 <- hex8[4]
-#gavi tribs
-gavitribs <- hex3[2]
-
-#colmillo
-colmillo <- hex8[8]
 ```
 
 ## Description
@@ -80,14 +53,56 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 ```{r read in data}
 df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)
 
-#total flux for gavi tribs to add to bball plota
-Trib1 <- read.csv(here::here("ProcessedData/GAVItrib1_synopticGeom_2022-08-30.csv"))
-Trib2 <- read.csv(here::here("ProcessedData/GAVItrib2_synopticGeom_2022-08-30.csv"))
 
-#tribstuff
-Trib1$Wetland <- "Tributary 1"
-Trib2$Wetland <- "Tributary 2"
-Tribs <- rbind(Trib1,Trib2)
+synop_allsites <- read.csv(here::here("ProcessedData/synop_allsites_slope.csv"))
+synop_allsites_nowetland <- read.csv(here::here("ProcessedData/synop_allsites_nowetland_slope.csv"))
+XWD_allsites <- read.csv(here::here("ProcessedData/xwd_allsites_slope.csv"))
+Q_df <- read.csv(here::here("ProcessedData/Q_synop.csv"))
+```
+
+
+```{r hydro geometry plots}
+#first plot w v catchment
+options(scipen = 999)
+p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x) +
+  ylab("Q (L/s)") + xlab("Catchment size (ha)") +
+  annotate("text", x=10, y=50, label= "r2 = 0.70  \npvalue = <.001",size=6,color="red") + 
+  theme_bw(base_size = 24)
+
+p_width <- ggplot(XWD_allsites,aes(x=catchment_ha,y=w)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x) + 
+  ylab("Width (cm)") + xlab("Catchment size (ha)") +
+  annotate("text", x=10, y=700, label= "r2 = 0.3395  \npvalue = <.001",size=6,color="red") + 
+  theme_bw(base_size = 24)
+
+p_depth <- ggplot(XWD_allsites%>%drop_na(slope_mid),aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x)+ 
+  ylab("Depth (cm)") + xlab("Catchment size (ha)") + 
+  annotate("text", x=10, y=100, label= "r2 = 0.5016 \npvalue = <.001",size=6,color="red") + 
+  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
+  theme_bw(base_size = 24)+
+  labs(fill="Slope \n (log1p)")
+
+
+p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
+  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x)+
+  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
+  annotate("text", x=10, y=10000, label= "r2 = 0.2686  \npvalue = <.001",size=6,color="red") + 
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") + 
+  theme_bw(base_size = 24)+
+  labs(fill="Slope \n (log1p)")
+
+p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
+  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x)+
+  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
+  annotate("text", x=10, y=10000, label= "r2 = 0.4178  \npvalue = <.001",size=6,color="red") + 
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
+  theme_bw(base_size = 24)
+
+
 
 ```
 
