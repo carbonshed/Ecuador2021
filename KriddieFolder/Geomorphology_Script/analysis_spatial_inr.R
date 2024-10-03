@@ -8,16 +8,36 @@ library(dplyr)
 library(tidyr)
 library(geosphere)
 
-dataFrame <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_fillEle_colmWS_TableToExcel.csv"))%>%rename(flo_accu=FloAccu)
 
-#dataFrame <- read.csv(here::here("Geomorphology/Geomorph_from_ArcPro/colm_rnetwork_point.csv"))
-#dataFrame$NEAR_FID <- paste("seg",dataFrame$NEAR_FID,sep="_")
-dataFrame$lat_save <- dataFrame$lat
-dataFrame$lon_save <- dataFrame$lon
-dataFrame$ID <- seq.int(nrow(dataFrame))
+#gavi
+dataFrame_gavi <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_Ele_gaviWS_TableToExcel.csv"))%>%rename(ele=Ele)%>%rename(flo_accu=FloAccu)
+dataFrame_gavi$lat_save <- dataFrame_gavi$lat
+dataFrame_gavi$lon_save <- dataFrame_gavi$lon
+dataFrame_gavi$ID <- seq.int(nrow(dataFrame_gavi))
+dataFrame_gavi <- dataFrame_gavi%>%filter(OBJECTID!=619)
+dataframe <- dataFrame_gavi
+
+#colm
+dataFrame_colm <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_fillEle_colmWS_TableToExcel.csv"))%>%rename(flo_accu=FloAccu)
+dataFrame_colm$lat_save <- dataFrame_colm$lat
+dataFrame_colm$lon_save <- dataFrame_colm$lon
+dataFrame_colm$ID <- seq.int(nrow(dataFrame_colm))
+dataframe <- dataFrame_colm
+
+#Ante
+dataFrame_ante <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_Ele_anteWS_2_TableToExcel.csv"))%>%rename(ele=Ele)%>%rename(flo_accu=FloAccu)
+dataFrame_ante$lat_save <- dataFrame_ante$lat
+dataFrame_ante$lon_save <- dataFrame_ante$lon
+dataFrame_ante$ID <- seq.int(nrow(dataFrame_ante))
+dataframe <- dataFrame_ante
+
+#now that you have selected the site, run the following script
+dataframe$lat_save <- dataFrame$lat
+dataframe$lon_save <- dataFrame$lon
+dataframe$ID <- seq.int(nrow(dataFrame))
 #dataFrame <- dataFrame%>%filter(OBJECTID!=619)
   
-my_sf <- st_as_sf(dataFrame, coords = c('lon', 'lat'),crs = 4326)
+my_sf <- st_as_sf(dataframe, coords = c('lon', 'lat'),crs = 4326)
 my_sf_proj <- st_transform(my_sf, 3857)
 
 
@@ -105,23 +125,34 @@ all_data$ele_diff_mid <- all_data$ele_up10 - all_data$ele_down10
 all_data$slope_mid <- all_data$ele_diff_mid / all_data$dist_diff_mid
 all_data_mid <-  all_data
 
-write.csv(all_data_mid,here::here("ProcessedData/upscaling_datasets/colm_slope_mid_Oct3.csv"))
+#write.csv(all_data_mid,here::here("ProcessedData/upscaling_datasets/colm_slope_mid_Oct3.csv"))
+
 
 #################
 ####slope up#####
 #################
+
+my_sf <- st_as_sf(dataframe, coords = c('lon', 'lat'),crs = 4326)
+my_sf_proj <- st_transform(my_sf, 3857)
+
+my_sf_proj <-my_sf_proj[301:350,]
+
+
 rm(all_data)
 rm(all_data_temp)
 
+
+i <- 3
+
 for(i in 1:nrow(my_sf_proj)) {
-  # Step 4: Create a 10-meter buffer around the reference point
-  buffer_min20 <- st_buffer(my_sf_proj[i,], dist = 17.9)
-  buffer_max20 <- st_buffer(my_sf_proj[i,], dist = 18*sqrt(2) + .1)
+  # Step 4: Create a 20-meter buffer around the reference point
+  buffer_min20 <- st_buffer(my_sf_proj[i,], dist = 18-1)
+  buffer_max20 <- st_buffer(my_sf_proj[i,], dist = 18*sqrt(2)+1)
   
   my_sf_proj_1 <- my_sf_proj
   # intersection with buffer as a polygon
   my_sf_proj_1$min_dist20 <- 
-    ifelse(sf::st_intersects(my_sf_proj_1, buffer_min, sparse = F), "Yes", "No")
+    ifelse(sf::st_intersects(my_sf_proj_1, buffer_min20, sparse = F), "Yes", "No")
   my_sf_proj_1$max_dist20 <- 
     ifelse(sf::st_intersects(my_sf_proj_1, buffer_max20, sparse = F), "Yes", "No")
   
@@ -138,7 +169,8 @@ for(i in 1:nrow(my_sf_proj)) {
   my_sf_proj_select_upstream <-  my_sf_proj_select%>%filter(floaccu_diff > 0)
   my_sf_proj_select_upstream <- my_sf_proj_select_upstream[which.min(my_sf_proj_select_upstream$floaccu_diff), ]
   my_sf_proj_select_upstream <- my_sf_proj_select_upstream %>% st_drop_geometry()
-  my_sf_proj_select_upstream <- my_sf_proj_select_upstream%>%dplyr::select(pointid,ele,flo_accu,lat_save,lon_save)%>%rename(ele_up20=ele)%>%rename(lat_up20=lat_save)%>%rename(lon_up20=lon_save)%>%rename(floaccu_up20=flo_accu)
+  my_sf_proj_select_upstream <- my_sf_proj_select_upstream%>%dplyr::select(pointid,ele,flo_accu,lat_save,lon_save)%>%
+    rename(ele_up20=ele)%>%rename(lat_up20=lat_save)%>%rename(lon_up20=lon_save)%>%rename(floaccu_up20=flo_accu)
   
   my_sf_point <- my_sf_proj[i,]%>%dplyr::select(pointid,ele,flo_accu,lat_save,lon_save)%>%
     rename(lat_center=lat_save,lon_center=lon_save)
@@ -146,11 +178,11 @@ for(i in 1:nrow(my_sf_proj)) {
   
   #join 
   my_sf_point <- full_join(my_sf_point,my_sf_proj_select_upstream,by="pointid")
-  my_sf_point <- full_join(my_sf_point,my_sf_proj_select_downstream,by="pointid")
+  #my_sf_point <- full_join(my_sf_point,my_sf_proj_select_downstream,by="pointid")
   
-  my_sf_point$dist_diff_up <- distm(c(my_sf_point$lon_up20, my_sf_point$lat_up20), 
-                                       c(my_sf_point$lon_center, my_sf_point$lat_center), 
-                                       fun = distHaversine)
+  my_sf_point$dist_diff_up20 <- distm(c(my_sf_point$lon_up20, my_sf_point$lat_up20), 
+                                      c(my_sf_point$lon_center, my_sf_point$lat_center), 
+                                      fun = distHaversine)
   #now we can build our new dataframe
   if (!exists("all_data")){
     all_data <- my_sf_point
@@ -163,22 +195,52 @@ for(i in 1:nrow(my_sf_proj)) {
   #calc ele difference and slope mid
 }
 
-all_data$ele_diff_mid <- all_data$ele_up20 - all_data$ele_center
-all_data$slope_mid <- all_data$ele_diff_mid / all_data$dist_diff_mid
+
+
+
+all_data$ele_diff_up20 <- all_data$ele_up20 - all_data$ele
+all_data$slope_up20 <- all_data$ele_diff_up20 / all_data$dist_diff_up
 
 all_data_up <-  all_data
 
+#write.csv(all_data_up,here::here("ProcessedData/upscaling_datasets/colm_slope_up_Oct3.csv"))
+
+
 #now join them together
+#all_data_mid <- read.csv(here::here("ProcessedData/upscaling_datasets/colm_slope_mid_Oct3.csv"))
+
 all_data_final <- full_join(all_data_mid,all_data_up,by=c("pointid","ele","flo_accu","lat_center","lon_center"))   
+all_data_final <- all_data_final%>%select(pointid,ele,flo_accu,lat_center,lon_center,ele_up10,ele_down10,ele_up20,
+                                          floaccu_up10,floaccu_down10,floaccu_up20,lat_up10,lon_up10,lat_down10,lon_down10,
+                                          lat_up20,lon_up20,dist_diff_mid,ele_diff_mid,slope_mid,dist_diff_up20,ele_diff_up20,slope_up20)%>%
+  rename(lat=lat_center)%>%rename(lon=lon_center)
 
 #write out big ol dataframe
-#write.csv(all_data_final,here::here("ProcessedData/slope_calculated_sept27.csv"))
-#all_data_final <- read.csv(here::here("ProcessedData/slope_calculated_sept27.csv"))
+#write.csv(all_data_final,here::here("ProcessedData/slope_ante_oct3.csv"))
+#write.csv(all_data_final,here::here("ProcessedData/slope_colm_oct3.csv"))
+#write.csv(all_data_final,here::here("ProcessedData/slope_gavi_oct3.csv"))
+
+#all_data_final_test <- read.csv(here::here("ProcessedData/slope_gavi_oct3.csv"))
+
+
+
+#all_data_bind
+my_sf_2 <- st_as_sf(all_data_final, coords = c('lon', 'lat'))
+
+ggplot(my_sf_2%>%filter(flo_accu>=1000)
+) + 
+  geom_sf(aes(color=slope_mid),size=.75)
+
+ggplot(my_sf_2%>%filter(flo_accu>=1000)) + 
+  geom_sf(aes(color=slope_up20),size=.75)
+
+ggplot(my_sf_2) + 
+  geom_sf(aes(color=co2))
 
 
 
 ggplot() +
-#  geom_sf(data = my_sf_proj_1, aes(color = max_dist)) +
+  #  geom_sf(data = my_sf_proj_1, aes(color = max_dist)) +
   geom_sf(data = subset(my_sf_proj_1, max_dist == "Yes"), pch = 4, color = "blue") +
   geom_sf(data = buffer_max, fill = NA, color = "red") +
   geom_sf(data = subset(my_sf_proj_1, min_dist == "Yes"), pch = 4, color = "green") +
@@ -195,24 +257,26 @@ ggplot(my_sf) +
   geom_sf()
 
 
-i <- 619
-my_sf_2 <- st_as_sf(all_data, coords = c('lon_center', 'lat_center'))
+my_sf_2 <- st_as_sf(all_data_final_test, coords = c('lon', 'lat'))
 my_sf_point <- my_sf_proj[i,] %>% st_drop_geometry()
 my_sf_3 <- st_as_sf(my_sf_point, coords = c('lon_save', 'lat_save'))
 
 ggplot() + 
   geom_sf(data=my_sf_2, aes(color=ele)) +
   geom_sf(data=my_sf_3 ,aes(color=flo_accu))
-  
+
 ggplot(my_sf_2) + 
   geom_sf(aes(color=log1p(F_mol_m2_d_eq1)))
 
 
 #all_data_bind
-my_sf_2 <- st_as_sf(all_data_bind, coords = c('lon', 'lat'))
+my_sf_2 <- st_as_sf(all_data_final_test, coords = c('lon', 'lat'))
 
-ggplot(my_sf_2) + 
-  geom_sf(aes(color=ele))
+ggplot(my_sf_2%>%filter(flo_accu>=1000)) + 
+  geom_sf(aes(color=slope_mid),size=.75)
+
+ggplot(my_sf_2%>%filter(flo_accu>=1000)) + 
+  geom_sf(aes(color=slope_up20),size=.75)
 
 ggplot(my_sf_2) + 
   geom_sf(aes(color=co2))
