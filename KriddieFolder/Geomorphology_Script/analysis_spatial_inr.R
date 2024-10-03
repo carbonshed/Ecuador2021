@@ -8,14 +8,14 @@ library(dplyr)
 library(tidyr)
 library(geosphere)
 
-dataFrame <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_Ele_gaviWS_TableToExcel.csv"))%>%rename(ele=Ele)%>%rename(flo_accu=FloAccu)
+dataFrame <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_fillEle_colmWS_TableToExcel.csv"))%>%rename(flo_accu=FloAccu)
 
 #dataFrame <- read.csv(here::here("Geomorphology/Geomorph_from_ArcPro/colm_rnetwork_point.csv"))
 #dataFrame$NEAR_FID <- paste("seg",dataFrame$NEAR_FID,sep="_")
 dataFrame$lat_save <- dataFrame$lat
 dataFrame$lon_save <- dataFrame$lon
 dataFrame$ID <- seq.int(nrow(dataFrame))
-dataFrame <- dataFrame%>%filter(OBJECTID!=619)
+#dataFrame <- dataFrame%>%filter(OBJECTID!=619)
   
 my_sf <- st_as_sf(dataFrame, coords = c('lon', 'lat'),crs = 4326)
 my_sf_proj <- st_transform(my_sf, 3857)
@@ -27,10 +27,6 @@ ggplot(my_sf_proj) +
 ggplot(my_sf_proj) + 
   geom_sf(aes(color=lon_save))
 
-ggplot(my_sf_proj) + 
-  geom_sf(aes(color=ele))
-ggplot(my_sf_2) + 
-  geom_sf(aes(color=log1p(F_mol_m2_d_eq1)))
 
 
 #is crs correct?
@@ -46,8 +42,8 @@ rm(all_data_temp)
 for(i in 1:nrow(my_sf_proj)) {
   # Step 4: Create a 10-meter buffer around the reference point
   
-  buffer_min <- st_buffer(my_sf_proj[i,], dist = 7)
-  buffer_max <- st_buffer(my_sf_proj[i,], dist = 12.5)
+  buffer_min <- st_buffer(my_sf_proj[i,], dist = 8.9)
+  buffer_max <- st_buffer(my_sf_proj[i,], dist = 9*sqrt(2)+.1)
   
   my_sf_proj_1 <- my_sf_proj
   # intersection with buffer as a polygon
@@ -109,6 +105,8 @@ all_data$ele_diff_mid <- all_data$ele_up10 - all_data$ele_down10
 all_data$slope_mid <- all_data$ele_diff_mid / all_data$dist_diff_mid
 all_data_mid <-  all_data
 
+write.csv(all_data_mid,here::here("ProcessedData/upscaling_datasets/colm_slope_mid_Oct3.csv"))
+
 #################
 ####slope up#####
 #################
@@ -117,8 +115,8 @@ rm(all_data_temp)
 
 for(i in 1:nrow(my_sf_proj)) {
   # Step 4: Create a 10-meter buffer around the reference point
-  buffer_min20 <- st_buffer(my_sf_proj[i,], dist = 18*sqrt(2))
-  buffer_max20 <- st_buffer(my_sf_proj[i,], dist = 20)
+  buffer_min20 <- st_buffer(my_sf_proj[i,], dist = 17.9)
+  buffer_max20 <- st_buffer(my_sf_proj[i,], dist = 18*sqrt(2) + .1)
   
   my_sf_proj_1 <- my_sf_proj
   # intersection with buffer as a polygon
