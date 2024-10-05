@@ -55,7 +55,7 @@ Ante_join_df <- full_join(Ante_join_df,Ante,by="x_pred")
 Ante_join_df <- Ante_join_df[order(Ante_join_df$x_pred),]
 
 Ante_join_df <- Ante_join_df %>%
-  mutate(Q_m3s = na.approx(Q_m3s))%>%
+#  mutate(Q_m3s = na.approx(Q_m3s))%>%
   mutate(adjusted_ppm = na.approx(adjusted_ppm))%>%
   mutate(Flux_ave = na.approx(Flux_ave))%>%
   mutate(WaterTemp_c = na.approx(WaterTemp_c))%>%
@@ -71,7 +71,7 @@ GaviDown_join_df <- full_join(GaviDown_join_df,GaviDown,by="x_pred")
 GaviDown_join_df <- GaviDown_join_df[order(GaviDown_join_df$x_pred),]
 
 GaviDown_join_df <- GaviDown_join_df %>%
-  mutate(Q_m3s = na.approx(Q_m3s))%>%
+#  mutate(Q_m3s = na.approx(Q_m3s))%>%
   mutate(adjusted_ppm = na.approx(adjusted_ppm))%>%
   mutate(Flux_ave = na.approx(Flux_ave))%>%
   mutate(WaterTemp_c = na.approx(WaterTemp_c))%>%
@@ -87,7 +87,7 @@ GaviUp_join_df <- full_join(GaviUp_join_df,GaviUp,by="x_pred")
 GaviUp_join_df <- GaviUp_join_df[order(GaviUp_join_df$x_pred),]
 
 GaviUp_join_df <- GaviUp_join_df %>%
-  mutate(Q_m3s = na.approx(Q_m3s))%>%
+#  mutate(Q_m3s = na.approx(Q_m3s))%>%
   mutate(adjusted_ppm = na.approx(adjusted_ppm))%>%
   mutate(Flux_ave = na.approx(Flux_ave))%>%
   mutate(WaterTemp_c = na.approx(WaterTemp_c))%>%
@@ -104,7 +104,7 @@ GaviTrib1_join_df <- full_join(GaviTrib1_join_df,GaviTrib1,by="x_pred")
 GaviTrib1_join_df <- GaviTrib1_join_df[order(GaviTrib1_join_df$x_pred),]
 
 GaviTrib1_join_df <- GaviTrib1_join_df %>%
-  mutate(Q_m3s = na.approx(Q_m3s))%>%
+#  mutate(Q_m3s = na.approx(Q_m3s))%>%
   mutate(adjusted_ppm = na.approx(adjusted_ppm))%>%
   mutate(Flux_ave = na.approx(Flux_ave))%>%
   mutate(WaterTemp_c = na.approx(WaterTemp_c))%>%

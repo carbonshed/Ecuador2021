@@ -51,15 +51,20 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 
 
 ```{r read in data}
-df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)
-
-
+#df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)
 synop_allsites <- read.csv(here::here("ProcessedData/synop_allsites_slope.csv"))
 synop_allsites_nowetland <- read.csv(here::here("ProcessedData/synop_allsites_nowetland_slope.csv"))
 XWD_allsites <- read.csv(here::here("ProcessedData/xwd_allsites_slope.csv"))
 Q_df <- read.csv(here::here("ProcessedData/Q_synop.csv"))
+
+
 ```
 
+
+```{r table}
+
+
+```
 
 ```{r hydro geometry plots}
 #first plot w v catchment

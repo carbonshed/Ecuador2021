@@ -3,6 +3,12 @@
 library(here)
 library(dplyr)
 library(ggplot2)
+library(tidyr)
+library(tidyverse)
+library(sf)
+library(raster)
+library(tmap)
+library(geosphere)
 
 #read in direct measurments
 synop_allsites <- read.csv(here::here("ProcessedData/synop_allsites_slope.csv"))
@@ -13,13 +19,21 @@ Q_df <- read.csv(here::here("ProcessedData/Q_synop.csv"))
 #read in catchment data
 gavi_df <- read.csv(here::here("ProcessedData/slope_gavi_oct1.csv"))
 gavi_df$cathment_name <- "gavi"
-colm_df <- read.csv(here::here("ProcessedData/slope_colm_oct1.csv"))
+colm_df <- read.csv(here::here("ProcessedData/slope_colm_oct3.csv"))
 colm_df$cathment_name <- "colm"
 ante_df <- read.csv(here::here("ProcessedData/slope_ante_oct1.csv"))
 ante_df$cathment_name <- "ante"
 
-all_data_bind <- bind(gavi_df,colm_df)
-all_data_bind <- bind(all_data_bind,ante_df)
+#count haw many are negative slope?
+colm_test_init_1ha <- colm_df%>%filter(flo_accu > 1/3/3/.0001)
+colm_test1 <- colm_test_init_1ha%>%drop_na(slope_mid)%>%drop_na(slope_up20)
+colm_test2 <- colm_df%>%filter(slope_mid > 0)%>%filter(slope_up20 > 0)
+colm_test3 <- colm_test_init_1ha%>%filter(slope_mid < 0 | slope_up20 < 0)
+
+#for colm, init 1ha, 8 na and 101 negative slope
+
+all_data_bind <- rbind(colm_test_init_1ha)
+#all_data_bind <- rbind(all_data_bind,ante_df)
 
 all_data_bind$catchment_ha <- all_data_bind$flo_accu*3*3*.0001
 ###now you can add in the width, depth, flux data
@@ -56,9 +70,9 @@ all_data_bind$Q <- exp(summ_model_Q$coefficients[1]+
 ### now calc flux
 
 #set 0 or negative slopes to low value
-all_data_bind <- all_data_bind%>%filter(slope_mid > 0 )%>%filter(slope_up20 > 0 )
-all_data_bind$slope_mid[all_data_bind$slope_mid <= 0 ] <- .01
-all_data_bind$slope_up20[all_data_bind$slope_up20 <= 0 ] <- .01
+all_data_bind <- all_data_bind%>%filter(slope_mid > 0)%>%filter(slope_up20 > 0)
+all_data_bind$slope_mid[all_data_bind$slope_mid == 0 ] <- (1/20)/2
+all_data_bind$slope_up20[all_data_bind$slope_up20 == 0 ] <- (1/20)/2
 #calc velocity
 #Q=(w+w)/2*d*v
 #v=Q/w/d
@@ -167,10 +181,6 @@ p<-ggplot(data=allsites_df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_mean
 
 p
 
-p<-ggplot(data=allsites_df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_sum,fill=cathment_name)) +
-  geom_bar(position = "dodge2")+xlab("log10 catchment bin (ha)") + ylab("sum flux mol/d") +
-  theme_bw(base_size = 16)
-p
 
 p<-ggplot(allsites_df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_sum, fill=cathment_name)) +
   geom_bar(stat="identity",position = "dodge2") +
@@ -179,24 +189,24 @@ p<-ggplot(allsites_df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_sum, fill
 
 p
 
-ggplot(allsites_df_bin5%>%filter(flo_accu>1000), aes(catchment_ha, fill = cathment_name)) +
+ggplot(allsites_df_bin5, aes(catchment_ha, fill = cathment_name)) +
   geom_histogram(position="dodge2",binwidth=50) +theme_bw(base_size = 24)+
   xlab("Cathment (ha)") + ylab("count")
 
-p<-ggplot(allsites_df_bin5%>%filter(flo_accu>1000), aes(x=catchment_ha, fill=cathment_name)) +
+p<-ggplot(allsites_df_bin5, aes(x=catchment_ha, fill=cathment_name)) +
   geom_density(alpha=0.4)
 p
 
 #all_data_bind
 my_sf_2 <- st_as_sf(all_data_bind, coords = c('lon', 'lat'))
 
-ggplot(my_sf_2%>%filter(flo_accu>=1000)) + 
+ggplot(my_sf_2) + 
   geom_sf(aes(color=slope_mid),size=.75) +
   scale_color_gradient(low = "blue", high = "red") +
   labs(colour="Slope \n (m/m)")
 
-ggplot(my_sf_2%>%filter(flo_accu>=1000)%>%filter(cathment_name=="colm")) + 
-  geom_sf(aes(color=F_CO2_molperd_eq1),size=.75) +
+ggplot(my_sf_2%>%filter(flo_accu>=500)%>%filter(cathment_name=="colm")) + 
+  geom_sf(aes(color=log(F_CO2_molperd_eq1)),size=.75) +
   scale_color_gradient(low = "blue", high = "red") +
   labs(colour="CO2 Evasion \n (mol/day)")
 
@@ -208,9 +218,13 @@ ggplot(my_sf_2 %>%filter(flo_accu>=1000)%>%filter(cathment_name=="colm")) +
 
 
 
-ggplot(my_sf_2 %>%filter(flo_accu>=1000)) + 
+ggplot(my_sf_2 %>%filter(catchment_ha>=.5)) + 
   geom_sf(aes(color=log(co2)),size=.75) +
   scale_color_gradient(low = "blue", high = "red")+
   labs(colour="pCO2 \n (ppm)")
 
 
+ggplot(my_sf_2 %>%filter(catchment_ha>=1)) + 
+  geom_sf(aes(color=log(co2)),size=.75) +
+  scale_color_gradient(low = "blue", high = "red")+
+  labs(colour="pCO2 \n (ppm)")
