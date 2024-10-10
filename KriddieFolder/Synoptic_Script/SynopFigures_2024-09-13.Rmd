@@ -68,7 +68,11 @@ Q_df <- read.csv(here::here("ProcessedData/Q_synop.csv"))
 
 #k600_df_1 <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct5.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
 
-k600_df <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
+k600_df$depth <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
+
+#this is to select just streams that are in range of streams measured in ulseth
+test <- k600_df%>%filter(v_ms>=0.00636 & Q_m3s>=0.00080 & slope_mid >= .000002 & depth >= 0.01460*100 & width >= 0.26000*100)
+
 
 ```
 
