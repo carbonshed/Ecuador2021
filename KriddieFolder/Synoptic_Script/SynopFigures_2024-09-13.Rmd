@@ -23,6 +23,7 @@ library(ggmap)
 library(dplyr)
 library(scales)
 library(olsrr)
+library(lme4)
 
 #register_stadiamaps(key = "4c9564bd-71e6-4396-8cef-e76e893129ce", write = TRUE)
 
@@ -51,65 +52,140 @@ Hypothesis: 2: Higher turbulence in larger streams will yield flux rates than sm
 
 
 ```{r read in data}
-#df<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)
+
+
 synop_allsites <- read.csv(here::here("ProcessedData/synop_allsites_slope.csv"))
+
 synop_allsites_nowetland <- read.csv(here::here("ProcessedData/synop_allsites_nowetland_slope.csv"))
+
 XWD_allsites <- read.csv(here::here("ProcessedData/xwd_allsites_slope.csv"))
+XWD_allsites[XWD_allsites$site=="GaviTrib1", "site_2"] <- "GaviTribs"
+XWD_allsites[XWD_allsites$site=="GaviTrib2", "site_2"] <- "GaviTribs"
+XWD_allsites[XWD_allsites$site=="GaviTrib3", "site_2"] <- "GaviTribs"
+
+
 Q_df <- read.csv(here::here("ProcessedData/Q_synop.csv"))
 
+#k600_df_1 <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct5.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
+
+k600_df <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
 
 ```
 
+#random analysis for use in discussion
+
+```{r random data}
+
+#result 71% evaded in 100m antenas
+ante_test <- synop_allsites%>%filter(site=="Ante")
+(5341.6114-1578.6861)/5341.6114
+#result 80% evaded in 100m gavi trib1
+GaviTrib1_test <- synop_allsites%>%filter(site=="GaviTrib1")
+(11098.654-1924.716)/11098.654
+
+#result 69$in 50m
+GaviTrib3_test <- synop_allsites%>%filter(site=="GaviTrib3")
+(5841.548-1814.662)/5841.548
+```
+
+#i need to address slope v k600
+
+```{r some stats}
+stat_explore <- k600_df%>%drop_na(slope_mid)
+
+min(stat_explore$slope_mid)/max(stat_explore$slope_mid)*100
+min(stat_explore$v_ms)/max(stat_explore$v_ms)*100
+min(stat_explore$depth)/max(stat_explore$depth)*100
+
+V<-1
+S<-1
+D<-1
+#all 1
+all_1 <- (V*S)^0.89*D^0.54*5037
+#V is 2
+V<-2
+V_2 <- (V*S)^0.89*D^0.54*5037
+V_effect <- (V_2 -all_1 )/V_2
+
+#S is 2
+V<-1
+S <- 2
+S_2 <- (V*S)^0.89*D^0.54*5037
+S_effect <- (S_2 - all_1 )/S_2
+
+#D is 2
+S<-1
+D <- 2
+D_2 <- (V*S)^0.89*D^0.54*5037
+D_effect <- (D_2 - all_1 )/D_2
+
+#model
+
+model3 <- lm(log1p(catchment_ha)~ log1p(slope_mid), data = k600_df)
+summary(model3)
+model3 <- lm(log1p(catchment_ha)~ log1p(slope_mid), data = df)
+summary(model3)
+
+# plot slope v k600
+ 
+p <- ggplot(k600_df,aes(x=catchment_ha,y=slope_mid)) +
+  geom_point(fill="orange",shape=21,size=3)  +
+ # geom_smooth(method='lm',color="black")+ 
+  scale_x_continuous(transform = "log1p",breaks=c(3,10,30,100,300))+ scale_y_continuous(transform = "log1p") +
+  annotate("text", x=10, y=.4, label= expression(atop("p-value < 0.0001",paste(r^{2}," = 0.10"))),size=4) + xlab("Catchment size [ha]") + ylab("Slope [m/m]")
+
+p2 <- ggplot(df%>%filter(catchment_ha > 1),aes(x=catchment_ha,y=slope_mid)) +
+  annotate("text", x=30, y=1.25, label= expression(atop("p-value < 0.0001",paste(r^{2}," = 0.02"))),size=4) +
+  #geom_smooth(method='lm',color="black")+
+  geom_point(fill="blue",shape=21,size=3)+ scale_x_continuous(transform = "log1p",breaks=c(3,10,30,100,300))+ scale_y_continuous(transform = "log1p")+ xlab("Catchment size [ha]") + ylab("Slope [m/m]")
+
+
+figure <- ggarrange(p, p2, ncol = 2)
+
+```
+
+#make a table that summerises CO2, k600 and flux
 
 ```{r table}
+#use synop_allsites for CO2 because the other dataframe containes interpolates CO2 values
+CO2_sum_table <- synop_allsites%>%drop_na(adjusted_ppm)%>%
+  group_by(site)%>%
+  summarise(
+    mean_co2 = mean(adjusted_ppm,na.rm=TRUE),
+    std_co2 = sd(adjusted_ppm,na.rm=TRUE),
+    median_co2 = median(adjusted_ppm,na.rm=TRUE),
+    min_co2 = min(adjusted_ppm,na.rm=TRUE),
+    max_co2 = max(adjusted_ppm,na.rm=TRUE),
+    Count = n()
+  )
+
+#use k600_df
+k600_sum_table <- k600_df%>%
+  group_by(site)%>%
+  summarise(
+    mean_k600 = mean(k600_eq1_final,na.rm=TRUE),
+    std_k600 = sd(k600_eq1_final,na.rm=TRUE),
+    median_k600 = median(k600_eq1_final,na.rm=TRUE),
+    min_k600 = min(k600_eq1_final,na.rm=TRUE),
+    max_k600 = max(k600_eq1_final,na.rm=TRUE),
+    Count = n()
+  )
 
 
-```
-
-```{r hydro geometry plots}
-#first plot w v catchment
-options(scipen = 999)
-p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x) +
-  ylab("Q (L/s)") + xlab("Catchment size (ha)") +
-  annotate("text", x=10, y=50, label= "r2 = 0.70  \npvalue = <.001",size=6,color="red") + 
-  theme_bw(base_size = 24)
-
-p_width <- ggplot(XWD_allsites,aes(x=catchment_ha,y=w)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x) + 
-  ylab("Width (cm)") + xlab("Catchment size (ha)") +
-  annotate("text", x=10, y=700, label= "r2 = 0.3395  \npvalue = <.001",size=6,color="red") + 
-  theme_bw(base_size = 24)
-
-p_depth <- ggplot(XWD_allsites%>%drop_na(slope_mid),aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+ 
-  ylab("Depth (cm)") + xlab("Catchment size (ha)") + 
-  annotate("text", x=10, y=100, label= "r2 = 0.5016 \npvalue = <.001",size=6,color="red") + 
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  theme_bw(base_size = 24)+
-  labs(fill="Slope \n (log1p)")
-
-
-p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
-  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  annotate("text", x=10, y=10000, label= "r2 = 0.2686  \npvalue = <.001",size=6,color="red") + 
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") + 
-  theme_bw(base_size = 24)+
-  labs(fill="Slope \n (log1p)")
-
-p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
-  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  annotate("text", x=10, y=10000, label= "r2 = 0.4178  \npvalue = <.001",size=6,color="red") + 
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
-  theme_bw(base_size = 24)
-
-
+#use k600_df
+flux_sum_table <- k600_df%>%
+  group_by(site)%>%
+  summarise(
+    mean_F = mean(F_mol_m2_d_eq1,na.rm=TRUE),
+    std_F = sd(F_mol_m2_d_eq1,na.rm=TRUE),
+    median_F = median(F_mol_m2_d_eq1,na.rm=TRUE),
+    min_F = min(F_mol_m2_d_eq1,na.rm=TRUE),
+    max_F = max(F_mol_m2_d_eq1,na.rm=TRUE),
+    Count = n()
+  )
 
 ```
+
 
 #fig 1
 this is a site map generated using arcpro, not included here
@@ -122,315 +198,292 @@ river network and reach
 
 ```{r Stats for fig 2a, echo=FALSE}
 
+
+model_df <- synop_allsites%>%drop_na(adjusted_ppm)
+
+#gavitrib1 is missing some x_pred
+model_df[model_df$site=="GaviTrib1"& model_df$X==480, "x_pred"] <- 11.54219 - 3
+model_df[model_df$site=="GaviTrib1"& model_df$X==481, "x_pred"] <- 11.54219
+#gavitrib3 highest point is in the wrong location I think
+model_df[model_df$site=="GaviTrib3"& model_df$X==528, "x_pred"] <- -17.68
+
+
 #gavi rivernetwork vs catchment size
-model1 <- lm(log(adjusted_ppm)~ log(CatchmentSize_ha), 
-             data = df %>%filter(Wetland_3=="Gavilan River Network"))
-summary(model1)
-
-
-
 
 #antenas  cos v dist
-model1 <- lm(log(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland_2=="Antenas"))
+model1 <- lm(log(adjusted_ppm)~ x_pred, data = synop_allsites %>%filter(site=="Ante"))
 summary(model1)
-
-ols_plot_resid_qq(model1)
-ols_test_normality(model1)
 
 #gavi outlet cos v dist
-model1 <- lm(log10(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland_4=="Gavilan Outlet"))
+model1 <- lm(log(adjusted_ppm) ~ x_pred, data = model_df %>%filter(site=="GaviDown"))
 summary(model1)
 
-ols_plot_resid_qq(model1)
-ols_test_normality(model1)
-
 #gavi trib 1  cos v dist
-model2 <- lm(log10(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland=="GAVItrib1"))
-summary(model2)
+model1 <- lm(log(adjusted_ppm)~ x_pred, data = model_df %>%filter(site=="GaviTrib1"))
+summary(model1)
+
 #gavi trib 2  cos v dist
-model3 <- lm(log10(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland=="GAVItrib2"))
-summary(model3)
+model1 <- lm(log(adjusted_ppm)~ x_pred, data = model_df %>%filter(site=="GaviTrib2"))
+summary(model1)
 
 #gavi trib 3  cos v dist
-model4 <- lm(log10(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland=="GAVItrib3"))
-summary(model4)
+model1 <- lm(log(adjusted_ppm)~ x_pred, data = model_df %>%filter(site=="GaviTrib3"))
+summary(model1)
 
 #colm  co2 v dist
-model1 <- lm(log(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland_4=="COLM"))
+model1 <- lm(log(adjusted_ppm)~ x_pred, data = model_df %>%filter(site=="Colm"))
 summary(model1)
 
 #gavi inlet cos v dist
-model1 <- lm(log10(adjusted_ppm)~ dist, 
-             data = df %>%filter(Wetland_4=="Gavilan Inlet"))
+model1 <- lm(log(adjusted_ppm)~ x_pred, 
+             data = model_df %>%filter(site=="GaviUp"))
 summary(model1)
 
 
 ```
 
+
+
 #stats to report:
-*Gavi river network v log c02*
-pvalue = 2.875e-06, r2 = 0.3139 
 
 *co2 v distance*
-Gavi inlet p-value= 0.8892, r2 = -0.0889  
-Gavi outlet p-value= 6.573e-06, r2 = 0.6102 * 
-Gavi trib1 p-value= 0.02733, r2 = 0.313 *
-Gavi trib2 p-value= 0.1107, r2 = 0.6862 
-Gavi trib3 p-value= 0.097253, r2 = 0.5394 .
-ANTE p-value = 0.0109, r2 = 0.2847 *
+Gavi outlet p-value= 0.000001103, r2 = 0.6525  *
+Gavi trib1 p-value= 0.0252, r2 = 0.3223 *
+Gavi trib2 p-value= 0.1135, r2 = 0.6789 
+Gavi trib3 p-value= 0.05204, r2 = 0.565 .
+ANTE p-value = 0.0113, r2 = 0.2817 *
+
+Gavi inlet p-value= 0.885, r2 = -0.08875
+colm p-value = 0.5208, r2 = -0.02103
 
 pannel 2c got really complicated. Below is code for all the different componenets, and then I brought it into a power point to finish it up
 
 ```{r fig 2a, echo=FALSE}
 
+model_df_original<- read_csv(here::here("ProcessedData/ALLSYNOPDATA_FINAL_2024-05-07.csv"))%>%rename(adjusted_ppm=pCO2_ppm)%>%drop_na(adjusted_ppm)
 
-MyTheme <-  theme_bw() + 
-  theme(axis.text=element_text(size=14),
-        axis.title=element_text(size=16)) +
-  theme(legend.text=element_text(size=16))+
-  theme(aspect.ratio=1)
-
-rivernetwork <- ggplot(df %>%filter(Wetland_3=="Gavilan River Network"), aes(x = CatchmentSize_ha, y = log10(adjusted_ppm))) + 
-  geom_point(size=3) +
-  theme_bw() + 
-  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]")))+
-  xlab("Catchment Size [Hectares]") +
-  scale_y_continuous(breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000")) +
-  geom_smooth(method='lm') +
-  MyTheme + 
-  annotate("text", x = 95, y = log10(10000), label  = expression("p-value < .0001\n", r^2 ~ "=" ~ .314), size = 4)
-
-df <- df[order(df$adjusted_ppm),]
+model_df <- model_df[order(model_df$adjusted_ppm),]
 #?get_stadiamap()
 
-gaviplot <- qmplot(lon_fit, lat_fit, data = df %>%filter(Wetland_3=="Gavilan River Network")%>%drop_na(adjusted_ppm),size= 6, maptype = "stamen_terrain", color = log10(adjusted_ppm)) +
+#stadium maps
+
+gaviplot_1 <- qmplot(lon_fit, lat_fit, data = model_df_original%>%
+                   filter(Wetland_3=="Gavilan River Network")%>%
+    drop_na(adjusted_ppm),size= 6, maptype = "stamen_terrain", color = log10(adjusted_ppm)) +
   scale_color_gradient(low="blue", high="red",
                        breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
     guides(size = "none") +
   theme(legend.text=element_text(size=14)) + 
-  labs(color=expression(paste(italic('p'),"CO"[2] ," [ppm]"))) +
-  theme(legend.title=element_text(size=16), 
+  labs(color=expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + theme(legend.title=element_text(size=16), 
+    legend.text=element_text(size=14)) 
+
+
+gaviplot_2 <- qmplot(lon_fit, lat_fit, data = df_original%>%
+                   filter(Wetland_2!="Gavilan Tributaries")%>%
+    drop_na(adjusted_ppm),size= 1, maptype = "stamen_terrain", color = log10(adjusted_ppm)) +
+  scale_color_gradient(low="blue", high="red", breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
+    guides(size = "none") +
+  theme(legend.text=element_text(size=14)) + 
+  labs(color=expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + theme(legend.title=element_text(size=16), 
     legend.text=element_text(size=14)) 
 
 
 ### c.
+#make it so that every reach starts at 1
+model_df[model_df$site == 'GaviTrib3',]$x_pred <- 
+  model_df[model_df$site == 'GaviTrib3',]$x_pred + 17.680000
+model_df[model_df$site == 'GaviTrib2',]$x_pred <- 
+  model_df[model_df$site == 'GaviTrib2',]$x_pred-1.293002
+model_df[model_df$site == 'GaviTrib1',]$x_pred <- 
+  model_df[model_df$site == 'GaviTrib1',]$x_pred-8.542190000
+model_df[model_df$site == 'GaviDown',]$x_pred <- 
+  model_df[model_df$site == 'GaviDown',]$x_pred-1.579386786
+model_df[model_df$site == 'Colm',]$x_pred <- 
+  model_df[model_df$site == 'Colm',]$x_pred-2.774599164
+model_df[model_df$site == 'GaviUp',]$x_pred <- 
+  model_df[model_df$site == 'GaviUp',]$x_pred-3.128488862
+model_df[model_df$site == 'Ante',]$x_pred <- 
+  model_df[model_df$site == 'Ante',]$x_pred-17.184206210
+
 
 #annotate text 
 dat_text <- data.frame(
-  label = c("p-value = 0.011", "p-value < .0001", 
-            "p-value = 0.027","p-value = 0.11"),
-  Wetland_4   = c("ANTE", "Gavilan Outlet", "GAVItrib1", "GAVItrib2"),
-  Wetland = c("ANTE","Gavi-mainstem","GAVItrib1","GAVItrib2"))
+  label = c("p-value = 0.011", "p-value < 0.0001", 
+            "p-value = 0.025","p-value = 0.11","p-value = 0.05"),
+  site   = c("Ante", "GaviDown", "GaviTrib1", "GaviTrib2", "GaviTrib3"))
 
+site_names <- c("Ante" = "Antenas",
+                "GaviDown" = "Gavil\u00e1n Outlet",
+                "GaviTrib1" = "Tributary 1",
+                "GaviTrib2" = "Tributary 2",
+                "GaviTrib3" = "Tributary 3")
 
-#subtract 523m from outlet
-df[df$Wetland_4 == 'Gavilan Outlet',]$dist <- df[df$Wetland_4 == 'Gavilan Outlet',]$dist - 523
-
-Wetland_4_names <- c(
-                    "ANTE" = "Antenas",
-                    "Gavilan Outlet" = "Gavil\u00e1n Outlet",
-                    "GAVItrib1" = "Gavil\u00e1n Tributary 1",
-                    "GAVItrib2" = "Gavil\u00e1n Tributary 2"
-                    )
-
-p2 <- ggplot(df %>%drop_na(Wetland)%>%filter(Wetland_4!="Gavilan Inlet")%>%filter(Wetland!="COLM")%>%filter(Wetland!="GAVItrib3")
-             , aes(x = dist, y = adjusted_ppm)) +
+p2 <- ggplot(model_df%>%filter(site!="GaviUp")%>%filter(site!="Colm")#%>%filter(Wetland!="GAVItrib3")
+             , aes(x = x_pred, y = adjusted_ppm)) +
   geom_point(size=3) +  
-  facet_grid(Wetland_4~.,labeller = as_labeller(Wetland_4_names)) + geom_smooth(method='lm')+
+  facet_grid(site~.,labeller = as_labeller(site_names)) + geom_smooth(method='lm')+
   ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
   theme_bw() +
-  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +  theme(text = element_text(size = 14))
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +  theme(text = element_text(size = 14)) 
 
 p3 <- p2 + geom_text(
   data    = dat_text,
   mapping = aes(x = 400, y = 9000, label = label))
-p3
-
-df1 <- df%>%drop_na(Wetland)%>%filter(Wetland_4=="ANTE"|Wetland_4=="Gavilan Outlet"|Wetland_4=="Gavilan Inlet"|Wetland_4=="COLM")
-df1$Wetland_4<- factor(df1$Wetland_4, levels = c("ANTE", "Gavilan Outlet", "Gavilan Inlet", "COLM"))
-df1$adjusted_ppm[df1$Wetland_4 == "ANTE"] <- NA
-df1$adjusted_ppm[df1$Wetland_4 == "Gavilan Outlet"] <- NA
 
 
-Wetland_4_names2 <- c(
-                    "ANTE" = "Antenas",
-                    "Gavilan Outlet" = "Gavil\u00e1n Outlet",
-                    "Gavilan Inlet" = "Gavil\u00e1n Intlet",
-                    "COLM" = "Colmillo"
-                    
-                    )
 
 
-p4 <- ggplot(df1%>%drop_na(Wetland), aes(x = dist, y = adjusted_ppm)) +
+df1 <- model_df%>%filter(site=="Ante"|site=="GaviDown"|site=="GaviTrib1"|site=="GaviUp"|site=="Colm")
+
+df1$adjusted_ppm[df1$site == "Ante"] <- NA
+df1$adjusted_ppm[df1$site == "GaviDown"] <- NA
+df1$adjusted_ppm[df1$site == "GaviTrib1"] <- NA
+
+
+site_names <- c("Ante" = "Antenas",
+                      "GaviDown" = "Gavil\u00e1n Outlet",
+                "GaviTrib1" = "gavitrib1",
+                      "GaviUp" = "Gavil\u00e1n Intlet",
+                      "Colm" = "Colmillo")
+
+
+p4 <- ggplot(df1, aes(x = x_pred, y = adjusted_ppm)) +
   geom_point(size=3) + 
-  facet_grid(Wetland_4~.,labeller = as_labeller(Wetland_4_names2)
-             ) +
+  facet_grid(site~.,labeller = as_labeller(site_names)) +
   ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Distance downstream [m]") +
   theme_bw() +
   scale_y_continuous(trans = "log10", breaks=c(300,1000,3000), labels=c("300","1,000","3,000")) +
   expand_limits(y = c(200, 4000)) + 
   theme(text = element_text(size = 14))
-p4
+
+
+#annotate text 
+dat_text2 <- data.frame(
+  label = c("", "", "" ,
+            "p-value = 0.89","p-value = 0.52"),
+  site   = c("Ante", "GaviDown", "GaviTrib1", "GaviUp","Colm"))
 
 p5 <- p4 + geom_text(
   data    = dat_text2,
   mapping = aes(x = 900, y = 3000, label = label),
 )
-p5
 
 
-figure1 <- ggarrange(rivernetwork, gaviplot,
-                    labels = c("A","B"),
-                    ncol = 1, nrow = 2,
-               #    align = "hv",
-                    widths = c(1, .8),
-              #    heights = c(.6,.4),
-                  font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
-
-figure2 <- ggarrange(figure1, p3,
-                    labels = c("","C"),
-                    ncol = 2, nrow = 1,
-              #     align = "hv",
-               #     widths = c(1, .8),
-              #    heights = c(.6,.4),
-                  font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
-
+figure1 <- ggarrange(gaviplot_1, gaviplot_2, ncol = 2)
+figure2 <- ggarrange(p3, p5, ncol = 2)
 
 ```
 
-#slope fig
-
-```{r fig 4 boxplots, echo=FALSE}
-df <- read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"))
-
-
-model1.2 <- lm(log(adjusted_ppm) ~ scale(log1p(slope_up)) #+
-#                 scale(log(catchment_ha))
-, data = df %>%filter(catchment_ha > 12.5)
-               )
-summary(model1.2)
-
-ols_plot_resid_qq(model1.2)
-ols_test_normality(model1.2)
-
-
-theme_set(theme_bw(base_size = 16))
-
-p <- ggplot(df  %>%filter(catchment_ha > 12.5), 
-       aes(x=slope_up,y=adjusted_ppm, color=catchment_ha)) +
-  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +
-  geom_point(size=2) +
-  geom_smooth(method = "lm",color="black") +
-  ylab(expression(paste(italic('p'),"CO"[2] ," [ppm]"))) + xlab("Slope [m/m]") +
-  scale_colour_gradient(
-  name = "Catchment Size [ha]",
-  low = "yellow3",
-  high = "green4",
-  space = "Lab",
-  na.value = "grey50",
-  guide = "colourbar",
-  aesthetics = "colour"
-)
-
-
-```
-
-# trends in flux 
-
-#fig 4
 
 Box plots
 ```{r fig 4 boxplots, echo=FALSE}
 
-df <-read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"),na.strings=c("","NA"))
-df$name_2 <- df$name
-df$name_2[which(df$name_2 == "GaviTrib1")] = "GaviTribs"
-df$name_2[which(df$name_2 == "GaviTrib2")] = "GaviTribs"
+synop_allsites$site_2 <- synop_allsites$site
+synop_allsites[synop_allsites$site=="GaviTrib1", "site_2"] <- "GaviTribs"
+synop_allsites[synop_allsites$site=="GaviTrib2", "site_2"] <- "GaviTribs"
+synop_allsites[synop_allsites$site=="GaviTrib3", "site_2"] <- "GaviTribs"
 
+k600_df$site_2 <- k600_df$site
+k600_df[k600_df$site=="GaviTrib1", "site_2"] <- "GaviTribs"
+k600_df[k600_df$site=="GaviTrib2", "site_2"] <- "GaviTribs"
+k600_df[k600_df$site=="GaviTrib3", "site_2"] <- "GaviTribs"
 
 ###box and wisker####
-anova.co2 <- aov(log(adjusted_ppm) ~ name, data = df)
+anova.co2 <- aov(log(adjusted_ppm) ~ site_2, data = synop_allsites)
 summary(anova.co2)
 
-anova.flux <- aov(log1p(F_mol_m2_d_eq1) ~ name, data = df)
+anova.flux <- aov(log1p(F_mol_m2_d_eq1) ~ site_2, data = k600_df)
 summary(anova.flux)
 
-anova.k600 <- aov(log1p(k600_eq1_final) ~ name, data = df)
+anova.k600 <- aov(log(k600_eq1_final) ~ site_2, data = k600_df)
 summary(anova.k600)
+
+#creat labels
+
+#specify labels for plot
+synop_allsites$site_2 <- factor(synop_allsites$site_2,levels = c("GaviTribs","Ante", "GaviUp", "GaviDown", "Colm"))
+k600_df$site_2 <- factor(k600_df$site_2,levels = c("GaviTribs","Ante", "GaviUp", "GaviDown", "Colm"))
+
+
+my_labels <- c('Tribs', 'Antenas', 'Gavil\u00e1n \nInlet', 'Gavil\u00e1n \nOutlet','Colmillo')
 
 tukey.co2<-TukeyHSD(anova.co2)
 tukey.co2
 
-tukey.flux<-TukeyHSD(anova.flux)
-tukey.flux
+air_ppm <- 416.45
+CO2 <- ggplot(synop_allsites, aes(x = site_2, y = adjusted_ppm)) +
+  geom_boxplot(fill="grey") +
+  geom_jitter(shape=18,position=position_jitter(0.1)) +
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3,fill="red")+
+  geom_hline(yintercept= air_ppm,color="red",linetype="twodash", linewidth=1) +
+  scale_y_continuous(trans = "log1p", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000"), limits = c(300,25000)) +
+  theme_bw(base_size = 16)+
+  ylab(expression(paste(italic('p'),"CO"[2]," [ppm]")))  +
+    annotate("text", x="Ante", y= 18000,label="B", size = 4) +
+  annotate("text", x="Colm", y= 18000,label="B", size = 4) +
+  annotate("text", x="GaviUp", y= 18000,label="B", size = 4) +
+   annotate("text", x="GaviDown", y= 18000,label="B", size = 4) +
+    annotate("text", x="GaviTribs", y= 18000,label="A", size = 4) +
+    scale_x_discrete(labels=my_labels) + xlab("")
 
 tukey.k600<-TukeyHSD(anova.k600)
 tukey.k600
 
-MyTheme <-  theme_bw() + 
-  theme(
-    axis.text.x = element_blank(),
-    axis.ticks.x = element_blank(),
-    axis.title.x = element_blank()) +
-  theme(axis.text=element_text(size=14),
-        axis.title=element_text(size=14)) +
-  theme(legend.text=element_text(size=16))
+k600 <- ggplot(k600_df%>%drop_na(x), aes(x = site_2, y = k600_eq1_final)) + 
+  geom_boxplot(fill="grey") +
+  geom_jitter(shape=18,position=position_jitter(0.1)) + scale_y_continuous(transform="log1p", breaks=c(30,100,300,1000), labels=c("30","100","300","1,000"), limits = c(6,1200)) +
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3,fill="red") +
+  theme_bw(base_size = 16)+
+    ylab(expression(paste(italic('k')[600]," [m ", d^-1,"]"))) +
+  annotate("text", x="Ante", y= 1000,label="A", size = 4) +
+  annotate("text", x="Colm", y= 1000,label="A", size = 4) +
+  annotate("text", x="GaviUp", y= 1000,label="B", size = 4) +
+  annotate("text", x="GaviDown", y= 1000,label="B", size = 4) +
+  annotate("text", x="GaviTribs", y= 1000,label="A", size = 4)+
+    scale_x_discrete(labels=my_labels)+ xlab("")
 
-air_ppm <- 416.45
-CO2 <- ggplot(df, aes(x = name_2, y = adjusted_ppm, fill = name_2)) +
-  geom_boxplot() +
+tukey.flux<-TukeyHSD(anova.flux)
+tukey.flux
+
+
+flux <- ggplot(k600_df, aes(x = site_2, y = F_mol_m2_d_eq1)) + 
+  geom_boxplot(fill="grey") +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
-   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
-  geom_hline(yintercept= log10(air_ppm),color="red",linetype="twodash", linewidth=1) +
-  scale_y_log10() +
-  MyTheme
-
-
-flux <- ggplot(df, aes(x = name_2, y = F_mol_m2_d_eq1, fill = name_2)) + 
-  geom_boxplot() +
-  geom_jitter(shape=18,position=position_jitter(0.1)) +
-   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white")+
-  scale_y_log10() +
-  MyTheme
-
-
-k600 <- ggplot(df%>%drop_na(x), aes(x = name_2, y = k600_eq1_final, fill = name_2)) + 
-  geom_boxplot() +
-  geom_jitter(shape=18,position=position_jitter(0.1)) +
-   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white") +
-  scale_y_log10()+
-  MyTheme
+   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, fill="red") +
+  scale_y_continuous(transform = "log1p", 
+                     breaks=c(1,3,10,30,100), 
+                     limits=c(.1,90)) +
+  theme_bw(base_size = 16)+
+    ylab(expression(paste(" Evasion [ mol ", m^-2, day^-1,"]")))+
+  annotate("text", x="Ante", y= 70,label="B", size = 4) +
+  annotate("text", x="Colm", y= 70,label="B", size = 4) +
+  annotate("text", x="GaviUp", y= 70,label="AB", size = 4) +
+  annotate("text", x="GaviDown", y= 70,label="A", size = 4) +
+  annotate("text", x="GaviTribs", y= 70,label="A", size = 4)+
+    scale_x_discrete(labels=my_labels)+ xlab("") 
   
-slope <- ggplot(df%>%drop_na(x), aes(x = name_2, y = slope)) + 
-  geom_boxplot() +
+slope <- ggplot(k600_df%>%drop_na(x), aes(x = site_2, y = slope_mid)) + 
+  geom_boxplot(fill="grey") +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white") +
   scale_y_log10()
 
-v_ms <- ggplot(df %>%drop_na(x), aes(x = name_2, y = v_ms)) + 
-  geom_boxplot() +
+Q <- ggplot(k600_df %>%drop_na(x), aes(x = site_2, y = Q_m3s)) + 
+  geom_boxplot(fill="grey") +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
    stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="white") +
   scale_y_log10()
-
 
 
 require(grid)  
 
 
 
-figure <- ggarrange(CO2 , flux,  k600,
+figure <- ggarrange(CO2 , k600, flux,
                   #  labels = c("A","B","C"),
                     ncol = 1, nrow = 3,
                     common.legend = TRUE, legend = "right",
                     align = "hv", 
-                  #  hjust   = -0.5,
                     font.label = list(size = 20, color = "black", face = "bold", family = NULL, position = "top"))
 
 figure
@@ -439,199 +492,103 @@ figure
 
 ```
 
+#hydraulic geometry plots
 
-#fig 6
+```{r hydro geometry plots}
+#first plot w v catchment
+XWD_allsites$legend_item <- "black"
+options(scipen = 999)
 
-for < 12.5 hectars, watershed size is not significant, co2 is significant
-r2 = 0.5247, pvalue =2.43e-07
-for > 20 ha, co2 is not significant, but watershed size is. pvalue = 0.00395 r2 = 0.1057
+model_Q <- lm(log(Q_m3s) ~ log(catchment_ha), data = Q_df)
+summ_model_Q <- summary(model_Q)
 
-```{r fig 6, echo=FALSE}
-
-df_sats <- df
-df_sats$co2_scale <-scale(df_sats$adjusted_ppm)
-df_sats$WS_scale <- scale(df_sats$catchment_ha)
-
-model1_1 <- lm(log1p(F_mol_m2_d_eq1) ~ log1p(adjusted_ppm), 
-             data = df_sats %>%#filter(F_CO2_umol_m2_s>-1)%>%
-               filter(catchment_ha<12.5))
-summary(model1_1)
-
-ols_plot_resid_qq(model1_1)
-ols_test_normality(model1_1)
-
-#
-model2_2 <- lm(log1p(F_mol_m2_d_eq1) ~  log(catchment_ha), 
-             data = df_sats %>%filter(catchment_ha>20)#%>%filter(F_CO2_umol_m2_s>-1)
-             )
-summary(model2_2)
-ols_plot_resid_qq(model2_2)
-ols_test_normality(model2_2)
-#
-model1_3 <- lm(log1p(F_mol_m2_d_eq1) ~  log(catchment_ha) + log(adjusted_ppm), 
-             data = df_sats)
-summary(model1_3)
-
-model1_3 <- lm(log1p(F_mol_m2_d_eq1) ~  scale(log(catchment_ha)) + scale(log(adjusted_ppm)), 
-             data = df_sats)
-summary(model1_3)
-
-ols_plot_resid_qq(model1_3)
-ols_test_normality(model1_3)
-
-#
-
-#####################
-MyTheme <-  theme_bw() + 
-  theme(axis.text=element_text(size=14),
-        axis.title=element_text(size=16)) +
-  theme(legend.title = element_text(size=18),
-    legend.text=element_text(size=16))
-
-hex <- hue_pal()
-
-
-A <- ggplot(df %>%filter(catchment_ha<12.5),
-        aes(x=log10(adjusted_ppm), y=F_mol_m2_d_eq1)) +
-  geom_point(aes(fill=name), 
-       color="black",pch=21, size=3) + 
-  scale_y_log10() +
-  geom_vline(xintercept= log10(air_ppm),color="red",linetype="twodash", linewidth=1) +
-  geom_smooth(method='lm') +
-  xlab("CO2 ppm") + 
-  ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) +
-  labs(linetype="LEGEND", color="LEGEND") +
-  scale_fill_manual(name="Stream Reach",labels=c("Antenas", "Gavil\u00e1n Tributary 1","Gavil\u00e1n Tributary 3"), values = c(antens, gavitrib1, gavitrib3)) + scale_x_log10()  + MyTheme 
-
-
-
-B <- ggplot(df_sats %>%filter(F_mol_m2_d_eq1>-.6)
-            %>%filter(catchment_ha>20),
-        aes(x=catchment_ha, y=F_mol_m2_d_eq1)) +
-  geom_point(aes(fill=name), 
-       color="black",pch=21, size=3) + 
-  scale_y_log10() +
-    scale_x_log10() +
-  geom_smooth(method='lm') +
-  xlab("Catchment Size [ha]") + 
-  ylab(expression(paste("CO"[2]," Flux [",mu,"mol ", m^-2, s^-1,"]"))) + 
-  labs(linetype="LEGEND", color="LEGEND") +
-  scale_fill_manual(
-    name="Stream Reach",
-    labels=c( "Colmillo","Gavil\u00e1n","Gavil\u00e1n Tributary 2"),values = c(colmillo, gavi,gavitrib2))+
-   theme_bw()  + MyTheme
-
-
-
-figure <- ggarrange(A , B,  
-                #    labels = c("A","B"),
-                    ncol = 1, nrow = 2,
-                    #common.legend = TRUE, 
-                    legend = "right",
-                    align = "hv", 
-                    font.label = list(size = 25, color = "black", face = "bold", family = NULL, position = "top"))
-
-figure
-
-ggsave("fig5.png", plot = figure, device = NULL, path = NULL,
-       scale = 1, width = 20, height = 20, dpi = 360, limitsize = TRUE,
-       units = c("cm"))
-
-
-```
-
-
-```{r fig 5 k600, echo=TRUE}
-df <- read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"))
-p <- ggplot(df, 
-            aes(x=catchment_ha,y=k600_eq1_final)) +
-  scale_y_log10() + scale_x_log10() +
-  geom_point(size=2) +
-  geom_smooth(method = "lm",color="black") +
-  ylab(expression(paste(italic('k'),"600 [m d" ^1,"]"))) + xlab("Catchment Size [ha]")
-p
-
-### bins
-df_bins <- df
-df_bins$CatchmentSize_ha_log <- log(df_bins$CatchmentSize_ha)
-df_bins <- df_bins%>%select(CatchmentSize_ha_log,K600) %>%
-  filter(K600 > -30) %>%
-  mutate(Catchment_bin = cut(CatchmentSize_ha_log, breaks=5)) #%>% 
-
-df_bins_summary <-df_bins%>%
-  group_by(Catchment_bin) %>%
-  summarise(
-    k600_mean = mean(K600, na.rm = TRUE),
-    k600_stdev = sd(K600, na.rm = TRUE),
-    k600_median = median(K600, na.rm = TRUE),
-    k600_max = max(K600, na.rm = TRUE),
-    k600_min = min(K600, na.rm = TRUE),
-    n())
-
-df_bins$Catchment_bin2 <- as.character(df_bins$Catchment_bin)
-df_bins$Catchment_bin3 <- gsub("]", "", df_bins$Catchment_bin2) 
-df_bins$Catchment_bin4 <- sub('.', '', df_bins$Catchment_bin3)
-df_bins[c('min_log', 'max_log')] <- str_split_fixed(df_bins$Catchment_bin4, ',', 2)
-df_bins$min_log <- as.numeric(df_bins$min_log )
-df_bins$max_log <- as.numeric(df_bins$max_log )
-
-df_bins$min <- signif(exp(df_bins$min_log),digits =2)
-df_bins$max <- signif(exp(df_bins$max_log),digits =2)
-
-df_bins$bins_true  <- paste(df_bins$min, "-", df_bins$max)
-
-df_bins$bins_true = factor(df_bins$bins_true, levels=c("0.11 - 0.5","0.5 - 2.3","2.3 - 10","10 - 47","47 - 210"))
-
-k600_boxplot <- ggplot(df_bins, aes(x=bins_true, y=K600)) + 
-  geom_boxplot(fill="grey", notch=FALSE)+
-  geom_jitter(width = 0.2)+ 
-    stat_summary(fun.y=mean, geom="point", shape=23,size=3,color="black",fill="red") +
-  scale_y_log10() +
-    ylab(expression(paste("mean ",italic('k')[600]," [m ", d^-1,"]"))) + 
-  xlab("Catchment size [ha]") +
-  theme_bw(base_size = 16) 
-
-
-###bar plots
-
-df_bins$bins_true <- factor(df_bins$bins_true, levels = df_bins$bins_true[order(df_bins$min)])
-
-p1<-ggplot(data=df_bins, aes(x=bins_true, y=k600_stdev)) +
-  geom_bar(stat="identity", color="black",fill="grey", width=1)+ 
-    ylab(expression(paste("standard deviation"))) + xlab("Catchment size (Hectar)") +
+p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000,color="black")) + geom_point(size=3) + scale_y_log10() + scale_x_log10() +
+  geom_smooth(method='lm', formula= y~x,color="black") +
+  ylab(expression(paste("Discharge (L ",s^-1, ")"))) + xlab("Catchment size (ha)") +
+    scale_color_manual(values = c("black")) +
+  annotate("text", x=5, y=50, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.7"))),size=4) +
   theme_bw(base_size = 16)
-    
-p1
+
+model_w <- lm(log(w) ~ log(catchment_ha)  , data = XWD_allsites)
+summ_model_w <- summary(model_w)
+
+p_width <- ggplot(XWD_allsites,aes(x=catchment_ha,y=w,color=legend_item)) + geom_point(size=3) +
+  geom_smooth(method='lm', formula= y~x,color="black") + 
+  ylab("Width (cm)") + xlab("Catchment size (ha)") +
+   scale_y_continuous(trans = "log10", 
+                      breaks=c(10,100,1000), 
+                      labels=c("10","100","1,000")) +
+  scale_x_continuous(trans = "log10", limits = c(.1,200)) +
+  scale_color_manual(values = c("black")) +
+  annotate("text", x=1, y=700, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.34"))),size=4) + 
+  theme_bw(base_size = 16)
+
+model_d <- lm(log(d) ~ log(catchment_ha) + log1p(slope_mid), data = XWD_allsites)
+summ_model_d <-summary(model_d)
+
+p_depth <- ggplot(XWD_allsites%>%drop_na(slope_mid),aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + geom_point(size=3,shape=21) +
+  scale_y_log10() + scale_x_continuous(trans = "log10", limits = c(.1,200)) +
+  geom_smooth(method='lm', formula= y~x,color="black")+ 
+  ylab("Depth (cm)") + xlab("Catchment size (ha)") + 
+  annotate("text", x=1, y=100, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.50"))),size=4) +
+ # scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
+  theme_bw(base_size = 16)+ scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope [m/m]", labels=c(0,.1,.2,.3,.4),  breaks=c(0,log1p(.1),log1p(.2),log1p(.3),log1p(.4)))
+  labs(fill="Slope \n (log1p)")
 
 
-p2<-ggplot(data=df_bins, aes(x=Catchment_bin, y=k600_mean)) +
-  geom_bar(stat="identity", color="black",fill="grey", width=1) +
-  geom_point(aes(x=Catchment_bin,y=k600_median),shape=23,size=4,color="black",fill="black") + 
-    ylab(expression(paste("mean ",italic('k')[600]," [m ", d^-1,"]"))) +
-  theme_bw(base_size = 16) +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank()) 
-p2
+p_full <- ggarrange(p_Q, p_width, ncol = 2, nrow = 1)
 
-full <- ggarrange(p2, p1, nrow = 2, common.legend = TRUE)
+
+
+model_co2 <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites%>%drop_na(slope_up))
+summ_model_co2 <- summary(model_co2)
+
+p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
+  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x,color="black")+
+  scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope [m/m]", labels=c(0,.3,.6,1),  breaks=c(0,log1p(.3),log1p(.6),log1p(1))) +  annotate("text", x=8, y=10000, label= expression(atop("p-value = < 0.0001",""#paste(r^{2}," = 0.27")
+                                                                                                    )),size=4) +
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") + 
+  theme_bw(base_size = 16)+
+  labs(fill="Slope \n (log1p)")
+
+model_co2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites_nowetland%>%drop_na(slope_up))
+summ_model_co2_nowetland <- summary(model_co2_nowetland)
+
+summ_model_co2_nowetland <-summary(model_co2_nowetland)
+p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
+  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x,color="black")+
+  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
+  annotate("text", x=1, y=10000, label= expression(atop("p-value = < 0.001",paste(r^{2}," = 0.42"))),size=4) +
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
+  theme_bw(base_size = 16)
+
+
 
 ```
+
+
 
 
 #plot
 
 
 ```{r bball fig, echo=FALSE}
-df <- read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"))
+#df1 <- read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"))
 
-bball <- ggplot(df, 
-                     aes(x=x, y=flux_sum, group=name)) +
+df <- read.csv(here::here("ProcessedData/CumulativeFlux_raymondk600_Oct8.csv"))
+
+df$name <- factor(df$name, levels=c("Ante", "Colm","GaviUp", "GaviDown","GaviTrib1","GaviTrib2","GaviTrib3"))
+
+bball <- ggplot(df, aes(x=x, y=flux_sum, group=name)) +
   geom_line(aes(color=name), linewidth=3) +
   geom_point(aes(fill=name), size=1,shape=1)+
-    ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) +
-  xlab("Distance [m]")
-  theme_bw() 
+    ylab(expression(paste("Cumulative CO"[2]," Flux [mol ", day^-1,"]"))) +
+  xlab("Distance [m]") + 
+  scale_color_discrete(name = "Stream Reach", labels = c("Antenas", "Colmillo", 'Gavil\u00e1n Inlet', "Gavil\u00e1n Outlet", "Gavil\u00e1n Tributary 1", "Gavil\u00e1n Tributary 2"))+ 
+  scale_fill_discrete(name = "Stream Reach", labels = c("Antenas", "Colmillo", 'Gavil\u00e1n Inlet', "Gavil\u00e1n Outlet", "Gavil\u00e1n Tributary 1", "Gavil\u00e1n Tributary 2")) +
+  theme_bw(base_size = 20) + theme(legend.position="none")
 
 bball
 
@@ -640,12 +597,14 @@ bball_zoom <- ggplot(df,
                      aes(x=x, y=flux_sum, group=name)) +
   geom_line(aes(color=name), linewidth=3) +
   geom_point(aes(fill=name), size=1,shape=1)+
-    ylab(expression(paste("Cumulative CO"[2]," Flux [",mu,"mol ", s^-1,"]"))) +
+    ylab(expression(paste("Cumulative CO"[2]," Flux [mol ", day^-1,"]"))) +
   xlab("Distance [m]")  +
     guides(fill=FALSE) +
-  xlim(-10, 500) +
-  ylim(-20, 800) +
-  theme_bw() 
+  scale_color_discrete(name = "Stream Reach", labels = c("Antenas", "Colmillo", 'Gavil\u00e1n Inlet', "Gavil\u00e1n Outlet", "Gavil\u00e1n Tributary 1", "Gavil\u00e1n Tributary 2"))+ 
+  scale_fill_discrete(name = "Stream Reach", labels = c("Antenas", "Colmillo", 'Gavil\u00e1n Inlet', "Gavil\u00e1n Outlet", "Gavil\u00e1n Tributary 1", "Gavil\u00e1n Tributary 2")) +
+  xlim(-10, 300) +
+  ylim(-20, 300) +
+   theme_bw(base_size = 16) 
 
 
 bball_zoom
@@ -653,3 +612,156 @@ bball_zoom
 #write.csv(df_test,here::here("ProcessedData/bball_dataframe.csv"))
 
 ```
+
+
+
+```{r upscale flux bin, echo=FALSE}
+#make some plots right quick, bin data
+df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
+
+df_bin5 <- df%>%filter(catchment_ha>=1) %>% mutate(new_bin = cut(log10(catchment_ha), breaks=5))
+df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
+
+
+
+p1 <-ggplot(data=df_bin5, aes(x=new_bin, y=co2,fill=cathment_name)) +
+  geom_boxplot() + 
+  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+  ylab(expression(italic(p)~CO[2] ~'[ppm]')) +
+  scale_fill_discrete(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
+  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+p1
+
+
+p2 <-ggplot(data=df_bin5, aes(x=new_bin, y=k600_eq1,fill=cathment_name)) + scale_y_log10() +
+  geom_boxplot() +  
+    scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+   scale_fill_discrete(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
+  ylab(expression(paste(italic('k')[600]," [m ", d^-1,"]"))) +
+  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+p2
+
+
+p3 <-ggplot(data=df_bin5, aes(x=new_bin, y=F_mol_m2_d_eq1,fill=cathment_name)) +
+  geom_boxplot() +  
+  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+   scale_fill_discrete(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
+    ylab(expression(paste("CO"[2]," flux [mol ",m^-2," ", d^-1,"]"))) + scale_y_continuous(transform = "log1p", breaks = c(-1,0,3,10,30)) +
+  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+p3
+
+
+p4 <-ggplot(data=df_bin5, aes(x=new_bin, y=F_CO2_molperd_eq1,fill=cathment_name)) +
+  geom_boxplot() + 
+  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) + scale_y_continuous(transform = "log",breaks=c(.1,1,8)) +
+   scale_fill_discrete(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
+    ylab(expression(paste("CO"[2]," flux [mol ", d^-1,"]"))) +
+  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+p4
+
+
+p_full <- ggarrange(p1, p2, p3,p4,  common.legend = TRUE, legend="top")
+
+```
+
+
+```{r upscale flux map, echo=FALSE}
+
+df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
+df$cathment_name <- factor(df$cathment_name, levels = c("ante", "gavi", "colm"))
+
+df_bin5 <- df%>%filter(catchment_ha>=1) %>% mutate(new_bin = cut(log10(catchment_ha), breaks=5))
+df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
+
+histogram <- df%>%filter(catchment_ha>=1)%>%
+  ggplot( aes(x=catchment_ha, fill=cathment_name)) +
+    geom_histogram( color="black", position = 'identity',bins = 10) +
+    theme_classic(base_size = 14) +
+    labs(fill="")+ xlab("Catchment size [ha]") + #scale_y_continuous(breaks=c(0,2000,4000)) +
+  scale_x_continuous(transform = "log",breaks=c(1,3, 10,30,100,300)) +
+  scale_fill_discrete(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
+  facet_grid(rows=vars(cathment_name))+ 
+theme(strip.background = element_blank(),
+  strip.text.y = element_blank()) + 
+  #theme(legend.position="right")+ 
+  guides(fill="none")
+
+
+
+df_bin5_summary <- df_bin5%>%group_by(new_bin,cathment_name)%>%filter(catchment_ha>=1)%>%
+  summarise(
+    co2_mean = mean(co2,na.rm =TRUE),
+    co2_sd = sd(co2,na.rm =TRUE),
+    slope_mid_mean = mean(slope_mid,na.rm =TRUE),
+    slope_mid_sd = sd(slope_mid,na.rm =TRUE),
+    k600_eq1_mean = mean(k600_eq1_final,na.rm =TRUE),
+    k600_eq1_sd = sd(k600_eq1_final,na.rm =TRUE),
+    F_mol_m2_d_eq1_mean = mean(F_mol_m2_d_eq1,na.rm =TRUE),
+        F_mol_m2_d_eq1_sd = sd(F_mol_m2_d_eq1,na.rm =TRUE),
+    F_CO2_molperd_eq1_mean = mean(F_CO2_molperd_eq1,na.rm =TRUE),
+        F_CO2_molperd_eq1_sd = sd(F_CO2_molperd_eq1,na.rm =TRUE),
+    F_CO2_molperd_eq1_sum = sum(F_CO2_molperd_eq1,na.rm =TRUE))
+
+barplot <-ggplot(data=df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_sum,fill=cathment_name)) +
+geom_bar(stat="identity", color="black", position=position_dodge())+
+    scale_x_discrete(name="Catchment size [ha]", labels = c('[9.0 - 16.6]','[16.6 - 40.0]','[40.0 - 57.5]','[57.5 - 107]','[107 - 199]')) +
+   scale_fill_discrete(name = "", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
+    ylab(expression(paste("Total CO"[2]," Flux [mol ", day^-1,"]"))) +
+  theme_minimal(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) + 
+    theme(legend.position="top")
+
+
+df$code_names <- NA
+df[df$F_CO2_molperd_eq1 <= 0,]$code_names <- "< 0"
+df[df$F_CO2_molperd_eq1 > 1.12,]$code_names <- "> 1.12"
+  
+my_sf_2 <- st_as_sf(df, coords = c('lon', 'lat'))
+
+map2 <- ggplot(my_sf_2%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1>0 & F_CO2_molperd_eq1<=1.2)) + 
+  geom_sf(aes(color=F_CO2_molperd_eq1),size=.05) +
+  
+  scale_color_viridis(name=expression(paste("CO"[2]~"Flux [mol ", day^-1,"]")),option="viridis",trans = "log1p")+
+  
+   geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1>1.2), aes(x = lon, y = lat, fill=code_names), size = .05,  color = "red") +
+  geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1<0), aes(x = lon, y = lat,fill=code_names), size = 1,  color = "white") +scale_fill_manual(labels = c("< 0","> 1.2"), values = c("white", "red")) + 
+  theme_dark(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+
+
+
+map2_ante <- ggplot(my_sf_2%>%filter(catchment_ha>=1)%>%filter(cathment_name=="ante")%>%filter(F_CO2_molperd_eq1>=0 & F_CO2_molperd_eq1<=1.11470)) + 
+  geom_sf(aes(color=F_CO2_molperd_eq1),size=.05) +
+  
+  scale_color_viridis(name=expression(paste("CO"[2]~"Flux [mol ", day^-1,"]")),option="viridis",trans = "log1p")+
+  
+   geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(cathment_name=="ante")%>%filter(F_CO2_molperd_eq1>1.11470), aes(x = lon, y = lat), size = .05,  color = "red") +
+  
+   geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(cathment_name=="ante")%>%filter(F_CO2_molperd_eq1<0), aes(x = lon, y = lat), size = 1,  color = "white") + 
+  theme_dark(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+
+
+map2_gavi <- ggplot(my_sf_2%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1>=0 & F_CO2_molperd_eq1<=1.11470)) + 
+  geom_sf(aes(color=F_CO2_molperd_eq1),size=.05) +
+  scale_color_viridis(name=expression(paste("CO"[2]~"Flux [mol ", day^-1,"]")),option="H",trans = "log1p")+
+  theme_gray(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+
+#,trans = "log1p"
+
+my_sf_1 <- st_as_sf(df_bin5, coords = c('lon', 'lat'))
+
+map1 <- ggplot(my_sf_1%>%filter(catchment_ha>=1)) + 
+  geom_sf(aes(color=new_bin),size=3) +
+  scale_color_brewer(name="Catchment size [ha]",labels = c('9.0 - 16.6','16.6 - 40.0','40.0 - 57.5','57.5 - 107','107 - 199'))+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))+theme_dark(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) #+ guides(color="none")
+
+
+
+
+full1 <- ggarrange(histogram,barplot,ncol = 2,widths=c(1,2),common.legend = TRUE)
+full2 <- ggarrange(map1,map2,ncol = 2)
+full3 <- ggarrange(full1,full2,nrow = 2)
+
+
+
+```
+
+
+

@@ -10,10 +10,11 @@ library(geosphere)
 
 
 #gavi
-dataFrame_gavi <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_Ele_gaviWS_TableToExcel.csv"))%>%rename(ele=Ele)%>%rename(flo_accu=FloAccu)
+dataFrame_gavi <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_fillEle_gaviWS_TableToExcel.csv"))%>%rename(flo_accu=FloAccu)
 dataFrame_gavi$lat_save <- dataFrame_gavi$lat
 dataFrame_gavi$lon_save <- dataFrame_gavi$lon
 dataFrame_gavi$ID <- seq.int(nrow(dataFrame_gavi))
+dataFrame_gavi <- dataFrame_gavi%>%filter(OBJECTID!=614)
 dataFrame_gavi <- dataFrame_gavi%>%filter(OBJECTID!=619)
 dataframe <- dataFrame_gavi
 
@@ -25,11 +26,13 @@ dataFrame_colm$ID <- seq.int(nrow(dataFrame_colm))
 dataframe <- dataFrame_colm
 
 #Ante
-dataFrame_ante <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_Ele_anteWS_2_TableToExcel.csv"))%>%rename(ele=Ele)%>%rename(flo_accu=FloAccu)
+dataFrame_ante <- read.csv(here::here("ProcessedData/upscaling_datasets/point_Facc_fillEle_anteWS_2_TableToExcel.csv"))%>%rename(flo_accu=FloAccu)
 dataFrame_ante$lat_save <- dataFrame_ante$lat
 dataFrame_ante$lon_save <- dataFrame_ante$lon
 dataFrame_ante$ID <- seq.int(nrow(dataFrame_ante))
+dataFrame_ante <- dataFrame_ante%>%filter(OBJECTID!=8)
 dataframe <- dataFrame_ante
+
 
 #now that you have selected the site, run the following script
 dataframe$lat_save <- dataFrame$lat
@@ -37,6 +40,8 @@ dataframe$lon_save <- dataFrame$lon
 dataframe$ID <- seq.int(nrow(dataFrame))
 #dataFrame <- dataFrame%>%filter(OBJECTID!=619)
   
+
+
 my_sf <- st_as_sf(dataframe, coords = c('lon', 'lat'),crs = 4326)
 my_sf_proj <- st_transform(my_sf, 3857)
 
@@ -125,7 +130,7 @@ all_data$ele_diff_mid <- all_data$ele_up10 - all_data$ele_down10
 all_data$slope_mid <- all_data$ele_diff_mid / all_data$dist_diff_mid
 all_data_mid <-  all_data
 
-#write.csv(all_data_mid,here::here("ProcessedData/upscaling_datasets/colm_slope_mid_Oct3.csv"))
+#write.csv(all_data_mid,here::here("ProcessedData/upscaling_datasets/gavi_slope_mid_Oct3.csv"))
 
 
 #################
@@ -142,7 +147,7 @@ rm(all_data)
 rm(all_data_temp)
 
 
-i <- 3
+
 
 for(i in 1:nrow(my_sf_proj)) {
   # Step 4: Create a 20-meter buffer around the reference point
@@ -196,18 +201,15 @@ for(i in 1:nrow(my_sf_proj)) {
 }
 
 
-
-
 all_data$ele_diff_up20 <- all_data$ele_up20 - all_data$ele
 all_data$slope_up20 <- all_data$ele_diff_up20 / all_data$dist_diff_up
 
 all_data_up <-  all_data
 
-#write.csv(all_data_up,here::here("ProcessedData/upscaling_datasets/colm_slope_up_Oct3.csv"))
+#write.csv(all_data_up,here::here("ProcessedData/upscaling_datasets/gavi_slope_up_Oct3.csv"))
 
 
 #now join them together
-#all_data_mid <- read.csv(here::here("ProcessedData/upscaling_datasets/colm_slope_mid_Oct3.csv"))
 
 all_data_final <- full_join(all_data_mid,all_data_up,by=c("pointid","ele","flo_accu","lat_center","lon_center"))   
 all_data_final <- all_data_final%>%select(pointid,ele,flo_accu,lat_center,lon_center,ele_up10,ele_down10,ele_up20,
