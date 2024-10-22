@@ -140,7 +140,7 @@ all_data_bind$water_pressure_atm <- baro_hpa * 0.000987 + 0.000967841
 ########
 
 all_data_bind$pCO2_air_atm <-  all_data_bind$pCO2_air_ppm / 10^6  * all_data_bind$air_pressure_atm
-all_data_bind$pCO2_w_atm <- all_data_bind$co2 / 10^6 * all_data_bind$water_pressure_atm 
+all_data_bind$pCO2_w_atm <- all_data_bind$co2 / 10^6 #* all_data_bind$water_pressure_atm 
 
 #henry's constant adjust for temp
 watertemp_c <- mean(k600_df$WaterTemp_c,na.rm=TRUE)
@@ -157,4 +157,4 @@ all_data_bind$F_mol_m2_d_eq1 <- all_data_bind$k.m.d * all_data_bind$KH_mol.m3.at
 all_data_bind$F_CO2_molperd_eq1 <- all_data_bind$F_mol_m2_d_eq1 * 3 * all_data_bind$width/100
 
 #redout data framw
-#write.csv(all_data_bind,here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
+#write.csv(all_data_bind,here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
