@@ -601,7 +601,7 @@ df_justtomakesure <- df%>%filter(catchment_ha>=1)
 df_bin5 <- df_justtomakesure%>% mutate(new_bin = cut(log(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
-z_score_break <- 500
+z_score_break <- 10
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
@@ -684,20 +684,18 @@ annotate_figure(figure, left = textGrob("Common y-axis", rot = 90, vjust = 1, gp
 ```{r upscale flux map, echo=FALSE}
 
 df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
-#df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
-df$cathment_name <- factor(df$cathment_name, levels = c("ante", "gavi", "colm"))
+df_justtomakesure <- df%>%filter(catchment_ha>=1) 
 
-df_bin5 <- df%>%filter(catchment_ha>=1) %>% mutate(new_bin = cut(log10(catchment_ha), breaks=5))
+
+df_bin5 <- df_justtomakesure%>% mutate(new_bin = cut(log(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
+z_score_break <- 10
 
-z_score_break <- 100
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
 
-
-df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 
 histogram <- df_bin5%>%filter(catchment_ha>=1)%>%
   ggplot( aes(x=catchment_ha, fill=cathment_name)) +
@@ -741,10 +739,6 @@ geom_bar(stat="identity", color="black", position=position_dodge())+
     theme(legend.position="top")
 
 
-df$code_names <- NA
-df[df$F_CO2_molperd_eq1 <= 0,]$code_names <- "< 0"
-df[df$F_CO2_molperd_eq1 > 1.12,]$code_names <- "> 1.12"
-  
 
 
 
@@ -755,10 +749,20 @@ full <- ggarrange(histogram,barplot,ncol = 2,widths=c(.75,2),common.legend = TRU
 ```
 
 
-```{r test plot, echo=FALSE}
+```{r read out df, echo=FALSE}
+zdf <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
+df_justtomakesure <- df%>%filter(catchment_ha>=1) 
+df_bin5 <- df_justtomakesure%>% mutate(new_bin = cut(log(catchment_ha), breaks=5))
+df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
-ggplot(df_bin5, aes(x=catchment_ha, y= F_CO2_molperd_eq1, color=new_bin))  +geom_point() +scale_x_log10()
+z_score_break <- 10
 
+
+df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
+z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
+
+writeout_df <- df_bin5%>%filter(z_score<z_score_break&z_score>-z_score_break)
+write.csv(writeout_df,here::here("ProcessedData/Upscale_flux_init1ha_Oct22.csv"))
 ```
 
 
