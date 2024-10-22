@@ -1,0 +1,16 @@
+site_2,variable,value,Label
+Ante,co2,18000,B
+Colm,co2,18000,B
+GaviUp,co2,18000,B
+GaviDown,co2,18000,B
+GaviTribs,co2,18000,A
+Ante,k600_eq1_final,1000,A
+Colm,k600_eq1_final,1000,A
+GaviUp,k600_eq1_final,1000,B
+GaviDown,k600_eq1_final,1000,B
+GaviTribs,k600_eq1_final,1000,A
+Ante,F_mol_m2_d_eq1,70,B
+Colm,F_mol_m2_d_eq1,70,B
+GaviUp,F_mol_m2_d_eq1,70,AB
+GaviDown,F_mol_m2_d_eq1,70,A
+GaviTribs,F_mol_m2_d_eq1,70,A
