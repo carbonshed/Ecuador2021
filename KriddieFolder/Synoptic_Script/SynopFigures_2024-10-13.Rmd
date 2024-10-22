@@ -124,8 +124,7 @@ D_effect <- (D_2 - all_1 )/D_2
 
 model3 <- lm(log1p(catchment_ha)~ log1p(slope_mid), data = k600_df)
 summary(model3)
-model3 <- lm(log1p(catchment_ha)~ log1p(slope_mid), data = df)
-summary(model3)
+
 
 # plot slope v k600
  
@@ -134,11 +133,6 @@ p <- ggplot(k600_df,aes(x=catchment_ha,y=slope_mid)) +
  # geom_smooth(method='lm',color="black")+ 
   scale_x_continuous(transform = "log1p",breaks=c(3,10,30,100,300))+ scale_y_continuous(transform = "log1p") +
   annotate("text", x=10, y=.4, label= expression(atop("p-value < 0.0001",paste(r^{2}," = 0.10"))),size=4) + xlab("Catchment size [ha]") + ylab("Slope [m/m]")
-
-p2 <- ggplot(df%>%filter(catchment_ha > 1),aes(x=catchment_ha,y=slope_mid)) +
-  annotate("text", x=30, y=1.25, label= expression(atop("p-value < 0.0001",paste(r^{2}," = 0.02"))),size=4) +
-  #geom_smooth(method='lm',color="black")+
-  geom_point(fill="blue",shape=21,size=3)+ scale_x_continuous(transform = "log1p",breaks=c(3,10,30,100,300))+ scale_y_continuous(transform = "log1p")+ xlab("Catchment size [ha]") + ylab("Slope [m/m]")
 
 
 figure <- ggarrange(p, p2, ncol = 2)
