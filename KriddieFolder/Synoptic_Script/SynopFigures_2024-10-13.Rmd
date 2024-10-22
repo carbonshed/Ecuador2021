@@ -373,6 +373,8 @@ figure2 <- ggarrange(p3, p5, ncol = 2)
 Box plots
 ```{r fig 4 boxplots, echo=FALSE}
 
+k600_df <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
+
 synop_allsites$site_2 <- synop_allsites$site
 synop_allsites[synop_allsites$site=="GaviTrib1", "site_2"] <- "GaviTribs"
 synop_allsites[synop_allsites$site=="GaviTrib2", "site_2"] <- "GaviTribs"
@@ -425,7 +427,7 @@ ann_text$value <- as.numeric(ann_text$value)
 p <- ggplot(df_sub,
             aes(x=site_3, y=value)) 
 
-air_ppm <- 416.45
+air_ppm <- mean(k600_df$pCO2_air_atm)*1000000
 p1 <- p +  facet_grid(rows = vars(variable),labeller = f_labeller,scales = "free")  +
 #  geom_hline(yintercept=1.0, linetype="dotdash", color = "black", size=1) +
   geom_boxplot(outlier.shape = NA,fill="grey") +
@@ -582,7 +584,7 @@ bball_zoom <- ggplot(df,
    theme_bw(base_size = 16) 
 
 
-ggarrange(bball_zoom,legend = "none")
+#ggarrange(bball_zoom,legend = "none")
 
 #write.csv(df_test,here::here("ProcessedData/bball_dataframe.csv"))
 
@@ -599,7 +601,7 @@ df_justtomakesure <- df%>%filter(catchment_ha>=1)
 df_bin5 <- df_justtomakesure%>% mutate(new_bin = cut(log(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
-z_score_break <- 1000
+z_score_break <- 500
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
@@ -611,13 +613,14 @@ bin5_summ <- df_bin5%>%group_by(new_bin)%>%
             flux_d = mean(F_CO2_molperd_eq1))
 
 air_ppm <- mean(df_bin5$pCO2_air_atm*10^6)
+
 p1 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break&z_score>-z_score_break), aes(x=new_bin, y=co2,fill=cathment_name)) +
     geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5#outlier.shape = NA
     ) + 
    geom_hline(yintercept=air_ppm, color="red",linetype="dashed") +
      stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") + 
 
- # scale_y_continuous(transform ="log",breaks=c(300,1000,3000,10000)) +
+  scale_y_continuous(transform ="log",breaks=c(1,3,10,30,100,300,1000,3000)) +
   scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
   scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
   ylab(expression(italic(p)~CO[2] ~'[ppm]')) +
@@ -635,12 +638,13 @@ p2 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break
 
 
 p3 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break), aes(x=new_bin, y=F_mol_m2_d_eq1,fill=cathment_name)) +
-   geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5#outlier.shape = NA
+   geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5
     ) +   
   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
   scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
     scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
-    ylab(expression(paste(CO[2]," Evasion [mol ",m^-2," ", d^-1,"]"))) + scale_y_continuous(limits=c(-.5,2.5)) +
+    ylab(expression(paste(CO[2]," Evasion [mol ",m^-2," ", d^-1,"]"))) + scale_y_continuous(transform="log1p",breaks = c(1,3,10),limits =c(0,20)
+      ) +
   theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
 
 
@@ -648,7 +652,8 @@ p4 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break
    geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5) +
   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
   scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) + scale_y_continuous(transform="log1p",breaks = c(1,3,10,30,100),limits = c(0,30)
+      ) +
     ylab(expression(paste(CO[2]," Evasion [mol ", d^-1,"]"))) +
   theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
 
@@ -678,14 +683,15 @@ annotate_figure(figure, left = textGrob("Common y-axis", rot = 90, vjust = 1, gp
 
 ```{r upscale flux map, echo=FALSE}
 
-df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
+df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
+#df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
 df$cathment_name <- factor(df$cathment_name, levels = c("ante", "gavi", "colm"))
 
 df_bin5 <- df%>%filter(catchment_ha>=1) %>% mutate(new_bin = cut(log10(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
 
-z_score_break <- 5
+z_score_break <- 100
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
@@ -739,55 +745,10 @@ df$code_names <- NA
 df[df$F_CO2_molperd_eq1 <= 0,]$code_names <- "< 0"
 df[df$F_CO2_molperd_eq1 > 1.12,]$code_names <- "> 1.12"
   
-my_sf_2 <- st_as_sf(df, coords = c('lon', 'lat'))
-
-map2 <- ggplot(my_sf_2%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1>0 & F_CO2_molperd_eq1<=1.2)) + 
-  geom_sf(aes(color=F_CO2_molperd_eq1),size=.05) +
-  
-  scale_color_viridis(name=expression(paste("CO"[2]~"Flux [mol ", day^-1,"]")),option="viridis",trans = "log1p")+
-  
-   geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1>1.2), aes(x = lon, y = lat, fill=code_names), size = .05,  color = "red") +
-  geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1<0), aes(x = lon, y = lat,fill=code_names), size = 1,  color = "white") +scale_fill_manual(labels = c("< 0","> 1.2"), values = c("white", "red")) + 
-  theme_dark(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
 
 
 
-map2_ante <- ggplot(my_sf_2%>%filter(catchment_ha>=1)%>%filter(cathment_name=="ante")%>%filter(F_CO2_molperd_eq1>=0 & F_CO2_molperd_eq1<=1.11470)) + 
-  geom_sf(aes(color=F_CO2_molperd_eq1),size=.05) +
-  
-  scale_color_viridis(name=expression(paste("CO"[2]~"Flux [mol ", day^-1,"]")),option="viridis",trans = "log1p")+
-  
-   geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(cathment_name=="ante")%>%filter(F_CO2_molperd_eq1>1.11470), aes(x = lon, y = lat), size = .05,  color = "red") +
-  
-   geom_point(data = df%>%filter(catchment_ha>=1)%>%filter(cathment_name=="ante")%>%filter(F_CO2_molperd_eq1<0), aes(x = lon, y = lat), size = 1,  color = "white") + 
-  theme_dark(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
-
-
-map2_gavi <- ggplot(my_sf_2%>%filter(catchment_ha>=1)%>%filter(F_CO2_molperd_eq1>=0 & F_CO2_molperd_eq1<=1.11470)) + 
-  geom_sf(aes(color=F_CO2_molperd_eq1),size=.05) +
-  scale_color_viridis(name=expression(paste("CO"[2]~"Flux [mol ", day^-1,"]")),option="H",trans = "log1p")+
-  theme_gray(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
-
-#,trans = "log1p"
-
-my_sf_1 <- st_as_sf(df_bin5, coords = c('lon', 'lat'))
-
-map1 <- ggplot(my_sf_1%>%filter(catchment_ha>=1)) + 
-  geom_sf(aes(color=new_bin),size=3) +
-  scale_color_brewer(name="Catchment size [ha]",labels = c('9.0 - 16.6','16.6 - 40.0','40.0 - 57.5','57.5 - 107','107 - 199'))+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))+theme_dark(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) #+ guides(color="none")
-
-
-
-
-full1 <- ggarrange(histogram,barplot,ncol = 2,widths=c(.75,2),common.legend = TRUE,legend = "bottom")
-
-full2 <- ggarrange(full1,map2,nrow = 2)
-
-
-full2 <- ggarrange(map1,map2,ncol = 2)
-
-
-full3 <- ggarrange(full1,full2,nrow = 2)
+full <- ggarrange(histogram,barplot,ncol = 2,widths=c(.75,2),common.legend = TRUE,legend = "bottom")
 
 
 

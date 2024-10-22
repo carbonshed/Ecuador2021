@@ -9,8 +9,8 @@ Colm,k600_eq1_final,1000,A
 GaviUp,k600_eq1_final,1000,B
 GaviDown,k600_eq1_final,1000,B
 GaviTribs,k600_eq1_final,1000,A
-Ante,F_mol_m2_d_eq1,70,B
-Colm,F_mol_m2_d_eq1,70,B
-GaviUp,F_mol_m2_d_eq1,70,AB
-GaviDown,F_mol_m2_d_eq1,70,A
-GaviTribs,F_mol_m2_d_eq1,70,A
+Ante,F_mol_m2_d_eq1,90,BC
+Colm,F_mol_m2_d_eq1,90,C
+GaviUp,F_mol_m2_d_eq1,90,AB
+GaviDown,F_mol_m2_d_eq1,90,A
+GaviTribs,F_mol_m2_d_eq1,90,A
