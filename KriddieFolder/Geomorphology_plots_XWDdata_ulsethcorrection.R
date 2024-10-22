@@ -463,7 +463,7 @@ all_data_bind$water_pressure_atm <- baro_hpa * 0.000987 + 0.000967841
 ########
 
 all_data_bind$pCO2_air_atm <-  all_data_bind$pCO2_air_ppm / 10^6  * all_data_bind$air_pressure_atm
-all_data_bind$pCO2_w_atm <- all_data_bind$adjusted_ppm / 10^6 * all_data_bind$water_pressure_atm 
+all_data_bind$pCO2_w_atm <- all_data_bind$adjusted_ppm / 10^6# * all_data_bind$water_pressure_atm 
 
 #henry's constant adjust for temp
 
@@ -567,72 +567,3 @@ allsites_df <- rbind(colm,ante,gaviup,gavidown,gavitrib1,gavitrib2)
 
 #read out cumulative flux dataframe
 #write.csv(allsites_df,here::here("ProcessedData/CumulativeFlux_raymondk600_Oct8.csv"))
-
-
-
-#first plot w v catchment
-p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x) +
-  ylab("Q (L/s)") + xlab("Catchment size (ha)") +
-  annotate("text", x=10, y=20, label= "r2 = 0.70  \npvalue = <.001",size=6,color="red") + 
-  theme_bw(base_size = 18)
-
-p_width <- ggplot(XWD_allsites,aes(x=catchment_ha,y=w)) + geom_point(size=3) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x) + 
-  ylab("Width (cm)") + xlab("Catchment size (ha)") +
-  annotate("text", x=10, y=700, label= "r2 = 0.3395  \npvalue = <.001",size=6,color="red") + 
-  theme_bw(base_size = 18)
-
-p_depth <- ggplot(XWD_allsites,aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+ 
-  ylab("Depth (cm)") + xlab("Catchment size (ha)") + 
-  annotate("text", x=10, y=100, label= "r2 = 0.5016 \npvalue = <.001",size=6,color="red") + 
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  theme_bw(base_size = 18)
-
-
-p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
-  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  annotate("text", x=10, y=10000, label= "r2 = 0.2686  \npvalue = <.001",size=6,color="red") + 
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
-  theme_bw(base_size = 16)
-
-p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
-  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  annotate("text", x=10, y=10000, label= "r2 = 0.4178  \npvalue = <.001",size=6,color="red") + 
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
-  theme_bw(base_size = 16)
-
-
-
-p_co2_ntest <- ggplot(synop_test%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
-  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x)+
-  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  annotate("text", x=10, y=10000, label= "r2 = 0.4178  \npvalue = <.001",size=6,color="red") + 
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
-  theme_bw(base_size = 16)
-
-
-#anova
-model_co2 <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites%>%drop_na(slope_up))
-
-model_co2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites_nowetland%>%drop_na(slope_up))
-
-#model_co2_test <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_test%>%drop_na(slope_up))
-
-model_w <- lm(log(w) ~ log(catchment_ha)  , data = XWD_allsites)
-model_d <- lm(log(d) ~ log(catchment_ha) + log1p(slope_mid), data = XWD_allsites)
-model_Q <- lm(log(Q_m3s) ~ log(catchment_ha), data = Q_df)
-
-
-summary(model_co2)
-summary(model_co2_nowetland)
-#summary(model_co2_test)
-summary(model_w)
-summary(model_d)
-summary(model_Q)
