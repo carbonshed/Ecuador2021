@@ -481,24 +481,24 @@ summ_model_Q <- summary(model_Q)
 
 p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000,color="black")) + geom_point(size=3) + scale_y_log10() + scale_x_log10() +
   geom_smooth(method='lm', formula= y~x,color="black") +
-  ylab(expression(paste("Discharge [L ",s^-1, "]"))) + xlab("Catchment size [ha]") +
+  ylab(expression(paste("Discharge [L ",s^-1, "]"))) + xlab("Catchment area [ha]") +
     scale_color_manual(values = c("black")) +
   annotate("text", x=5, y=50, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.7"))),size=4) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 18)
 
 model_w <- lm(log(w) ~ log(catchment_ha)  , data = XWD_allsites)
 summ_model_w <- summary(model_w)
 
 p_width <- ggplot(XWD_allsites,aes(x=catchment_ha,y=w,color=legend_item)) + geom_point(size=3) +
   geom_smooth(method='lm', formula= y~x,color="black") + 
-  ylab("Width [cm]") + xlab("Catchment size [ha]") +
+  ylab("Width [cm]") + xlab("Catchment area [ha]") +
    scale_y_continuous(trans = "log10", 
                       breaks=c(10,100,1000), 
                       labels=c("10","100","1,000")) +
   scale_x_continuous(trans = "log10", limits = c(.1,200)) +
   scale_color_manual(values = c("black")) +
   annotate("text", x=1, y=700, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.34"))),size=4) + 
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 18)
 
 model_d <- lm(log(d) ~ log(catchment_ha) + log1p(slope_mid), data = XWD_allsites)
 summ_model_d <-summary(model_d)
@@ -506,10 +506,10 @@ summ_model_d <-summary(model_d)
 p_depth <- ggplot(XWD_allsites%>%drop_na(slope_mid),aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + geom_point(size=3,shape=21) +
   scale_y_log10() + scale_x_continuous(trans = "log10", limits = c(.1,200)) +
   geom_smooth(method='lm', formula= y~x,color="black")+ 
-  ylab("Depth [cm]") + xlab("Catchment size [ha]") + 
+  ylab("Depth [cm]") + xlab("Catchment area [ha]") + 
   annotate("text", x=1, y=100, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.50"))),size=4) +
  # scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
-  theme_bw(base_size = 16)+ scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope [m/m]", labels=c(0,.1,.2,.3,.4),  breaks=c(0,log1p(.1),log1p(.2),log1p(.3),log1p(.4)))
+  theme_bw(base_size = 18)+ scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope [m/m]", labels=c(0,.1,.2,.3,.4),  breaks=c(0,log1p(.1),log1p(.2),log1p(.3),log1p(.4)))
   labs(fill="Slope \n (log1p)")
 
 
@@ -525,8 +525,8 @@ p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted
   geom_smooth(method='lm', formula= y~x,color="black")+
   scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope [m/m]", labels=c(0,.3,.6,1),  breaks=c(0,log1p(.3),log1p(.6),log1p(1))) +  annotate("text", x=8, y=10000, label= expression(atop("p-value = < 0.0001",""#paste(r^{2}," = 0.27")
                                                                                                     )),size=4) +
-  ylab(expression(italic(p)~CO[2] ~'[ppm]')) + xlab("") + xlab("Catchment size [ha]") + 
-  theme_bw(base_size = 16)+
+  ylab(expression(italic(p)~CO[2] ~'[ppm]')) + xlab("") + xlab("Catchment area [ha]") + 
+  theme_bw(base_size = 18)+
   labs(fill="Slope \n (log1p)")
 
 model_co2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites_nowetland%>%drop_na(slope_up))
@@ -538,7 +538,7 @@ p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=cat
   geom_smooth(method='lm', formula= y~x,color="black")+
   scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
   annotate("text", x=1, y=10000, label= expression(atop("p-value = < 0.001",paste(r^{2}," = 0.42"))),size=4) +
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") +
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment area [ha]") +
   theme_bw(base_size = 16)
 
 
@@ -601,7 +601,7 @@ df_justtomakesure <- df%>%filter(catchment_ha>=1)
 df_bin5 <- df_justtomakesure%>% mutate(new_bin = cut(log(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
-z_score_break <- 500
+z_score_break <- 10
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
@@ -621,8 +621,8 @@ p1 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break&z_score>-z_score_break),
      stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") + 
 
   scale_y_continuous(transform ="log",breaks=c(1,3,10,30,100,300,1000,3000)) +
-  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-  scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+  scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
   ylab(expression(italic(p)~CO[2] ~'[ppm]')) +
   theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
 
@@ -632,7 +632,7 @@ p2 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break
   geom_boxplot(outlier.shape=21, outlier.size = 1.25, outlier.alpha = .5
     ) + 
        stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
-  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +    scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
   ylab(expression(paste(italic('k')[600]," [m ", d^-1,"]"))) +
   theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
 
@@ -641,8 +641,8 @@ p3 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break
    geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5
     ) +   
   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
-  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+    scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
     ylab(expression(paste(CO[2]," Evasion [mol ",m^-2," ", d^-1,"]"))) + scale_y_continuous(transform="log1p",breaks = c(1,3,10),limits =c(0,20)
       ) +
   theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
@@ -651,8 +651,8 @@ p3 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break
 p4 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break), aes(x=new_bin, y=F_CO2_molperd_eq1,fill=cathment_name)) +
    geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5) +
   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
-  scale_x_discrete(name="Catchment size [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) + scale_y_continuous(transform="log1p",breaks = c(1,3,10,30,100),limits = c(0,30)
+  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+    scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) + scale_y_continuous(transform="log1p",breaks = c(1,3,10,30,100),limits = c(0,30)
       ) +
     ylab(expression(paste(CO[2]," Evasion [mol ", d^-1,"]"))) +
   theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
@@ -681,17 +681,17 @@ annotate_figure(figure, left = textGrob("Common y-axis", rot = 90, vjust = 1, gp
 ```
 
 
-```{r upscale flux map, echo=FALSE}
+```{r upscale boxplots, echo=FALSE}
 
 df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
-#df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct8.csv"))
+
 df$cathment_name <- factor(df$cathment_name, levels = c("ante", "gavi", "colm"))
 
 df_bin5 <- df%>%filter(catchment_ha>=1) %>% mutate(new_bin = cut(log10(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
 
-z_score_break <- 100
+z_score_break <- 10
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
@@ -702,14 +702,13 @@ df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/s
 histogram <- df_bin5%>%filter(catchment_ha>=1)%>%
   ggplot( aes(x=catchment_ha, fill=cathment_name)) +
     geom_histogram( color="black", position = 'identity',bins = 10) +
-    theme_classic(base_size = 14) +
-    labs(fill="")+ xlab("Catchment size [ha]") + #scale_y_continuous(breaks=c(0,2000,4000)) +
+    theme_classic(base_size = 16) +
+    labs(fill="")+ xlab("Catchment area [ha]") + 
   scale_x_continuous(transform = "log",breaks=c(1,3, 10,30,100,300)) +
-  scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+  scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
   facet_grid(rows=vars(cathment_name))+ 
 theme(strip.background = element_blank(),
   strip.text.y = element_blank()) + 
-  #theme(legend.position="right")+ 
   guides(fill="none")
 
 
@@ -732,11 +731,11 @@ df_bin5_summary <- df_bin5%>%
 
 barplot <-ggplot(data=df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_sum,fill=cathment_name)) +
 geom_bar(stat="identity", color="black", position=position_dodge())+
-    scale_x_discrete(name="Catchment size [ha]", labels = c('[9.0 - 16.6]','[16.6 - 40.0]','[40.0 - 57.5]','[57.5 - 107]','[107 - 199]')) +
-  scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+    scale_x_discrete(name="Catchment area [ha]", labels = c('[9.0 - 16.6]','[16.6 - 40.0]','[40.0 - 57.5]','[57.5 - 107]','[107 - 199]')) +
+  scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
 #   scale_fill_discrete(name = "", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
     ylab(expression(paste("Total CO"[2]," evasion [mol ", day^-1,"]"))) +
-  theme_minimal(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) + 
+  theme_minimal(base_size = 18)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) + 
   
     theme(legend.position="top")
 
@@ -748,18 +747,13 @@ df[df$F_CO2_molperd_eq1 > 1.12,]$code_names <- "> 1.12"
 
 
 
-full <- ggarrange(histogram,barplot,ncol = 2,widths=c(.75,2),common.legend = TRUE,legend = "bottom")
+full <- ggarrange(histogram,NULL,barplot,ncol = 3,widths=c(1,.2,1.75),common.legend = TRUE,legend = "bottom")
 
 
 
 ```
 
 
-```{r test plot, echo=FALSE}
-
-ggplot(df_bin5, aes(x=catchment_ha, y= F_CO2_molperd_eq1, color=new_bin))  +geom_point() +scale_x_log10()
-
-```
 
 
 
