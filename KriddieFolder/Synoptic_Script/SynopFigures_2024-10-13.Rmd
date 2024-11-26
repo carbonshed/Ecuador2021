@@ -681,7 +681,7 @@ annotate_figure(figure, left = textGrob("Common y-axis", rot = 90, vjust = 1, gp
 ```
 
 
-```{r upscale boxplots, echo=FALSE}
+```{r upscale barplot, echo=FALSE}
 
 df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
 

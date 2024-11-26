@@ -273,7 +273,7 @@ gaviplot_1 <- qmplot(lon_fit, lat_fit, data = model_df_original%>%
     legend.text=element_text(size=14)) 
 
 
-gaviplot_2 <- qmplot(lon_fit, lat_fit, data = df_original%>%
+gaviplot_2 <- qmplot(lon_fit, lat_fit, data = model_df_original%>%
                    filter(Wetland_2!="Gavilan Tributaries")%>%
     drop_na(adjusted_ppm),size= 1, maptype = "stamen_terrain", color = log10(adjusted_ppm)) +
   scale_color_gradient(low="blue", high="red", breaks=c(log10(300),log10(1000), log10(3000), log10(10000)), labels=c("300","1,000","3,000","10,000"))+
@@ -461,11 +461,6 @@ anova.flux <- aov(log1p(F_mol_m2_d_eq1) ~ site_2, data = k600_df)
 summary(anova.flux)
 tukey.flux<-TukeyHSD(anova.flux)
 tukey.flux
-
-anova.flux2 <- aov(log1p(F_CO2_molperd_eq1) ~ site_2, data = k600_df)
-summary(anova.flux2)
-tukey.flux2<-TukeyHSD(anova.flux2)
-tukey.flux2
 
 ```
 
