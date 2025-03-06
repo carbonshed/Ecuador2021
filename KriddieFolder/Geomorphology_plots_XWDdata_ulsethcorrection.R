@@ -417,8 +417,7 @@ colm <- test%>%filter(site=="Colm")
 #calc velocity
 #Q=(w+w)/2*d*v
 #v=Q/w/d
-all_data_bind$v_ms <- all_data_bind$Q / (all_data_bind$depth/100) / (all_data_bind$width/100)
-
+all_data_bind$v_ms <- all_data_bind$Q_m3s / (all_data_bind$depth/100) / (all_data_bind$width/100)
 
 #calc k600 using eD as in Ulseth
 #first calc eD
@@ -477,6 +476,8 @@ all_data_bind$k.m.d_eq1 <- all_data_bind$k600_eq1_final / ((600/all_data_bind$Sc
 all_data_bind$F_mol_m2_d_eq1 <- all_data_bind$k.m.d * all_data_bind$KH_mol.m3.atm * (all_data_bind$pCO2_w_atm -  all_data_bind$pCO2_air_atm )
 #calc flux [umol/d]
 all_data_bind$F_CO2_molperd_eq1 <- all_data_bind$F_mol_m2_d_eq1 * 3 * all_data_bind$width/100
+
+
 
 #read out this dataframe
 #write.csv(all_data_bind,here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))

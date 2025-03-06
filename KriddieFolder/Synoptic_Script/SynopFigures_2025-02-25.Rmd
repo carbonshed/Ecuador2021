@@ -125,6 +125,7 @@ model3 <- lm(log1p(catchment_ha)~ log1p(slope_mid), data = k600_df)
 summary(model3)
 
 
+
 # plot slope v k600
  
 p <- ggplot(k600_df,aes(x=catchment_ha,y=slope_mid)) +
@@ -302,27 +303,29 @@ model_df[model_df$site == 'Ante',]$x_pred <-
 
 #annotate text 
 dat_text <- data.frame(
-  label = c("p-value = 0.011", "p-value < 0.0001", 
-            "p-value = 0.025","p-value = 0.11","p-value = 0.05"),
+  label = c("p-value = 0.011\nR-sq = 0.28", "p-value < 0.0001\nR-sq = 0.65", 
+            "p-value = 0.025\nR-sq = 0.32","p-value = 0.11\nR-sq = 0.68","p-value = 0.05\nR-sq = 0.57"),
   site   = c("Ante", "GaviDown", "GaviTrib1", "GaviTrib2", "GaviTrib3"))
 
 site_names <- c("Ante" = "Antenas",
-                "GaviDown" = "Gavil\u00e1n Outlet",
-                "GaviTrib1" = "Tributary 1",
-                "GaviTrib2" = "Tributary 2",
-                "GaviTrib3" = "Tributary 3")
+                "GaviDown" = "Gavil\u00e1n \noutlet",
+                "GaviTrib1" = "Tributary \n1",
+                "GaviTrib2" = "Tributary \n2",
+                "GaviTrib3" = "Tributary \n3",
+                "GaviUp" = "Gavil\u00e1n \nintlet",
+                      "Colm" = "Colmillo")
 
 p2 <- ggplot(model_df%>%filter(site!="GaviUp")%>%filter(site!="Colm")#%>%filter(Wetland!="GAVItrib3")
              , aes(x = x_pred, y = adjusted_ppm)) +
   geom_point(size=3) +  
   facet_grid(site~.,labeller = as_labeller(site_names)) + geom_smooth(method='lm')+
   ylab(expression(paste(italic('p'),"CO"[2] ," (ppm)"))) + xlab("Distance downstream (m)") +
-  theme_bw() +
-  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) +  theme(text = element_text(size = 18)) 
+  theme_bw(base_size = 14) +
+  scale_y_continuous(trans = "log10", breaks=c(300,1000,3000,10000), labels=c("300","1,000","3,000","10,000")) 
 
 p3 <- p2 + geom_text(
   data    = dat_text,
-  mapping = aes(x = 400, y = 9000, label = label))
+  mapping = aes(x = 450, y = 8000, label = label),size = 10/.pt)
 
 
 
@@ -335,9 +338,9 @@ df1$adjusted_ppm[df1$site == "GaviTrib1"] <- NA
 
 
 site_names <- c("Ante" = "Antenas",
-                      "GaviDown" = "Gavil\u00e1n Outlet",
+                      "GaviDown" = "Gavil\u00e1n \noutlet",
                 "GaviTrib1" = "gavitrib1",
-                      "GaviUp" = "Gavil\u00e1n Intlet",
+                      "GaviUp" = "Gavil\u00e1n \nintlet",
                       "Colm" = "Colmillo")
 
 
@@ -345,10 +348,9 @@ p4 <- ggplot(df1%>%filter(site=="GaviUp"|site=="Colm"), aes(x = x_pred, y = adju
   geom_point(size=3) + 
   facet_grid(site~.,labeller = as_labeller(site_names)) +
   ylab(expression(paste(italic('p'),"CO"[2] ," (ppm)"))) + xlab("Distance downstream (m)") +
-  theme_bw() +
+  theme_bw(base_size = 14) +
   scale_y_continuous(trans = "log10", breaks=c(300,1000,3000), labels=c("300","1,000","3,000")) +
-  expand_limits(y = c(200, 4000)) + 
-  theme(text = element_text(size = 18))
+  expand_limits(y = c(200, 4000)) 
 
 
 #annotate text 
@@ -359,19 +361,18 @@ dat_text2 <- data.frame(
 
 p5 <- p4 + geom_text(
   data    = dat_text2,
-  mapping = aes(x = 900, y = 3000, label = label))
-p6 <- ggarrange(p5, NULL, ncol = 1,heights=c(1,1.255))
+  mapping = aes(x = 900, y = 3000, label = label),size = 10/.pt)
 
 figure1 <- ggarrange(gaviplot_1, gaviplot_2, ncol = 2)
-figure2 <- ggarrange(p3, p6, ncol = 2)
+figure2 <- plot_grid(p3 + rremove("xlab"), p5, ncol = 1,nrow=2,rel_heights = c(5,2))
 
 
 
 ```
 
 
-Box plots
-```{r fig 4 boxplots, echo=FALSE}
+#Box plots
+```{r fig boxplots, echo=FALSE}
 
 k600_df <- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
 
@@ -428,8 +429,8 @@ p <- ggplot(df_sub,
             aes(x=site_3, y=value)) 
 
 air_ppm <- mean(k600_df$pCO2_air_atm)*1000000
-p1 <- p + # facet_grid(rows = vars(variable),labeller = f_labeller,scales = "free")  +
-  facet_wrap(variable~., dir = "v",scales="free") +
+p1 <- p +  facet_grid(rows = vars(variable),labeller = f_labeller,scales = "free")  +
+  #facet_wrap(variable~., dir = "v",scales="free") +
   geom_boxplot(outlier.shape = NA,fill="grey") +
   geom_jitter(shape=18,position=position_jitter(0.1)) +
   geom_hline(data = df_sub %>% filter(variable == "co2"),
@@ -474,11 +475,14 @@ options(scipen = 999)
 model_Q <- lm(log(Q_m3s) ~ log(catchment_ha), data = Q_df)
 summ_model_Q <- summary(model_Q)
 
-p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000,color="black")) + geom_point(size=3) + scale_y_log10() + scale_x_log10() +
+p_Q <- ggplot(Q_df,aes(x=catchment_ha,y=Q_m3s*1000,color="black")) + geom_point(size=3) +  scale_y_continuous(trans = "log10", 
+                      breaks=c(.01,.1,1,10,100), 
+                      labels=c("0.01","0.1","1.0","10","100")) +     scale_x_continuous(trans = "log10", limits = c(.5,200)) +
   geom_smooth(method='lm', formula= y~x,color="black") +
   ylab(expression(paste("Discharge (L ",s^-1, ")"))) + xlab("Catchment area (ha)") +
     scale_color_manual(values = c("black")) +
-  annotate("text", x=5, y=50, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.7"))),size=4) +
+#  annotate("text", x=5, y=50, label= expression(atop("p-value = < 0.0001",paste(R^{2}," = 0.7"))),size=4) +
+  annotate("text", x=5, y=50, label= "p-value = < 0.0001\nR-sq = 0.7",size=4) +
   theme_bw(base_size = 18)
 
 model_w <- lm(log(w) ~ log(catchment_ha)  , data = XWD_allsites)
@@ -486,48 +490,97 @@ summ_model_w <- summary(model_w)
 
 p_width <- ggplot(XWD_allsites,aes(x=catchment_ha,y=w,color=legend_item)) + geom_point(size=3) +
   geom_smooth(method='lm', formula= y~x,color="black") + 
-  ylab("Width [cm]") + xlab("Catchment area (ha)") +
+  ylab("Width (cm)") + xlab("Catchment area (ha)") +
    scale_y_continuous(trans = "log10", 
                       breaks=c(10,100,1000), 
                       labels=c("10","100","1,000")) +
   scale_x_continuous(trans = "log10", limits = c(.1,200)) +
   scale_color_manual(values = c("black")) +
-  annotate("text", x=1, y=700, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.34"))),size=4) + 
+#  annotate("text", x=1, y=700, label= expression(atop("p-value = < 0.0001",paste(R^{2}," = 0.34"))),size=4) + 
+  annotate("text", x=1, y=700, label= "p-value = < 0.0001\n R-sq = 0.34",size=4) +
   theme_bw(base_size = 18)
 
-model_d <- lm(log(d) ~ log(catchment_ha) + log1p(slope_mid), data = XWD_allsites)
+XWD_allsites$slope_mid_detection <- ifelse(XWD_allsites$slope_mid==0,0.00025,XWD_allsites$slope_mid)
+
+model_d <- lm(log(d) ~ log(catchment_ha) + log(slope_mid_detection), data = XWD_allsites)
+summ_model_d <-summary(model_d)
+model_d <- lm(log(d) ~ log(catchment_ha) + log1p(slope_mid_detection), data = XWD_allsites)
 summ_model_d <-summary(model_d)
 
-p_depth <- ggplot(XWD_allsites%>%drop_na(slope_mid),aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + geom_point(size=3,shape=21) +
-  scale_y_log10() + scale_x_continuous(trans = "log10", limits = c(.1,200)) +
-  geom_smooth(method='lm', formula= y~x,color="black")+ 
-  ylab("Depth [cm]") + xlab("Catchment area [ha]") + 
-  annotate("text", x=1, y=100, label= expression(atop("p-value = < 0.0001",paste(r^{2}," = 0.50"))),size=4) +
-  theme_bw(base_size = 18)+ scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope [m/m]", labels=c(0,.1,.2,.3,.4),  breaks=c(0,log1p(.1),log1p(.2),log1p(.3),log1p(.4)))
-  labs(fill="Slope \n (log1p)")
+p_depth <- ggplot(XWD_allsites%>%drop_na(slope_mid),aes(x=catchment_ha,y=d,fill=log1p(slope_mid))) + 
+  geom_point(size=3,shape=21) +
+    geom_smooth(method='lm', formula= y~x,color="black")+
+  scale_y_log10(name="Depth (cm)") + 
+  scale_x_continuous(name= "Catchment area (ha)",trans = "log10", limits = c(.1,200)) +
+#  annotate("text", x=1, y=80, label= expression(atop("p-value = < 0.0001",paste(R^{2}," = 0.50"))),size=4) +
+  annotate("text", x=1, y=80, label= "p-value = < 0.0001\n R-sq = 0.50",size=4) +
+  theme_bw(base_size = 18)+
+  scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope (m/m)", labels=c(0,.1,.2,.3,.4),  breaks=c(0,log1p(.1),log1p(.2),log1p(.3),log1p(.4))) +
+    theme(legend.position="left")
 
 
-p_full <- ggarrange(p_Q, p_width, ncol = 2, nrow = 1)
+# Extract the legend. Returns a gtable
+leg <- get_legend(p_depth)
+# Convert to a ggplot and print
+leg2 <- as_ggplot(leg)
+p_leg_plot <- plot_grid(NULL,leg2,rel_widths = c(1,.5))
+
+p_full_1 <- plot_grid( 
+  p_Q + rremove("legend"), p_leg_plot,
+                    labels=c("a.",""),ncol = 1, nrow = 2)
+
+p_full_2 <- plot_grid(p_width+ rremove("legend"),
+                    p_depth+ rremove("legend"),
+                     align="hv",rel_widths = c(1,1),
+                    labels=c("b.","c."),ncol = 1, nrow = 2)
+
+p_full_3 <- plot_grid(p_full_1,p_full_2,align="h",ncol = 2)
 
 
+synop_allsites$slope_mid_detection <- ifelse(synop_allsites$slope_mid==0,0.00025,synop_allsites$slope_mid)
 
+synop_allsites$slope_up_detection <- ifelse(synop_allsites$slope_up==0,0.00025,synop_allsites$slope_up)
+
+model_co2 <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up_detection), data = synop_allsites%>%drop_na(slope_up))
 model_co2 <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites%>%drop_na(slope_up))
+
 summ_model_co2 <- summary(model_co2)
 
-p_co2 <- ggplot(synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
-  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
-  geom_smooth(method='lm', formula= y~x,color="black")+
-  scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope (m/m)", labels=c(0,.3,.6,1),  breaks=c(0,log1p(.3),log1p(.6),log1p(1))) +  annotate("text", x=8, y=10000, label= expression(atop("p-value = < 0.0001",""#paste(r^{2}," = 0.27")
-                                                                                                    )),size=4) +
-  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment area (ha)") + 
+library(ggforce)
+
+p_co2 <- ggplot() + 
+  geom_point(data=synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up),size=3,shape=21) +
+  scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(data=synop_allsites%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up),method='lm', formula= y~x,color="black")+
+  
+
+    geom_ellipse(aes(x0 = 80, y0 = 6500, a = 0.15, b = 0.25, angle = 0),color="red") +
+
+  
+  scale_fill_continuous(low = "yellow", high = "darkgreen", na.value = NA,name="Slope (m/m)", labels=c(0,.3,.6,1),  breaks=c(0,log1p(.3),log1p(.6),log1p(1))) +  annotate("text", x=8, y=10000, label= expression("p-value = < 0.0001"),size=4) +
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment size (ha)") + 
   theme_bw(base_size = 18)+
   labs(fill="Slope \n (log1p)")
+
+
+
+synop_allsites_nowetland$slope_up_detection <- ifelse(synop_allsites_nowetland$slope_up==0,0.00025,synop_allsites_nowetland$slope_up)
 
 model_co2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up), data = synop_allsites_nowetland%>%drop_na(slope_up))
 summ_model_co2_nowetland <- summary(model_co2_nowetland)
 
+model_co2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up_detection), data = synop_allsites_nowetland%>%drop_na(slope_up_detection))
 summ_model_co2_nowetland <-summary(model_co2_nowetland)
-p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
+
+p_co2_nowetland_1 <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up)) + 
+  geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
+  geom_smooth(method='lm', formula= y~x,color="black")+
+  scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
+  annotate("text", x=1, y=10000, label= expression(atop("p-value = < 0.001",paste(r^{2}," = 0.42"))),size=4) +
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) + xlab("") + xlab("Catchment area (ha)") +
+  theme_bw(base_size = 16)
+
+p_co2_nowetland_2 <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up_detection),aes(x=catchment_ha,y=adjusted_ppm,fill=slope_up_detection)) + 
   geom_point(size=3,shape=21) + scale_y_log10() + scale_x_log10()+ 
   geom_smooth(method='lm', formula= y~x,color="black")+
   scale_fill_gradient(low = "yellow", high = "darkgreen", na.value = NA) +
@@ -537,18 +590,21 @@ p_co2_nowetland <- ggplot(synop_allsites_nowetland%>%drop_na(slope_up),aes(x=cat
 
 
 
+model_emissionco2_nowetland <- lm(log(adjusted_ppm) ~ log(catchment_ha) + log1p(slope_up_detection), data = synop_allsites_nowetland%>%drop_na(slope_up_detection))
+summ_model_co2_nowetland <-summary(model_emissionco2_nowetland)
+
 ```
 
 
 
 
-#plot
+#bball plot
 
 
 ```{r bball fig, echo=FALSE}
 #df1 <- read.csv(here::here("ProcessedData/raymond_data_allsites_2024-09-16.csv"))
 
-df <- read.csv(here::here("ProcessedData/CumulativeFlux_raymondk600_Oct8.csv"))
+df <- read_csv(here::here("ProcessedData/CumulativeFlux_raymondk600_Oct8.csv"))
 
 df$name <- factor(df$name, levels=c("Ante", "Colm","GaviUp", "GaviDown","GaviTrib1","GaviTrib2","GaviTrib3"))
 
@@ -577,14 +633,23 @@ bball_zoom <- ggplot(df,
   ylim(-20, 500) +
    theme_bw(base_size = 16) 
 
+# Extract the legend. Returns a gtable
+leg <- get_legend(bball_zoom)
 
-#ggarrange(bball_zoom,legend = "none")
+# Convert to a ggplot and print
+leg2 <- as_ggplot(leg)
+
+
+pgroup <- plot_grid(bball+ rremove("ylab")+rremove("legend"),
+          leg2 ,ncol=1)
+
+final <- plot_grid(bball_zoom+rremove("legend"),pgroup,nrow=1, rel_widths = c(1,.75))
 
 #write.csv(df_test,here::here("ProcessedData/bball_dataframe.csv"))
 
 ```
 
-
+#upscale 
 
 ```{r upscale flux bin, echo=FALSE}
 #make some plots right quick, bin data
@@ -608,93 +673,92 @@ bin5_summ <- df_bin5%>%group_by(new_bin)%>%
 
 air_ppm <- mean(df_bin5$pCO2_air_atm*10^6)
 
-p1 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break&z_score>-z_score_break), aes(x=new_bin, y=co2,fill=cathment_name)) +
+p1 <-ggplot(data=df_bin5#%>%filter(z_score<z_score_break&z_score>-z_score_break)
+            , aes(x=new_bin, y=co2,fill=cathment_name)) +
     geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5#outlier.shape = NA
     ) + 
    geom_hline(yintercept=air_ppm, color="red",linetype="dashed") +
      stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") + 
 
   scale_y_continuous(transform ="log",breaks=c(1,3,10,30,100,300,1000,3000)) +
-  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-  scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
-  ylab(expression(italic(p)~CO[2] ~'[ppm]')) +
-  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+  scale_x_discrete(name="Catchment area (ha)", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+  scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#fee0d2", "#a1d99b", "#756bb1")) +
+  ylab(expression(italic(p)~CO[2] ~'(ppm)')) +
+  theme_bw(base_size = 14)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        legend.position = "top")
 
 
-p2 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break), aes(x=new_bin, y=k600_eq1_final,fill=cathment_name)) + 
+p2 <-ggplot(data=df_bin5#%>%filter(z_score<z_score_break & z_score>-z_score_break)
+            , aes(x=new_bin, y=k600_eq1_final,fill=cathment_name)) + 
   scale_y_continuous(transform ="log",breaks=c(3,10,30,100,300,1000)) +
   geom_boxplot(outlier.shape=21, outlier.size = 1.25, outlier.alpha = .5
     ) + 
        stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
-  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +    scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
-  ylab(expression(paste(italic('k')[600]," [m ", d^-1,"]"))) +
-  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+  scale_x_discrete(name="Catchment area (ha)", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#fee0d2", "#a1d99b", "#756bb1")) +
+  ylab(expression(paste(italic('k')[600]," (m ", d^-1,")"))) +
+  theme_bw(base_size = 14)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        legend.position = "top")
 
 
-p3 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break), aes(x=new_bin, y=F_mol_m2_d_eq1,fill=cathment_name)) +
+p3 <-ggplot(data=df_bin5#%>%filter(z_score<z_score_break & z_score>-z_score_break)
+            , aes(x=new_bin, y=F_mol_m2_d_eq1,fill=cathment_name)) +
    geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5
     ) +   
   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
-  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-    scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
-    ylab(expression(paste(CO[2]," Evasion [mol ",m^-2," ", d^-1,"]"))) + scale_y_continuous(transform="log1p",breaks = c(1,3,10),limits =c(0,20)
+  scale_x_discrete(name="Catchment area (ha)", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#fee0d2", "#a1d99b", "#756bb1")) +
+    ylab(expression(paste(CO[2]," emission (mol ",m^-2," ", d^-1,")"))) + scale_y_continuous(transform="log1p",breaks = c(1,3,10),limits =c(0,20)
       ) +
-  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+  theme_bw(base_size = 14)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
 
 
-p4 <-ggplot(data=df_bin5%>%filter(z_score<z_score_break & z_score>-z_score_break), aes(x=new_bin, y=F_CO2_molperd_eq1,fill=cathment_name)) +
+p4 <-ggplot(data=df_bin5#%>%filter(z_score<z_score_break & z_score>-z_score_break)
+            , aes(x=new_bin, y=F_CO2_molperd_eq1,fill=cathment_name)) +
    geom_boxplot(outlier.shape=21,outlier.size = 1.25,outlier.alpha = .5) +
   stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, color = "black",fill="red") +
-  scale_x_discrete(name="Catchment area [ha]", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
-    scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) + scale_y_continuous(transform="log1p",breaks = c(1,3,10,30,100),limits = c(0,30)
+  scale_x_discrete(name="Catchment area (ha)", labels = c('[1.0 - 2.9]','[2.9 - 8.4]','[8.4 - 24.0]','[24.0 - 69.2]','[107 - 202]')) +
+    scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#fee0d2", "#a1d99b", "#756bb1")) + scale_y_continuous(transform="log1p",breaks = c(1,3,10,30,100),limits = c(0,30)
       ) +
-    ylab(expression(paste(CO[2]," Evasion (mol ", d^-1,")"))) +
-  theme_bw(base_size = 16)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+    ylab(expression(paste(CO[2]," emission (mol ", d^-1,")"))) +
+  theme_bw(base_size = 14)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1),legend.position = "top")
 
 
-p_full <- ggarrange(p1, p2, p3,p4,  common.legend = TRUE, legend="top")
+p_full_1 <- plot_grid(p1, 
+                      p3+rremove("legend"), nrow=2,ncol=1,align = "v")
+p_full_2 <- plot_grid(p2, 
+                      p4+rremove("legend"), nrow=2,ncol=1,align = "v")
 
-p_full_1 <- ggarrange(p1+ rremove("xlab")+ rremove("x.text"), p2+ rremove("xlab")+ rremove("x.text"),  common.legend = TRUE, legend="top")
+p_full_3 <- plot_grid(p_full_1, 
+                      p_full_2, nrow=1,ncol=2,align = "hv")
 
-p_full_2 <- ggarrange(p3,p4,  common.legend = TRUE, legend="none")
+legend <- cowplot::get_legend(p4)
+grid.newpage()
+grid.draw(legend)
 
-figure <- ggarrange(
-  p1 + rremove("xlab")+ rremove("x.text"),
-  p2 + rremove("xlab") + rremove("x.text"),
-  p3,
-  p4, # remove axis labels from plots
-                    labels = NULL,
-                    ncol = 2, nrow = 2,
-                    common.legend = TRUE, legend = "top",
-                    align = "hv", 
-                    font.label = list(size = 10, color = "black", face = "bold", family = NULL, position = "top"))
-
-annotate_figure(figure, left = textGrob("Common y-axis", rot = 90, vjust = 1, gp = gpar(cex = 1.3)),
-                    bottom = textGrob("Common x-axis", gp = gpar(cex = 1.3)))
 
 ```
 
+#histogram of upscale
 
 ```{r upscale boxplots, echo=FALSE}
 
 df <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
-<<<<<<< HEAD
 
 df$cathment_name <- factor(df$cathment_name, levels = c("ante", "gavi", "colm"))
-=======
+
 df_justtomakesure <- df%>%filter(catchment_ha>=1) 
 
->>>>>>> 83e3ff8a10cec194add0895a8c515d62e399de65
 
 df_bin5 <- df_justtomakesure%>% mutate(new_bin = cut(log(catchment_ha), breaks=5))
 df_bin5$cathment_name <- factor(df_bin5$cathment_name, levels = c("ante", "gavi", "colm"))
 
 z_score_break <- 10
 
-<<<<<<< HEAD
 z_score_break <- 10
-=======
->>>>>>> 83e3ff8a10cec194add0895a8c515d62e399de65
 
 df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/sd(df_bin5$F_CO2_molperd_eq1)
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
@@ -704,9 +768,9 @@ histogram <- df_bin5%>%filter(catchment_ha>=1)%>%
   ggplot( aes(x=catchment_ha, fill=cathment_name)) +
     geom_histogram( color="black", position = 'identity',bins = 10) +
     theme_classic(base_size = 16) +
-    labs(fill="")+ xlab("Catchment area [ha]") + 
+    labs(fill="")+ xlab("Catchment area (ha)") + 
   scale_x_continuous(transform = "log",breaks=c(1,3, 10,30,100,300)) +
-  scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
+  scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#fee0d2", "#a1d99b", "#756bb1")) +
   facet_grid(rows=vars(cathment_name))+ 
 theme(strip.background = element_blank(),
   strip.text.y = element_blank()) + 
@@ -732,10 +796,9 @@ df_bin5_summary <- df_bin5%>%
 
 barplot <-ggplot(data=df_bin5_summary, aes(x=new_bin, y=F_CO2_molperd_eq1_sum,fill=cathment_name)) +
 geom_bar(stat="identity", color="black", position=position_dodge())+
-    scale_x_discrete(name="Catchment area [ha]", labels = c('[9.0 - 16.6]','[16.6 - 40.0]','[40.0 - 57.5]','[57.5 - 107]','[107 - 199]')) +
-  scale_fill_manual(name = "Watershed", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#efedf5", "#bcbddc", "#756bb1")) +
-#   scale_fill_discrete(name = "", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo")) +
-    ylab(expression(paste("Total CO"[2]," evasion [mol ", day^-1,"]"))) +
+    scale_x_discrete(name="Catchment area (ha)", labels = c('[9.0 - 16.6]','[16.6 - 40.0]','[40.0 - 57.5]','[57.5 - 107]','[107 - 199]')) +
+  scale_fill_manual(name = "Catchment", labels = c("Antenas", 'Gavil\u00e1n',"Colmillo"),values=c("#fee0d2", "#a1d99b", "#756bb1")) +
+    ylab(expression(paste("Total CO"[2]," emission (mol ", day^-1,")"))) +
   theme_minimal(base_size = 18)+ theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) + 
   
     theme(legend.position="top")
@@ -743,16 +806,14 @@ geom_bar(stat="identity", color="black", position=position_dodge())+
 
 
 
-
-full <- ggarrange(histogram,NULL,barplot,ncol = 3,widths=c(1,.2,1.75),common.legend = TRUE,legend = "bottom")
+full <- ggarrange(histogram,NULL,barplot,ncol = 3,widths=c(1,.2,1.75),common.legend = TRUE,legend = "bottom",labels = c("b.","","c."))
 
 
 
 ```
 
 
-<<<<<<< HEAD
-=======
+
 ```{r read out df, echo=FALSE}
 zdf <- read.csv(here::here("ProcessedData/upscaleFlux_allwatersheds_oct18.csv"))
 df_justtomakesure <- df%>%filter(catchment_ha>=1) 
@@ -766,9 +827,8 @@ df_bin5$z_score <- (df_bin5$F_CO2_molperd_eq1-mean(df_bin5$F_CO2_molperd_eq1))/s
 z_score_toremove <- df_bin5%>%filter(z_score>=z_score_break|z_score<=-z_score_break)
 
 writeout_df <- df_bin5%>%filter(z_score<z_score_break&z_score>-z_score_break)
-write.csv(writeout_df,here::here("ProcessedData/Upscale_flux_init1ha_Oct22.csv"))
+#write.csv(writeout_df,here::here("ProcessedData/Upscale_flux_init1ha_Oct22.csv"))
 ```
->>>>>>> 83e3ff8a10cec194add0895a8c515d62e399de65
 
 
 

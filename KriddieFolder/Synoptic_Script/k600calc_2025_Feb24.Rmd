@@ -1,0 +1,276 @@
+---
+title: "k600_calculation_2024"
+author: "Kriddie"
+date: "2024-05-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(here)
+library(dplyr) 
+library(tidyr) 
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
+library(rstatix)
+library(ggpubr)
+library(dplyr)
+library(lubridate)
+library(readr)
+```
+
+## gas transfer velocity calculation
+
+we need to figure this shit out
+
+# Read in data
+
+
+```{r read in data}
+
+df<- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
+
+df <- read.csv(here::here("Synoptic/Synoptic_Km600_2019.csv"))
+
+
+```
+
+
+## working with the final data set (synoptic)
+
+output for viasala is:
+
+molecular density - so molecules/volume of gas. Here the volume of the gas is what is inside the cuvette. So, the sensor is basically giving out the number of molecules in the optical path.
+
+```{r the kriddie way for final, echo=FALSE}
+
+df<- read.csv(here::here("ProcessedData/AllSynoptic_raymondk600_Oct8.csv"))%>%drop_na(k600_eq1_final)%>%filter(site!="GaviTrib3")
+
+#pV=nRT
+#p=nRT/V
+#R m3⋅Pa⋅K−1⋅mol−1
+#R=8.31446261815324 	
+
+#adjust henry to temp: KH = KH(STP) x exp(D(1/T-1/T(STP)))
+#use constants in  	Burkholder et al. (2019) and convert to desired units
+#  k°H (mol/(kg*bar) = mol/l/atm
+#d(ln(kH))/d(1/T) (K)
+kH_STP_mol.l.atm = .035*1/0.986923
+D_K = 2400 
+T_STP_K = 298.15
+
+df$pCO2_air_ppm <- 418.53 # 2022 average manoa
+#########
+
+df$pCO2_air_atm <-  df$pCO2_air_ppm / 10^6  * df$air_pressure_atm
+df$pCO2_w_atm <- df$adjusted_ppm / 10^6 
+
+#henry's constant adjust for temp
+df$KH_mol.l.atm <- kH_STP_mol.l.atm * exp(D_K*(1/(df$WaterTemp_c+273.15) - 1/T_STP_K))
+df$KH_mol.m3.atm <- df$KH_mol.l.atm * 1000
+
+df$CO2_sat_mol.L <- df$KH_mol.l.atm*df$pCO2_air_atm
+
+df$CO2_mol.L <- df$KH_mol.l.atm*df$pCO2_w_atm
+df$CO2_umol.L <- df$CO2_mol.L*10^6
+
+
+df$CO2_sat_precent <- df$CO2_mol.L/df$CO2_sat_mol.L*100
+
+
+#change units of flux (umol/m2/s - > mol/m2/d)
+#86400 seconds in a day
+df$Flux_mol_m2_d <- df$Flux_ave / 10^6 * 86400
+
+#now calculate k in m/d
+df$k_m_d_chamber <- df$Flux_mol_m2_d / (df$KH_mol.m3.atm * (df$pCO2_w_atm -  df$pCO2_air_atm )) 
+
+# Wanninkhof et al. (2014)
+df$Sc_co2 <- 1923.6 - 125.06*df$WaterTemp_c + 4.3773*(df$WaterTemp_c)^2 - 0.085681*(df$WaterTemp_c)^3 + 0.00070284 * (df$WaterTemp_c)^4
+
+
+df$K600_chamber <- df$k_m_d_chamber * (600/df$Sc_co2)^(-.57)
+
+
+df$Flux_mol_m2_d  <- NULL
+
+
+### raymond eq
+g <- 9.81
+df$k600_raymond_eq1 <- (df$v_ms*df$slope_mid)^.89 * df$depth^.54*5037
+df$k600_raymond_eq2 <- 5937*(1-2.54*(df$v_ms/(g*df$depth)^.5)^2)*(df$v_ms*df$slope_mid)^.89*df$depth^.58
+df$k600_raymond_eq3 <- 1162*df$slope_mid^.77*df$v_ms^.85
+df$k600_raymond_eq4 <- (df$v_ms*df$slope_mid)^.76*951.5
+df$k600_raymond_eq5 <- (df$v_ms*df$slope_mid)*2841+2.02
+df$k600_raymond_eq6 <- 929*(df$v_ms*df$slope_mid)^.75*df$Q_m3s^.011
+df$k600_raymond_eq7 <- 4725*(df$v_ms*df$slope_mid)^.86*df$Q_m3s^-.14*df$depth^.66
+
+
+df$k600_wallin <- (.013*.01*100 + df$slope_mid *.5/df$depth - 0.000003)*df$depth * 60 *24
+df$k600_natchimuthu_model1 <- 10^(-1.323+(.466*log10(df$depth))+(0.056*log10(df$slope_mid)))
+df$k600_natchimuthu_model2 <- 10^(.319+(2.11*df$v_ms)+(1.026*log10(df$slope_mid)))
+
+
+
+
+p1 <- ggplot(df) + geom_point(aes(x=CO2_ppm,y=K600,color=DateTime)) 
+
+p1 <- ggplot(df%>%filter(slope_mid < .01)
+             ) + geom_point(aes(x=K600_chamber,y=k600_eq1_final,color=site))
+
+p1 <- ggplot(df%>%filter(slope_mid < .01)
+             ) + geom_point(aes(x=K600_chamber,y=k600_eq1_final,color=site))
+
+
+
+p1 <- ggplot(df%>%filter(catchment_ha < 1)
+             ) + geom_point(aes(x=K600_chamber,y=k600_eq1_final,color=site))
+
+p2 <- ggplot(df) + geom_point(aes(x=CO2_ppm,y=k_m_d,color=DateTime)) 
+
+p1 <- ggplot(df%>%filter(site=="GaviDown")%>%filter(x < 500)
+             ) + geom_point(aes(x=catchment_ha,y=K600_chamber,color=site)) +
+  scale_x_log10() + scale_x_log10()
+
+#write.csv(df,here::here("ProcessedData/AllSynoptic_k600_Feb24.csv"))
+
+
+```
+
+
+#2019
+
+
+```{r the kriddie way for final, echo=FALSE}
+
+df <- read.csv(here::here("Synoptic/Synoptic_Km600_2019.csv"))
+
+#pV=nRT
+#p=nRT/V
+#R m3⋅Pa⋅K−1⋅mol−1
+#R=8.31446261815324 	
+
+#adjust henry to temp: KH = KH(STP) x exp(D(1/T-1/T(STP)))
+#use constants in  	Burkholder et al. (2019) and convert to desired units
+#  k°H (mol/(kg*bar) = mol/l/atm
+#d(ln(kH))/d(1/T) (K)
+kH_STP_mol.l.atm = .035*1/0.986923
+D_K = 2400 
+T_STP_K = 298.15
+
+df$pCO2_air_ppm <- 418.53 # 2022 average manoa
+
+
+#########
+
+
+df$pCO2_air_atm <-  df$pCO2_air_ppm / 10^6  * df$air_pressure_atm
+
+
+df$pCO2_w_atm <- df$CO2_ppm / 10^6 
+
+#henry's constant adjust for temp
+df$KH_mol.l.atm <- kH_STP_mol.l.atm * exp(D_K*(1/(df$WaterTemp_c+273.15) - 1/T_STP_K))
+df$KH_mol.m3.atm <- df$KH_mol.l.atm * 1000
+
+df$CO2_sat_mol.L <- df$KH_mol.l.atm*df$pCO2_air_atm
+
+df$CO2_mol.L <- df$KH_mol.l.atm*df$pCO2_w_atm
+df$CO2_umol.L <- df$CO2_mol.L*10^6
+
+
+df$CO2_sat_precent <- df$CO2_mol.L/df$CO2_sat_mol.L*100
+
+
+#change units of flux (umol/m2/s - > mol/m2/d)
+#86400 seconds in a day
+df$Flux_mol_m2_d <- df$Flux_ave / 10^6 * 86400
+
+#now calculate k in m/d
+df$k_m_d_chamber <- df$Flux_mol_m2_d / (df$KH_mol.m3.atm * (df$pCO2_w_atm -  df$pCO2_air_atm )) 
+
+# Wanninkhof et al. (2014)
+df$Sc_co2 <- 1923.6 - 125.06*df$WaterTemp_c + 4.3773*(df$WaterTemp_c)^2 - 0.085681*(df$WaterTemp_c)^3 + 0.00070284 * (df$WaterTemp_c)^4
+
+
+df$K600_chamber <- df$k_m_d_chamber * (600/df$Sc_co2)^(-.57)
+
+
+df$Flux_mol_m2_d  <- NULL
+
+
+#calc velocity
+#Q=(w+w)/2*d*v
+#v=Q/w/d
+#df$v_ms_2 <- df$Q_m3perS / (df$depth.m) / (df$)
+
+#calc k600 using eD as in Ulseth
+#first calc eD
+#eD = gSV ; where g is acceleration due to gravity = 9.81 m/s/s ; S is slope ; V is velocity (m/s)) (units m2 s-3) - Raymond et al. 2012
+#eD break point is 0.020 m2 s–3
+df$eD <- 9.81*.01*df$velocity.m.s
+
+#then calc low energy based on eD
+df$k600_eq1 <- exp(.035*log(df$eD) + 3.1)
+
+#then calc high energy stream
+df$k600_eq1_ulsethcorrection <-   exp(1.18*log(df$eD) + 6.43)
+
+#to calculate the final, do peicewise base on 0.02 breakpoint
+df$k600_eq1_final <- NA
+#all_data_bind <- all_data_bind%>%drop_na(eD)
+
+for(i in 1:nrow(df)) {
+  if (is.na(df$eD[i])){
+    df$k600_eq1_final[i] <- NA
+  } else if (df$eD[i] < .020 ){
+    df$k600_eq1_final[i] <- df$k600_eq1[i]
+  }else{
+    df$k600_eq1_final[i] <- df$k600_eq1_ulsethcorrection[i]
+  }
+}
+
+
+
+### raymond eq
+g <- 9.81
+df$slope_mid <- .01
+df$k600_raymond_eq1 <- (df$velocity.m.s*df$slope_mid)^.89 * df$depth.m^.54*5037
+df$k600_raymond_eq2 <- 5937*(1-2.54*(df$velocity.m.s/(g*df$depth.m)^.5)^2)*(df$velocity.m.s*df$slope_mid)^.89*df$depth.m^.58
+df$k600_raymond_eq3 <- 1162*df$slope_mid^.77*df$velocity.m.s^.85
+df$k600_raymond_eq4 <- (df$velocity.m.s*df$slope_mid)^.76*951.5
+df$k600_raymond_eq5 <- (df$velocity.m.s*df$slope_mid)*2841+2.02
+df$k600_raymond_eq6 <- 929*(df$velocity.m.s*df$slope_mid)^.75*df$Q_m3perS^.011
+df$k600_raymond_eq7 <- 4725*(df$velocity.m.s*df$slope_mid)^.86*df$Q_m3perS^-.14*df$depth.m^.66
+
+
+df$k600_wallin <- (.013*.01*100 + df$slope_mid *.5/df$depth.m - 0.000003)*df$depth.m * 60 *24
+df$k600_natchimuthu_model1 <- 10^(-1.323+(.466*log10(df$depth.m))+(0.056*log10(df$slope_mid)))
+df$k600_natchimuthu_model2 <- 10^(.319+(2.11*df$velocity.m.s)+(1.026*log10(df$slope_mid)))
+
+
+
+
+
+df$k600_wallin <- (.013*.01*100 + .002 *.5/df$depth.m - 0.000003)*df$depth.m * 60 *24
+
+ggplot(df%>%filter(K600_chamber>0)#%>%filter(DOY==206)
+       %>%filter(dist.m.AVE< 50)
+       ,aes(x=K600_chamber,y=k600_eq1_final)) + geom_point()
+
+ggplot(df%>%filter(K600_chamber>0)%>%filter(DOY==199)%>%filter(dist.m.AVE< 100) ,aes(x=K600_chamber,y=k600_eq1_final)) + geom_point()
+
+ggplot(df%>%filter(K600_chamber>0)%>%filter(dist.m.AVE< 5) ,aes(x=K600_chamber,y=k600_eq1_final)) + geom_point()
+
+ggplot(df%>%filter(K600_chamber>0)%>%filter(dist.m.AVE< 50)  ,aes(x=K600_chamber,y=k600_wallin,color=DOY)) + geom_point()
+
+
+#write.csv(df,here::here("ProcessedData/AllSynoptic_2019_Feb24.csv"))
+
+
+```
+
+
+
